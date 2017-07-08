@@ -306,6 +306,16 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     }
     
     func searchRequest(){
+        /*authentication()
+         let headers: HTTPHeaders = [
+         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
+         ]
+         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
+         if let json = response.result.value {
+         print(json)
+         }
+         }*/
+
         self.isResults=true
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
@@ -323,6 +333,34 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         default:
             print("没选")
         }
+        
+    }
+    //加载更多
+    func searchRequestMore(){
+        /*authentication()
+         let headers: HTTPHeaders = [
+         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
+         ]
+         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
+         if let json = response.result.value {
+         print(json)
+         }
+         }*/
+
+        
+    }
+    //改变搜索类型
+    func searchRequestType(){
+        /*authentication()
+         let headers: HTTPHeaders = [
+         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
+         ]
+         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
+         if let json = response.result.value {
+         print(json)
+         }
+         }*/
+
         
     }
     
