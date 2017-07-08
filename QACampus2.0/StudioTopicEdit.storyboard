@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zqa-eg-ZdX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Studio Topic Edit View Controller-->
+        <scene sceneID="NzO-OB-tIj">
+            <objects>
+                <viewController id="7fm-1o-kEc" customClass="studioTopicEditViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YNJ-Tr-IUc"/>
+                        <viewControllerLayoutGuide type="bottom" id="1sP-pg-uag"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HTT-Hf-ibt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-I2-krm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="一句话描述你的问题" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gi8-ET-0Vq" userLabel="titleView">
+                                        <rect key="frame" x="16" y="0.0" width="343" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="rrM-0r-UkK"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bq7-up-ASE" userLabel="divideView">
+                                        <rect key="frame" x="16" y="60" width="343" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="R4g-lA-a0x"/>
+                                        </constraints>
+                                    </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pXV-jb-mPA" userLabel="detailView">
+                                        <rect key="frame" x="10" y="62" width="355" height="541"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gi8-ET-0Vq" secondAttribute="trailing" constant="16" id="2zN-aU-67d"/>
+                                    <constraint firstItem="gi8-ET-0Vq" firstAttribute="top" secondItem="uaB-I2-krm" secondAttribute="top" id="5ed-Dz-ErY"/>
+                                    <constraint firstItem="pXV-jb-mPA" firstAttribute="leading" secondItem="uaB-I2-krm" secondAttribute="leading" constant="10" id="Avm-vp-0YO"/>
+                                    <constraint firstAttribute="trailing" secondItem="bq7-up-ASE" secondAttribute="trailing" constant="16" id="Eyj-1n-G2M"/>
+                                    <constraint firstItem="gi8-ET-0Vq" firstAttribute="leading" secondItem="uaB-I2-krm" secondAttribute="leading" constant="16" id="cNC-Ya-jY2"/>
+                                    <constraint firstItem="bq7-up-ASE" firstAttribute="leading" secondItem="uaB-I2-krm" secondAttribute="leading" constant="16" id="eKm-bj-ui2"/>
+                                    <constraint firstAttribute="trailing" secondItem="pXV-jb-mPA" secondAttribute="trailing" constant="10" id="ygz-q0-Prg"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uaB-I2-krm" secondAttribute="trailing" id="9RZ-If-F7o"/>
+                            <constraint firstItem="uaB-I2-krm" firstAttribute="top" secondItem="YNJ-Tr-IUc" secondAttribute="bottom" id="jFq-r1-qZo"/>
+                            <constraint firstItem="uaB-I2-krm" firstAttribute="leading" secondItem="HTT-Hf-ibt" secondAttribute="leading" id="lkb-5E-5w2"/>
+                            <constraint firstItem="1sP-pg-uag" firstAttribute="top" secondItem="uaB-I2-krm" secondAttribute="bottom" id="zIe-Qv-Zcd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PG0-IT-47c"/>
+                    <connections>
+                        <outlet property="detailView" destination="pXV-jb-mPA" id="wpo-sU-lPz"/>
+                        <outlet property="divideView" destination="bq7-up-ASE" id="ajH-RX-krP"/>
+                        <outlet property="titleView" destination="gi8-ET-0Vq" id="bvJ-oZ-0qH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sgg-er-ZHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3543" y="1593"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="sxc-Us-hig">
+            <objects>
+                <navigationController id="zqa-eg-ZdX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Lih-Jb-PtX"/>
+                    <navigationItem key="navigationItem" id="UWS-JD-va9"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXM-YU-OLG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7fm-1o-kEc" kind="relationship" relationship="rootViewController" id="1XH-7m-VDf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0YW-TQ-J7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3575" y="835"/>
+        </scene>
+    </scenes>
+</document>
