@@ -11,6 +11,7 @@ target 'QACampus2.0' do
   pod 'ObjectMapper', '~> 2.2'
   pod 'SnapKit', '~> 3.0.2'
   pod 'MJRefresh'
+  pod 'SwiftyJSON'
 
   # Pods for QACampus2.0
 

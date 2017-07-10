@@ -8,7 +8,7 @@
 
 import UIKit
 
-class personalTopicViewController: UIViewController {
+class personalCollectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

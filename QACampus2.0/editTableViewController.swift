@@ -26,8 +26,8 @@ class editTableViewController: UITableViewController {
     func initButton(){
         
         cancelBtn.setImage(UIImage(named:"back"),for: .normal)
-        //        cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
-//        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+                cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
+        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = saveBtn
         
         saveBtn.tintColor = defaultColor

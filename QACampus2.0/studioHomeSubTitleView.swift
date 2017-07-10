@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol studioHomeSubTitleViewDelegate: NSObjectProtocol {
     // 当前选中第index个标题的代理毁掉

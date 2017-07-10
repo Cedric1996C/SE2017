@@ -24,15 +24,30 @@
 		061CBF811F0666090049EC6A /* addAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF801F0666090049EC6A /* addAdminViewController.swift */; };
 		061CBF831F07347C0049EC6A /* searchAdminTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF821F07347C0049EC6A /* searchAdminTableViewController.swift */; };
 		061CBF881F073A180049EC6A /* searchUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF871F073A180049EC6A /* searchUserTableViewCell.swift */; };
-		061F12F51EC08E2C00F6689C /* personalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F12F41EC08E2C00F6689C /* personalInfoViewController.swift */; };
 		061F50251EED3286001BBAF9 /* keystore.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 061F50241EED3286001BBAF9 /* keystore.p12 */; };
 		061F50281EED48F1001BBAF9 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F50271EED48F1001BBAF9 /* Authentication.swift */; };
-		0638D9B01EEE42F200D74F4C /* personalSubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9AF1EEE42F200D74F4C /* personalSubFactory.swift */; };
+		062B2AAF1F131E7A0042B9A5 /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AAE1F131E7A0042B9A5 /* Studio.swift */; };
+		062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AB21F1327B40042B9A5 /* personalInfoTableViewController.swift */; };
+		062B2AB51F132B880042B9A5 /* tagNavigationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AB41F132B880042B9A5 /* tagNavigationTableViewCell.swift */; };
+		062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AB61F132BA90042B9A5 /* personalInfoTableViewCell.swift */; };
+		062B2ABB1F1364640042B9A5 /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */; };
+		062B2ABE1F1365EB0042B9A5 /* PersonalStudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2ABD1F1365EB0042B9A5 /* PersonalStudio.storyboard */; };
+		062B2AC01F13660D0042B9A5 /* PersonalQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2ABF1F13660D0042B9A5 /* PersonalQuestion.storyboard */; };
+		062B2AC21F1366AF0042B9A5 /* PersonalCollect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2AC11F1366AF0042B9A5 /* PersonalCollect.storyboard */; };
+		062B2AC41F1366CB0042B9A5 /* personalNewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AC31F1366CB0042B9A5 /* personalNewsTableView.swift */; };
+		062B2AC61F1366E40042B9A5 /* PersonalNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2AC51F1366E40042B9A5 /* PersonalNews.storyboard */; };
+		062B2AC91F1368A20042B9A5 /* PersonalEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2AC81F1368A20042B9A5 /* PersonalEdit.storyboard */; };
+		062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2ACA1F1368B50042B9A5 /* PersonalEditTableViewController.swift */; };
+		062B2ACD1F1376E00042B9A5 /* editAvatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2ACC1F1376E00042B9A5 /* editAvatorTableViewCell.swift */; };
+		062B2ACF1F1376EA0042B9A5 /* editInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2ACE1F1376EA0042B9A5 /* editInfoTableViewCell.swift */; };
+		062B2AD11F13E0170042B9A5 /* ResetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B2AD01F13E0170042B9A5 /* ResetPassword.storyboard */; };
+		062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD31F13E03D0042B9A5 /* resetPasswordTableViewController.swift */; };
+		062B2AD61F13E1270042B9A5 /* editTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD51F13E1270042B9A5 /* editTableViewCell.swift */; };
+		062B2AD81F13E1300042B9A5 /* resetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD71F13E1300042B9A5 /* resetTableViewCell.swift */; };
 		0638D9B51EEE452300D74F4C /* personalQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B41EEE452300D74F4C /* personalQuestionViewController.swift */; };
-		0638D9B71EEE452D00D74F4C /* personalTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B61EEE452D00D74F4C /* personalTopicViewController.swift */; };
+		0638D9B71EEE452D00D74F4C /* personalCollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B61EEE452D00D74F4C /* personalCollectViewController.swift */; };
 		0638D9B91EEE453D00D74F4C /* personalStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* personalStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
-		0638D9BD1EEE93F900D74F4C /* personalSubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BC1EEE93F900D74F4C /* personalSubTitleView.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -41,6 +56,7 @@
 		069AD2291F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2281F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift */; };
 		069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD22E1F0C832B00D5102A /* userStudioViewController.swift */; };
 		069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */; };
+		069AD2331F11F4F100D5102A /* PersonalInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */; };
 		069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */; };
 		069E15C11EFD111200A9C1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069E15C01EFD111200A9C1FA /* Assets.xcassets */; };
 		069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */; };
@@ -144,15 +160,30 @@
 		061CBF801F0666090049EC6A /* addAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addAdminViewController.swift; sourceTree = "<group>"; };
 		061CBF821F07347C0049EC6A /* searchAdminTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchAdminTableViewController.swift; sourceTree = "<group>"; };
 		061CBF871F073A180049EC6A /* searchUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchUserTableViewCell.swift; sourceTree = "<group>"; };
-		061F12F41EC08E2C00F6689C /* personalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalInfoViewController.swift; sourceTree = "<group>"; };
 		061F50241EED3286001BBAF9 /* keystore.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = keystore.p12; sourceTree = "<group>"; };
 		061F50271EED48F1001BBAF9 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		0638D9AF1EEE42F200D74F4C /* personalSubFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalSubFactory.swift; sourceTree = "<group>"; };
+		062B2AAE1F131E7A0042B9A5 /* Studio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
+		062B2AB21F1327B40042B9A5 /* personalInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalInfoTableViewController.swift; sourceTree = "<group>"; };
+		062B2AB41F132B880042B9A5 /* tagNavigationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tagNavigationTableViewCell.swift; sourceTree = "<group>"; };
+		062B2AB61F132BA90042B9A5 /* personalInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalInfoTableViewCell.swift; sourceTree = "<group>"; };
+		062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
+		062B2ABD1F1365EB0042B9A5 /* PersonalStudio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalStudio.storyboard; sourceTree = "<group>"; };
+		062B2ABF1F13660D0042B9A5 /* PersonalQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalQuestion.storyboard; sourceTree = "<group>"; };
+		062B2AC11F1366AF0042B9A5 /* PersonalCollect.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalCollect.storyboard; sourceTree = "<group>"; };
+		062B2AC31F1366CB0042B9A5 /* personalNewsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalNewsTableView.swift; sourceTree = "<group>"; };
+		062B2AC51F1366E40042B9A5 /* PersonalNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalNews.storyboard; sourceTree = "<group>"; };
+		062B2AC81F1368A20042B9A5 /* PersonalEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalEdit.storyboard; sourceTree = "<group>"; };
+		062B2ACA1F1368B50042B9A5 /* PersonalEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalEditTableViewController.swift; sourceTree = "<group>"; };
+		062B2ACC1F1376E00042B9A5 /* editAvatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editAvatorTableViewCell.swift; sourceTree = "<group>"; };
+		062B2ACE1F1376EA0042B9A5 /* editInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editInfoTableViewCell.swift; sourceTree = "<group>"; };
+		062B2AD01F13E0170042B9A5 /* ResetPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ResetPassword.storyboard; sourceTree = "<group>"; };
+		062B2AD31F13E03D0042B9A5 /* resetPasswordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetPasswordTableViewController.swift; sourceTree = "<group>"; };
+		062B2AD51F13E1270042B9A5 /* editTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTableViewCell.swift; sourceTree = "<group>"; };
+		062B2AD71F13E1300042B9A5 /* resetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetTableViewCell.swift; sourceTree = "<group>"; };
 		0638D9B41EEE452300D74F4C /* personalQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalQuestionViewController.swift; sourceTree = "<group>"; };
-		0638D9B61EEE452D00D74F4C /* personalTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalTopicViewController.swift; sourceTree = "<group>"; };
+		0638D9B61EEE452D00D74F4C /* personalCollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalCollectViewController.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* personalStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
-		0638D9BC1EEE93F900D74F4C /* personalSubTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalSubTitleView.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -162,6 +193,7 @@
 		069AD2281F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHomeQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		069AD22E1F0C832B00D5102A /* userStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioViewController.swift; sourceTree = "<group>"; };
 		069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioTableViewCell.swift; sourceTree = "<group>"; };
+		069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalInfo.storyboard; sourceTree = "<group>"; };
 		069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioInfo.storyboard; sourceTree = "<group>"; };
 		069E15C01EFD111200A9C1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = QACampus2.0/Assets.xcassets; sourceTree = "<group>"; };
 		069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioInfoViewController.swift; sourceTree = "<group>"; };
@@ -303,12 +335,15 @@
 		061F12EB1EC08B8600F6689C /* personalInfo */ = {
 			isa = PBXGroup;
 			children = (
-				0638D9BC1EEE93F900D74F4C /* personalSubTitleView.swift */,
+				069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */,
+				062B2AB21F1327B40042B9A5 /* personalInfoTableViewController.swift */,
+				062B2AB61F132BA90042B9A5 /* personalInfoTableViewCell.swift */,
+				062B2AB41F132B880042B9A5 /* tagNavigationTableViewCell.swift */,
 				0638D9BA1EEE880700D74F4C /* pageViewController.swift */,
-				061F12F41EC08E2C00F6689C /* personalInfoViewController.swift */,
-				0638D9AF1EEE42F200D74F4C /* personalSubFactory.swift */,
+				062B2AC71F13687A0042B9A5 /* PersonalEdit */,
+				062B2ABC1F13656A0042B9A5 /* personalNews */,
 				0638D9B31EEE450500D74F4C /* personalStudio */,
-				0638D9B21EEE44F900D74F4C /* personalTopic */,
+				0638D9B21EEE44F900D74F4C /* personalCollect */,
 				0638D9B11EEE44D600D74F4C /* personalQuestion */,
 				067258AF1EEA3E1E005ACA3F /* Models */,
 				067258AE1EEA3E05005ACA3F /* Controllers */,
@@ -325,25 +360,60 @@
 			name = http;
 			sourceTree = "<group>";
 		};
+		062B2ABC1F13656A0042B9A5 /* personalNews */ = {
+			isa = PBXGroup;
+			children = (
+				062B2AC51F1366E40042B9A5 /* PersonalNews.storyboard */,
+				062B2AC31F1366CB0042B9A5 /* personalNewsTableView.swift */,
+			);
+			name = personalNews;
+			sourceTree = "<group>";
+		};
+		062B2AC71F13687A0042B9A5 /* PersonalEdit */ = {
+			isa = PBXGroup;
+			children = (
+				062B2AC81F1368A20042B9A5 /* PersonalEdit.storyboard */,
+				062B2ACA1F1368B50042B9A5 /* PersonalEditTableViewController.swift */,
+				062B2ACC1F1376E00042B9A5 /* editAvatorTableViewCell.swift */,
+				062B2ACE1F1376EA0042B9A5 /* editInfoTableViewCell.swift */,
+				062B2AD21F13E01B0042B9A5 /* ResetPassword */,
+			);
+			name = PersonalEdit;
+			sourceTree = "<group>";
+		};
+		062B2AD21F13E01B0042B9A5 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				062B2AD01F13E0170042B9A5 /* ResetPassword.storyboard */,
+				062B2AD31F13E03D0042B9A5 /* resetPasswordTableViewController.swift */,
+				062B2AD71F13E1300042B9A5 /* resetTableViewCell.swift */,
+				062B2AD51F13E1270042B9A5 /* editTableViewCell.swift */,
+			);
+			name = ResetPassword;
+			sourceTree = "<group>";
+		};
 		0638D9B11EEE44D600D74F4C /* personalQuestion */ = {
 			isa = PBXGroup;
 			children = (
+				062B2ABF1F13660D0042B9A5 /* PersonalQuestion.storyboard */,
 				0638D9B41EEE452300D74F4C /* personalQuestionViewController.swift */,
 			);
 			name = personalQuestion;
 			sourceTree = "<group>";
 		};
-		0638D9B21EEE44F900D74F4C /* personalTopic */ = {
+		0638D9B21EEE44F900D74F4C /* personalCollect */ = {
 			isa = PBXGroup;
 			children = (
-				0638D9B61EEE452D00D74F4C /* personalTopicViewController.swift */,
+				062B2AC11F1366AF0042B9A5 /* PersonalCollect.storyboard */,
+				0638D9B61EEE452D00D74F4C /* personalCollectViewController.swift */,
 			);
-			name = personalTopic;
+			name = personalCollect;
 			sourceTree = "<group>";
 		};
 		0638D9B31EEE450500D74F4C /* personalStudio */ = {
 			isa = PBXGroup;
 			children = (
+				062B2ABD1F1365EB0042B9A5 /* PersonalStudio.storyboard */,
 				0638D9B81EEE453D00D74F4C /* personalStudioViewController.swift */,
 			);
 			name = personalStudio;
@@ -626,6 +696,7 @@
 				061BA6201ED730BA000030CD /* User.swift */,
 				07C88A801EE3A23D00300810 /* Abstract.swift */,
 				07C88A821EE3A3E500300810 /* Detail.swift */,
+				062B2AAE1F131E7A0042B9A5 /* Studio.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -683,6 +754,7 @@
 				069E15BD1EFD0C2800A9C1FA /* studioInfo */,
 				069E15D51EFDF9A800A9C1FA /* studioHome */,
 				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
+				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
 				409124991EB45F3800347EEF /* Info.plist */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				4091248F1EB45F3800347EEF /* ViewController.swift */,
@@ -859,11 +931,15 @@
 			files = (
 				069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */,
 				061CBF601F062F6F0049EC6A /* EditStudioInfo.storyboard in Resources */,
+				062B2AD11F13E0170042B9A5 /* ResetPassword.storyboard in Resources */,
+				062B2AC91F1368A20042B9A5 /* PersonalEdit.storyboard in Resources */,
+				062B2ABE1F1365EB0042B9A5 /* PersonalStudio.storyboard in Resources */,
 				069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */,
 				069E162A1F02420C00A9C1FA /* UserInfo.storyboard in Resources */,
 				409124981EB45F3800347EEF /* LaunchScreen.storyboard in Resources */,
 				061CBF671F0633200049EC6A /* AddAdmin.storyboard in Resources */,
 				069E15C11EFD111200A9C1FA /* Assets.xcassets in Resources */,
+				062B2AC01F13660D0042B9A5 /* PersonalQuestion.storyboard in Resources */,
 				069E16391F0514E600A9C1FA /* EditUnit.storyboard in Resources */,
 				069E16411F05DF5700A9C1FA /* EditIntro.storyboard in Resources */,
 				069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */,
@@ -871,6 +947,7 @@
 				07FE8B451EE103450059BB10 /* Editor.storyboard in Resources */,
 				078080711EF2BEA9005B590C /* UserHotDetail.storyboard in Resources */,
 				069E161C1F0205A000A9C1FA /* StudioQuestion.storyboard in Resources */,
+				062B2AC61F1366E40042B9A5 /* PersonalNews.storyboard in Resources */,
 				069E16261F0241A500A9C1FA /* UserStudio.storyboard in Resources */,
 				069E163F1F05DED400A9C1FA /* EditBlog.storyboard in Resources */,
 				069E16301F02661100A9C1FA /* StudioTab.storyboard in Resources */,
@@ -880,7 +957,9 @@
 				069E15D71EFDF9DD00A9C1FA /* StudioHome.storyboard in Resources */,
 				D9F9BC391ED83DA60063C025 /* UserHotSearch.storyboard in Resources */,
 				069E16171F00ECFB00A9C1FA /* StudioTopicEdit.storyboard in Resources */,
+				069AD2331F11F4F100D5102A /* PersonalInfo.storyboard in Resources */,
 				409124931EB45F3800347EEF /* MainInterface.storyboard in Resources */,
+				062B2AC21F1366AF0042B9A5 /* PersonalCollect.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,12 +1124,15 @@
 			files = (
 				06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */,
 				404B3C3F1EC42910009DA5EC /* UserHotViewController.swift in Sources */,
+				062B2AB51F132B880042B9A5 /* tagNavigationTableViewCell.swift in Sources */,
 				061CBF811F0666090049EC6A /* addAdminViewController.swift in Sources */,
 				069E16331F049C8800A9C1FA /* studioQuestionViewController.swift in Sources */,
 				069E16191F010AD300A9C1FA /* StudioTabViewController.swift in Sources */,
 				0638D9B51EEE452300D74F4C /* personalQuestionViewController.swift in Sources */,
 				409124901EB45F3800347EEF /* ViewController.swift in Sources */,
+				062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */,
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
+				062B2ACD1F1376E00042B9A5 /* editAvatorTableViewCell.swift in Sources */,
 				069E15CB1EFD34B700A9C1FA /* studioAnswerViewController.swift in Sources */,
 				069E15C81EFD338A00A9C1FA /* studioInfoSubFactory.swift in Sources */,
 				D9F9BC351ED710510063C025 /* history.xcdatamodeld in Sources */,
@@ -1058,17 +1140,17 @@
 				069E15DD1EFE053300A9C1FA /* studioHomeSubTitleView.swift in Sources */,
 				061CBF771F0664DF0049EC6A /* addAdminButtonView.swift in Sources */,
 				069E16451F05E58000A9C1FA /* editIntroTableViewCell.swift in Sources */,
-				061F12F51EC08E2C00F6689C /* personalInfoViewController.swift in Sources */,
 				061BA6221ED730BA000030CD /* bottomChoicesView.swift in Sources */,
 				07C88A831EE3A3E500300810 /* Detail.swift in Sources */,
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
 				07FE8B491EE117FA0059BB10 /* QuestionEditorController.swift in Sources */,
 				061CBF5B1F05FF970049EC6A /* editAvator.swift in Sources */,
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
+				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
 				069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */,
-				0638D9BD1EEE93F900D74F4C /* personalSubTitleView.swift in Sources */,
-				0638D9B71EEE452D00D74F4C /* personalTopicViewController.swift in Sources */,
+				0638D9B71EEE452D00D74F4C /* personalCollectViewController.swift in Sources */,
 				069E160D1EFFB81600A9C1FA /* studioTopicViewController.swift in Sources */,
+				062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */,
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
 				069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */,
@@ -1081,12 +1163,16 @@
 				0700761C1EE17BF7009A5ED8 /* UserHotDetailViewController.swift in Sources */,
 				40F2C4261EC42DDB00A0F70B /* UserHotTableViewCell.swift in Sources */,
 				061BA6231ED730BA000030CD /* logoView.swift in Sources */,
+				062B2AD81F13E1300042B9A5 /* resetTableViewCell.swift in Sources */,
 				078080731EF2C8B0005B590C /* UserHotDetailContentCell.swift in Sources */,
+				062B2AAF1F131E7A0042B9A5 /* Studio.swift in Sources */,
 				069E16491F05ECD000A9C1FA /* editBlogTableViewCell.swift in Sources */,
 				069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */,
 				069E15ED1EFE547700A9C1FA /* studioAdminTableViewCell.swift in Sources */,
 				069E16471F05EBF100A9C1FA /* editBlogTableViewController.swift in Sources */,
+				062B2ACF1F1376EA0042B9A5 /* editInfoTableViewCell.swift in Sources */,
 				07FE8B471EE104960059BB10 /* EditorController.swift in Sources */,
+				062B2AD61F13E1270042B9A5 /* editTableViewCell.swift in Sources */,
 				061BA6271ED730BA000030CD /* userResponse.swift in Sources */,
 				061CBF881F073A180049EC6A /* searchUserTableViewCell.swift in Sources */,
 				061BA6241ED730BA000030CD /* logView.swift in Sources */,
@@ -1097,10 +1183,11 @@
 				07C88A811EE3A23D00300810 /* Abstract.swift in Sources */,
 				069E15DB1EFE01FF00A9C1FA /* UIColorRGB.swift in Sources */,
 				061CBF591F05F2ED0049EC6A /* blogExampleTableViewCell.swift in Sources */,
+				062B2AC41F1366CB0042B9A5 /* personalNewsTableView.swift in Sources */,
 				061CBF5E1F062F2F0049EC6A /* addMemberTableViewCell.swift in Sources */,
 				069AD2271F0B20BA00D5102A /* studioHomeTopicTableViewController.swift in Sources */,
 				061CBF791F0664F30049EC6A /* addAdminButtons.swift in Sources */,
-				0638D9B01EEE42F200D74F4C /* personalSubFactory.swift in Sources */,
+				062B2ABB1F1364640042B9A5 /* GlobalConstant.swift in Sources */,
 				4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */,
 				069E15D11EFD34E600A9C1FA /* studioHotViewController.swift in Sources */,
 				069E15D41EFD34FA00A9C1FA /* studioMemberViewController.swift in Sources */,
@@ -1111,6 +1198,7 @@
 				069AD2291F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift in Sources */,
 				069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */,
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
+				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,
 				069E15C61EFD32A100A9C1FA /* studioInfoSubTitleView.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,

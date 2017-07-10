@@ -8,6 +8,10 @@
 
 import UIKit
 
+let ScreenWidth = UIScreen.main.bounds.width
+let ScreenHeight = UIScreen.main.bounds.height
+
+
 class UserTabViewController: UIViewController {
 
     
@@ -56,7 +60,7 @@ class UserTabViewController: UIViewController {
         studioVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
         self.addChildViewController(studioVc!)
         
-        infoVc = UIStoryboard.init(name: "UserInfo", bundle: nil).instantiateInitialViewController()
+        infoVc = UIStoryboard.init(name: "PersonalInfo", bundle: nil).instantiateInitialViewController()
         infoVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
         self.addChildViewController(infoVc!)
         

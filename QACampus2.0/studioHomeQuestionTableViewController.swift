@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class studioHomeQuestionTableViewController: UITableViewController {
 
@@ -14,7 +16,8 @@ class studioHomeQuestionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        authentication()
+        initData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,6 +59,25 @@ class studioHomeQuestionTableViewController: UITableViewController {
         cell.byskyler.text = "南大鸽子王"
         return cell
     }
-
+    
+    func initData() {
+        Alamofire.request("http://localhost:2347/studios" ,method: .get).responseJSON { response in
+          
+//            print("Response: \(String(describing: response.response))") // http url response
+//            print("Result: \(response.result)")                         // response serialization result
+            var json = JSON(response.result.value)
+//            switch response.result {
+//            case .success(let value):
+//                json = JSON(value)
+//                print("JSON: \(json)")
+//            case .failure(let error):
+//                print(error)
+//            }
+            
+            let list: Array<JSON> = json["content"].arrayValue
+            print(list)
+        
+        }
+    }
 
 }

@@ -63,7 +63,7 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
             let divideLine = UIView()
             divideLine.backgroundColor = subTitleBorderColor
             view.addSubview(divideLine)
-            divideLine.snp.makeConstraints({ make in
+        divideLine.snp.makeConstraints({ make in
                 make.height.equalTo(0.5)
                 make.left.right.bottom.equalToSuperview()
             })

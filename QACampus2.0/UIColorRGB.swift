@@ -16,6 +16,7 @@ let blackColor = UIColor(red: 0.38, green: 0.39, blue: 0.40, alpha: 1.0)
 let subTitleBorderColor = UIColor(red:0.8,green:0.8,blue:0.8,alpha:1.0)
 let defaultColor = UIColor(valueRGB: 0xee6978, alpha: 1.0)
 let sectionHeaderColor = UIColor(red:0.976,green:0.976,blue:0.976,alpha:1.0)
+let sectionBackgroundColor = UIColor(red:0.960,green:0.960,blue:0.960,alpha:1.0)
 let whiteColor = UIColor(red: 1.0, green: 1.0, blue:1.0, alpha: 1.0)
 
 extension UIColor {
