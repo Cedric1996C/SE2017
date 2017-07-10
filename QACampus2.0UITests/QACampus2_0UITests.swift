@@ -31,6 +31,14 @@ class QACampus2_0UITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let element = XCUIApplication().children(matching: .window).element(boundBy: 0).children(matching: .other).element
+        element.children(matching: .other).element(boundBy: 2).children(matching: .other).element(boundBy: 1).buttons["Button"].tap()
+        
+        let element2 = element.children(matching: .other).element(boundBy: 3)
+        element2.children(matching: .other).element(boundBy: 0).buttons["Button"].tap()
+        element2.children(matching: .other).element(boundBy: 2).buttons["Button"].tap()
+        
     }
     
 }

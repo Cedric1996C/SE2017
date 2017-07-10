@@ -44,6 +44,7 @@
 		062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD31F13E03D0042B9A5 /* resetPasswordTableViewController.swift */; };
 		062B2AD61F13E1270042B9A5 /* editTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD51F13E1270042B9A5 /* editTableViewCell.swift */; };
 		062B2AD81F13E1300042B9A5 /* resetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD71F13E1300042B9A5 /* resetTableViewCell.swift */; };
+		062B2ADA1F13ED870042B9A5 /* UserNotifiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B2AD91F13ED870042B9A5 /* UserNotifiListViewController.swift */; };
 		0638D9B51EEE452300D74F4C /* personalQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B41EEE452300D74F4C /* personalQuestionViewController.swift */; };
 		0638D9B71EEE452D00D74F4C /* personalCollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B61EEE452D00D74F4C /* personalCollectViewController.swift */; };
 		0638D9B91EEE453D00D74F4C /* personalStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* personalStudioViewController.swift */; };
@@ -118,6 +119,9 @@
 		40F2C4261EC42DDB00A0F70B /* UserHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F2C4251EC42DDB00A0F70B /* UserHotTableViewCell.swift */; };
 		C7AAF698969B78E2163CB9A9 /* Pods_QACampus2_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5914F4EA9EFA5AC4BAE5D54F /* Pods_QACampus2_0Tests.framework */; };
 		CFFD65B5AE686A5897605179 /* Pods_QACampus2_0UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA79C86C38C7EA861F0C544 /* Pods_QACampus2_0UITests.framework */; };
+		D918CBED1F135DDC005D0899 /* UserNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBEC1F135DDC005D0899 /* UserNotificationViewController.swift */; };
+		D918CBEF1F135F3D005D0899 /* UserNotificationCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBEE1F135F3D005D0899 /* UserNotificationCustomCell.swift */; };
+		D918CBF31F137708005D0899 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBF21F137708005D0899 /* Info.swift */; };
 		D9344EFA1ECEF7DE0078A1BE /* UserHotCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344EF91ECEF7DE0078A1BE /* UserHotCustomCell.swift */; };
 		D98455671EC2E6620095D2EE /* UserHotSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98455661EC2E6620095D2EE /* UserHotSearchViewController.swift */; };
 		D9D320EF1F0739090063F831 /* searchSubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D320EE1F0739090063F831 /* searchSubTitleView.swift */; };
@@ -180,6 +184,7 @@
 		062B2AD31F13E03D0042B9A5 /* resetPasswordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetPasswordTableViewController.swift; sourceTree = "<group>"; };
 		062B2AD51F13E1270042B9A5 /* editTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTableViewCell.swift; sourceTree = "<group>"; };
 		062B2AD71F13E1300042B9A5 /* resetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetTableViewCell.swift; sourceTree = "<group>"; };
+		062B2AD91F13ED870042B9A5 /* UserNotifiListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifiListViewController.swift; sourceTree = "<group>"; };
 		0638D9B41EEE452300D74F4C /* personalQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalQuestionViewController.swift; sourceTree = "<group>"; };
 		0638D9B61EEE452D00D74F4C /* personalCollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalCollectViewController.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* personalStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalStudioViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +272,9 @@
 		A00A3F801360CA448591F4C0 /* Pods_QACampus2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QACampus2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA79C86C38C7EA861F0C544 /* Pods_QACampus2_0UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QACampus2_0UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB2C4066909AA907B4929FB /* Pods-QACampus2.0UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QACampus2.0UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QACampus2.0UITests/Pods-QACampus2.0UITests.release.xcconfig"; sourceTree = "<group>"; };
+		D918CBEC1F135DDC005D0899 /* UserNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationViewController.swift; sourceTree = "<group>"; };
+		D918CBEE1F135F3D005D0899 /* UserNotificationCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCustomCell.swift; sourceTree = "<group>"; };
+		D918CBF21F137708005D0899 /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		D9344EF91ECEF7DE0078A1BE /* UserHotCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotCustomCell.swift; sourceTree = "<group>"; };
 		D98455661EC2E6620095D2EE /* UserHotSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotSearchViewController.swift; sourceTree = "<group>"; };
 		D9D320EE1F0739090063F831 /* searchSubTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchSubTitleView.swift; sourceTree = "<group>"; };
@@ -587,6 +595,10 @@
 			isa = PBXGroup;
 			children = (
 				069E16271F0241D400A9C1FA /* UserNotification.storyboard */,
+				062B2AD91F13ED870042B9A5 /* UserNotifiListViewController.swift */,
+				D918CBEC1F135DDC005D0899 /* UserNotificationViewController.swift */,
+				D918CBEE1F135F3D005D0899 /* UserNotificationCustomCell.swift */,
+				D918CBF21F137708005D0899 /* Info.swift */,
 			);
 			name = userNotification;
 			sourceTree = "<group>";
@@ -1176,20 +1188,24 @@
 				061BA6271ED730BA000030CD /* userResponse.swift in Sources */,
 				061CBF881F073A180049EC6A /* searchUserTableViewCell.swift in Sources */,
 				061BA6241ED730BA000030CD /* logView.swift in Sources */,
+				D918CBF31F137708005D0899 /* Info.swift in Sources */,
 				069E15EF1EFE5BBD00A9C1FA /* studioAvatorTableViewCell.swift in Sources */,
 				D98455671EC2E6620095D2EE /* UserHotSearchViewController.swift in Sources */,
 				061F50281EED48F1001BBAF9 /* Authentication.swift in Sources */,
 				069E15EB1EFE421000A9C1FA /* studioInfoTableViewCell.swift in Sources */,
 				07C88A811EE3A23D00300810 /* Abstract.swift in Sources */,
+				D918CBED1F135DDC005D0899 /* UserNotificationViewController.swift in Sources */,
 				069E15DB1EFE01FF00A9C1FA /* UIColorRGB.swift in Sources */,
 				061CBF591F05F2ED0049EC6A /* blogExampleTableViewCell.swift in Sources */,
 				062B2AC41F1366CB0042B9A5 /* personalNewsTableView.swift in Sources */,
+				062B2ADA1F13ED870042B9A5 /* UserNotifiListViewController.swift in Sources */,
 				061CBF5E1F062F2F0049EC6A /* addMemberTableViewCell.swift in Sources */,
 				069AD2271F0B20BA00D5102A /* studioHomeTopicTableViewController.swift in Sources */,
 				061CBF791F0664F30049EC6A /* addAdminButtons.swift in Sources */,
 				062B2ABB1F1364640042B9A5 /* GlobalConstant.swift in Sources */,
 				4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */,
 				069E15D11EFD34E600A9C1FA /* studioHotViewController.swift in Sources */,
+				D918CBEF1F135F3D005D0899 /* UserNotificationCustomCell.swift in Sources */,
 				069E15D41EFD34FA00A9C1FA /* studioMemberViewController.swift in Sources */,
 				0638D9B91EEE453D00D74F4C /* personalStudioViewController.swift in Sources */,
 				D9D320EF1F0739090063F831 /* searchSubTitleView.swift in Sources */,
