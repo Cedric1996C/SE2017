@@ -12,6 +12,10 @@ import CoreData
 let app:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 let context:NSManagedObjectContext = app.persistentContainer.viewContext
 
+extension String{
+    var length: Int { return self.characters.count }
+}
+
 class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var searchInput: UISearchBar!
@@ -253,7 +257,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         print(searchText)
         isResults=false
         // 没有搜索内容时显示全部组件
-        if(searchText == ""){
+        if(searchText.length == 0){
             self.isResults = false
             self.historySel = self.history
         }
