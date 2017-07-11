@@ -62,6 +62,7 @@ class UserTabViewController: UIViewController {
         
         infoVc = UIStoryboard.init(name: "PersonalInfo", bundle: nil).instantiateInitialViewController()
         infoVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
+        print(infoVc!.view.frame.height)
         self.addChildViewController(infoVc!)
         
         notificationVc = UIStoryboard.init(name: "UserNotification", bundle: nil).instantiateInitialViewController()

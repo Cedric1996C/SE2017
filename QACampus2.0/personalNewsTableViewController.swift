@@ -8,7 +8,7 @@
 
 import UIKit
 
-class personalNewsTableView: UITableView {
+class personalNewsTableViewController: editPersonalTableViewController {
 
     /*
     // Only override draw() if you perform custom drawing.

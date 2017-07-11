@@ -11,11 +11,11 @@ import UIKit
 class personalInfoTableViewController: UITableViewController {
 
     lazy var tagNames:[String] = {
-        return ["我的问题","我的收藏","我的工作室"]
+        return ["我的问题","收藏问题","收藏话题","收藏工作室"]
     }()
     
     lazy var tagNums:[String] = {
-        return ["0","0","0"]
+        return ["0","0","0","0"]
     }()
     
     lazy var user:User = {
@@ -48,7 +48,7 @@ class personalInfoTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return 3
+            return 4
         default:
             return 0
         }
@@ -95,9 +95,11 @@ class personalInfoTableViewController: UITableViewController {
                 if (indexPath.row == 0){
                     performSegue(withIdentifier: "myQuestion", sender: self)
                 } else if (indexPath.row == 1){
-                    performSegue(withIdentifier: "myCollect", sender: self)
+                    performSegue(withIdentifier: "collectQuestion", sender: self)
                 } else if (indexPath.row == 2){
-                    performSegue(withIdentifier: "myStudio", sender: self)
+                    performSegue(withIdentifier: "collectTopic", sender: self)
+                } else {
+                    performSegue(withIdentifier: "collectStudio", sender: self)
                 }
             }
         default:
@@ -107,10 +109,23 @@ class personalInfoTableViewController: UITableViewController {
 
     
 
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0
+        } else {
             return 20.0
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = sectionHeaderColor
+    }
+
+
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int){
        view.tintColor = sectionHeaderColor
     }
@@ -118,10 +133,10 @@ class personalInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0  {
-            return 240.0
+            return 220.0
         }
         else {
-            return 60.0
+            return 50.0
         }
     }
     

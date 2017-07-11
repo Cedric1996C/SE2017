@@ -46,7 +46,7 @@ extension editStudioInfoTableViewController {
         //设置代理
         imagePicker.delegate = self
         //允许编辑
-        imagePicker.allowsEditing=true
+        imagePicker.allowsEditing = true
         //设置图片源
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         //模态弹出IamgePickerView
@@ -58,22 +58,25 @@ extension editStudioInfoTableViewController {
     }
     
     //UIImagePicker回调方法
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        //获取照片的原图
-        //let image = (info as NSDictionary).objectForKey(UIImagePickerControllerOriginalImage)
-        //获得编辑后的图片
-        let image = (info as NSDictionary).object(forKey: UIImagePickerControllerEditedImage)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.saveImage(currentImage: image, imageName: "iconImageFileName")
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.saveImage(currentImage: image, imageName: "iconImageFileName")
+        } else {
+            print("something wet wrong")
+        }
+        print(info)
         
         //保存图片至沙盒
-        self.saveImage(currentImage: image as! UIImage, imageName: "iconImageFileName")
+//        self.saveImage(currentImage: image, imageName: "iconImageFileName")
         let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("iconImageFileName")
         
         //存储后拿出更新头像
-        let savedImage = UIImage(contentsOfFile: fullPath)
-        let index = IndexPath(row:0, section: 1)
-        let cell = tableView.cellForRow(at:index) as! studioAvatorTableViewCell
-        cell.avator.image = savedImage
+        avator = UIImage(contentsOfFile: fullPath)
         picker.dismiss(animated: true, completion: nil)
+        tableView.reloadData()
+        
     }
     
     //MARK: - 保存图片至沙盒

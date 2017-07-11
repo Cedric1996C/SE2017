@@ -20,9 +20,12 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
         [("南大鸽子王")],
     ]
     
+    var avator:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initButton()
+        avator = UIImage(named:"no.1")
         view.backgroundColor = sectionHeaderColor
     }
     
@@ -148,7 +151,7 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
         } else {
             let cell:addMemberTableViewCell = tableView.dequeueReusableCell(withIdentifier: "addMember") as! addMemberTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
-            cell.avator.image =  UIImage(named: "no.1")
+            cell.avator.image =  avator
             cell.name.text = item
             return cell
         }

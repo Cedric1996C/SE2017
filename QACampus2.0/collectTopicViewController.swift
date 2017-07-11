@@ -1,5 +1,5 @@
 //
-//  personalStudioViewController.swift
+//  personalTopicViewController.swift
 //  QACampus2.0
 //
 //  Created by NJUcong on 2017/6/12.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class personalStudioViewController: UIViewController {
+class collectTopicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red:235/255,green:255/255,blue:235/255,alpha:1)
 
-        self.view.backgroundColor = UIColor(red:255/255,green:235/255,blue:235/255,alpha:1)
         // Do any additional setup after loading the view.
     }
 

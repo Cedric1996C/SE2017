@@ -1,18 +1,16 @@
 //
-//  editTableViewController.swift
+//  editPersonalTableViewController.swift
 //  QACampus2.0
 //
-//  Created by NJUcong on 2017/6/29.
+//  Created by NJUcong on 2017/7/11.
 //  Copyright © 2017年 Demons. All rights reserved.
 //
 
 import UIKit
 
-//定制的edit界面
-class editTableViewController: UITableViewController {
+class editPersonalTableViewController: UITableViewController {
 
     var cancelBtn = UIButton()
-    var saveBtn = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +23,7 @@ class editTableViewController: UITableViewController {
     func initButton(){
         
         cancelBtn.setImage(UIImage(named:"back"),for: .normal)
-                cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
-        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = saveBtn
-        
-        saveBtn.tintColor = defaultColor
+        cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
         cancelBtn.tintColor = defaultColor
         
         self.navigationController?.navigationBar.addSubview(cancelBtn)
@@ -61,13 +55,11 @@ class editTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 5
     }
-    
 }
-

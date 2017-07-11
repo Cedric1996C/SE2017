@@ -12,6 +12,7 @@ class PersonalEditTableViewController: editTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        animationForDismiss()
         cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         // 设置 tabelView 行高,自动计算行高
@@ -117,12 +118,12 @@ class PersonalEditTableViewController: editTableViewController {
     }
 
     func cancel(sender:Any){
-        let transition: CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromRight
-        self.view.window!.layer.add(transition, forKey: nil)
+//        let transition: CATransition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionReveal
+//        transition.subtype = kCATransitionFromRight
+//        self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
 //        self.dismiss(animated: true, completion: nil)
     }
