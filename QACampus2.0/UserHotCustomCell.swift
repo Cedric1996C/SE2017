@@ -24,6 +24,8 @@ class UserHotHisListCell: UITableViewCell{
 
 class UserHotResListCell: UITableViewCell{
     @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
 }
