@@ -155,7 +155,7 @@
         <!--Title-->
         <scene sceneID="cT5-Eb-7PP">
             <objects>
-                <viewController id="eKg-Ot-ybe" customClass="UserNotifiListViewController" sceneMemberID="viewController">
+                <viewController id="eKg-Ot-ybe" customClass="UserNotifiListViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nPr-dU-EeA"/>
                         <viewControllerLayoutGuide type="bottom" id="2QO-kc-CNZ"/>
@@ -166,7 +166,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p1t-WZ-9ub">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubListCell" rowHeight="87" id="jUC-uW-ZpB" customClass="SubListCell" customModule="QACampus2_0" customModuleProvider="target">

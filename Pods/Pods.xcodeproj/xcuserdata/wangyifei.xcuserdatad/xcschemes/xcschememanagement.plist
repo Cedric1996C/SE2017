@@ -4,35 +4,67 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>AlamofireObjectMapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>DropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-QACampus2.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-QACampus2.0Tests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-QACampus2.0UITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -57,6 +89,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>568ED60538C589F04AAA3CEE86C8B600</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6D15B51405302453BAD945496C3D64A4</key>
 		<dict>
 			<key>primary</key>
@@ -77,7 +114,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AF757C508B84B5B888B53ACA9C831809</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BDEB813FCEF6B9D51D782B56E9F32EE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D32A9B81750D413E050ABF48FD7BF803</key>
 		<dict>
 			<key>primary</key>
 			<true/>

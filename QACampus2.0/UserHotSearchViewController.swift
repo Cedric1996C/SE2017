@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 let app:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 let context:NSManagedObjectContext = app.persistentContainer.viewContext
@@ -28,7 +29,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var loadMoreView:UIView?
     //计数器（用来做延时模拟网络加载效果）
     var timer: Timer!
-    //用了记录当前是否允许加载新数据（正则加载的时候会将其设为false，放置重复加载）
+    //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
     var loadMoreEnable = true
     
     // 是否显示搜索结果
@@ -38,13 +39,16 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     // 历史记录匹配的结果，historyTable使用这个数组作为datasource
     var historySel:[String] = []
     // 搜索匹配结果，historyTable也使用这个数组作为datasource
-    var resultsSel:[String] = []
+    var resultsSel:[result] = []
     // 历史记录图标
     let his1Icon:UIImage = UIImage(named: "his1.png")!
     let his2Icon:UIImage = UIImage(named: "his2.png")!
     let icon:UIImage = UIImage(named: "no.1")!
     // cell高度，默认44.0
     var cellHeight:CGFloat = 44.0
+    //url
+    let url:String="https://118.89.166.180:8443"
+    var loadMoreUrl:String=""
     
     // MARK:- 懒加载属性
     /// 子标题
@@ -169,10 +173,10 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             let identify:String = "ResListCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
             cell.icon.image = icon
-            cell.title.text = self.resultsSel[indexPath.row]
+            cell.title.text = self.resultsSel[indexPath.row].title
             cell.desc.numberOfLines = 3
             cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
-            cell.desc.text = "搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／搜索结果的内容／"
+            cell.desc.text = self.resultsSel[indexPath.row].desc
             
             
             // 设置cell高度
@@ -180,7 +184,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             
             //当下拉到底部，执行loadMore()
             if (loadMoreEnable && indexPath.row == self.resultsSel.count-1) {
-                loadMore()
+                //loadMore()
             }
             return cell
         }else if(indexPath.row==0){
@@ -260,6 +264,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         if(searchText.length == 0){
             self.isResults = false
             self.historySel = self.history
+            self.resultsSel = []
         }
         else {
             self.searchRequest()
@@ -324,16 +329,38 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-            self.resultsSel=["问题1"+searchInput.text!,"问题2"+searchInput.text!,"问题3"+searchInput.text!]
-            //self.resultsSel.append(contentsOf: ["问题1"+searchInput.text!,"问题2"+searchInput.text!,"问题3"+searchInput.text!])
+            //self.resultsSel=["问题1"+searchInput.text!,"问题2"+searchInput.text!,"问题3"+searchInput.text!]
+//            authentication()
+//             let headers: HTTPHeaders = [
+//             "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+//             ]
+            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+                if let jsonString:String = response.result.value as? String {
+                    print(jsonString)
+                    let jsonData:Data = jsonString.data(using: String.Encoding.utf8)!
+                    do{
+                        let jsonObj:[String:Any]? = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]
+                        let results:[[String:Any]]=jsonObj!["content"] as! [[String : Any]]
+                        var i=0
+                        for r:[String:Any] in results{
+                            self.resultsSel[i]=result(id: r["id"] as! Int,title: r["question"] as! String,desc:r["description"] as! String)
+                            i += 1
+                        }
+                    }
+                    catch{
+                        print("Error:Trans to Dic failed!")
+                    }
+                }
+            }
+            break
         case btnNames[1]:
             //话题
-            self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
-        //self.resultsSel.append(contentsOf: ["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!])
+            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
+            break
         case btnNames[2]:
             //工作室
-            self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
-            //self.resultsSel.append(contentsOf: ["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!])
+            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            break
         default:
             print("没选")
         }
