@@ -57,5 +57,11 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         cell.desc.text="新通知的描述"
         return cell
     }
+    // 点击TableView的一行时调用
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //释放选中效果
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
 }
 
