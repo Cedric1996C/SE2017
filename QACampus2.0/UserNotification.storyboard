@@ -155,7 +155,7 @@
         <!--Title-->
         <scene sceneID="cT5-Eb-7PP">
             <objects>
-                <viewController id="eKg-Ot-ybe" customClass="UserNotifiListViewController" sceneMemberID="viewController">
+                <viewController id="eKg-Ot-ybe" customClass="UserNotifiListViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nPr-dU-EeA"/>
                         <viewControllerLayoutGuide type="bottom" id="2QO-kc-CNZ"/>

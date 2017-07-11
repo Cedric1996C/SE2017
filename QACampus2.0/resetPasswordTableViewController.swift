@@ -16,12 +16,13 @@ class resetPasswordTableViewController: editTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        saveBtn.action = Selector("reset")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +85,18 @@ class resetPasswordTableViewController: editTableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func cancel(sender:Any) {
+        
+        let transition: CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionReveal
+        transition.subtype = kCATransitionFromRight
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false, completion: nil)
+        
+    }
+    
     func reset(sender:Any) {
         
     }
