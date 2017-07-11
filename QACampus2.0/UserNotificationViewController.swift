@@ -15,13 +15,21 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     //0:回答 1:评论 2:点赞
     var type:Int = 0
     var infos:[Info]? = []
+
+    var icons:[UIImage] = []
     
-    let icon:UIImage = UIImage(named: "no.1")!
+    lazy var icon_titles:[String] = {
+        return ["回答","评论","点赞"]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initViewDetail()
+        
+        icons.append(UIImage(named:"answer01")!)
+        icons.append(UIImage(named:"comment01")!)
+        icons.append(UIImage(named:"nice01")!)
     }
     
     func initViewDetail() {
@@ -72,7 +80,6 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
 //            cell.title.text=infos?[indexPath.row-2].title
 //            cell.desc.text=infos?[indexPath.row-2].desc
         
-            cell.icon.image=icon;
             cell.title.text="新通知"
             cell.desc.text="新通知的描述"
             return cell
@@ -108,13 +115,8 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identify:String = "ClctSubCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identify,for: indexPath as IndexPath) as! CollectionSubCell
-        if(indexPath.row==0){
-            cell.label.text = "回答"
-        }else if(indexPath.row==1){
-            cell.label.text = "评论"
-        }else if(indexPath.row==2){
-            cell.label.text = "点赞"
-        }
+        cell.label.text = icon_titles[indexPath.row]
+        cell.image.image = icons[indexPath.row]
         return cell
 
     }

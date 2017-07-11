@@ -31,7 +31,9 @@ class UserNotificationTitleCell: UITableViewCell{
 }
 
 class CollectionSubCell:UICollectionViewCell{
+    
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
 }
 

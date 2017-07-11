@@ -19,6 +19,9 @@ let sectionHeaderColor = UIColor(red:0.976,green:0.976,blue:0.976,alpha:1.0)
 let sectionBackgroundColor = UIColor(red:0.960,green:0.960,blue:0.960,alpha:1.0)
 let whiteColor = UIColor(red: 1.0, green: 1.0, blue:1.0, alpha: 1.0)
 
+let shadowColor = UIColor(red:220/255,green:220/255,blue:220/255,alpha:1)
+let grey = UIColor(red:120/255,green:120/255,blue:120/255,alpha:1)
+
 extension UIColor {
     //用数值初始化颜色，便于生成设计图上标明的十六进制颜色
     convenience init(valueRGB: UInt, alpha: CGFloat = 1.0) {

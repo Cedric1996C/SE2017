@@ -166,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/registerViewController.swift"
-            timestampString = "518925219.591962"
+            timestampString = "521478209.76074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "userRegister(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/registerViewController.swift"
-            timestampString = "518925219.591962"
+            timestampString = "521478209.76074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "userRegister(sender:)"
             landmarkType = "7">
             <Locations>

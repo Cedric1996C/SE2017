@@ -133,7 +133,7 @@ class personalInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0  {
-            return 220.0
+            return 240.0
         }
         else {
             return 50.0

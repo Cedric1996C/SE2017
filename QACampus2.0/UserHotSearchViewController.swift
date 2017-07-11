@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 import Alamofire
 
 let app:AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -39,7 +40,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     // 历史记录匹配的结果，historyTable使用这个数组作为datasource
     var historySel:[String] = []
     // 搜索匹配结果，historyTable也使用这个数组作为datasource
-    var resultsSel:[result] = []
+    var resultsSel:[Result] = []
     // 历史记录图标
     let his1Icon:UIImage = UIImage(named: "his1.png")!
     let his2Icon:UIImage = UIImage(named: "his2.png")!
@@ -73,7 +74,6 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     func initViewDetail(){
         // 起始加载全部内容
-        self.historySel = self.history
         // 搜索框设置文本提示
         self.searchInput.placeholder = "输入搜索信息"
         //设置代理
@@ -127,27 +127,8 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         print("search view will appear")
-        // 本地数据查询遍历
-        // 查询条件设置
-        //fetchRequest.fetchLimit = 10 //限定查询结果的数量
-        //fetchRequest.fetchOffset = 0 //查询的偏移量
-        
-        //let predicate = NSPredicate(format: "", "")
-        //fetchRequest.predicate = predicate
-        
-        do {
-            let fetchRequest = NSFetchRequest<History>(entityName:"History")
-            let fetchedObjects = try context.fetch(fetchRequest)
-            //遍历查询的结果
-            for his in fetchedObjects{
-                self.history.append(his.text!);
-            }
-            self.historySel = self.history
-        }catch {
-            fatalError("不能查询：\(error)")
-        }
-        //self.textList.reloadData()
-        
+        //获得历史记录
+        self.getHistory()
     }
     
     // 返回表格行数（也就是返回控件数）
@@ -173,6 +154,8 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             let identify:String = "ResListCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
             cell.icon.image = icon
+            cell.name.text = self.resultsSel[indexPath.row].name
+            cell.time.text = self.resultsSel[indexPath.row].time
             cell.title.text = self.resultsSel[indexPath.row].title
             cell.desc.numberOfLines = 3
             cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
@@ -180,7 +163,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             
             
             // 设置cell高度
-            self.cellHeight = 154.0
+            self.cellHeight = 180.0
             
             //当下拉到底部，执行loadMore()
             if (loadMoreEnable && indexPath.row == self.resultsSel.count-1) {
@@ -191,6 +174,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             let identify:String = "HisTitleCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotHisTitleCell
             cell.hisIcon.image = his1Icon
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }else if(indexPath.row==historySel.count+1){
             let identify:String = "ClrButCell"
@@ -218,32 +202,20 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         //释放选中效果
         tableView.deselectRow(at: indexPath, animated: true)
         if(self.isResults){
+            //添加历史记录
+            self.addHistory()
             
         }else if(indexPath.row==0){
            
         }else if(indexPath.row==historySel.count+1){
-            do {
-                let fetchRequest = NSFetchRequest<History>(entityName:"History")
-                let fetchedObjects = try context.fetch(fetchRequest)
-                
-                //遍历查询的结果
-                for info in fetchedObjects{
-                    //删除对象
-                    context.delete(info)
-                }
-                //重新保存-更新到数据库
-                try! context.save()
-                self.historySel = []
-            } catch {
-                fatalError("不能更新：\(error)")
-            }
-            NSLog("删除\(indexPath.row)")
+            //清除历史记录
+            self.clearHistory()
+            
             self.historyTable.reloadData()
         }else {
             let cell = tableView.cellForRow(at: indexPath) as! UserHotHisListCell
             searchInput.text=cell.label.text
             self.searchRequest()
-            self.historyTable.reloadData()
             //print(cell!.textLabel?.text!)
         }
 
@@ -263,7 +235,6 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         // 没有搜索内容时显示全部组件
         if(searchText.length == 0){
             self.isResults = false
-            self.historySel = self.history
             self.resultsSel = []
         }
         else {
@@ -279,6 +250,166 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         //搜索
         self.searchRequest()
         
+        //添加历史记录
+        self.addHistory()
+        
+        self.historyTable.reloadData()
+
+    }
+    
+    func searchRequest(){
+        print("in searchRequest()")
+        
+        self.isResults=true
+        switch subTitleView.currentSelectedBtn.currentTitle! {
+        case btnNames[0]:
+            //问题
+//            authentication()
+//             let headers: HTTPHeaders = [
+//             "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+//             ]
+            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        let time:String = "2017-03-04"
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
+            break
+        case btnNames[1]:
+            //话题
+            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
+            break
+        case btnNames[2]:
+            //工作室
+            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            break
+        default:
+            print("没选")
+        }
+        print("out searchRequest()")
+    }
+    //加载更多
+    func searchRequestMore(){
+        print("in searchRequestMore()")
+        
+        self.isResults=true
+        switch subTitleView.currentSelectedBtn.currentTitle! {
+        case btnNames[0]:
+            //问题
+            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        let time:String = "2017-03-04"
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
+            break
+        case btnNames[1]:
+            //话题
+            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
+            break
+        case btnNames[2]:
+            //工作室
+            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            break
+        default:
+            print("没选")
+        }
+        print("out searchRequest()")
+    }
+    //改变搜索类型
+    func searchRequestType(){
+        print("in searchRequestType()")
+        
+        self.isResults=true
+        switch subTitleView.currentSelectedBtn.currentTitle! {
+        case btnNames[0]:
+            //问题
+            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+//                    self.loadMoreUrl =
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        let time:String = "2017-03-04"
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
+            break
+        case btnNames[1]:
+            //话题
+            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
+            break
+        case btnNames[2]:
+            //工作室
+            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            break
+        default:
+            print("没选")
+        }
+        print("out searchRequest()")
+    }
+    //历史记录本地持久化
+    //获得历史记录
+    func getHistory(){
+        // 本地数据查询遍历
+        // 查询条件设置
+        //fetchRequest.fetchLimit = 10 //限定查询结果的数量
+        //fetchRequest.fetchOffset = 0 //查询的偏移量
+        
+        //let predicate = NSPredicate(format: "", "")
+        //fetchRequest.predicate = predicate
+        
+        do {
+            let fetchRequest = NSFetchRequest<History>(entityName:"History")
+            let fetchedObjects = try context.fetch(fetchRequest)
+            //遍历查询的结果
+            for his in fetchedObjects{
+                self.history.append(his.text!);
+            }
+            self.historySel = self.history
+        }catch {
+            fatalError("不能查询：\(error)")
+        }
+        //self.textList.reloadData()
+
+    }
+    //增加一条历史记录
+    func addHistory(){
         //本地持久化
         do {
             let fetchRequest = NSFetchRequest<History>(entityName:"History")
@@ -310,89 +441,25 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             fatalError("不能更新：\(error)")
         }
         NSLog("更新成功")
-        self.historyTable.reloadData()
-
     }
-    
-    func searchRequest(){
-        /*authentication()
-         let headers: HTTPHeaders = [
-         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
-         ]
-         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
-         if let json = response.result.value {
-         print(json)
-         }
-         }*/
-
-        self.isResults=true
-        switch subTitleView.currentSelectedBtn.currentTitle! {
-        case btnNames[0]:
-            //问题
-            //self.resultsSel=["问题1"+searchInput.text!,"问题2"+searchInput.text!,"问题3"+searchInput.text!]
-//            authentication()
-//             let headers: HTTPHeaders = [
-//             "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
-//             ]
-            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
-                if let jsonString:String = response.result.value as? String {
-                    print(jsonString)
-                    let jsonData:Data = jsonString.data(using: String.Encoding.utf8)!
-                    do{
-                        let jsonObj:[String:Any]? = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]
-                        let results:[[String:Any]]=jsonObj!["content"] as! [[String : Any]]
-                        var i=0
-                        for r:[String:Any] in results{
-                            self.resultsSel[i]=result(id: r["id"] as! Int,title: r["question"] as! String,desc:r["description"] as! String)
-                            i += 1
-                        }
-                    }
-                    catch{
-                        print("Error:Trans to Dic failed!")
-                    }
-                }
+    //清空历史记录
+    func clearHistory(){
+        do {
+            let fetchRequest = NSFetchRequest<History>(entityName:"History")
+            let fetchedObjects = try context.fetch(fetchRequest)
+            
+            //遍历查询的结果
+            for info in fetchedObjects{
+                //删除对象
+                context.delete(info)
             }
-            break
-        case btnNames[1]:
-            //话题
-            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
-            break
-        case btnNames[2]:
-            //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
-            break
-        default:
-            print("没选")
+            //重新保存-更新到数据库
+            try! context.save()
+            self.historySel.removeAll()
+        } catch {
+            fatalError("不能更新：\(error)")
         }
-        
-    }
-    //加载更多
-    func searchRequestMore(){
-        /*authentication()
-         let headers: HTTPHeaders = [
-         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
-         ]
-         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
-         if let json = response.result.value {
-         print(json)
-         }
-         }*/
-
-        
-    }
-    //改变搜索类型
-    func searchRequestType(){
-        /*authentication()
-         let headers: HTTPHeaders = [
-         "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
-         ]
-         Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
-         if let json = response.result.value {
-         print(json)
-         }
-         }*/
-
-        
+        NSLog("删除")
     }
     
     //上拉刷新视图

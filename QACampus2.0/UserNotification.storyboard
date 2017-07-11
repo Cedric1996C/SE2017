@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,9 +58,23 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F5p-83-egT">
+                                                                        <rect key="frame" x="20" y="0.0" width="35" height="35"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="35" id="FDc-Cc-Qar"/>
+                                                                            <constraint firstAttribute="width" secondItem="F5p-83-egT" secondAttribute="height" multiplier="34:35" id="qI2-Fe-Aa5"/>
+                                                                            <constraint firstAttribute="width" constant="35" id="wZf-jL-EZY"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                             </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="F5p-83-egT" secondAttribute="trailing" constant="20" id="9pL-8X-wgq"/>
+                                                                <constraint firstItem="F5p-83-egT" firstAttribute="top" secondItem="sbJ-fR-q6f" secondAttribute="top" id="lyQ-S2-KMb"/>
+                                                                <constraint firstItem="F5p-83-egT" firstAttribute="leading" secondItem="sbJ-fR-q6f" secondAttribute="leading" constant="20" id="mSV-LP-J0A"/>
+                                                            </constraints>
                                                             <connections>
+                                                                <outlet property="image" destination="F5p-83-egT" id="mxS-4g-WMB"/>
                                                                 <outlet property="label" destination="KDV-lW-NUE" id="lgm-Wc-feE"/>
                                                             </connections>
                                                         </collectionViewCell>

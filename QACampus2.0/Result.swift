@@ -8,13 +8,17 @@
 
 import UIKit
 
-class result {
+class Result {
     var id:Int=0
+    var name:String=""
+    var time:String=""
     var title:String=""
     var desc:String=""
     
-    init(id:Int,title:String,desc:String){
+    init(id:Int, name:String, time:String, title:String, desc:String){
         self.id = id
+        self.name = name
+        self.time = time
         self.title = title
         self.desc = desc
     }
