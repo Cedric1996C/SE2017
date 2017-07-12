@@ -17,6 +17,8 @@ class userStudioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authentication()
+        
         tableView.dataSource = self
         tableView.delegate = self
         initData()
@@ -76,11 +78,14 @@ extension userStudioViewController {
 //        indicator.startAnimating()
         DispatchQueue.global().async {
      
-//            Thread.sleep(forTimeInterval: 2)
-            Alamofire.request("http://localhost:2347/studios" ,method: .get).responseJSON { response in
+            let headers:HTTPHeaders = [
+                "Authorization": userAuthorization
+            ]
+            Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
                 
                 // response serialization result
                 var json = JSON(response.result.value)
+                print(json)
                 let list: Array<JSON> = json["content"].arrayValue
                 //            print(list)
                 for json in list {
