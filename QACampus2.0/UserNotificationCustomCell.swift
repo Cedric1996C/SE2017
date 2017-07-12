@@ -8,25 +8,13 @@
 
 import UIKit
 
-class UserNotificationCollection: UICollectionView{
-    
-}
-
-class UserNotificationCollectionCell: UITableViewCell {
-    @IBOutlet weak var clctView: UserNotificationCollection!
-    
-}
-
 class UserNotificationListCell: UITableViewCell{
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var title: UILabel!
     
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
-}
-
-class UserNotificationTitleCell: UITableViewCell{
-    @IBOutlet weak var titleL: UILabel!
-    @IBOutlet weak var titleR: UILabel!
     
 }
 
@@ -40,6 +28,8 @@ class CollectionSubCell:UICollectionViewCell{
 class SubListCell: UITableViewCell{
     @IBOutlet weak var icon: UIImageView!
     
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
 }

@@ -30,11 +30,11 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VSo-Iz-g94">
-                                        <rect key="frame" x="0.0" y="41" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="41" width="375" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aAS-pX-cdu">
-                                        <rect key="frame" x="0.0" y="91" width="375" height="548"/>
+                                        <rect key="frame" x="0.0" y="82" width="375" height="557"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HisTitleCell" id="gdi-GG-uUX" customClass="UserHotHisTitleCell" customModule="QACampus2_0" customModuleProvider="target">
