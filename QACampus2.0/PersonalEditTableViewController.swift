@@ -20,7 +20,7 @@ class PersonalEditTableViewController: editTableViewController {
         super.viewDidLoad()
 //        animationForDismiss()
         cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        
+        authentication()
         // 设置 tabelView 行高,自动计算行高
         tableView.rowHeight = UITableViewAutomaticDimension
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
@@ -120,7 +120,9 @@ class PersonalEditTableViewController: editTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            selectIcon()
+//            selectIcon()
+            prepareForStorage("/Users/njucong/SAGrade/target/classes/students.xlsx")
+            print(fileAuthirization)
         case 2:
             if(indexPath.row == 0) {
                 performSegue(withIdentifier: "reset", sender: self)

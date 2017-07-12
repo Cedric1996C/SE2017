@@ -53,6 +53,7 @@
 		062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04FD1F161C4C00499EEB /* collectTopicTableViewController.swift */; };
 		062D05001F16355200499EEB /* collectQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04FF1F16355200499EEB /* collectQuestionTableViewCell.swift */; };
 		062D05021F1643DE00499EEB /* collectStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D05011F1643DE00499EEB /* collectStudioCell.swift */; };
+		062D05041F1659C300499EEB /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D05031F1659C300499EEB /* FileStorage.swift */; };
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
@@ -199,6 +200,7 @@
 		062D04FD1F161C4C00499EEB /* collectTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectTopicTableViewController.swift; sourceTree = "<group>"; };
 		062D04FF1F16355200499EEB /* collectQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		062D05011F1643DE00499EEB /* collectStudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioCell.swift; sourceTree = "<group>"; };
+		062D05031F1659C300499EEB /* FileStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				061F50271EED48F1001BBAF9 /* Authentication.swift */,
+				062D05031F1659C300499EEB /* FileStorage.swift */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				069E16451F05E58000A9C1FA /* editIntroTableViewCell.swift in Sources */,
 				07C88A831EE3A3E500300810 /* Detail.swift in Sources */,
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
+				062D05041F1659C300499EEB /* FileStorage.swift in Sources */,
 				07FE8B491EE117FA0059BB10 /* QuestionEditorController.swift in Sources */,
 				061CBF5B1F05FF970049EC6A /* editAvator.swift in Sources */,
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
