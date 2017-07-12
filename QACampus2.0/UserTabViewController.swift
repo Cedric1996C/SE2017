@@ -159,11 +159,10 @@ extension UserTabViewController {
         let local_user = userDefault.data(forKey: "local_user")
         
         if(local_user == nil){
-//            let user = NSKeyedUnarchiver.unarchiveObject(with: local_user!) as! User
-//            print(user.email!)
             let mainVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)
         } else {
+            print(local_user)
             let user = NSKeyedUnarchiver.unarchiveObject(with: local_user!) as! User
             print(user.email!)
         }

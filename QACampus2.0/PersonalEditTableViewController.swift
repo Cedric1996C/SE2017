@@ -63,7 +63,7 @@ class PersonalEditTableViewController: editTableViewController {
         case 1:
             return 3
         default:
-            return 1
+            return 2
         }
     }
 
@@ -96,7 +96,8 @@ class PersonalEditTableViewController: editTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "editInfo", for: indexPath) as! editInfoTableViewCell
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
+            cell.tagName.text = indexPath.row==0 ? "重置密码":"退出账户"
             return cell
         }
     }
@@ -111,7 +112,12 @@ class PersonalEditTableViewController: editTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 2:
-            performSegue(withIdentifier: "reset", sender: self)
+            if(indexPath.row == 0) {
+                performSegue(withIdentifier: "reset", sender: self)
+            } else {
+                let loginVc = UIStoryboard.init(name: "Login", bundle: nil).instantiateInitialViewController()
+                self.present(loginVc!, animated: true, completion: nil)
+            }
         default:
             break
         }

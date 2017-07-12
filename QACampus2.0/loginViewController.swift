@@ -23,6 +23,10 @@ class loginViewController: UIViewController {
         return alertView()
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        resetLocalUser()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIInit()
@@ -102,6 +106,12 @@ class loginViewController: UIViewController {
         let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
         //存储Data对象
         userDefault.set(modelData, forKey: "local_user")
+    }
+    
+    //重置登录的用户
+    func resetLocalUser() {
+        let userDefault = UserDefaults.standard
+        userDefault.set("nobody", forKey: "local_user")
     }
     
     @IBAction func forgetPassword(_ sender: Any) {
