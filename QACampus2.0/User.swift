@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User{
+class User:NSObject,NSCoding{
     
     var userId: String?
     var email: String?
@@ -30,5 +30,17 @@ class User{
         self.introduction = introduction
         self.thumb_num = thumb_num
         self.question_num = question_num
+    }
+    
+    //从object解析回来
+    required init(coder decoder: NSCoder) {
+        self.email = decoder.decodeObject(forKey: "email") as? String ?? ""
+        self.password = decoder.decodeObject(forKey: "password") as? String ?? ""
+    }
+    
+    //编码成object
+    func encode(with coder: NSCoder) {
+        coder.encode(email, forKey:"email")
+        coder.encode(password, forKey:"password")
     }
 }

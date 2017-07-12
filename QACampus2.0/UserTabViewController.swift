@@ -37,6 +37,10 @@ class UserTabViewController: UIViewController {
     var infoVc:UIViewController?
     var notificationVc:UIViewController?
     
+    override func viewDidAppear(_ animated: Bool) {
+        localUserCheck()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,7 +66,6 @@ class UserTabViewController: UIViewController {
         
         infoVc = UIStoryboard.init(name: "PersonalInfo", bundle: nil).instantiateInitialViewController()
         infoVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
-        print(infoVc!.view.frame.height)
         self.addChildViewController(infoVc!)
         
         notificationVc = UIStoryboard.init(name: "UserNotification", bundle: nil).instantiateInitialViewController()
@@ -146,6 +149,24 @@ extension UserTabViewController {
         else{
             self.view.addSubview(newController.view)
         }
+    }
+
+    //检测本地是否有账户数据
+    func localUserCheck() {
+        let userDefault = UserDefaults.standard
+        
+        //自定义对象读取
+        let local_user = userDefault.data(forKey: "local_user")
+        
+        if(local_user == nil){
+            let mainVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+            self.present(mainVC!, animated: true, completion: nil)
+        } else {
+            print(local_user)
+            let user = NSKeyedUnarchiver.unarchiveObject(with: local_user!) as! User
+            print(user.email!)
+        }
+        
     }
 
     

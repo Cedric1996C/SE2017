@@ -81,9 +81,22 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzm-3c-VaB">
+                                        <rect key="frame" x="285" y="15" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Rzm-3c-VaB" secondAttribute="height" multiplier="1:1" id="3Fw-E3-iH6"/>
+                                            <constraint firstAttribute="height" constant="20" id="Eeb-o4-rZF"/>
+                                            <constraint firstAttribute="width" constant="20" id="poU-Wr-T99"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="alert_wrong"/>
+                                        <connections>
+                                            <action selector="email_cancel:" destination="7V2-w3-5nW" eventType="touchUpInside" id="3ai-dS-fDh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Rzm-3c-VaB" firstAttribute="centerY" secondItem="AaZ-TC-gOv" secondAttribute="centerY" id="2u3-hV-K2i"/>
                                     <constraint firstAttribute="height" constant="50" id="8wl-qA-Avh"/>
                                     <constraint firstAttribute="trailing" secondItem="Rqx-cY-tbr" secondAttribute="trailing" id="Ibb-DU-0y9"/>
                                     <constraint firstItem="Au0-cE-dVe" firstAttribute="top" secondItem="AaZ-TC-gOv" secondAttribute="top" constant="8.2300000000000004" id="Q6J-1f-P5c"/>
@@ -91,6 +104,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Au0-cE-dVe" secondAttribute="trailing" id="clT-1m-N0Z"/>
                                     <constraint firstAttribute="width" constant="315" id="ps1-lN-ldU"/>
                                     <constraint firstAttribute="width" secondItem="AaZ-TC-gOv" secondAttribute="height" multiplier="63:10" id="xPm-ao-Ocr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rzm-3c-VaB" secondAttribute="trailing" constant="10" id="yNI-68-JB7"/>
                                     <constraint firstItem="Rqx-cY-tbr" firstAttribute="leading" secondItem="AaZ-TC-gOv" secondAttribute="leading" id="yqq-XM-erL"/>
                                 </constraints>
                             </view>
@@ -115,6 +129,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gn6-9Z-bGI">
+                                        <rect key="frame" x="285" y="15" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gn6-9Z-bGI" secondAttribute="height" multiplier="1:1" id="JpR-Ne-IsY"/>
+                                            <constraint firstAttribute="width" constant="20" id="qOz-lv-qA4"/>
+                                            <constraint firstAttribute="height" constant="20" id="xVP-k9-XBt"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="alert_wrong"/>
+                                        <connections>
+                                            <action selector="password_cancel:" destination="7V2-w3-5nW" eventType="touchUpInside" id="7ld-hf-73C"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -123,8 +149,10 @@
                                     <constraint firstItem="C9w-8J-1Cs" firstAttribute="top" secondItem="2KW-b4-3dS" secondAttribute="bottom" constant="5" id="Jsi-fM-hhG"/>
                                     <constraint firstAttribute="width" secondItem="SPr-9c-leL" secondAttribute="height" multiplier="63:10" id="N6W-xr-mIU"/>
                                     <constraint firstItem="C9w-8J-1Cs" firstAttribute="leading" secondItem="2KW-b4-3dS" secondAttribute="leading" id="ZNd-VA-9Lb"/>
+                                    <constraint firstItem="gn6-9Z-bGI" firstAttribute="centerY" secondItem="SPr-9c-leL" secondAttribute="centerY" id="ih1-ZM-uOI"/>
                                     <constraint firstAttribute="height" constant="50" id="pT1-Kp-2DY"/>
                                     <constraint firstAttribute="width" constant="315" id="q8t-TO-juA"/>
+                                    <constraint firstAttribute="trailing" secondItem="gn6-9Z-bGI" secondAttribute="trailing" constant="10" id="x9x-oP-srq"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UwX-rB-4Cj">
@@ -182,7 +210,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="AaZ-TC-gOv" secondAttribute="trailing" constant="14" id="15t-8U-wdw"/>
                             <constraint firstItem="UwX-rB-4Cj" firstAttribute="trailing" secondItem="TOz-VP-OqW" secondAttribute="trailing" id="7cm-gc-UuO"/>
                             <constraint firstItem="62T-zs-Syw" firstAttribute="leading" secondItem="lyD-5B-HBn" secondAttribute="leadingMargin" constant="14" id="7mH-Zo-GOx"/>
-                            <constraint firstItem="62T-zs-Syw" firstAttribute="top" secondItem="XLW-80-ZjA" secondAttribute="bottom" constant="87" id="Dm4-cW-ANa"/>
+                            <constraint firstItem="62T-zs-Syw" firstAttribute="top" secondItem="XLW-80-ZjA" secondAttribute="bottom" constant="87" id="FVL-8a-aMu"/>
                             <constraint firstItem="s3h-YK-PVD" firstAttribute="leading" secondItem="lyD-5B-HBn" secondAttribute="leadingMargin" constant="14" id="FYv-e5-TNa"/>
                             <constraint firstItem="AaZ-TC-gOv" firstAttribute="top" secondItem="62T-zs-Syw" secondAttribute="bottom" constant="33" id="Kxu-W8-xDC"/>
                             <constraint firstItem="AaZ-TC-gOv" firstAttribute="leading" secondItem="lyD-5B-HBn" secondAttribute="leadingMargin" constant="14" id="NEB-gu-NoW"/>
@@ -190,13 +218,13 @@
                             <constraint firstItem="UwX-rB-4Cj" firstAttribute="top" secondItem="SPr-9c-leL" secondAttribute="bottom" constant="14" id="S6Y-Ib-n78"/>
                             <constraint firstItem="SPr-9c-leL" firstAttribute="top" secondItem="AaZ-TC-gOv" secondAttribute="bottom" constant="6" id="Y3e-vn-xxJ"/>
                             <constraint firstItem="nzY-n6-KVN" firstAttribute="leading" secondItem="lyD-5B-HBn" secondAttribute="leadingMargin" constant="14" id="YHd-Fs-tte"/>
+                            <constraint firstItem="o85-Jb-per" firstAttribute="top" secondItem="nzY-n6-KVN" secondAttribute="bottom" constant="29" id="b3w-7f-4sX"/>
                             <constraint firstItem="s3h-YK-PVD" firstAttribute="centerY" secondItem="TOz-VP-OqW" secondAttribute="centerY" id="hcU-OF-GUv"/>
                             <constraint firstItem="TOz-VP-OqW" firstAttribute="top" secondItem="UwX-rB-4Cj" secondAttribute="bottom" constant="20" id="jXb-U9-R2a"/>
                             <constraint firstItem="UwX-rB-4Cj" firstAttribute="leading" secondItem="s3h-YK-PVD" secondAttribute="leading" id="qgn-1g-08M"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nzY-n6-KVN" secondAttribute="trailing" constant="14" id="r0g-H2-x9Q"/>
                             <constraint firstItem="UwX-rB-4Cj" firstAttribute="leading" secondItem="SPr-9c-leL" secondAttribute="leading" id="w3v-13-9LD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TOz-VP-OqW" secondAttribute="trailing" constant="14" id="xU3-cP-wGN"/>
-                            <constraint firstItem="o85-Jb-per" firstAttribute="top" secondItem="nzY-n6-KVN" secondAttribute="bottom" constant="29" id="zjc-Aw-eoZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -212,6 +240,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alert_wrong" width="128" height="128"/>
         <image name="logo02" width="128" height="128"/>
     </resources>
 </document>
