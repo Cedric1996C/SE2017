@@ -48,6 +48,7 @@
 		062D04F01F14D5AA00499EEB /* editPersonalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04EF1F14D5AA00499EEB /* editPersonalTableViewController.swift */; };
 		062D04F41F1515F400499EEB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062D04F31F1515F400499EEB /* Login.storyboard */; };
 		062D04F61F15160100499EEB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062D04F51F15160100499EEB /* Register.storyboard */; };
+		062D04FA1F15B8FC00499EEB /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04F91F15B8FC00499EEB /* alertView.swift */; };
 		0638D9B71EEE452D00D74F4C /* collectTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B61EEE452D00D74F4C /* collectTopicViewController.swift */; };
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
@@ -190,6 +191,7 @@
 		062D04EF1F14D5AA00499EEB /* editPersonalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPersonalTableViewController.swift; sourceTree = "<group>"; };
 		062D04F31F1515F400499EEB /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		062D04F51F15160100499EEB /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		062D04F91F15B8FC00499EEB /* alertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertView.swift; sourceTree = "<group>"; };
 		0638D9B61EEE452D00D74F4C /* collectTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectTopicViewController.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +429,14 @@
 				06945A451EC7EDD0005EA1CF /* loginViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		062D04F81F15B8D100499EEB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				062D04F91F15B8FC00499EEB /* alertView.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		0638D9B11EEE44D600D74F4C /* personalQuestion */ = {
@@ -763,9 +773,10 @@
 				061F12EB1EC08B8600F6689C /* personalInfo */,
 				069E15BD1EFD0C2800A9C1FA /* studioInfo */,
 				069E15D51EFDF9A800A9C1FA /* studioHome */,
+				062D04F81F15B8D100499EEB /* Utils */,
+				409124991EB45F3800347EEF /* Info.plist */,
 				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
 				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
-				409124991EB45F3800347EEF /* Info.plist */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				4091248F1EB45F3800347EEF /* ViewController.swift */,
 				06945A441EC7EB23005EA1CF /* Header.h */,
@@ -1183,6 +1194,7 @@
 				069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */,
 				069E15ED1EFE547700A9C1FA /* studioAdminTableViewCell.swift in Sources */,
 				069E16471F05EBF100A9C1FA /* editBlogTableViewController.swift in Sources */,
+				062D04FA1F15B8FC00499EEB /* alertView.swift in Sources */,
 				062B2ACF1F1376EA0042B9A5 /* editInfoTableViewCell.swift in Sources */,
 				07FE8B471EE104960059BB10 /* EditorController.swift in Sources */,
 				062B2AD61F13E1270042B9A5 /* editTableViewCell.swift in Sources */,
