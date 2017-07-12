@@ -28,6 +28,8 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
     var loadMoreView:UIView?
+    var activityViewIndicator:UIActivityIndicatorView?
+    var noMoreRes:UILabel?
     //计数器（用来做延时模拟网络加载效果）
     var timer: Timer!
     //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
@@ -37,6 +39,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var isResults:Bool = false
     // 历史记录
     var history:[String] = []
+    let historyMax:Int = 6
     // 历史记录匹配的结果，historyTable使用这个数组作为datasource
     var historySel:[String] = []
     // 搜索匹配结果，historyTable也使用这个数组作为datasource
@@ -49,8 +52,14 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var cellHeight:CGFloat = 44.0
     //url
     let url:String="https://118.89.166.180:8443"
+    let qaBaseUrl:String="/qa-service/questions"
+    let topicBaseUrl:String="/topic-service/topic"
     var loadMoreUrl:String=""
     
+    let headers: HTTPHeaders = [
+        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+    ]
+
     // MARK:- 懒加载属性
     /// 子标题
     lazy var btnNames:[String] = {
@@ -70,6 +79,8 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         initViewDetail()
         initLayout()
         initScrollView()
+        
+        authentication()
     }
     
     func initViewDetail(){
@@ -167,8 +178,15 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             
             //当下拉到底部，执行loadMore()
             if (loadMoreEnable && indexPath.row == self.resultsSel.count-1) {
-                //loadMore()
+                self.noMoreRes?.isHidden=true
+                self.activityViewIndicator?.isHidden=false
+                self.loadMore()
+            }else {
+                //print("should hide")
+                self.noMoreRes?.isHidden=false
+                self.activityViewIndicator?.isHidden=true
             }
+
             return cell
         }else if(indexPath.row==0){
             let identify:String = "HisTitleCell"
@@ -257,6 +275,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
 
     }
     
+    //搜索请求
     func searchRequest(){
         print("in searchRequest()")
         
@@ -264,21 +283,31 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-//            authentication()
-//             let headers: HTTPHeaders = [
-//             "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
-//             ]
-            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+            Alamofire.request(url+qaBaseUrl, method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
                     
                     self.resultsSel.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
-                        let time:String = "2017-03-04"
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
                         let result = Result(id: id, name: name, time: time, title: title, desc: desc)
@@ -290,7 +319,39 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
-            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
+            Alamofire.request(url+topicBaseUrl, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
             break
         case btnNames[2]:
             //工作室
@@ -309,16 +370,31 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+            Alamofire.request(url+loadMoreUrl, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
                     
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
-                        let time:String = "2017-03-04"
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
                         let result = Result(id: id, name: name, time: time, title: title, desc: desc)
@@ -330,37 +406,31 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
-            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
-            break
-        case btnNames[2]:
-            //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
-            break
-        default:
-            print("没选")
-        }
-        print("out searchRequest()")
-    }
-    //改变搜索类型
-    func searchRequestType(){
-        print("in searchRequestType()")
-        
-        self.isResults=true
-        switch subTitleView.currentSelectedBtn.currentTitle! {
-        case btnNames[0]:
-            //问题
-            Alamofire.request("http://115.159.199.121:2346/questions", method: .get).responseJSON { response in
+            Alamofire.request(url+loadMoreUrl, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
-//                    self.loadMoreUrl =
                     
-                    self.resultsSel.removeAll()
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
-                        let time:String = "2017-03-04"
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
                         let result = Result(id: id, name: name, time: time, title: title, desc: desc)
@@ -369,10 +439,6 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     self.historyTable.reloadData()
                 }
             }
-            break
-        case btnNames[1]:
-            //话题
-            //self.resultsSel=["话题1"+searchInput.text!,"话题2"+searchInput.text!,"话题3"+searchInput.text!]
             break
         case btnNames[2]:
             //工作室
@@ -424,6 +490,15 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 }
             }
             if(isNew){
+                if(history.count==historyMax){
+                    for his in fetchedObjects{
+                        //删除对象
+                        context.delete(his)
+                        break
+                    }
+                    history.remove(at: 0)
+                }
+                
                 let his = NSEntityDescription.insertNewObject(forEntityName: "History", into: context) as! History
                 his.no = Int32(history.count)
                 his.text = searchInput.text
@@ -441,6 +516,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             fatalError("不能更新：\(error)")
         }
         NSLog("更新成功")
+        self.historySel = self.history
     }
     //清空历史记录
     func clearHistory(){
@@ -449,9 +525,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             let fetchedObjects = try context.fetch(fetchRequest)
             
             //遍历查询的结果
-            for info in fetchedObjects{
+            for his in fetchedObjects{
                 //删除对象
-                context.delete(info)
+                context.delete(his)
             }
             //重新保存-更新到数据库
             try! context.save()
@@ -466,37 +542,63 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     private func setupInfiniteScrollingView() {
         self.loadMoreView = UIView(frame: CGRect.init(x: 0, y: self.historyTable.contentSize.height, width: self.historyTable.bounds.size.width, height: 60))
         self.loadMoreView!.autoresizingMask = UIViewAutoresizing.flexibleWidth
-        self.loadMoreView!.backgroundColor = UIColor.clear
+        self.loadMoreView!.backgroundColor = self.historyTable.backgroundColor
+        //添加 “没有更多内容“
+        let labelX = (self.loadMoreView!.frame.size.width-110)/2
+        let labelY = (self.loadMoreView!.frame.size.height-21)/2
+        
+        self.noMoreRes = UILabel.init(frame: CGRect.init(x: labelX, y: labelY, width: 110.0, height: 21.0))
+        self.noMoreRes?.text = "没有更多内容"
+        self.noMoreRes?.textAlignment = NSTextAlignment.center
+        self.loadMoreView?.addSubview(self.noMoreRes!)
+        
+        noMoreRes?.snp.makeConstraints({ make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        })
         
         //添加中间的环形进度条
-        let activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        activityViewIndicator.color = UIColor.darkGray
-        let indicatorX = self.loadMoreView!.frame.size.width/2-activityViewIndicator.frame.width/2
-        let indicatorY = self.loadMoreView!.frame.size.height/2-activityViewIndicator.frame.height/2
-        activityViewIndicator.frame = CGRect.init(x: indicatorX, y: indicatorY,
-                                                  width: activityViewIndicator.frame.width,
-                                                  height: activityViewIndicator.frame.height)
-        activityViewIndicator.startAnimating()
-        self.loadMoreView!.addSubview(activityViewIndicator)
+        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        self.activityViewIndicator?.color = UIColor.darkGray
+        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
+        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
+        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
+                                                  width: (activityViewIndicator?.frame.width)!,
+                                                  height: (activityViewIndicator?.frame.height)!)
+        activityViewIndicator?.startAnimating()
+        self.loadMoreView!.addSubview(activityViewIndicator!)
+        
+        activityViewIndicator?.snp.makeConstraints({ make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        })
+        
     }
     //加载更多数据
     func loadMore(){
-        print("加载新数据！")
-        loadMoreEnable = false
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self,
+        if(loadMoreEnable){
+            print("加载新数据！")
+            loadMoreEnable = false
+            timer = Timer.scheduledTimer(timeInterval: 3.0, target: self,
                                                        selector: #selector(self.timeOut), userInfo: nil, repeats: true)
+        }
     }
     
     //计时器时间到
     func timeOut() {
-        //搜索
-        self.searchRequest()
-
-        self.historyTable.reloadData()
-        loadMoreEnable = true
+        //加载更多
+        self.searchRequestMore()
         
         timer.invalidate()
         timer = nil
+    }
+    //Date to String
+    func date2String(dateStamp: Int)->String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date:Date = NSDate(timeIntervalSince1970:TimeInterval(Int(dateStamp))) as Date
+        let dateString = formatter.string(from: date)
+        return dateString
     }
 }
 
