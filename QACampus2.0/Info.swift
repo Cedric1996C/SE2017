@@ -9,15 +9,20 @@
 import UIKit
 
 class Info{
+    var id:Int
     var icon:UIImage
+    var name:String = ""
+    var time:String = ""
     var title:String = ""
     var desc:String = ""
     
-    init(icon:UIImage,title:String,desc:String) {
-        self.icon = icon
+    init(id:Int,name:String,time:String,title:String,desc:String) {
+        self.id = id
+        self.icon = UIImage()
+        self.name = name
+        self.time = time
         self.title = title
         self.desc = desc
-        
     }
 }
 
