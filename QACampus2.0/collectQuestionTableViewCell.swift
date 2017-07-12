@@ -1,32 +1,33 @@
 //
-//  personalInfoTableViewCell.swift
+//  collectQuestionTableViewCell.swift
 //  QACampus2.0
 //
-//  Created by NJUcong on 2017/7/10.
+//  Created by NJUcong on 2017/7/12.
 //  Copyright © 2017年 Demons. All rights reserved.
 //
 
 import UIKit
 
-class personalInfoTableViewCell: UITableViewCell {
+class collectQuestionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var seperateView: UIView!
     @IBOutlet weak var avator: UIImageView!
-    
-    @IBOutlet weak var questionNum: UILabel!
-    @IBOutlet weak var introduction: UILabel!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var date: UILabel!
     
-    @IBOutlet weak var thumbNum: UILabel!
+    @IBOutlet weak var introduction: UILabel!
+    @IBOutlet weak var title: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        seperateView.backgroundColor = sectionHeaderColor
         avator.contentMode = .scaleAspectFill
         //设置遮罩
         avator.layer.masksToBounds = true
         //设置圆角半径(宽度的一半)，显示成圆形。
         avator.layer.cornerRadius = avator.frame.width/2
-//        questionNum.font = 
+
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

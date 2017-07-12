@@ -12,8 +12,11 @@ class editInfoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var content: UITextView!
     
+    @IBOutlet weak var tagTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = UITableViewCellSelectionStyle.none
         // Initialization code
     }
 

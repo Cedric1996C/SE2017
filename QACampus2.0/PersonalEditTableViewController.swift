@@ -10,6 +10,12 @@ import UIKit
 
 class PersonalEditTableViewController: editTableViewController {
 
+    lazy var tagTitle:[String] = {
+        return ["昵称","简介","所在院系"]
+    }()
+    
+    var avator:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        animationForDismiss()
@@ -91,9 +97,11 @@ class PersonalEditTableViewController: editTableViewController {
         switch indexPath.section{
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "editAvator", for: indexPath) as! editAvatorTableViewCell
+            cell.avator.image = avator
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "editInfo", for: indexPath) as! editInfoTableViewCell
+            cell.tagTitle.text = tagTitle[indexPath.row]
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
@@ -111,6 +119,8 @@ class PersonalEditTableViewController: editTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
+        case 0:
+            selectIcon()
         case 2:
             if(indexPath.row == 0) {
                 performSegue(withIdentifier: "reset", sender: self)
@@ -124,12 +134,6 @@ class PersonalEditTableViewController: editTableViewController {
     }
 
     func cancel(sender:Any){
-//        let transition: CATransition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.type = kCATransitionReveal
-//        transition.subtype = kCATransitionFromRight
-//        self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
 //        self.dismiss(animated: true, completion: nil)
     }

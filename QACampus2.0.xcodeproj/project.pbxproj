@@ -49,7 +49,10 @@
 		062D04F41F1515F400499EEB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062D04F31F1515F400499EEB /* Login.storyboard */; };
 		062D04F61F15160100499EEB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062D04F51F15160100499EEB /* Register.storyboard */; };
 		062D04FA1F15B8FC00499EEB /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04F91F15B8FC00499EEB /* alertView.swift */; };
-		0638D9B71EEE452D00D74F4C /* collectTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B61EEE452D00D74F4C /* collectTopicViewController.swift */; };
+		062D04FC1F161BFD00499EEB /* collectQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04FB1F161BFD00499EEB /* collectQuestionTableViewController.swift */; };
+		062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04FD1F161C4C00499EEB /* collectTopicTableViewController.swift */; };
+		062D05001F16355200499EEB /* collectQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D04FF1F16355200499EEB /* collectQuestionTableViewCell.swift */; };
+		062D05021F1643DE00499EEB /* collectStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D05011F1643DE00499EEB /* collectStudioCell.swift */; };
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
@@ -192,7 +195,10 @@
 		062D04F31F1515F400499EEB /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		062D04F51F15160100499EEB /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		062D04F91F15B8FC00499EEB /* alertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertView.swift; sourceTree = "<group>"; };
-		0638D9B61EEE452D00D74F4C /* collectTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectTopicViewController.swift; sourceTree = "<group>"; };
+		062D04FB1F161BFD00499EEB /* collectQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectQuestionTableViewController.swift; sourceTree = "<group>"; };
+		062D04FD1F161C4C00499EEB /* collectTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectTopicTableViewController.swift; sourceTree = "<group>"; };
+		062D04FF1F16355200499EEB /* collectQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		062D05011F1643DE00499EEB /* collectStudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioCell.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -409,6 +415,8 @@
 			isa = PBXGroup;
 			children = (
 				062D04EC1F14B86300499EEB /* CollectQuestion.storyboard */,
+				062D04FB1F161BFD00499EEB /* collectQuestionTableViewController.swift */,
+				062D04FF1F16355200499EEB /* collectQuestionTableViewCell.swift */,
 			);
 			name = CollectQuestion;
 			sourceTree = "<group>";
@@ -452,7 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				062B2AC11F1366AF0042B9A5 /* CollectTopic.storyboard */,
-				0638D9B61EEE452D00D74F4C /* collectTopicViewController.swift */,
+				062D04FD1F161C4C00499EEB /* collectTopicTableViewController.swift */,
 			);
 			name = CollectTopic;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 			children = (
 				062B2ABD1F1365EB0042B9A5 /* CollectStudio.storyboard */,
 				0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */,
+				062D05011F1643DE00499EEB /* collectStudioCell.swift */,
 			);
 			name = CollectStudio;
 			sourceTree = "<group>";
@@ -1146,6 +1155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062D05021F1643DE00499EEB /* collectStudioCell.swift in Sources */,
 				06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */,
 				404B3C3F1EC42910009DA5EC /* UserHotViewController.swift in Sources */,
 				062B2AB51F132B880042B9A5 /* tagNavigationTableViewCell.swift in Sources */,
@@ -1158,6 +1168,7 @@
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
 				062B2ACD1F1376E00042B9A5 /* editAvatorTableViewCell.swift in Sources */,
 				069E15CB1EFD34B700A9C1FA /* studioAnswerViewController.swift in Sources */,
+				062D04FC1F161BFD00499EEB /* collectQuestionTableViewController.swift in Sources */,
 				D918CBF71F1473C7005D0899 /* Result.swift in Sources */,
 				069E15C81EFD338A00A9C1FA /* studioInfoSubFactory.swift in Sources */,
 				D9F9BC351ED710510063C025 /* history.xcdatamodeld in Sources */,
@@ -1172,13 +1183,14 @@
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
 				069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */,
-				0638D9B71EEE452D00D74F4C /* collectTopicViewController.swift in Sources */,
 				069E160D1EFFB81600A9C1FA /* studioTopicViewController.swift in Sources */,
 				062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */,
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
+				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
 				069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */,
 				062D04F01F14D5AA00499EEB /* editPersonalTableViewController.swift in Sources */,
+				062D05001F16355200499EEB /* collectQuestionTableViewCell.swift in Sources */,
 				069E15F51EFE861200A9C1FA /* editNameTableViewController.swift in Sources */,
 				069E16431F05DFFC00A9C1FA /* editIntroTableViewController.swift in Sources */,
 				061CBF831F07347C0049EC6A /* searchAdminTableViewController.swift in Sources */,
