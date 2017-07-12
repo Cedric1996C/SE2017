@@ -89,6 +89,12 @@ class registerViewController: UIViewController {
 
     func alertEnd() {
         if statusCode == 200 {
+            
+            let userDefault = UserDefaults.standard
+            let user = User(email: email.text, password: password.text)
+            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
+            userDefault.set(modelData, forKey: "local_user")
+
             let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)
         } else {
