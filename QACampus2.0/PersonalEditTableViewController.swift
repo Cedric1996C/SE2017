@@ -125,7 +125,8 @@ class PersonalEditTableViewController: editTableViewController {
 //            prepareForStorage(path)
         case 2:
             if(indexPath.row == 0) {
-                performSegue(withIdentifier: "reset", sender: self)
+//                performSegue(withIdentifier: "reset", sender: self)
+                getPicture("1/avator.png")
             } else {
                 let loginVc = UIStoryboard.init(name: "Login", bundle: nil).instantiateInitialViewController()
                 self.present(loginVc!, animated: true, completion: nil)

@@ -10,11 +10,12 @@ import Foundation
 
 class Studio{
     
+    var id: Int?
     var name: String?
     var introduction: String?
-
     
-    required init(name: String?, introduction: String?){
+    required init(id:Int, name: String?, introduction: String?){
+        self.id = id
         self.name = name
         self.introduction = introduction
 

@@ -14,6 +14,7 @@ class userStudioViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var tableData: [Studio] = []
+    var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ extension userStudioViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tableData.count
+        return images.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -65,7 +66,7 @@ extension userStudioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: userStudioTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userStudio") as! userStudioTableViewCell
-        cell.bgimage.image = UIImage(named:"food")
+        cell.bgimage.image = images[indexPath.row]
         cell.name.text = tableData[indexPath.row].name
         cell.introduction.text = tableData[indexPath.row].introduction
         return cell
@@ -76,8 +77,9 @@ extension userStudioViewController {
     
     func initData() {
 //        indicator.startAnimating()
-        DispatchQueue.global().async {
-     
+
+        DispatchQueue.global().sync {
+
             let headers:HTTPHeaders = [
                 "Authorization": userAuthorization
             ]
@@ -85,24 +87,28 @@ extension userStudioViewController {
                 
                 // response serialization result
                 var json = JSON(response.result.value)
-                print(json)
                 let list: Array<JSON> = json["content"].arrayValue
                 //            print(list)
                 for json in list {
                     let name = json["name"].string
                     let introduction = json["introduction"].string
-                    var studio = Studio(name: name,introduction: introduction)
-                    print(studio.name)
+                    let id:Int = json["id"].int!
+                    let studio = Studio(id:id ,name: name,introduction: introduction)
+                    let path:String = "studio/\(id)/background.jpg"
+                    downloadPicture(path)
                     self.tableData.append(studio)
                 }
                 
-                self.tableView.reloadData()
-
-            }
-            
-            DispatchQueue.main.async {
-                print(self.tableData.count)
+                for studio in self.tableData {
+                    let id:Int = studio.id!
+                    let path:String = "studio/\(id)/background.jpg"
+//                    self.images.append(getPicture(path))
+                }
 //                self.tableView.reloadData()
+            }
+            Thread.sleep(forTimeInterval: 1)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
 //                self.indicator.stopAnimating()
             }
             
