@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MJRefresh
 import SwiftyJSON
 import Alamofire
 
@@ -28,8 +29,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
     var loadMoreView:UIView?
-    var activityViewIndicator:UIActivityIndicatorView?
+    //var activityViewIndicator:UIActivityIndicatorView?
     var noMoreRes:UILabel?
+    let footer = MJRefreshBackNormalFooter()
     //计数器（用来做延时模拟网络加载效果）
     var timer: Timer!
     //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
@@ -52,8 +54,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var cellHeight:CGFloat = 44.0
     //url
     let url:String="https://118.89.166.180:8443"
-    let qaBaseUrl:String="/qa-service/questions"
-    let topicBaseUrl:String="/topic-service/topic"
+    let qaBaseUrl:String="/qa-service"
+    let topicBaseUrl:String="/topic-service"
+    let studioBaseUrl:String="/studio-service"
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -101,7 +104,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         // 隐藏TableView分割线
         self.clearFooterView?.backgroundColor = UIColor.clear
         self.historyTable.tableFooterView = self.clearFooterView
-        //上拉刷新视图
+        //上拉加载
+        footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
+        //上拉加载完全
         self.setupInfiniteScrollingView()
         //self.historyTable.tableFooterView = self.loadMoreView
 
@@ -158,36 +163,44 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         // 为了提供表格显示性能，已创建完成的单元需重复使用
         // 同一形式的单元格重复使用，在声明时已注册
         self.cellHeight = 44.0
+        self.historyTable.mj_footer = nil
         self.historyTable.tableFooterView = self.clearFooterView
         if(isResults){
-            self.historyTable.tableFooterView = self.loadMoreView
-            
-            let identify:String = "ResListCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-            cell.icon.image = icon
-            cell.name.text = self.resultsSel[indexPath.row].name
-            cell.time.text = self.resultsSel[indexPath.row].time
-            cell.title.text = self.resultsSel[indexPath.row].title
-            cell.desc.numberOfLines = 3
-            cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
-            cell.desc.text = self.resultsSel[indexPath.row].desc
-            
-            
-            // 设置cell高度
-            self.cellHeight = 180.0
-            
-            //当下拉到底部，执行loadMore()
-            if (loadMoreEnable && indexPath.row == self.resultsSel.count-1) {
-                self.noMoreRes?.isHidden=true
-                self.activityViewIndicator?.isHidden=false
-                self.loadMore()
-            }else {
-                //print("should hide")
-                self.noMoreRes?.isHidden=false
-                self.activityViewIndicator?.isHidden=true
+            self.historyTable.mj_footer = footer
+            if(subTitleView.currentSelectedBtn.currentTitle!==btnNames[2]){
+                //工作室
+                let identify:String = "ResListCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
+                cell.icon.image = icon
+                cell.name.text = self.resultsSel[indexPath.row].name
+                cell.time.text = self.resultsSel[indexPath.row].time
+                cell.title.text = self.resultsSel[indexPath.row].title
+                cell.desc.numberOfLines = 3
+                cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
+                cell.desc.text = self.resultsSel[indexPath.row].desc
+                
+                // 设置cell高度
+                self.cellHeight = 180.0
+                
+                return cell
             }
-
-            return cell
+            else{
+                //问题/话题
+                let identify:String = "ResListCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
+                cell.icon.image = icon
+                cell.name.text = self.resultsSel[indexPath.row].name
+                cell.time.text = self.resultsSel[indexPath.row].time
+                cell.title.text = self.resultsSel[indexPath.row].title
+                cell.desc.numberOfLines = 3
+                cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
+                cell.desc.text = self.resultsSel[indexPath.row].desc
+                
+                // 设置cell高度
+                self.cellHeight = 180.0
+                
+                return cell
+            }
         }else if(indexPath.row==0){
             let identify:String = "HisTitleCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotHisTitleCell
@@ -283,7 +296,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-            Alamofire.request(url+qaBaseUrl, method: .get, headers: headers).responseJSON { response in
+            Alamofire.request(url+qaBaseUrl+"/questions", method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -319,7 +332,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
-            Alamofire.request(url+topicBaseUrl, method: .get, headers: headers).responseJSON { response in
+            Alamofire.request(url+topicBaseUrl+"/topic", method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -355,12 +368,44 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            Alamofire.request(url+studioBaseUrl+"/studio", method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
             break
         default:
             print("没选")
         }
-        print("out searchRequest()")
+        print("out searchRequestMore()")
     }
     //加载更多
     func searchRequestMore(){
@@ -370,7 +415,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-            Alamofire.request(url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+qaBaseUrl+loadMoreUrl, method: .get, headers:headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -406,7 +451,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
-            Alamofire.request(url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+topicBaseUrl+loadMoreUrl, method: .get, headers:headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -442,7 +487,39 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            Alamofire.request(url+studioBaseUrl+loadMoreUrl, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
             break
         default:
             print("没选")
@@ -538,18 +615,20 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         NSLog("删除")
     }
     
-    //上拉刷新视图
+    //上拉加载视图
     private func setupInfiniteScrollingView() {
-        self.loadMoreView = UIView(frame: CGRect.init(x: 0, y: self.historyTable.contentSize.height, width: self.historyTable.bounds.size.width, height: 60))
+        self.loadMoreView = UIView(frame: CGRect.init(x: 0, y: self.historyTable.contentSize.height, width: self.historyTable.bounds.size.width, height: 48))
         self.loadMoreView!.autoresizingMask = UIViewAutoresizing.flexibleWidth
         self.loadMoreView!.backgroundColor = self.historyTable.backgroundColor
         //添加 “没有更多内容“
-        let labelX = (self.loadMoreView!.frame.size.width-110)/2
+        let labelX = (self.loadMoreView!.frame.size.width-120)/2
         let labelY = (self.loadMoreView!.frame.size.height-21)/2
         
         self.noMoreRes = UILabel.init(frame: CGRect.init(x: labelX, y: labelY, width: 110.0, height: 21.0))
         self.noMoreRes?.text = "没有更多内容"
         self.noMoreRes?.textAlignment = NSTextAlignment.center
+        self.noMoreRes?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        self.noMoreRes?.textColor = UIColor.gray
         self.loadMoreView?.addSubview(self.noMoreRes!)
         
         noMoreRes?.snp.makeConstraints({ make in
@@ -557,23 +636,44 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             make.centerY.equalToSuperview()
         })
         
-        //添加中间的环形进度条
-        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        self.activityViewIndicator?.color = UIColor.darkGray
-        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
-        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
-        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
-                                                  width: (activityViewIndicator?.frame.width)!,
-                                                  height: (activityViewIndicator?.frame.height)!)
-        activityViewIndicator?.startAnimating()
-        self.loadMoreView!.addSubview(activityViewIndicator!)
-        
-        activityViewIndicator?.snp.makeConstraints({ make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        })
+//        //添加中间的环形进度条
+//        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+//        self.activityViewIndicator?.color = UIColor.darkGray
+//        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
+//        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
+//        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
+//                                                  width: (activityViewIndicator?.frame.width)!,
+//                                                  height: (activityViewIndicator?.frame.height)!)
+//        activityViewIndicator?.startAnimating()
+//        self.loadMoreView!.addSubview(activityViewIndicator!)
+//        
+//        activityViewIndicator?.snp.makeConstraints({ make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        })
         
     }
+    func footerClick () {
+        // 可在此处实现上拉加载时要执行的代码
+        // ......
+        //当上拉到底部，执行loadMore()
+        if (loadMoreEnable) {
+            self.loadMore()
+            // 模拟延迟2秒
+            Thread.sleep(forTimeInterval: 2)
+            // 结束刷新
+            self.historyTable.mj_footer.endRefreshing()
+        }else if(!loadMoreEnable) {
+            //print("should hide")
+            // 模拟延迟2秒
+            Thread.sleep(forTimeInterval: 2)
+            // 结束刷新
+            self.historyTable.mj_footer.endRefreshing()
+            self.historyTable.mj_footer=nil
+            self.historyTable.tableFooterView = loadMoreView
+        }
+    }
+
     //加载更多数据
     func loadMore(){
         if(loadMoreEnable){

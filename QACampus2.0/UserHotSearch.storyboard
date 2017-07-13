@@ -30,11 +30,11 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VSo-Iz-g94">
-                                        <rect key="frame" x="0.0" y="41" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="41" width="375" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aAS-pX-cdu">
-                                        <rect key="frame" x="0.0" y="82" width="375" height="557"/>
+                                        <rect key="frame" x="0.0" y="73" width="375" height="566"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HisTitleCell" id="gdi-GG-uUX" customClass="UserHotHisTitleCell" customModule="QACampus2_0" customModuleProvider="target">
@@ -198,7 +198,8 @@
                         <constraints>
                             <constraint firstItem="iuy-1q-Wdh" firstAttribute="width" secondItem="syb-Mf-3HA" secondAttribute="width" id="7R7-EQ-nLX"/>
                             <constraint firstItem="iuy-1q-Wdh" firstAttribute="top" secondItem="dKu-Vb-OyB" secondAttribute="bottom" id="N1K-tv-nzD"/>
-                            <constraint firstItem="Bec-dw-Dhc" firstAttribute="top" secondItem="iuy-1q-Wdh" secondAttribute="bottom" constant="8" id="Tio-xZ-5VD"/>
+                            <constraint firstItem="Bec-dw-Dhc" firstAttribute="top" secondItem="iuy-1q-Wdh" secondAttribute="bottom" constant="8" id="Tio-xZ-5VD" userLabel="Bottom Layout Guide.top = Stack View.bottom "/>
+                            <constraint firstItem="Bec-dw-Dhc" firstAttribute="top" secondItem="aAS-pX-cdu" secondAttribute="bottom" id="psk-Zj-84h"/>
                             <constraint firstItem="iuy-1q-Wdh" firstAttribute="centerX" secondItem="syb-Mf-3HA" secondAttribute="centerX" id="rOL-hz-L4M"/>
                         </constraints>
                     </view>
