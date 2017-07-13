@@ -33,3 +33,7 @@ class SubListCell: UITableViewCell{
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
 }
+
+class SubList2Cell: UITableViewCell{
+    @IBOutlet weak var desc: UILabel!
+}

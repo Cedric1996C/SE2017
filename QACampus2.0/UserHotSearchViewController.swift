@@ -167,22 +167,40 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         self.historyTable.tableFooterView = self.clearFooterView
         if(isResults){
             self.historyTable.mj_footer = footer
-            
-            let identify:String = "ResListCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-            cell.icon.image = icon
-            cell.name.text = self.resultsSel[indexPath.row].name
-            cell.time.text = self.resultsSel[indexPath.row].time
-            cell.title.text = self.resultsSel[indexPath.row].title
-            cell.desc.numberOfLines = 3
-            cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
-            cell.desc.text = self.resultsSel[indexPath.row].desc
-            
-            
-            // 设置cell高度
-            self.cellHeight = 180.0
-            
-            return cell
+            if(subTitleView.currentSelectedBtn.currentTitle!==btnNames[2]){
+                //工作室
+                let identify:String = "ResListCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
+                cell.icon.image = icon
+                cell.name.text = self.resultsSel[indexPath.row].name
+                cell.time.text = self.resultsSel[indexPath.row].time
+                cell.title.text = self.resultsSel[indexPath.row].title
+                cell.desc.numberOfLines = 3
+                cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
+                cell.desc.text = self.resultsSel[indexPath.row].desc
+                
+                // 设置cell高度
+                self.cellHeight = 180.0
+                
+                return cell
+            }
+            else{
+                //问题/话题
+                let identify:String = "ResListCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
+                cell.icon.image = icon
+                cell.name.text = self.resultsSel[indexPath.row].name
+                cell.time.text = self.resultsSel[indexPath.row].time
+                cell.title.text = self.resultsSel[indexPath.row].title
+                cell.desc.numberOfLines = 3
+                cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
+                cell.desc.text = self.resultsSel[indexPath.row].desc
+                
+                // 设置cell高度
+                self.cellHeight = 180.0
+                
+                return cell
+            }
         }else if(indexPath.row==0){
             let identify:String = "HisTitleCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotHisTitleCell
@@ -350,7 +368,39 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            Alamofire.request(url+studioBaseUrl+"/studio", method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
             break
         default:
             print("没选")
@@ -437,7 +487,39 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
-            //self.resultsSel=["工作室1"+searchInput.text!,"工作室2"+searchInput.text!,"工作室3"+searchInput.text!]
+            Alamofire.request(url+studioBaseUrl+loadMoreUrl, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    self.resultsSel.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                        self.resultsSel.append(result)
+                    }
+                    self.historyTable.reloadData()
+                }
+            }
             break
         default:
             print("没选")

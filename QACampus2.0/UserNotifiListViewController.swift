@@ -26,16 +26,20 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     var timer: Timer!
     //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
     var loadMoreEnable = true
-
+    
+    //0:问题  1:话题  2:点赞
     var type:Int = 0
     
     var infos:[Info] = []
+    var infos2:[String] = []
     
     let icon:UIImage = UIImage(named: "no.1")!
     
     //url
     let url:String="https://118.89.166.180:8443"
-    let notifiBaseUrl:String="/qa-service/questions"
+    let notifiBase0Url:String="/qa-service/questions"
+    let notifiBase1Url:String=""
+    let notifiBase2Url:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -86,21 +90,31 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     }
     //创建各单元显示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identify:String = "SubListCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubListCell
-        //            cell.icon.image=infos?[indexPath.row].icon
-        //            cell.name.text=infos?[indexPath.row].name
-        //            cell.time.text=infos?[indexPath.row].time
-        //            cell.title.text=infos?[indexPath.row].title
-        //            cell.desc.text=infos?[indexPath.row].desc
-        
-        cell.icon.image=self.icon
-        cell.name.text="wef"
-        cell.time.text="2017-03-04"
-        cell.title.text="新通知"
-        cell.desc.text="新通知的描述"
-        
-        return cell
+        if(2 == self.type){
+            let identify:String = "SubList2Cell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubList2Cell
+            //            cell.desc.text = infos2[indexPath.row]
+            cell.desc.text="xxx 给你的 xxx 点了赞"
+            
+            return cell
+        }
+        else{
+            let identify:String = "SubListCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubListCell
+            //            cell.icon.image=infos?[indexPath.row].icon
+            //            cell.name.text=infos?[indexPath.row].name
+            //            cell.time.text=infos?[indexPath.row].time
+            //            cell.title.text=infos?[indexPath.row].title
+            //            cell.desc.text=infos?[indexPath.row].desc
+            
+            cell.icon.image=self.icon
+            cell.name.text="wef"
+            cell.time.text="2017-03-04"
+            cell.title.text="新通知"
+            cell.desc.text="新通知的描述"
+            
+            return cell
+        }
     }
     // 点击TableView的一行时调用
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -112,84 +126,241 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     //通知请求
     func notifiRequest(){
         print("in notifiRequest()")
-        //通知
-        Alamofire.request(url+notifiBaseUrl, method: .get, headers: headers).responseJSON { response in
-            if let json = response.result.value {
-                print(json)
-                let jsonObj = JSON(data: response.data!)
-                let results:Array = jsonObj["content"].arrayValue
-                self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                
-                if(self.loadMoreUrl.length==0){
-                    print("loadMore false")
-                    self.loadMoreEnable=false
-                }else {
-                    print("loadMore true")
-                    self.loadMoreEnable=true
-                    self.tableView.tableFooterView = self.clearFooterView
-                    self.tableView.mj_footer = self.footer
-
-                }
-                
-                self.infos.removeAll()
-                for r in results{
-                    let id:Int = r["id"].intValue
-                    let name:String = r["asker"].stringValue
+        switch self.type{
+        case 0:
+            Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
-                    //时间戳／ms转为/s
-                    let dateStamp = r["date"].intValue/1000
-                    // 时间戳转字符串
-                    let time:String = self.date2String(dateStamp: dateStamp)
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        
+                    }
                     
-                    let title:String = r["question"].stringValue
-                    let desc:String = r["describtion"].stringValue
-                    let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                    self.infos.append(info)
+                    self.infos.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             }
+            break
+        case 1:
+            //话题
+            Alamofire.request(url+notifiBase1Url, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        
+                    }
+                    
+                    self.infos.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        case 2:
+            //点赞
+            Alamofire.request(url+notifiBase2Url, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        
+                    }
+                    
+                    self.infos.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        default: break
         }
-        
         print("out notifiRequest()")
     }
     //加载更多
     func notifiRequestMore(){
         print("in notifiRequestMore()")
-        //通知
-        Alamofire.request(url+loadMoreUrl, method: .get).responseJSON { response in
-            if let json = response.result.value {
-                print(json)
-                let jsonObj = JSON(data: response.data!)
-                let results:Array = jsonObj["content"].arrayValue
-                
-                self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                
-                if(self.loadMoreUrl.length==0){
-                    print("loadMore false")
-                    self.loadMoreEnable=false
-                }else {
-                    print("loadMore true")
-                    self.loadMoreEnable=true
-                }
-                
-                for r in results{
-                    let id:Int = r["id"].intValue
-                    let name:String = r["asker"].stringValue
+        switch self.type{
+        case 0:
+            //问题
+            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
                     
-                    //时间戳／ms转为/s
-                    let dateStamp = r["date"].intValue/1000
-                    // 时间戳转字符串
-                    let time:String = self.date2String(dateStamp: dateStamp)
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
-                    let title:String = r["question"].stringValue
-                    let desc:String = r["describtion"].stringValue
-                    let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                    self.infos.append(info)
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             }
+            break
+        case 1:
+            //话题
+            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        case 2:
+            //点赞
+            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        default:break
         }
-        
         print("out notifiRequest()")
     }
     //上拉加载视图
