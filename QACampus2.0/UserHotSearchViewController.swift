@@ -319,7 +319,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -355,7 +355,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -391,7 +391,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -438,7 +438,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
 
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -474,7 +474,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -510,7 +510,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
                         let desc:String = r["describtion"].stringValue
@@ -692,13 +692,13 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         timer.invalidate()
         timer = nil
     }
-    //Date to String
-    func date2String(dateStamp: Int)->String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let date:Date = NSDate(timeIntervalSince1970:TimeInterval(Int(dateStamp))) as Date
-        let dateString = formatter.string(from: date)
-        return dateString
-    }
+//    //Date to String
+//    func date2String(dateStamp: Int)->String{
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        let date:Date = NSDate(timeIntervalSince1970:TimeInterval(Int(dateStamp))) as Date
+//        let dateString = formatter.string(from: date)
+//        return dateString
+//    }
 }
 

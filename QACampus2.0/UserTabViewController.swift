@@ -43,14 +43,24 @@ class UserTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         initUI()
+        initUserInfo()
+        initControllers()
+        
         view.backgroundColor = sectionHeaderColor
         hotIcon.isSelected = true
-        initControllers()
         // Do any additional setup after loading the view.
     }
 
+    func initUserInfo(){
+        
+        let userDefault = UserDefaults.standard
+        //自定义对象读取
+        let user = userDefault.data(forKey: "local_user")
+        let localUser = NSKeyedUnarchiver.unarchiveObject(with: user!) as! User
+        localUser_id = localUser.userId
+    }
+    
     func initControllers() {
         let width = self.view.frame.width
         let height = self.view.frame.height - CGFloat(57.0)

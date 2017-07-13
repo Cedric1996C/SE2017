@@ -21,6 +21,8 @@ class collectQuestionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         seperateView.backgroundColor = sectionHeaderColor
+        seperateView.backgroundColor = sectionHeaderColor
+        
         avator.contentMode = .scaleAspectFill
         //设置遮罩
         avator.layer.masksToBounds = true

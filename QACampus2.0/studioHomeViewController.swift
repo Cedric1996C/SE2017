@@ -97,15 +97,15 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
         }
         
         PageVc.view.snp.makeConstraints { make in
-            make.top.equalTo(subTitleView.snp.bottom).offset(10)
+            make.top.equalTo(subTitleView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        
-        devideLine.snp.makeConstraints{ make in
-            make.height.equalTo(1)
-            make.bottom.left.right.equalToSuperview()
-        }
-        
+//        
+//        devideLine.snp.makeConstraints{ make in
+//            make.height.equalTo(1)
+//            make.bottom.left.right.equalToSuperview()
+//        }
+//        
         subTitleView.delegate = self as? studioHomeSubTitleViewDelegate
         subTitleView.titleArray = btnNames
         

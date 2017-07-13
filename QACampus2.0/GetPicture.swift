@@ -10,16 +10,22 @@ import Foundation
 import Alamofire
 
 //图片下载
-func downloadPicture(_ path:String){
+func downloadPicture(_ path:String,id:Int){
     
-    Alamofire.download("https://localhost:6666/\(path)").responseData { response in
-        print(path)
-        if let data = response.result.value {
-            let image = UIImage(data: data)
+//    Alamofire.download("https://localhost:6666/files/\(path)").responseData{ response in
+//        if let data = response.result.value {
+//            let image = UIImage(data: data)
 //            print(path)
-            saveImage(currentImage: image!, path: path)
+//            saveImage(currentImage: image!, path: path)
+//        }
+//    }    
+    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+        if let json = response.result.value {
+            let pictures:[String] = json as! [String]
+            let pic_path = path.appending("/" + pictures[1])
+            print(pic_path)
         }
-    }    
+    }
 }
 
 

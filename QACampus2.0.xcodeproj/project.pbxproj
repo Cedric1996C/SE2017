@@ -57,6 +57,9 @@
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
 		064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E8F1F17490800B1BD8C /* GetPicture.swift */; };
+		064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */; };
+		064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */; };
+		064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E961F1794BA00B1BD8C /* date2String.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -97,7 +100,6 @@
 		069E16261F0241A500A9C1FA /* UserStudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16251F0241A500A9C1FA /* UserStudio.storyboard */; };
 		069E16281F0241D400A9C1FA /* UserNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16271F0241D400A9C1FA /* UserNotification.storyboard */; };
 		069E16301F02661100A9C1FA /* StudioTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E162E1F02661100A9C1FA /* StudioTab.storyboard */; };
-		069E16331F049C8800A9C1FA /* studioQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */; };
 		069E16391F0514E600A9C1FA /* EditUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16381F0514E600A9C1FA /* EditUnit.storyboard */; };
 		069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E163A1F05157A00A9C1FA /* editUnitTableViewController.swift */; };
 		069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E163C1F0515C700A9C1FA /* editTableViewController.swift */; };
@@ -205,6 +207,9 @@
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
 		064D9E8F1F17490800B1BD8C /* GetPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPicture.swift; sourceTree = "<group>"; };
+		064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewController.swift; sourceTree = "<group>"; };
+		064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		064D9E961F1794BA00B1BD8C /* date2String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = date2String.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -246,7 +251,6 @@
 		069E16251F0241A500A9C1FA /* UserStudio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserStudio.storyboard; sourceTree = "<group>"; };
 		069E16271F0241D400A9C1FA /* UserNotification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserNotification.storyboard; sourceTree = "<group>"; };
 		069E162F1F02661100A9C1FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StudioTab.storyboard; sourceTree = "<group>"; };
-		069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionViewController.swift; sourceTree = "<group>"; };
 		069E16381F0514E600A9C1FA /* EditUnit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditUnit.storyboard; sourceTree = "<group>"; };
 		069E163A1F05157A00A9C1FA /* editUnitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editUnitTableViewController.swift; sourceTree = "<group>"; };
 		069E163C1F0515C700A9C1FA /* editTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTableViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				062D04F91F15B8FC00499EEB /* alertView.swift */,
+				064D9E961F1794BA00B1BD8C /* date2String.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -613,7 +618,8 @@
 			isa = PBXGroup;
 			children = (
 				069E161B1F0205A000A9C1FA /* StudioQuestion.storyboard */,
-				069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */,
+				064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */,
+				064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */,
 			);
 			name = studioQuestion;
 			sourceTree = "<group>";
@@ -789,9 +795,9 @@
 				069E15BD1EFD0C2800A9C1FA /* studioInfo */,
 				069E15D51EFDF9A800A9C1FA /* studioHome */,
 				062D04F81F15B8D100499EEB /* Utils */,
-				409124991EB45F3800347EEF /* Info.plist */,
-				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
 				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
+				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
+				409124991EB45F3800347EEF /* Info.plist */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				4091248F1EB45F3800347EEF /* ViewController.swift */,
 				06945A441EC7EB23005EA1CF /* Header.h */,
@@ -1167,8 +1173,8 @@
 				062B2AB51F132B880042B9A5 /* tagNavigationTableViewCell.swift in Sources */,
 				062D04EB1F14B49D00499EEB /* Question.swift in Sources */,
 				061CBF811F0666090049EC6A /* addAdminViewController.swift in Sources */,
-				069E16331F049C8800A9C1FA /* studioQuestionViewController.swift in Sources */,
 				069E16191F010AD300A9C1FA /* StudioTabViewController.swift in Sources */,
+				064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */,
 				409124901EB45F3800347EEF /* ViewController.swift in Sources */,
 				062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */,
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
@@ -1203,6 +1209,7 @@
 				061CBF831F07347C0049EC6A /* searchAdminTableViewController.swift in Sources */,
 				069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */,
 				061BA6261ED730BA000030CD /* User.swift in Sources */,
+				064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */,
 				069E15E01EFE081500A9C1FA /* studioSubTitleFactory.swift in Sources */,
 				0700761C1EE17BF7009A5ED8 /* UserHotDetailViewController.swift in Sources */,
 				40F2C4261EC42DDB00A0F70B /* UserHotTableViewCell.swift in Sources */,
@@ -1251,6 +1258,7 @@
 				064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,
+				064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

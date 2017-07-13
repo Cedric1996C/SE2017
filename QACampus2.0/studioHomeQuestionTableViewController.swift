@@ -18,6 +18,8 @@ class studioHomeQuestionTableViewController: UITableViewController {
         super.viewDidLoad()
         authentication()
         initData()
+        tableView.backgroundColor = sectionHeaderColor
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

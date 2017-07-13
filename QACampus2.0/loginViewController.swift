@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class loginViewController: UIViewController {
 
@@ -51,11 +52,12 @@ class loginViewController: UIViewController {
             "email": email.text!,
             "password": password.text!
         ]
-        //        var statusCode:Int?
-        //        print(parameters)
-        Alamofire.request("https://\(root):8443/login",method: .get, headers:headers).responseString { response in
+        Alamofire.request("https://\(root):8443/login",method: .get, headers:headers).responseJSON { response in
+            
             self.statusCode = (response.response?.statusCode)!
-            print(self.statusCode)
+            if let headers = response.response?.allHeaderFields as? [String: String]{
+                userAuthorization = headers["Authorization"]!
+            }
             self.loginResult(result: self.statusCode)
             
         }
@@ -84,14 +86,13 @@ class loginViewController: UIViewController {
             alert.addContent(content: "验证成功，正在登陆！")
             alert.addImage(image: UIImage(named:"alert_right")!)
         }
-        let timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(alertEnd), userInfo: nil, repeats: false);
+        let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(alertEnd), userInfo: nil, repeats: false);
     }
     
     func alertEnd() {
+     
         if statusCode == 200 {
             saveLocalUser()
-            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
-            self.present(mainVC!, animated: true, completion: nil)
         } else {
             alert.removeFromSuperview()
         }
@@ -100,12 +101,30 @@ class loginViewController: UIViewController {
     //存储登录的账户
     func saveLocalUser() {
         let userDefault = UserDefaults.standard
-        //自定义对象存储
-        let user = User(email: email.text, password: password.text)
-        //实例对象转换成Data
-        let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
-        //存储Data对象
-        userDefault.set(modelData, forKey: "local_user")
+        
+        let parameters:Parameters = [
+//            "email": email.text!
+            "email":"973935302@qq.com"
+        ]
+        let headers:HTTPHeaders = [
+            "Authorization":userAuthorization
+        ]
+        
+        Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .post, parameters:parameters,headers: headers).responseJSON { response in
+            
+            var userJSON = JSON(response.result.value)
+//           print(json)
+            //自定义对象存储
+            let user = User(id:userJSON["id"].int!,email: self.email.text, password: self.password.text)
+            //实例对象转换成Data
+            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
+            //存储Data对象
+            userDefault.set(modelData, forKey: "local_user")
+            
+            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
+            self.present(mainVC!, animated: true, completion: nil)
+        }
+
     }
     
     //重置登录的用户

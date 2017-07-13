@@ -10,7 +10,7 @@ import Foundation
 
 class User:NSObject,NSCoding{
     
-    var userId: String?
+    var userId: Int?
     var email: String?
     var password: String?
     var name: String?
@@ -19,8 +19,8 @@ class User:NSObject,NSCoding{
     var question_num:Int?
     var avator:NSObject!
     
-    required init(email: String?, password: String?){
-        self.userId = ""
+    required init(id:Int?,email: String?, password: String?){
+        self.userId = id
         self.email = email
         self.password = password
     }
@@ -36,11 +36,14 @@ class User:NSObject,NSCoding{
     required init(coder decoder: NSCoder) {
         self.email = decoder.decodeObject(forKey: "email") as? String ?? ""
         self.password = decoder.decodeObject(forKey: "password") as? String ?? ""
+        self.userId = decoder.decodeObject(forKey: "userId") as? Int
+
     }
     
     //编码成object
     func encode(with coder: NSCoder) {
         coder.encode(email, forKey:"email")
         coder.encode(password, forKey:"password")
+        coder.encode(userId, forKey:"userId")
     }
 }
