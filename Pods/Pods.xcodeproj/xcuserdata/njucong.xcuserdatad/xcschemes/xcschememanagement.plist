@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CryptoSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,6 +62,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>02AA4C90471E218E908BD8E6FB3A1980</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>24EEC77B8D5F257C920225E1717D38B8</key>
 		<dict>
 			<key>primary</key>
@@ -67,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>568ED60538C589F04AAA3CEE86C8B600</key>
+		<key>6BB1C1403B2419F911818DA8413FDA07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF757C508B84B5B888B53ACA9C831809</key>
+		<key>A6CD6083BF3B601A80F5774C095A354E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D32A9B81750D413E050ABF48FD7BF803</key>
+		<key>E14A62900910444707A5504D25EC98DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E14A62900910444707A5504D25EC98DC</key>
+		<key>F6870EA7BFB1703DB86F154B77DCDE86</key>
 		<dict>
 			<key>primary</key>
 			<true/>

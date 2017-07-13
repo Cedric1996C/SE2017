@@ -120,9 +120,9 @@ class PersonalEditTableViewController: editTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-//            selectIcon()
-            prepareForStorage("/Users/njucong/SAGrade/target/classes/students.xlsx")
-            print(fileAuthirization)
+            selectIcon()
+//            let path = "/Users/njucong/Downloads/like01.png"
+//            prepareForStorage(path)
         case 2:
             if(indexPath.row == 0) {
                 performSegue(withIdentifier: "reset", sender: self)

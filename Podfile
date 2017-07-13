@@ -12,6 +12,7 @@ target 'QACampus2.0' do
   pod 'SnapKit', '~> 3.0.2'
   pod 'MJRefresh'
   pod 'SwiftyJSON'
+  pod 'CryptoSwift'
 
   # Pods for QACampus2.0
 
