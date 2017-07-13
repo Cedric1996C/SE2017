@@ -148,14 +148,14 @@ extension PersonalEditTableViewController:UIImagePickerControllerDelegate,UINavi
         } else {
             print("something wet wrong")
         }
-        print(info)
         
         //保存图片至沙盒
-        //        self.saveImage(currentImage: image, imageName: "iconImageFileName")
         let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("personalAvator")
         
         //存储后拿出更新头像
         avator = UIImage(contentsOfFile: fullPath)!
+        //准备上传头像
+        prepareForStorage(fullPath)
         picker.dismiss(animated: true, completion: nil)
         tableView.reloadData()
         
@@ -163,12 +163,14 @@ extension PersonalEditTableViewController:UIImagePickerControllerDelegate,UINavi
     
     //MARK: - 保存图片至沙盒
     func saveImage(currentImage:UIImage,imageName:String){
+        
         var imageData = NSData()
         imageData = UIImageJPEGRepresentation(currentImage, 0.5)! as NSData
         // 获取沙盒目录
         let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent(imageName)
         // 将图片写入文件
         imageData.write(toFile: fullPath, atomically: false)
+        
     }
     
 }
