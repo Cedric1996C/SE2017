@@ -8,17 +8,20 @@
 
 import UIKit
 import SwiftyJSON
+import MJRefresh
 import Alamofire
 
 class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
+    //表格底部的空白视图
+    var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
     var loadMoreView:UIView?
-    var activityViewIndicator:UIActivityIndicatorView?
+    //var activityViewIndicator:UIActivityIndicatorView?
     var noMoreRes:UILabel?
+    let footer = MJRefreshBackNormalFooter()
     //计数器（用来做延时模拟网络加载效果）
     var timer: Timer!
     //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
@@ -45,14 +48,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         // Do any additional setup after loading the view, typically from a nib.
         initViewDetail()
         
-        //上拉刷新视图
-        self.setupInfiniteScrollingView()
-        self.tableView.tableFooterView = self.loadMoreView
+        //上拉加载
+        footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
+        self.tableView.mj_footer = footer
+        //上拉加载完全
+        self.setupLoadMoreView()
+        //下拉刷新
+        let header = MJRefreshNormalHeader()
+        header.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.headerClick))
+        tableView.mj_header = header
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
+        self.notifiRequest()
     }
     
     func initViewDetail() {
@@ -90,17 +100,6 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         cell.title.text="新通知"
         cell.desc.text="新通知的描述"
         
-        //当下拉到底部，执行loadMore()
-        if (loadMoreEnable && indexPath.row == 2) {
-            self.noMoreRes?.isHidden=true
-            self.activityViewIndicator?.isHidden=false
-            self.loadMore()
-        }else if(!loadMoreEnable) {
-            //print("should hide")
-            self.noMoreRes?.isHidden=false
-            self.activityViewIndicator?.isHidden=true
-        }
-        
         return cell
     }
     // 点击TableView的一行时调用
@@ -127,6 +126,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                 }else {
                     print("loadMore true")
                     self.loadMoreEnable=true
+                    self.tableView.tableFooterView = self.clearFooterView
+                    self.tableView.mj_footer = self.footer
+
                 }
                 
                 self.infos.removeAll()
@@ -190,9 +192,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         
         print("out notifiRequest()")
     }
-    //上拉刷新视图
-    private func setupInfiniteScrollingView() {
-        self.loadMoreView = UIView(frame: CGRect.init(x: 0, y: self.tableView.contentSize.height, width: self.tableView.bounds.size.width, height: 60))
+    //上拉加载视图
+    private func setupLoadMoreView() {
+        self.loadMoreView = UIView(frame: CGRect.init(x: 0, y: self.tableView.contentSize.height, width: self.tableView.bounds.size.width, height: 48))
         self.loadMoreView!.autoresizingMask = UIViewAutoresizing.flexibleWidth
         self.loadMoreView!.backgroundColor = self.tableView.backgroundColor
         //添加 “没有更多内容“
@@ -202,6 +204,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         self.noMoreRes = UILabel.init(frame: CGRect.init(x: labelX, y: labelY, width: 110.0, height: 21.0))
         self.noMoreRes?.text = "没有更多内容"
         self.noMoreRes?.textAlignment = NSTextAlignment.center
+        self.noMoreRes?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        self.noMoreRes?.textColor = UIColor.gray
         self.loadMoreView?.addSubview(self.noMoreRes!)
         
         noMoreRes?.snp.makeConstraints({ make in
@@ -209,23 +213,62 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             make.centerY.equalToSuperview()
         })
         
-        //添加中间的环形进度条
-        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        self.activityViewIndicator?.color = UIColor.darkGray
-        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
-        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
-        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
-                                                        width: (activityViewIndicator?.frame.width)!,
-                                                        height: (activityViewIndicator?.frame.height)!)
-        activityViewIndicator?.startAnimating()
-        self.loadMoreView!.addSubview(activityViewIndicator!)
-        
-        activityViewIndicator?.snp.makeConstraints({ make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        })
+//        //添加中间的环形进度条
+//        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+//        self.activityViewIndicator?.color = UIColor.darkGray
+//        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
+//        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
+//        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
+//                                                        width: (activityViewIndicator?.frame.width)!,
+//                                                        height: (activityViewIndicator?.frame.height)!)
+//        activityViewIndicator?.startAnimating()
+//        self.loadMoreView!.addSubview(activityViewIndicator!)
+//        
+//        activityViewIndicator?.snp.makeConstraints({ make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        })
         
     }
+    
+    func headerClick() {
+        // 可在此处实现下拉刷新时要执行的代码
+        // ......
+        self.notifiRequest()
+        self.tableView.reloadData()
+        if (loadMoreEnable) {
+            tableView.tableFooterView = clearFooterView
+            tableView.mj_footer = footer
+        }else if(!loadMoreEnable) {
+            
+        }
+        // 模拟延迟2秒
+        Thread.sleep(forTimeInterval: 2)
+        // 结束刷新
+        tableView.mj_header.endRefreshing()
+    }
+    
+    func footerClick () {
+        // 可在此处实现上拉加载时要执行的代码
+        // ......
+        //当上拉到底部，执行loadMore()
+        if (loadMoreEnable) {
+            self.loadMore()
+            // 模拟延迟2秒
+            Thread.sleep(forTimeInterval: 2)
+            // 结束刷新
+            tableView.mj_footer.endRefreshing()
+        }else if(!loadMoreEnable) {
+            //print("should hide")
+            // 模拟延迟2秒
+            Thread.sleep(forTimeInterval: 2)
+            // 结束刷新
+            tableView.mj_footer.endRefreshing()
+            tableView.mj_footer=nil
+            tableView.tableFooterView = loadMoreView
+        }
+    }
+    
     //加载更多数据
     func loadMore(){
         if(loadMoreEnable){
