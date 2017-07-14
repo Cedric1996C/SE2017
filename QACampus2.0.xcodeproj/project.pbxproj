@@ -114,8 +114,16 @@
 		078080731EF2C8B0005B590C /* UserHotDetailContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078080721EF2C8B0005B590C /* UserHotDetailContentCell.swift */; };
 		07C88A811EE3A23D00300810 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C88A801EE3A23D00300810 /* Abstract.swift */; };
 		07C88A831EE3A3E500300810 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C88A821EE3A3E500300810 /* Detail.swift */; };
-		07FE8B451EE103450059BB10 /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FE8B441EE103450059BB10 /* Editor.storyboard */; };
-		07FE8B471EE104960059BB10 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE8B461EE104960059BB10 /* EditorController.swift */; };
+		07E2AB991F186441008CE259 /* TopicEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E2AB981F186441008CE259 /* TopicEditor.storyboard */; };
+		07E2AB9B1F18649E008CE259 /* AnswerEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E2AB9A1F18649E008CE259 /* AnswerEditor.storyboard */; };
+		07E2AB9D1F1864CB008CE259 /* CommentEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E2AB9C1F1864CB008CE259 /* CommentEditor.storyboard */; };
+		07E2AB9F1F186670008CE259 /* TopicEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2AB9E1F186670008CE259 /* TopicEditorController.swift */; };
+		07E2ABA11F187071008CE259 /* TitleDetailEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2ABA01F187071008CE259 /* TitleDetailEditorController.swift */; };
+		07E2ABA31F188542008CE259 /* DetailEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2ABA21F188542008CE259 /* DetailEditorController.swift */; };
+		07E2ABA51F188610008CE259 /* AnswerEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2ABA41F188610008CE259 /* AnswerEditorController.swift */; };
+		07E2ABA71F1887B1008CE259 /* CommentEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2ABA61F1887B1008CE259 /* CommentEditorController.swift */; };
+		07FE8B451EE103450059BB10 /* QuestionEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FE8B441EE103450059BB10 /* QuestionEditor.storyboard */; };
+		07FE8B471EE104960059BB10 /* QuestionEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE8B461EE104960059BB10 /* QuestionEditorController.swift */; };
 		2AC22AA6DDE54482A459B6B7 /* Pods_QACampus2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00A3F801360CA448591F4C0 /* Pods_QACampus2_0.framework */; };
 		404B3C3F1EC42910009DA5EC /* UserHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B3C3E1EC42910009DA5EC /* UserHotViewController.swift */; };
 		4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091248D1EB45F3800347EEF /* AppDelegate.swift */; };
@@ -264,8 +272,16 @@
 		078080721EF2C8B0005B590C /* UserHotDetailContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotDetailContentCell.swift; sourceTree = "<group>"; };
 		07C88A801EE3A23D00300810 /* Abstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		07C88A821EE3A3E500300810 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		07FE8B441EE103450059BB10 /* Editor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
-		07FE8B461EE104960059BB10 /* EditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
+		07E2AB981F186441008CE259 /* TopicEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TopicEditor.storyboard; sourceTree = "<group>"; };
+		07E2AB9A1F18649E008CE259 /* AnswerEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnswerEditor.storyboard; sourceTree = "<group>"; };
+		07E2AB9C1F1864CB008CE259 /* CommentEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentEditor.storyboard; sourceTree = "<group>"; };
+		07E2AB9E1F186670008CE259 /* TopicEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicEditorController.swift; sourceTree = "<group>"; };
+		07E2ABA01F187071008CE259 /* TitleDetailEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleDetailEditorController.swift; sourceTree = "<group>"; };
+		07E2ABA21F188542008CE259 /* DetailEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditorController.swift; sourceTree = "<group>"; };
+		07E2ABA41F188610008CE259 /* AnswerEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerEditorController.swift; sourceTree = "<group>"; };
+		07E2ABA61F1887B1008CE259 /* CommentEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentEditorController.swift; sourceTree = "<group>"; };
+		07FE8B441EE103450059BB10 /* QuestionEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuestionEditor.storyboard; sourceTree = "<group>"; };
+		07FE8B461EE104960059BB10 /* QuestionEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionEditorController.swift; sourceTree = "<group>"; };
 		404B3C3E1EC42910009DA5EC /* UserHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotViewController.swift; sourceTree = "<group>"; };
 		4091248A1EB45F3800347EEF /* QACampus2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QACampus2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4091248D1EB45F3800347EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -742,8 +758,16 @@
 		07C88A7D1EE3A12600300810 /* edit */ = {
 			isa = PBXGroup;
 			children = (
-				07FE8B441EE103450059BB10 /* Editor.storyboard */,
-				07FE8B461EE104960059BB10 /* EditorController.swift */,
+				07FE8B441EE103450059BB10 /* QuestionEditor.storyboard */,
+				07FE8B461EE104960059BB10 /* QuestionEditorController.swift */,
+				07E2AB981F186441008CE259 /* TopicEditor.storyboard */,
+				07E2AB9A1F18649E008CE259 /* AnswerEditor.storyboard */,
+				07E2AB9C1F1864CB008CE259 /* CommentEditor.storyboard */,
+				07E2AB9E1F186670008CE259 /* TopicEditorController.swift */,
+				07E2ABA01F187071008CE259 /* TitleDetailEditorController.swift */,
+				07E2ABA21F188542008CE259 /* DetailEditorController.swift */,
+				07E2ABA41F188610008CE259 /* AnswerEditorController.swift */,
+				07E2ABA61F1887B1008CE259 /* CommentEditorController.swift */,
 			);
 			name = edit;
 			sourceTree = "<group>";
@@ -972,6 +996,7 @@
 				062D04F41F1515F400499EEB /* Login.storyboard in Resources */,
 				069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */,
 				061CBF601F062F6F0049EC6A /* EditStudioInfo.storyboard in Resources */,
+				07E2AB9B1F18649E008CE259 /* AnswerEditor.storyboard in Resources */,
 				062B2AD11F13E0170042B9A5 /* ResetPassword.storyboard in Resources */,
 				062B2AC91F1368A20042B9A5 /* PersonalEdit.storyboard in Resources */,
 				062B2ABE1F1365EB0042B9A5 /* CollectStudio.storyboard in Resources */,
@@ -982,16 +1007,18 @@
 				062B2AC01F13660D0042B9A5 /* PersonalQuestion.storyboard in Resources */,
 				069E16391F0514E600A9C1FA /* EditUnit.storyboard in Resources */,
 				069E16411F05DF5700A9C1FA /* EditIntro.storyboard in Resources */,
+				07E2AB991F186441008CE259 /* TopicEditor.storyboard in Resources */,
 				069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */,
 				069E16241F022B3000A9C1FA /* UserHot.storyboard in Resources */,
 				062D04ED1F14B86300499EEB /* CollectQuestion.storyboard in Resources */,
-				07FE8B451EE103450059BB10 /* Editor.storyboard in Resources */,
+				07FE8B451EE103450059BB10 /* QuestionEditor.storyboard in Resources */,
 				062D04F61F15160100499EEB /* Register.storyboard in Resources */,
 				078080711EF2BEA9005B590C /* UserHotDetail.storyboard in Resources */,
 				069E161C1F0205A000A9C1FA /* StudioQuestion.storyboard in Resources */,
 				062B2AC61F1366E40042B9A5 /* PersonalNews.storyboard in Resources */,
 				069E16261F0241A500A9C1FA /* UserStudio.storyboard in Resources */,
 				069E163F1F05DED400A9C1FA /* EditBlog.storyboard in Resources */,
+				07E2AB9D1F1864CB008CE259 /* CommentEditor.storyboard in Resources */,
 				069E16301F02661100A9C1FA /* StudioTab.storyboard in Resources */,
 				061F50251EED3286001BBAF9 /* keystore.p12 in Resources */,
 				069E15F91EFE893F00A9C1FA /* EditName.storyboard in Resources */,
@@ -1186,6 +1213,7 @@
 				061CBF771F0664DF0049EC6A /* addAdminButtonView.swift in Sources */,
 				069E16451F05E58000A9C1FA /* editIntroTableViewCell.swift in Sources */,
 				07C88A831EE3A3E500300810 /* Detail.swift in Sources */,
+				07E2ABA11F187071008CE259 /* TitleDetailEditorController.swift in Sources */,
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
 				062D05041F1659C300499EEB /* FileStorage.swift in Sources */,
 				061CBF5B1F05FF970049EC6A /* EditAvator.swift in Sources */,
@@ -1193,6 +1221,7 @@
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
 				069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */,
 				069E160D1EFFB81600A9C1FA /* studioTopicViewController.swift in Sources */,
+				07E2ABA51F188610008CE259 /* AnswerEditorController.swift in Sources */,
 				062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */,
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
@@ -1204,6 +1233,7 @@
 				069E16431F05DFFC00A9C1FA /* editIntroTableViewController.swift in Sources */,
 				061CBF831F07347C0049EC6A /* searchAdminTableViewController.swift in Sources */,
 				069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */,
+				07E2AB9F1F186670008CE259 /* TopicEditorController.swift in Sources */,
 				061BA6261ED730BA000030CD /* User.swift in Sources */,
 				064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */,
 				069E15E01EFE081500A9C1FA /* studioSubTitleFactory.swift in Sources */,
@@ -1215,10 +1245,11 @@
 				069E16491F05ECD000A9C1FA /* editBlogTableViewCell.swift in Sources */,
 				069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */,
 				069E15ED1EFE547700A9C1FA /* studioAdminTableViewCell.swift in Sources */,
+				07E2ABA71F1887B1008CE259 /* CommentEditorController.swift in Sources */,
 				069E16471F05EBF100A9C1FA /* editBlogTableViewController.swift in Sources */,
 				062D04FA1F15B8FC00499EEB /* alertView.swift in Sources */,
 				062B2ACF1F1376EA0042B9A5 /* editInfoTableViewCell.swift in Sources */,
-				07FE8B471EE104960059BB10 /* EditorController.swift in Sources */,
+				07FE8B471EE104960059BB10 /* QuestionEditorController.swift in Sources */,
 				062B2AD61F13E1270042B9A5 /* editTableViewCell.swift in Sources */,
 				061BA6271ED730BA000030CD /* userResponse.swift in Sources */,
 				061CBF881F073A180049EC6A /* searchUserTableViewCell.swift in Sources */,
@@ -1251,6 +1282,7 @@
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
 				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,
 				069E15C61EFD32A100A9C1FA /* studioInfoSubTitleView.swift in Sources */,
+				07E2ABA31F188542008CE259 /* DetailEditorController.swift in Sources */,
 				064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,
