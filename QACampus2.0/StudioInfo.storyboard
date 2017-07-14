@@ -40,14 +40,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Cq-eN-Q7I">
-                                <rect key="frame" x="104" y="173" width="75" height="34"/>
+                                <rect key="frame" x="104" y="173" width="87" height="34"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favorite01" translatesAutoresizingMaskIntoConstraints="NO" id="NAO-zL-KYa">
                                         <rect key="frame" x="0.0" y="7" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scj-be-xQp">
-                                        <rect key="frame" x="22" y="-3" width="45" height="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收藏" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scj-be-xQp">
+                                        <rect key="frame" x="22" y="-3" width="65" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.95999999999999996" green="0.39000000000000001" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,11 +55,15 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="6Cq-eN-Q7I" secondAttribute="height" multiplier="75:34" id="VZ3-QB-6aB"/>
+                                    <constraint firstAttribute="width" secondItem="6Cq-eN-Q7I" secondAttribute="height" multiplier="75:34" constant="12" id="VZ3-QB-6aB"/>
                                     <constraint firstAttribute="height" constant="34" id="Zxi-KW-0n4"/>
-                                    <constraint firstAttribute="width" constant="75" id="fX2-Qb-lWU"/>
+                                    <constraint firstAttribute="width" constant="87" id="fX2-Qb-lWU"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HCh-x5-2pU" appends="YES" id="kec-Ii-beY"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUl-Ld-lrI">
                                 <rect key="frame" x="10.5" y="223" width="355" height="1"/>
@@ -71,7 +75,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db9-h5-J2n">
-                                <rect key="frame" x="0.0" y="307" width="375" height="360"/>
+                                <rect key="frame" x="0.0" y="299" width="375" height="368"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rii-ll-cXM">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -81,8 +85,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="1if-9Q-LyG"/>
-                                    <constraint firstAttribute="width" secondItem="db9-h5-J2n" secondAttribute="height" multiplier="25:24" id="oIr-mk-0fx"/>
+                                    <constraint firstAttribute="height" constant="368" id="1if-9Q-LyG"/>
+                                    <constraint firstAttribute="width" secondItem="db9-h5-J2n" secondAttribute="height" multiplier="25:24" constant="-8.3333333333333712" id="oIr-mk-0fx"/>
                                     <constraint firstAttribute="width" constant="375" id="rzo-k3-p23"/>
                                 </constraints>
                             </view>
@@ -113,26 +117,30 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="v9R-VW-G5D" secondAttribute="height" multiplier="63:34" id="0n5-yG-243"/>
                                     <constraint firstAttribute="width" constant="63" id="efT-vJ-fuE"/>
                                     <constraint firstAttribute="height" constant="34" id="riM-Dn-YqD"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="LZi-2y-5Ib" appends="YES" id="8pD-S7-3xe"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8t-4Z-Any">
-                                <rect key="frame" x="0.0" y="237" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="229" width="375" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="工作室简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF1-MF-MFs">
-                                        <rect key="frame" x="17" y="0.0" width="177" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="与iOS开发相关的一切，涵盖前后端技术栈" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gH-kE-tph">
                                         <rect key="frame" x="17" y="27" width="352" height="35"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="工作室简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF1-MF-MFs">
+                                        <rect key="frame" x="17" y="0.0" width="177" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -157,7 +165,7 @@
                             <constraint firstItem="db9-h5-J2n" firstAttribute="top" secondItem="B8t-4Z-Any" secondAttribute="bottom" id="XDQ-FX-HYc"/>
                             <constraint firstAttribute="trailing" secondItem="db9-h5-J2n" secondAttribute="trailing" id="YVQ-pV-5tG"/>
                             <constraint firstItem="db9-h5-J2n" firstAttribute="leading" secondItem="wcT-Xd-m7p" secondAttribute="leading" id="cZ2-p6-pAE"/>
-                            <constraint firstItem="B8t-4Z-Any" firstAttribute="top" secondItem="NUl-Ld-lrI" secondAttribute="bottom" constant="13" id="dDw-0z-sWn"/>
+                            <constraint firstItem="B8t-4Z-Any" firstAttribute="top" secondItem="NUl-Ld-lrI" secondAttribute="bottom" constant="5" id="dDw-0z-sWn"/>
                             <constraint firstItem="v9R-VW-G5D" firstAttribute="top" secondItem="aXm-h3-O8T" secondAttribute="bottom" constant="12" id="gih-wU-T2x"/>
                             <constraint firstItem="6Cq-eN-Q7I" firstAttribute="top" secondItem="aXm-h3-O8T" secondAttribute="bottom" constant="12" id="nJ1-B8-CPK"/>
                             <constraint firstItem="6Cq-eN-Q7I" firstAttribute="leading" secondItem="wcT-Xd-m7p" secondAttribute="leadingMargin" constant="88" id="nVK-8z-Dhz"/>
@@ -169,12 +177,34 @@
                     </view>
                     <navigationItem key="navigationItem" id="n9c-x0-HLs"/>
                     <connections>
+                        <outlet property="collectIcon" destination="NAO-zL-KYa" id="hbt-Vm-mt3"/>
+                        <outlet property="collectLabel" destination="scj-be-xQp" id="FfC-6b-LWl"/>
+                        <outlet property="introduction" destination="4gH-kE-tph" id="EJC-6d-3fF"/>
+                        <outlet property="studioName" destination="aXm-h3-O8T" id="fGX-QA-5Xv"/>
                         <outlet property="subPageView" destination="db9-h5-J2n" id="26v-mT-j24"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qms-kt-CnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HCh-x5-2pU">
+                    <connections>
+                        <action selector="collectViewTap:" destination="E92-mI-Dky" id="SFl-JJ-omn"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="LZi-2y-5Ib">
+                    <connections>
+                        <action selector="askViewTap:" destination="E92-mI-Dky" id="Yhz-gu-mQs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="253.59999999999999" y="-73.313343328335833"/>
+        </scene>
+        <!--QuestionEdit-->
+        <scene sceneID="LrW-e1-tXH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QuestionEdit" id="gzp-Mi-rwE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3xw-Kr-G7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="-125"/>
         </scene>
     </scenes>
     <resources>

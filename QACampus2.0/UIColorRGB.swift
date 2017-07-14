@@ -18,6 +18,7 @@ let defaultColor = UIColor(valueRGB: 0xee6978, alpha: 1.0)
 let sectionHeaderColor = UIColor(red:0.976,green:0.976,blue:0.976,alpha:1.0)
 let sectionBackgroundColor = UIColor(red:0.960,green:0.960,blue:0.960,alpha:1.0)
 let whiteColor = UIColor(red: 1.0, green: 1.0, blue:1.0, alpha: 1.0)
+let iconColor = UIColor(red: 0.96, green: 0.39, blue: 0.35, alpha: 1.0)
 
 let shadowColor = UIColor(red:220/255,green:220/255,blue:220/255,alpha:1)
 let grey = UIColor(red:120/255,green:120/255,blue:120/255,alpha:1)

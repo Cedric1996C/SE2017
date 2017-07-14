@@ -29,18 +29,18 @@ class studioInfoSubTitleView: UIView {
             configSubTitles()
         }
     }
-    
-    // MARK:- 懒加载属性
-    lazy var divideLine2: UIView = { [unowned self] in
-        let divide = UIView()
-        divide.backgroundColor = subTitleBorderColor
-        self.addSubview(divide)
-        divide.snp.makeConstraints({ (make) in
-            make.height.equalTo(1)
-            make.bottom.width.equalToSuperview()
-        })
-        return divide
-        }()
+//    
+//    // MARK:- 懒加载属性
+//    lazy var divideLine2: UIView = { [unowned self] in
+//        let divide = UIView()
+//        divide.backgroundColor = subTitleBorderColor
+//        self.addSubview(divide)
+//        divide.snp.makeConstraints({ (make) in
+//            make.height.equalTo(1)
+//            make.bottom.width.equalToSuperview()
+//        })
+//        return divide
+//        }()
 
     /// 下方的滑块指示器
     lazy var sliderView: UIView  = { [unowned self] in
@@ -49,7 +49,7 @@ class studioInfoSubTitleView: UIView {
         self.addSubview(view)
         view.snp.makeConstraints({ (make) in
             make.size.equalTo(CGSize(width: 30, height: 2))
-            make.bottom.equalTo(self.divideLine2.snp.bottom)
+            make.bottom.equalToSuperview()
             make.left.equalTo(self.snp.left).offset(5)
         })
         return view

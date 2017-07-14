@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/studioInfoViewController.swift"
-            timestampString = "519916658.128935"
+            timestampString = "521695561.18197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "studioAvator"
             landmarkType = "24">
          </BreakpointContent>
@@ -970,7 +970,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/UIColorRGB.swift"
-            timestampString = "521362988.267633"
+            timestampString = "521691683.624622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
@@ -1287,11 +1287,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/userStudioViewController.swift"
-            timestampString = "521688400.21624"
+            timestampString = "521695303.216939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "initData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1303,13 +1303,154 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/userStudioViewController.swift"
-            timestampString = "521688400.21624"
+            timestampString = "521695303.216939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "initData()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/userStudioViewController.swift"
+            timestampString = "521695739.238287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "initData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.userStudioViewController.initData () -&gt; ()"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/userStudioViewController.swift"
+                  timestampString = "521695562.332653"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.userStudioViewController.(initData () -&gt; ()).(closure #1)"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/userStudioViewController.swift"
+                  timestampString = "521695562.335989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/studioInfoViewController.swift"
+            timestampString = "521695856.393004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "studioAvator"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.studioInfoViewController.studioAvator.getter : __ObjC.UIImageView"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/studioInfoViewController.swift"
+                  timestampString = "521695948.841088"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "186">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.studioInfoViewController.studioAvator.setter : __ObjC.UIImageView"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/studioInfoViewController.swift"
+                  timestampString = "521695948.844208"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.studioInfoViewController.(studioAvator.getter : __ObjC.UIImageView).(closure #1)"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/studioInfoViewController.swift"
+                  timestampString = "521695948.847494"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.studioInfoViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; QACampus2_0.studioInfoViewController"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/studioInfoViewController.swift"
+                  timestampString = "521695948.850254"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "515">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.studioInfoViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;QACampus2_0.studioInfoViewController&gt;"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/studioInfoViewController.swift"
+                  timestampString = "521695948.853815"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "432">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

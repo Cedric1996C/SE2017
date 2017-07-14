@@ -57,9 +57,35 @@ extension userStudioViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //self.navigationController?.pushViewController(DetailViewController(), animated: true)
-        performSegue(withIdentifier: "showStudioHome", sender: self)
+        let studio:Studio = tableData[indexPath.row]
+        SingletonStudio.id = studio.id!
+        SingletonStudio.title = studio.name!
+        SingletonStudio.introduction = studio.introduction!
+        //头像下载
+        let path = "studio/\(SingletonStudio.id)"
+        Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+            if let json = response.result.value {
+                let pictures:[String] = json as! [String]
+                let pic_path = path.appending("/" + pictures[1])
+                
+                //获取文件
+                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let fileURL = documentsURL.appendingPathComponent(pic_path)
+                    
+                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                }
+                Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                    
+                    if response.error == nil, let imagePath = response.destinationURL?.path {
+                        SingletonStudio.avator = UIImage(contentsOfFile: imagePath)!
+                        self.performSegue(withIdentifier: "showStudioInfo", sender: self)
+                    }
+                }
+            }
+        }
     }
-    
+
 }
 
 extension userStudioViewController: UITableViewDataSource {
@@ -86,6 +112,8 @@ extension userStudioViewController {
             // response serialization result
             var json = JSON(response.result.value!)
             let list: Array<JSON> = json["content"].arrayValue
+  
+            print(list)
         
             let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.reload), userInfo: nil, repeats: false)
             
@@ -100,9 +128,8 @@ extension userStudioViewController {
                 //请求客户端的文件路径下的文件
                 Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
                     if let json = response.result.value {
-                        print(json)
                         let pictures:[String] = json as! [String]
-                        let pic_path = path.appending("/" + pictures[1])
+                        let pic_path = path.appending("/" + pictures[2])
                         
                         //获取文件
                         let destination: DownloadRequest.DownloadFileDestination = { _, _ in

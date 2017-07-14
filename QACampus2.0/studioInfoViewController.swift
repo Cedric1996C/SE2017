@@ -13,6 +13,11 @@ class studioInfoViewController: UIViewController {
     
     @IBOutlet weak var subPageView: UIView!
 //    @IBOutlet weak var studioAvator: UIImageView!
+    @IBOutlet weak var collectIcon: UIImageView!
+    @IBOutlet weak var collectLabel: UILabel!
+    
+    @IBOutlet weak var studioName: UILabel!
+    @IBOutlet weak var introduction: UILabel!
     
     // MARK:- 懒加载属性
     /// 子标题
@@ -45,15 +50,21 @@ class studioInfoViewController: UIViewController {
     }()
     
     lazy var studioAvator: UIImageView = { [unowned self] in
-        let image = UIImageView()
-        image.image = UIImage(named:"no.1")
-        return image
+        let avator = UIImageView()
+        avator.contentMode = .scaleAspectFill
+        avator.layer.masksToBounds = true
+        avator.layer.cornerRadius = avator.frame.width/2
+        return avator
     }()
 
+    lazy var isCollected: Bool = {
+        return false
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initPageVc()
+        initInfo()
         initButton()
         self.navigationController?.navigationBar.addSubview(studioAvator)
         studioAvator.snp.makeConstraints ({ make in
@@ -71,15 +82,21 @@ class studioInfoViewController: UIViewController {
         item.tintColor = defaultColor
         self.navigationItem.leftBarButtonItem = item
     }
+    
+    func initInfo () {
+        studioName.text = SingletonStudio.title
+        studioAvator.image = SingletonStudio.avator
+        introduction.text = SingletonStudio.introduction
+    }
 
     func initPageVc(){
         subPageView.addSubview(subTitleView)
         subPageView.addSubview(PageVc.view)
         
         subTitleView.snp.makeConstraints{ make in
-//            make.top.equalTo(devideLine1.snp.bottom)
-            make.top.right.left.equalToSuperview()
-            make.height.equalTo(40)
+            make.top.equalToSuperview().offset(1.0)
+            make.right.left.equalToSuperview()
+            make.height.equalTo(39)
         }
         
         PageVc.view.snp.makeConstraints { make in
@@ -102,6 +119,22 @@ class studioInfoViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func collectViewTap(_ sender: Any) {
+        isCollected = !isCollected
+        if isCollected {
+            collectIcon.image = UIImage(named:"favorite02")
+            collectLabel.text = "已收藏"
+            collectLabel.textColor = subTitleBorderColor
+        } else {
+            collectIcon.image = UIImage(named:"favorite01")
+            collectLabel.text = "收藏"
+            collectLabel.textColor = iconColor
+        }
+    }
+    
+    @IBAction func askViewTap(_ sender: Any) {
+    }
+   
 }
 
 // MARK: - pageViewController代理
