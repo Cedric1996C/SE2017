@@ -1,6 +1,6 @@
 import UIKit
 
-class DetailEditorController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
+class DetailEditorController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     var detailView: UITextView? = nil
     
@@ -123,6 +123,16 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let attachment = ImageAttachment()
+            attachment.image = pickedImage
+            let attrString = NSAttributedString(attachment: attachment)
+            detailView!.textStorage.insert(attrString, at: detailView!.selectedRange.location)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     func dismissDetailViewKeyboard() {
