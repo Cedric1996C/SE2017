@@ -76,7 +76,6 @@
 		069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD22E1F0C832B00D5102A /* userStudioViewController.swift */; };
 		069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */; };
 		069AD2331F11F4F100D5102A /* PersonalInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */; };
-		069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */; };
 		069E15C11EFD111200A9C1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069E15C01EFD111200A9C1FA /* Assets.xcassets */; };
 		069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */; };
 		069E15D71EFDF9DD00A9C1FA /* StudioHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15D61EFDF9DD00A9C1FA /* StudioHome.storyboard */; };
@@ -238,7 +237,6 @@
 		069AD22E1F0C832B00D5102A /* userStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioViewController.swift; sourceTree = "<group>"; };
 		069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioTableViewCell.swift; sourceTree = "<group>"; };
 		069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalInfo.storyboard; sourceTree = "<group>"; };
-		069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioInfo.storyboard; sourceTree = "<group>"; };
 		069E15C01EFD111200A9C1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = QACampus2.0/Assets.xcassets; sourceTree = "<group>"; };
 		069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioInfoViewController.swift; sourceTree = "<group>"; };
 		069E15D61EFDF9DD00A9C1FA /* StudioHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHome.storyboard; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 		4091248F1EB45F3800347EEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		409124921EB45F3800347EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		409124971EB45F3800347EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		409124991EB45F3800347EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4091249E1EB45F3800347EEF /* QACampus2.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QACampus2.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		409124A21EB45F3800347EEF /* QACampus2_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QACampus2_0Tests.swift; sourceTree = "<group>"; };
 		409124A41EB45F3800347EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -523,7 +520,6 @@
 		069E15BD1EFD0C2800A9C1FA /* studioInfo */ = {
 			isa = PBXGroup;
 			children = (
-				069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */,
 				069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */,
 				D918CBF81F18A25A005D0899 /* StudioInfoCustomCell.swift */,
 				D918CBFA1F18A5AA005D0899 /* StudioInfoListController.swift */,
@@ -806,7 +802,6 @@
 				062D04F81F15B8D100499EEB /* Utils */,
 				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
 				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
-				409124991EB45F3800347EEF /* Info.plist */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				4091248F1EB45F3800347EEF /* ViewController.swift */,
 				06945A441EC7EB23005EA1CF /* Header.h */,
@@ -982,7 +977,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				062D04F41F1515F400499EEB /* Login.storyboard in Resources */,
-				069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */,
 				061CBF601F062F6F0049EC6A /* EditStudioInfo.storyboard in Resources */,
 				07E2AB9B1F18649E008CE259 /* AnswerEditor.storyboard in Resources */,
 				062B2AD11F13E0170042B9A5 /* ResetPassword.storyboard in Resources */,
