@@ -11,7 +11,7 @@
 		061BA6261ED730BA000030CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061BA6201ED730BA000030CD /* User.swift */; };
 		061BA6271ED730BA000030CD /* userResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061BA6211ED730BA000030CD /* userResponse.swift */; };
 		061CBF591F05F2ED0049EC6A /* blogExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF581F05F2ED0049EC6A /* blogExampleTableViewCell.swift */; };
-		061CBF5B1F05FF970049EC6A /* editAvator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF5A1F05FF970049EC6A /* editAvator.swift */; };
+		061CBF5B1F05FF970049EC6A /* EditAvator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF5A1F05FF970049EC6A /* EditAvator.swift */; };
 		061CBF5E1F062F2F0049EC6A /* addMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CBF5D1F062F2F0049EC6A /* addMemberTableViewCell.swift */; };
 		061CBF601F062F6F0049EC6A /* EditStudioInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061CBF5F1F062F6F0049EC6A /* EditStudioInfo.storyboard */; };
 		061CBF671F0633200049EC6A /* AddAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061CBF661F0633200049EC6A /* AddAdmin.storyboard */; };
@@ -56,6 +56,10 @@
 		062D05041F1659C300499EEB /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D05031F1659C300499EEB /* FileStorage.swift */; };
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
+		064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E8F1F17490800B1BD8C /* GetPicture.swift */; };
+		064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */; };
+		064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */; };
+		064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E961F1794BA00B1BD8C /* date2String.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -96,7 +100,6 @@
 		069E16261F0241A500A9C1FA /* UserStudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16251F0241A500A9C1FA /* UserStudio.storyboard */; };
 		069E16281F0241D400A9C1FA /* UserNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16271F0241D400A9C1FA /* UserNotification.storyboard */; };
 		069E16301F02661100A9C1FA /* StudioTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E162E1F02661100A9C1FA /* StudioTab.storyboard */; };
-		069E16331F049C8800A9C1FA /* studioQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */; };
 		069E16391F0514E600A9C1FA /* EditUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16381F0514E600A9C1FA /* EditUnit.storyboard */; };
 		069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E163A1F05157A00A9C1FA /* editUnitTableViewController.swift */; };
 		069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E163C1F0515C700A9C1FA /* editTableViewController.swift */; };
@@ -158,7 +161,7 @@
 		061BA6201ED730BA000030CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		061BA6211ED730BA000030CD /* userResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userResponse.swift; sourceTree = "<group>"; };
 		061CBF581F05F2ED0049EC6A /* blogExampleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blogExampleTableViewCell.swift; sourceTree = "<group>"; };
-		061CBF5A1F05FF970049EC6A /* editAvator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editAvator.swift; sourceTree = "<group>"; };
+		061CBF5A1F05FF970049EC6A /* EditAvator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAvator.swift; sourceTree = "<group>"; };
 		061CBF5D1F062F2F0049EC6A /* addMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addMemberTableViewCell.swift; sourceTree = "<group>"; };
 		061CBF5F1F062F6F0049EC6A /* EditStudioInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditStudioInfo.storyboard; sourceTree = "<group>"; };
 		061CBF661F0633200049EC6A /* AddAdmin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddAdmin.storyboard; sourceTree = "<group>"; };
@@ -203,6 +206,10 @@
 		062D05031F1659C300499EEB /* FileStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
+		064D9E8F1F17490800B1BD8C /* GetPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPicture.swift; sourceTree = "<group>"; };
+		064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewController.swift; sourceTree = "<group>"; };
+		064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		064D9E961F1794BA00B1BD8C /* date2String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = date2String.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -244,7 +251,6 @@
 		069E16251F0241A500A9C1FA /* UserStudio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserStudio.storyboard; sourceTree = "<group>"; };
 		069E16271F0241D400A9C1FA /* UserNotification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserNotification.storyboard; sourceTree = "<group>"; };
 		069E162F1F02661100A9C1FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StudioTab.storyboard; sourceTree = "<group>"; };
-		069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionViewController.swift; sourceTree = "<group>"; };
 		069E16381F0514E600A9C1FA /* EditUnit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditUnit.storyboard; sourceTree = "<group>"; };
 		069E163A1F05157A00A9C1FA /* editUnitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editUnitTableViewController.swift; sourceTree = "<group>"; };
 		069E163C1F0515C700A9C1FA /* editTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTableViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +384,8 @@
 			children = (
 				061F50271EED48F1001BBAF9 /* Authentication.swift */,
 				062D05031F1659C300499EEB /* FileStorage.swift */,
+				064D9E8F1F17490800B1BD8C /* GetPicture.swift */,
+				061CBF5A1F05FF970049EC6A /* EditAvator.swift */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -446,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				062D04F91F15B8FC00499EEB /* alertView.swift */,
+				064D9E961F1794BA00B1BD8C /* date2String.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -564,7 +573,6 @@
 				061CBF5F1F062F6F0049EC6A /* EditStudioInfo.storyboard */,
 				069E15E81EFE1AFF00A9C1FA /* editStudioInfoTableViewController.swift */,
 				069E163C1F0515C700A9C1FA /* editTableViewController.swift */,
-				061CBF5A1F05FF970049EC6A /* editAvator.swift */,
 				061CBF5D1F062F2F0049EC6A /* addMemberTableViewCell.swift */,
 				061CBF611F0630EC0049EC6A /* addAdmin */,
 				069E16371F05140900A9C1FA /* editIntro */,
@@ -610,7 +618,8 @@
 			isa = PBXGroup;
 			children = (
 				069E161B1F0205A000A9C1FA /* StudioQuestion.storyboard */,
-				069E16321F049C8800A9C1FA /* studioQuestionViewController.swift */,
+				064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */,
+				064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */,
 			);
 			name = studioQuestion;
 			sourceTree = "<group>";
@@ -786,9 +795,9 @@
 				069E15BD1EFD0C2800A9C1FA /* studioInfo */,
 				069E15D51EFDF9A800A9C1FA /* studioHome */,
 				062D04F81F15B8D100499EEB /* Utils */,
-				409124991EB45F3800347EEF /* Info.plist */,
-				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
 				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
+				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
+				409124991EB45F3800347EEF /* Info.plist */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				4091248F1EB45F3800347EEF /* ViewController.swift */,
 				06945A441EC7EB23005EA1CF /* Header.h */,
@@ -1164,8 +1173,8 @@
 				062B2AB51F132B880042B9A5 /* tagNavigationTableViewCell.swift in Sources */,
 				062D04EB1F14B49D00499EEB /* Question.swift in Sources */,
 				061CBF811F0666090049EC6A /* addAdminViewController.swift in Sources */,
-				069E16331F049C8800A9C1FA /* studioQuestionViewController.swift in Sources */,
 				069E16191F010AD300A9C1FA /* StudioTabViewController.swift in Sources */,
+				064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */,
 				409124901EB45F3800347EEF /* ViewController.swift in Sources */,
 				062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */,
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
@@ -1183,7 +1192,7 @@
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
 				062D05041F1659C300499EEB /* FileStorage.swift in Sources */,
 				07FE8B491EE117FA0059BB10 /* QuestionEditorController.swift in Sources */,
-				061CBF5B1F05FF970049EC6A /* editAvator.swift in Sources */,
+				061CBF5B1F05FF970049EC6A /* EditAvator.swift in Sources */,
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
 				069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */,
@@ -1200,6 +1209,7 @@
 				061CBF831F07347C0049EC6A /* searchAdminTableViewController.swift in Sources */,
 				069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */,
 				061BA6261ED730BA000030CD /* User.swift in Sources */,
+				064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */,
 				069E15E01EFE081500A9C1FA /* studioSubTitleFactory.swift in Sources */,
 				0700761C1EE17BF7009A5ED8 /* UserHotDetailViewController.swift in Sources */,
 				40F2C4261EC42DDB00A0F70B /* UserHotTableViewCell.swift in Sources */,
@@ -1245,8 +1255,10 @@
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
 				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,
 				069E15C61EFD32A100A9C1FA /* studioInfoSubTitleView.swift in Sources */,
+				064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,
+				064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

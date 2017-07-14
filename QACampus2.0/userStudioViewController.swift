@@ -14,6 +14,7 @@ class userStudioViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var tableData: [Studio] = []
+    var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ extension userStudioViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tableData.count
+        return images.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -65,7 +66,7 @@ extension userStudioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: userStudioTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userStudio") as! userStudioTableViewCell
-        cell.bgimage.image = UIImage(named:"food")
+        cell.bgimage.image = images[indexPath.row]
         cell.name.text = tableData[indexPath.row].name
         cell.introduction.text = tableData[indexPath.row].introduction
         return cell
@@ -76,37 +77,54 @@ extension userStudioViewController {
     
     func initData() {
 //        indicator.startAnimating()
-        DispatchQueue.global().async {
-     
-            let headers:HTTPHeaders = [
-                "Authorization": userAuthorization
-            ]
-            Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
-                
-                // response serialization result
-                var json = JSON(response.result.value)
-                print(json)
-                let list: Array<JSON> = json["content"].arrayValue
-                //            print(list)
-                for json in list {
-                    let name = json["name"].string
-                    let introduction = json["introduction"].string
-                    var studio = Studio(name: name,introduction: introduction)
-                    print(studio.name)
-                    self.tableData.append(studio)
+//            Thread.sleep(forTimeInterval: 2)
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
+            
+            // response serialization result
+            var json = JSON(response.result.value!)
+            let list: Array<JSON> = json["content"].arrayValue
+           
+            for json in list {
+                let name = json["name"].string
+                let introduction = json["introduction"].string
+                let id:Int = json["id"].int!
+                let studio = Studio(id:id ,name: name,introduction: introduction)
+                let path:String = "studio/\(id)"
+             
+                self.tableData.append(studio)
+                //请求客户端的文件路径下的文件
+                Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                    if let json = response.result.value {
+                        let pictures:[String] = json as! [String]
+                        let pic_path = path.appending("/" + pictures[1])
+                        
+                        //获取文件
+                        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                            let fileURL = documentsURL.appendingPathComponent(pic_path)
+                            
+                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                        }
+                        Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                            
+                            if response.error == nil, let imagePath = response.destinationURL?.path {
+                                let image = UIImage(contentsOfFile: imagePath)
+                                self.images.append(getPicture(pic_path))
+                            }
+                        }
+                    }
                 }
-                
-                self.tableView.reloadData()
-
             }
-            
-            DispatchQueue.main.async {
-                print(self.tableData.count)
-//                self.tableView.reloadData()
-//                self.indicator.stopAnimating()
-            }
-            
+             let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.reload), userInfo: nil, repeats: false)
         }
+    
     }
     
+    func reload() {
+        print(images.count)
+        self.tableView.reloadData()
+    }
 }

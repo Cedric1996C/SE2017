@@ -15,9 +15,11 @@ class studioHomeQuestionTableViewCell: UITableViewCell {
     @IBOutlet weak var byskyler: UILabel!
     @IBOutlet weak var thumbTime: UILabel!
     
+    @IBOutlet weak var seperateView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        seperateView.backgroundColor = sectionHeaderColor
         // Initialization code
     }
 

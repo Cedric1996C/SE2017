@@ -11,11 +11,15 @@ import Foundation
 class Question {
     
     var name: String?
+    var date:String?
+    var title:String?
     var introduction: String?
     
     
-    required init(name: String?, introduction: String?){
+    required init(name: String?,date:String?,title:String?, introduction: String?){
         self.name = name
+        self.date = date
+        self.title = title
         self.introduction = introduction
         
     }
