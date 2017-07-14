@@ -61,6 +61,12 @@
 		064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */; };
 		064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E961F1794BA00B1BD8C /* date2String.swift */; };
 		064D9E9A1F186A1E00B1BD8C /* SingletonStudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */; };
+		064D9E9D1F18A33800B1BD8C /* TopicDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 064D9E9C1F18A33800B1BD8C /* TopicDetail.storyboard */; };
+		064D9EA31F18AF5100B1BD8C /* topicDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA21F18AF5100B1BD8C /* topicDetailTableViewController.swift */; };
+		064D9EA51F18B05F00B1BD8C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA41F18B05F00B1BD8C /* Comment.swift */; };
+		064D9EA71F18C15C00B1BD8C /* topicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA61F18C15C00B1BD8C /* topicTableViewCell.swift */; };
+		064D9EA91F18C1FA00B1BD8C /* TopicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA81F18C1FA00B1BD8C /* TopicDetail.swift */; };
+		064D9EAB1F18C7A600B1BD8C /* topicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EAA1F18C7A600B1BD8C /* topicDetailViewController.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -219,6 +225,12 @@
 		064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		064D9E961F1794BA00B1BD8C /* date2String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = date2String.swift; sourceTree = "<group>"; };
 		064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletonStudio.swift; sourceTree = "<group>"; };
+		064D9E9C1F18A33800B1BD8C /* TopicDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TopicDetail.storyboard; sourceTree = "<group>"; };
+		064D9EA21F18AF5100B1BD8C /* topicDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicDetailTableViewController.swift; sourceTree = "<group>"; };
+		064D9EA41F18B05F00B1BD8C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		064D9EA61F18C15C00B1BD8C /* topicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicTableViewCell.swift; sourceTree = "<group>"; };
+		064D9EA81F18C1FA00B1BD8C /* TopicDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicDetail.swift; sourceTree = "<group>"; };
+		064D9EAA1F18C7A600B1BD8C /* topicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicDetailViewController.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -503,6 +515,17 @@
 			name = CollectStudio;
 			sourceTree = "<group>";
 		};
+		064D9E9B1F18A31F00B1BD8C /* topicDetail */ = {
+			isa = PBXGroup;
+			children = (
+				064D9E9C1F18A33800B1BD8C /* TopicDetail.storyboard */,
+				064D9EAA1F18C7A600B1BD8C /* topicDetailViewController.swift */,
+				064D9EA21F18AF5100B1BD8C /* topicDetailTableViewController.swift */,
+				064D9EA61F18C15C00B1BD8C /* topicTableViewCell.swift */,
+			);
+			name = topicDetail;
+			sourceTree = "<group>";
+		};
 		069E15BD1EFD0C2800A9C1FA /* studioInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,6 +777,8 @@
 				062B2AAE1F131E7A0042B9A5 /* Studio.swift */,
 				062D04EA1F14B49D00499EEB /* Question.swift */,
 				064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */,
+				064D9EA41F18B05F00B1BD8C /* Comment.swift */,
+				064D9EA81F18C1FA00B1BD8C /* TopicDetail.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -802,6 +827,7 @@
 		4091248C1EB45F3800347EEF /* QACampus2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				064D9E9B1F18A31F00B1BD8C /* topicDetail */,
 				062D04F21F15157000499EEB /* Login */,
 				062D04F11F15156000499EEB /* Register */,
 				069E16311F02661400A9C1FA /* studioTab */,
@@ -1017,6 +1043,7 @@
 				07FE8B451EE103450059BB10 /* QuestionEditor.storyboard in Resources */,
 				062D04F61F15160100499EEB /* Register.storyboard in Resources */,
 				078080711EF2BEA9005B590C /* UserHotDetail.storyboard in Resources */,
+				064D9E9D1F18A33800B1BD8C /* TopicDetail.storyboard in Resources */,
 				069E161C1F0205A000A9C1FA /* StudioQuestion.storyboard in Resources */,
 				062B2AC61F1366E40042B9A5 /* PersonalNews.storyboard in Resources */,
 				069E16261F0241A500A9C1FA /* UserStudio.storyboard in Resources */,
@@ -1219,6 +1246,7 @@
 				07E2ABA11F187071008CE259 /* TitleDetailEditorController.swift in Sources */,
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
 				062D05041F1659C300499EEB /* FileStorage.swift in Sources */,
+				064D9EA51F18B05F00B1BD8C /* Comment.swift in Sources */,
 				061CBF5B1F05FF970049EC6A /* EditAvator.swift in Sources */,
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
@@ -1227,6 +1255,7 @@
 				07E2ABA51F188610008CE259 /* AnswerEditorController.swift in Sources */,
 				062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */,
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
+				064D9EA91F18C1FA00B1BD8C /* TopicDetail.swift in Sources */,
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
 				064D9E9A1F186A1E00B1BD8C /* SingletonStudio.swift in Sources */,
@@ -1246,6 +1275,7 @@
 				062B2AD81F13E1300042B9A5 /* resetTableViewCell.swift in Sources */,
 				078080731EF2C8B0005B590C /* UserHotDetailContentCell.swift in Sources */,
 				062B2AAF1F131E7A0042B9A5 /* Studio.swift in Sources */,
+				064D9EA71F18C15C00B1BD8C /* topicTableViewCell.swift in Sources */,
 				069E16491F05ECD000A9C1FA /* editBlogTableViewCell.swift in Sources */,
 				069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */,
 				069E15ED1EFE547700A9C1FA /* studioAdminTableViewCell.swift in Sources */,
@@ -1270,6 +1300,7 @@
 				062B2ADA1F13ED870042B9A5 /* UserNotifiListViewController.swift in Sources */,
 				061CBF5E1F062F2F0049EC6A /* addMemberTableViewCell.swift in Sources */,
 				069AD2271F0B20BA00D5102A /* studioHomeTopicTableViewController.swift in Sources */,
+				064D9EAB1F18C7A600B1BD8C /* topicDetailViewController.swift in Sources */,
 				061CBF791F0664F30049EC6A /* addAdminButtons.swift in Sources */,
 				062B2ABB1F1364640042B9A5 /* GlobalConstant.swift in Sources */,
 				4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */,
@@ -1282,6 +1313,7 @@
 				069E15F71EFE864400A9C1FA /* editNameTableViewCell.swift in Sources */,
 				069E15E91EFE1AFF00A9C1FA /* editStudioInfoTableViewController.swift in Sources */,
 				069AD2291F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift in Sources */,
+				064D9EA31F18AF5100B1BD8C /* topicDetailTableViewController.swift in Sources */,
 				069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */,
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
 				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,

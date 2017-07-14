@@ -1,0 +1,128 @@
+//
+//  topicDetailTableViewController.swift
+//  QACampus2.0
+//
+//  Created by NJUcong on 2017/7/14.
+//  Copyright © 2017年 Demons. All rights reserved.
+//
+
+import UIKit
+
+class topicDetailTableViewController: UITableViewController {
+
+    lazy var comments:[Comment] = {
+        return []
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
+        tableView.estimatedRowHeight = 300
+        tableView.separatorStyle = .none
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 5
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        if section != 4 {
+            return 1
+        } else {
+//            return comments.count
+            return 1
+        }
+    }
+
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        var cell:UITableViewCell?
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicTitle", for: indexPath) as! topicTitleTableViewCell
+            cell.title.text = TopicDetail.title
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicStudio", for: indexPath) as! topicStudioTableViewCell
+            cell.authorAvator.image = TopicDetail.authorAvator
+            cell.name.text = TopicDetail.authorName
+            cell.studioName.text = TopicDetail.studio
+            cell.date.text = TopicDetail.date
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell
+            cell.commentNum.text = String(TopicDetail.thumbNum)
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
+            cell.content.text = "这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长"
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
+            return cell
+        }
+
+    }
+    
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch  indexPath.section {
+        case 0:
+            return 60.0
+        case 1:
+            return 80.0
+        case 2:
+            return 100.0
+        case 3:
+            return 40.0
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
+            return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        default:
+            return 80.0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section{
+        case 1:
+            return 1.0
+        case 2:
+            return 2.0
+        case 3:
+            return 2.0
+        case 4:
+            return 1.0
+        default:
+            return 0
+        }
+    }
+    
+//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.backgroundColor = sectionHeaderColor
+//    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+}
+

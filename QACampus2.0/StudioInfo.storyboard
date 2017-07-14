@@ -198,14 +198,6 @@
             </objects>
             <point key="canvasLocation" x="253.59999999999999" y="-73.313343328335833"/>
         </scene>
-        <!--QuestionEdit-->
-        <scene sceneID="LrW-e1-tXH">
-            <objects>
-                <viewControllerPlaceholder storyboardName="QuestionEdit" id="gzp-Mi-rwE" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3xw-Kr-G7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="948" y="-125"/>
-        </scene>
     </scenes>
     <resources>
         <image name="ask01" width="128" height="128"/>

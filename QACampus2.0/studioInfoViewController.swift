@@ -51,9 +51,6 @@ class studioInfoViewController: UIViewController {
     
     lazy var studioAvator: UIImageView = { [unowned self] in
         let avator = UIImageView()
-        avator.contentMode = .scaleAspectFill
-        avator.layer.masksToBounds = true
-        avator.layer.cornerRadius = avator.frame.width/2
         return avator
     }()
 
@@ -66,12 +63,7 @@ class studioInfoViewController: UIViewController {
         initPageVc()
         initInfo()
         initButton()
-        self.navigationController?.navigationBar.addSubview(studioAvator)
-        studioAvator.snp.makeConstraints ({ make in
-            make.height.width.equalTo(80)
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-        })
+        initAvator()
 
         // self.navigationController?.navigationBar.addSubview(studioAvator)
         // Do any additional setup after loading the view.
@@ -109,6 +101,14 @@ class studioInfoViewController: UIViewController {
         
     }
     
+    func initAvator () {
+        self.navigationController?.navigationBar.addSubview(studioAvator)
+        studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
+        studioAvator.contentMode = .scaleAspectFill
+        studioAvator.layer.masksToBounds = true
+        studioAvator.layer.cornerRadius = studioAvator.frame.width/2
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -133,6 +133,7 @@ class studioInfoViewController: UIViewController {
     }
     
     @IBAction func askViewTap(_ sender: Any) {
+        
     }
    
 }

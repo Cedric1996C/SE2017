@@ -55,24 +55,15 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     
     lazy var studioAvator: UIImageView = { [unowned self] in
         let image = UIImageView()
-        image.image = UIImage(named:"no.1")
         return image
-        }()
+    }()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         initPageView()
-        
-        self.navigationController?.navigationBar.addSubview(studioAvator)
-        studioAvator.snp.makeConstraints ({ make in
-            make.height.width.equalTo(70)
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-        })
-
-        
+        initAvator()
         // Do any additional setup after loading the view.
     }
     
@@ -110,6 +101,15 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
         subTitleView.titleArray = btnNames
         
     }
+    
+    func initAvator () {
+        self.navigationController?.navigationBar.addSubview(studioAvator)
+        studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
+        studioAvator.contentMode = .scaleAspectFill
+        studioAvator.layer.masksToBounds = true
+        studioAvator.layer.cornerRadius = studioAvator.frame.width/2
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -22,6 +22,7 @@ class studioQuestionTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        view.backgroundColor = UIColor(red:255/255,green:235/255,blue:235/255,alpha:1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +44,7 @@ class studioQuestionTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130.0
+        return 160.0
     }
         
     

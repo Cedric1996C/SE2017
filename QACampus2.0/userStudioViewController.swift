@@ -112,8 +112,6 @@ extension userStudioViewController {
             // response serialization result
             var json = JSON(response.result.value!)
             let list: Array<JSON> = json["content"].arrayValue
-  
-            print(list)
         
             let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.reload), userInfo: nil, repeats: false)
             
