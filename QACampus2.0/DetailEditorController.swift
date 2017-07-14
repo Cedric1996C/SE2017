@@ -42,7 +42,6 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
     }
     
     func doneClicked() {
-        let titleText = titleView?.text
         let detailText = detailView?.text
         let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
         let detailDataEncoded = detailData.base64EncodedString()
