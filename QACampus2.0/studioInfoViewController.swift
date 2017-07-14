@@ -8,41 +8,21 @@
 
 import UIKit
 
-class studioInfoViewController: UIViewController {
+class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
 
     
-    @IBOutlet weak var subPageView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
 //    @IBOutlet weak var studioAvator: UIImageView!
     
+    var icons:[UIImage] = []
+    
+    var type:Int = 0
     // MARK:- 懒加载属性
     /// 子标题
-    lazy var btnNames:[String] = {
+    lazy var icon_titles:[String] = {
         return ["最新回答","最新话题","热门","成员"]
     }()
     
-    /// 子控制器
-    lazy var controllers: [UIViewController] = { [unowned self] in
-        var cons: [UIViewController] = [UIViewController]()
-        for title in self.btnNames {
-            let con = studioInfoSubFactory.studioInfoSubWith(identifier: title)
-            cons.append(con)
-        }
-        return cons
-        }()
-    
-    /// 子标题视图
-    lazy var subTitleView: studioInfoSubTitleView = { [unowned self] in
-        let view = studioInfoSubTitleView(frame: CGRect(x: 0, y: 1, width: ScreenWidth, height: 39))
-        //        view.addSubview(view)
-        return view
-        }()
-    
-    /// 控制多个子控制器
-    lazy var PageVc: pageViewController = {
-        let pageVc = pageViewController(superController: self, controllers: self.controllers)
-        pageVc.delegate = self as? PageViewControllerDelegate
-        return pageVc
-    }()
     
     lazy var studioAvator: UIImageView = { [unowned self] in
         let image = UIImageView()
@@ -53,7 +33,6 @@ class studioInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initPageVc()
         initButton()
         self.navigationController?.navigationBar.addSubview(studioAvator)
         studioAvator.snp.makeConstraints ({ make in
@@ -61,7 +40,15 @@ class studioInfoViewController: UIViewController {
             make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview()
         })
-
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        icons.append(UIImage(named:"answer01")!)
+        icons.append(UIImage(named:"comment01")!)
+        icons.append(UIImage(named:"hot01")!)
+        icons.append(UIImage(named:"user01")!)
+        
         // self.navigationController?.navigationBar.addSubview(studioAvator)
         // Do any additional setup after loading the view.
     }
@@ -72,25 +59,6 @@ class studioInfoViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = item
     }
 
-    func initPageVc(){
-        subPageView.addSubview(subTitleView)
-        subPageView.addSubview(PageVc.view)
-        
-        subTitleView.snp.makeConstraints{ make in
-//            make.top.equalTo(devideLine1.snp.bottom)
-            make.top.right.left.equalToSuperview()
-            make.height.equalTo(40)
-        }
-        
-        PageVc.view.snp.makeConstraints { make in
-            make.top.equalTo(subTitleView.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
-        }
-
-        subTitleView.delegate = self as? studioInfoSubTitleViewDelegate
-        subTitleView.titleArray = btnNames
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,21 +69,34 @@ class studioInfoViewController: UIViewController {
     func returnUser(sender:Any){
         self.dismiss(animated: true, completion: nil)
     }
-
-}
-
-// MARK: - pageViewController代理
-extension studioInfoViewController: PageViewControllerDelegate{
-    func PageCurrentSubControllerIndex(index: NSInteger, pageViewController: pageViewController) {
-        subTitleView.jump2Show(at: index)
+    
+    //collectionView Cell个数
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
     }
+    //collectionView Cell内容
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let identify:String = "StudioInfoClctCell"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoCollectioCell
+        cell.label.text = icon_titles[indexPath.row]
+        cell.image.image = icons[indexPath.row]
+        return cell
+        
+    }
+    //collectionView Cell 跳转
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        self.type = indexPath.row
+        performSegue(withIdentifier: "showStudioInfoList", sender: (Any).self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="showStudioInfoList"){
+            let d = segue.destination as! StudioInfoListController
+            d.type=self.type
+        }
+    }
+
+
 }
 
-// MARK:- studioInfoSubTitleViewDelegate
-extension studioInfoViewController: studioInfoSubTitleViewDelegate {
-    func studioInfoSubTitleViewDidSelected(_ titleView: studioInfoSubTitleView, atIndex: NSInteger, title: String) {
-        // 跳转对相应的子标题界面
-        PageVc.setCurrentSubControllerWith(index: atIndex)
-    }
-}
 
