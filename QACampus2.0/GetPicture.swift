@@ -12,13 +12,6 @@ import Alamofire
 //图片下载
 func downloadPicture(_ path:String,id:Int){
     
-//    Alamofire.download("https://localhost:6666/files/\(path)").responseData{ response in
-//        if let data = response.result.value {
-//            let image = UIImage(data: data)
-//            print(path)
-//            saveImage(currentImage: image!, path: path)
-//        }
-//    }    
     Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
         if let json = response.result.value {
             let pictures:[String] = json as! [String]
