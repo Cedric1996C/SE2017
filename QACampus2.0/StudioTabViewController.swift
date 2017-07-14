@@ -30,6 +30,7 @@ class StudioTabViewController: UIViewController {
         super.viewDidLoad()
         
         homeIcon.isSelected = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         layoutUI()
     }
     
