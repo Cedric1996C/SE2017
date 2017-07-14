@@ -1,15 +1,13 @@
 import UIKit
 
-class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate {
+class DetailEditorController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var titleView: UITextField!
-    @IBOutlet weak var detailView: UITextView!
+    var detailView: UITextView? = nil
     
-    var detailViewPlaceholder: String = ""
-    
+    var detailViewPlaceholder: String = "详细描述你的问题"
     var detailViewNotEdited: Bool = true
     
-    var isQuestion: Bool = true
+    var isAnswer: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +15,11 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        titleView.delegate = self
-        detailView.delegate = self
+        setDetailViewReference()
+        setDetailViewInfo()
+        setType()
+        
+        detailView!.delegate = self
         
         detailViewNotEdited = true
         
@@ -27,16 +28,21 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         adjustAppearance()
     }
     
-    func setQuestion() {
-        self.isQuestion = true
-        self.titleView.placeholder = "一句话描述你的问题"
+    // TO BE OVERRIDDEN
+    func setDetailViewReference() {
+        preconditionFailure()
     }
     
-    func setTopic() {
-        self.isQuestion = false
-        self.titleView.placeholder = "一句话概述你的话题"
+    // TO BE OVERRIDDEN
+    func setDetailViewInfo() {
+        preconditionFailure()
     }
-
+    
+    // TO BE OVERRIDDEN
+    func setType() {
+        preconditionFailure()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,20 +52,26 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         if detailViewNotEdited {
             textView.text = ""
             detailViewNotEdited = false
+            detailView!.textColor = UIColor.black
+        }
+        return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if detailView!.text.length == 0 {
+            putDetailViewPlaceholder()
         }
         return true
     }
     
     func adjustAppearance() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: titleView.frame.height))
-        titleView.leftView = paddingView
-        titleView.leftViewMode = .always
         putDetailViewPlaceholder()
     }
     
     func putDetailViewPlaceholder() {
         detailViewNotEdited = true
-        detailView.text = detailViewPlaceholder
+        detailView!.text = detailViewPlaceholder
+        detailView!.textColor = UIColor.lightGray
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -80,12 +92,12 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
             UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissDetailViewKeyboard)),
         ]
         toolBar.sizeToFit()
-        detailView.inputAccessoryView = toolBar
+        detailView!.inputAccessoryView = toolBar
     }
     
     func dismissDetailViewKeyboard() {
-        detailView.resignFirstResponder()
-        if detailView.text.isEmpty {
+        detailView!.resignFirstResponder()
+        if detailView!.text.isEmpty {
             putDetailViewPlaceholder()
         }
     }
@@ -95,14 +107,14 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         let infoNSValue = info![UIKeyboardFrameBeginUserInfoKey] as! NSValue
         let kbSize = infoNSValue.cgRectValue.size
         let contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0)
-        detailView.contentInset = contentInsets
-        detailView.scrollIndicatorInsets = contentInsets
+        detailView!.contentInset = contentInsets
+        detailView!.scrollIndicatorInsets = contentInsets
     }
     
     func keyboardWillHide(aNotification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
-        detailView.contentInset = contentInsets
-        detailView.scrollIndicatorInsets = contentInsets
+        detailView!.contentInset = contentInsets
+        detailView!.scrollIndicatorInsets = contentInsets
     }
     
 }

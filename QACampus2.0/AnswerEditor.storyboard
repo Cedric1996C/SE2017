@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x4O-RG-Zh0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Answer Editor Controller-->
+        <scene sceneID="hpv-a7-VSk">
+            <objects>
+                <viewController id="x4O-RG-Zh0" customClass="AnswerEditorController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xBv-bJ-vUz"/>
+                        <viewControllerLayoutGuide type="bottom" id="KYj-EC-lQu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vP7-fm-wjN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JRX-fF-XBY">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JRX-fF-XBY" firstAttribute="centerX" secondItem="vP7-fm-wjN" secondAttribute="centerX" id="7Ss-fW-G8N"/>
+                            <constraint firstItem="JRX-fF-XBY" firstAttribute="width" secondItem="vP7-fm-wjN" secondAttribute="width" id="Au0-fj-Dhj"/>
+                            <constraint firstItem="KYj-EC-lQu" firstAttribute="top" secondItem="JRX-fF-XBY" secondAttribute="bottom" id="GwL-la-OUz"/>
+                            <constraint firstItem="JRX-fF-XBY" firstAttribute="top" secondItem="xBv-bJ-vUz" secondAttribute="bottom" id="Qac-H9-bPr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailViewRef" destination="JRX-fF-XBY" id="Tz3-Of-PAd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LOT-QX-SkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-342" y="106"/>
+        </scene>
+    </scenes>
+</document>
