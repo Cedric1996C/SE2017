@@ -1,6 +1,6 @@
 import UIKit
 
-class QuestionEditorController: TitleDetailEditorController {
+class TopicEditorController: TitleDetailEditorController {
     
     @IBOutlet weak var titleViewRef: UITextField!
     @IBOutlet weak var detailViewRef: UITextView!
@@ -11,11 +11,11 @@ class QuestionEditorController: TitleDetailEditorController {
     }
     
     override func setDetailViewInfo() {
-        self.detailViewPlaceholder = "详细描述你的问题"
+        self.detailViewPlaceholder = "详细阐述你的话题"
     }
     
     override func setType() {
-        self.isQuestion = true
+        self.isQuestion = false
     }
     
 }

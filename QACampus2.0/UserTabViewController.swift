@@ -57,9 +57,10 @@ class UserTabViewController: UIViewController {
         
         let userDefault = UserDefaults.standard
         //自定义对象读取
-        let user = userDefault.data(forKey: "local_user")
-        let localUser = NSKeyedUnarchiver.unarchiveObject(with: user!) as! User
-        localUser_id = localUser.userId
+        if let user = userDefault.data(forKey: "local_user") {
+            let localUser = NSKeyedUnarchiver.unarchiveObject(with: user) as! User
+            localUser_id = localUser.userId
+        }
     }
     
     func initControllers() {

@@ -13,7 +13,7 @@
         <!--Question Editor Controller-->
         <scene sceneID="AVc-iE-QPf">
             <objects>
-                <viewController id="ReZ-RQ-tki" customClass="QuestionEditorController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ReZ-RQ-tki" userLabel="Question Editor Controller" customClass="QuestionEditorController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Ft-ty-zgR"/>
                         <viewControllerLayoutGuide type="bottom" id="JBF-6l-Npc"/>
@@ -52,16 +52,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pNy-Mt-jKn" firstAttribute="top" secondItem="6Ft-ty-zgR" secondAttribute="bottom" id="51m-Hg-0re"/>
-                            <constraint firstItem="JBF-6l-Npc" firstAttribute="top" secondItem="pNy-Mt-jKn" secondAttribute="bottom" id="iPd-3P-sZV"/>
+                            <constraint firstItem="pNy-Mt-jKn" firstAttribute="top" secondItem="6Ft-ty-zgR" secondAttribute="bottom" id="Y8S-C3-pch"/>
+                            <constraint firstItem="JBF-6l-Npc" firstAttribute="top" secondItem="pNy-Mt-jKn" secondAttribute="bottom" id="iI3-Xo-aQ0"/>
                             <constraint firstItem="pNy-Mt-jKn" firstAttribute="centerX" secondItem="wHU-pS-XHA" secondAttribute="centerX" id="pfv-zV-XNe"/>
                             <constraint firstItem="pNy-Mt-jKn" firstAttribute="width" secondItem="wHU-pS-XHA" secondAttribute="width" id="rw4-c0-OHO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3uj-Ke-4yA"/>
                     <connections>
-                        <outlet property="detailView" destination="eUr-da-wga" id="4QE-x5-5rl"/>
-                        <outlet property="titleView" destination="0FM-5n-Klh" id="4V7-rv-mdf"/>
+                        <outlet property="detailViewRef" destination="eUr-da-wga" id="etH-oN-wp0"/>
+                        <outlet property="titleViewRef" destination="0FM-5n-Klh" id="g94-Z8-Rw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfH-T1-OMX" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wlm-nm-3QK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Topic Editor Controller-->
+        <scene sceneID="JfX-pv-Bte">
+            <objects>
+                <viewController id="wlm-nm-3QK" customClass="TopicEditorController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ROq-yB-7J9"/>
+                        <viewControllerLayoutGuide type="bottom" id="nda-AH-Sly"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ulo-Ze-BWa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-Mb-8J5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="一句话概括你的话题" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-or-tHi" userLabel="titleView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m4d-XO-dpm" userLabel="detailView">
+                                        <rect key="frame" x="0.0" y="63" width="375" height="584"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="m4d-XO-dpm" firstAttribute="width" secondItem="l2R-or-tHi" secondAttribute="height" multiplier="125:21" id="HUG-jL-8yQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="m4d-XO-dpm" secondAttribute="trailing" id="IUg-2Q-CuT"/>
+                                    <constraint firstItem="m4d-XO-dpm" firstAttribute="centerX" secondItem="YSW-Mb-8J5" secondAttribute="centerX" id="OI4-1V-d0U"/>
+                                    <constraint firstItem="l2R-or-tHi" firstAttribute="centerX" secondItem="YSW-Mb-8J5" secondAttribute="centerX" id="Vkc-I9-QFT"/>
+                                    <constraint firstItem="m4d-XO-dpm" firstAttribute="top" secondItem="l2R-or-tHi" secondAttribute="bottom" id="Vz2-Vs-eR8"/>
+                                    <constraint firstItem="l2R-or-tHi" firstAttribute="width" secondItem="YSW-Mb-8J5" secondAttribute="width" id="cUX-lg-1bp"/>
+                                    <constraint firstItem="m4d-XO-dpm" firstAttribute="width" secondItem="YSW-Mb-8J5" secondAttribute="width" id="ugk-zW-L9i"/>
+                                    <constraint firstItem="l2R-or-tHi" firstAttribute="leading" secondItem="YSW-Mb-8J5" secondAttribute="leading" id="wy8-SB-6zo"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YSW-Mb-8J5" firstAttribute="centerX" secondItem="ulo-Ze-BWa" secondAttribute="centerX" id="5mO-c0-mp3"/>
+                            <constraint firstItem="nda-AH-Sly" firstAttribute="top" secondItem="YSW-Mb-8J5" secondAttribute="bottom" id="GT5-ll-8R3"/>
+                            <constraint firstItem="YSW-Mb-8J5" firstAttribute="top" secondItem="ROq-yB-7J9" secondAttribute="bottom" id="Mzq-r2-A7m"/>
+                            <constraint firstItem="YSW-Mb-8J5" firstAttribute="width" secondItem="ulo-Ze-BWa" secondAttribute="width" id="X0o-2O-sL1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailView" destination="m4d-XO-dpm" id="kKj-iy-ekj"/>
+                        <outlet property="detailViewRef" destination="m4d-XO-dpm" id="Vui-qp-ySi"/>
+                        <outlet property="titleView" destination="l2R-or-tHi" id="j8Z-Ln-e0a"/>
+                        <outlet property="titleViewRef" destination="l2R-or-tHi" id="ZOf-hK-U0q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGj-IP-Gjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-199" y="152"/>
+        </scene>
+    </scenes>
+</document>
