@@ -23,6 +23,10 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MXR-xQ-6Mm">
+                                <rect key="frame" x="177" y="267" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="175" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="htp-4u-JRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,6 +109,7 @@
                         <barButtonItem key="rightBarButtonItem" title="工作室" id="PXZ-3P-iFt"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="indicator" destination="MXR-xQ-6Mm" id="kdY-sC-v0s"/>
                         <outlet property="tableView" destination="htp-4u-JRQ" id="QeM-VM-JZi"/>
                         <segue destination="mf7-qD-TLn" kind="presentation" identifier="showStudioHome" id="sBF-Js-Z9I"/>
                     </connections>

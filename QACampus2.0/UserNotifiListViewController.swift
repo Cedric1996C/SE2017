@@ -15,6 +15,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
@@ -43,7 +45,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
-        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+        "Authorization": userAuthorization
     ]
 
     
@@ -61,11 +63,11 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         let header = MJRefreshNormalHeader()
         header.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.headerClick))
         tableView.mj_header = header
-
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         self.notifiRequest()
     }
     
@@ -81,8 +83,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     
     //返回表格行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return infos!.count
-        return 3
+        return infos.count
     }
     //返回单元格高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,17 +102,17 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         else{
             let identify:String = "SubListCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubListCell
-            //            cell.icon.image=infos?[indexPath.row].icon
-            //            cell.name.text=infos?[indexPath.row].name
-            //            cell.time.text=infos?[indexPath.row].time
-            //            cell.title.text=infos?[indexPath.row].title
-            //            cell.desc.text=infos?[indexPath.row].desc
-            
-            cell.icon.image=self.icon
-            cell.name.text="wef"
-            cell.time.text="2017-03-04"
-            cell.title.text="新通知"
-            cell.desc.text="新通知的描述"
+            cell.icon.image=infos[indexPath.row].icon
+            cell.name.text=infos[indexPath.row].name
+            cell.time.text=infos[indexPath.row].time
+            cell.title.text=infos[indexPath.row].title
+            cell.desc.text=infos[indexPath.row].desc
+
+//            cell.icon.image=self.icon
+//            cell.name.text="wef"
+//            cell.time.text="2017-03-04"
+//            cell.title.text="新通知"
+//            cell.desc.text="新通知的描述"
             
             return cell
         }

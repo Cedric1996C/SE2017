@@ -44,7 +44,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
-        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+        "Authorization": userAuthorization
     ]
     
     lazy var icon_titles:[String] = {

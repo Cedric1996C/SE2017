@@ -12,19 +12,33 @@ import SwiftyJSON
 
 class userStudioViewController: UIViewController {
 
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var tableData: [Studio] = []
     var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicator.startAnimating()
+        
         authentication()
         
         tableView.dataSource = self
         tableView.delegate = self
         initData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.indicator.stopAnimating()
+        }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        //viewDidLoad->viewWillAppear->tableView->viewDidAppear
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
