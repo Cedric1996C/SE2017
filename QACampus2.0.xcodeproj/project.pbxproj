@@ -116,7 +116,6 @@
 		07C88A831EE3A3E500300810 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C88A821EE3A3E500300810 /* Detail.swift */; };
 		07FE8B451EE103450059BB10 /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FE8B441EE103450059BB10 /* Editor.storyboard */; };
 		07FE8B471EE104960059BB10 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE8B461EE104960059BB10 /* EditorController.swift */; };
-		07FE8B491EE117FA0059BB10 /* QuestionEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE8B481EE117FA0059BB10 /* QuestionEditorController.swift */; };
 		2AC22AA6DDE54482A459B6B7 /* Pods_QACampus2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00A3F801360CA448591F4C0 /* Pods_QACampus2_0.framework */; };
 		404B3C3F1EC42910009DA5EC /* UserHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B3C3E1EC42910009DA5EC /* UserHotViewController.swift */; };
 		4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091248D1EB45F3800347EEF /* AppDelegate.swift */; };
@@ -267,7 +266,6 @@
 		07C88A821EE3A3E500300810 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		07FE8B441EE103450059BB10 /* Editor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
 		07FE8B461EE104960059BB10 /* EditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
-		07FE8B481EE117FA0059BB10 /* QuestionEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionEditorController.swift; sourceTree = "<group>"; };
 		404B3C3E1EC42910009DA5EC /* UserHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotViewController.swift; sourceTree = "<group>"; };
 		4091248A1EB45F3800347EEF /* QACampus2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QACampus2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4091248D1EB45F3800347EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -746,7 +744,6 @@
 			children = (
 				07FE8B441EE103450059BB10 /* Editor.storyboard */,
 				07FE8B461EE104960059BB10 /* EditorController.swift */,
-				07FE8B481EE117FA0059BB10 /* QuestionEditorController.swift */,
 			);
 			name = edit;
 			sourceTree = "<group>";
@@ -1191,7 +1188,6 @@
 				07C88A831EE3A3E500300810 /* Detail.swift in Sources */,
 				069E161E1F02280200A9C1FA /* UserTabViewController.swift in Sources */,
 				062D05041F1659C300499EEB /* FileStorage.swift in Sources */,
-				07FE8B491EE117FA0059BB10 /* QuestionEditorController.swift in Sources */,
 				061CBF5B1F05FF970049EC6A /* EditAvator.swift in Sources */,
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
