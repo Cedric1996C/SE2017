@@ -32,7 +32,11 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
+<<<<<<< HEAD
 	<string>TopicDetail</string>
+=======
+	<string>StudioInfo</string>
+>>>>>>> 685d1af1cb39e44bc3eab5f5f42800705cb9cffa
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

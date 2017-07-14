@@ -1,6 +1,6 @@
 import UIKit
 
-class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate {
+class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var titleView: UITextField? = nil
     var detailView: UITextView? = nil
@@ -25,9 +25,31 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
         
         detailViewNotEdited = true
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         configKeyboardEvent()
         configDetailViewKeyboard()
+        configNavigationBar()
         adjustAppearance()
+    }
+    
+    func configNavigationBar() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneClicked))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func doneClicked() {
+        let titleText = titleView?.text
+        let detailText = detailView?.text
+        let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
+        let detailDataEncoded = detailData.base64EncodedString()
     }
     
     // TO BE OVERRIDDEN
@@ -55,13 +77,6 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
             textView.text = ""
             detailViewNotEdited = false
             detailView!.textColor = UIColor.black
-        }
-        return true
-    }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        if detailView!.text.length == 0 {
-            putDetailViewPlaceholder()
         }
         return true
     }
@@ -94,17 +109,42 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
         toolBar.barStyle = .default
         toolBar.items = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(image: #imageLiteral(resourceName: "image"), style: .plain, target: self, action: #selector(addImage)),
+            UIBarButtonItem(image: #imageLiteral(resourceName: "camera"), style: .plain, target: self, action: #selector(addPhoto)),
             UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissDetailViewKeyboard)),
         ]
         toolBar.sizeToFit()
         detailView!.inputAccessoryView = toolBar
     }
     
+    func addPhoto() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func addImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let attachment = ImageAttachment()
+            attachment.image = pickedImage
+            let attrString = NSAttributedString(attachment: attachment)
+            detailView!.textStorage.insert(attrString, at: detailView!.selectedRange.location)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
     func dismissDetailViewKeyboard() {
         detailView!.resignFirstResponder()
-        if detailView!.text.isEmpty {
-            putDetailViewPlaceholder()
-        }
     }
     
     func keyboardDidShow(aNotification: NSNotification) {

@@ -58,6 +58,7 @@
                             <constraint firstItem="YSW-Mb-8J5" firstAttribute="width" secondItem="ulo-Ze-BWa" secondAttribute="width" id="X0o-2O-sL1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="s0J-De-VMp"/>
                     <connections>
                         <outlet property="detailView" destination="m4d-XO-dpm" id="kKj-iy-ekj"/>
                         <outlet property="detailViewRef" destination="m4d-XO-dpm" id="Vui-qp-ySi"/>
@@ -67,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGj-IP-Gjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="152"/>
+            <point key="canvasLocation" x="740" y="151.57421289355324"/>
         </scene>
     </scenes>
 </document>
