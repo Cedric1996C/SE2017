@@ -1,21 +1,20 @@
 //
-//  UserNotifiListViewController.swift
+//  StudioInfoListController.swift
 //  QACampus2.0
 //
-//  Created by 王乙飞 on 2017/7/10.
+//  Created by 王乙飞 on 2017/7/14.
 //  Copyright © 2017年 Demons. All rights reserved.
 //
 
 import UIKit
-import SwiftyJSON
 import MJRefresh
+import SwiftyJSON
 import Alamofire
 
-class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
@@ -28,12 +27,10 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     var timer: Timer!
     //用了记录当前是否允许加载新数据（正在加载的时候会将其设为false，放置重复加载）
     var loadMoreEnable = true
-    
-    //0:问题  1:话题  2:点赞
+
+    //0:最新回答 1:最新话题 2:热门 3:成员
     var type:Int = 0
-    
     var infos:[Info] = []
-    var infos2:[String] = []
     
     let icon:UIImage = UIImage(named: "no.1")!
     
@@ -42,6 +39,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     let notifiBase0Url:String="/qa-service/questions"
     let notifiBase1Url:String=""
     let notifiBase2Url:String=""
+    let notifiBase3Url:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -51,8 +49,19 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        initViewDetail()
+        switch type{
+        case 0:self.label.text = "最新回答"
+            break
+        case 1:self.label.text = "最新话题"
+            break
+        case 2:self.label.text = "热门"
+            break
+        case 3:self.label.text = "成员"
+            break
+        default:break
+        }
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         //上拉加载
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
@@ -63,17 +72,12 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         let header = MJRefreshNormalHeader()
         header.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.headerClick))
         tableView.mj_header = header
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        self.notifiRequest()
-    }
-    
-    func initViewDetail() {
-        self.tableView.delegate=self
-        self.tableView.dataSource=self
+        self.studioInfoRequest()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,28 +95,28 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     }
     //创建各单元显示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(2 == self.type){
-            let identify:String = "SubList2Cell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubList2Cell
+        if(3 == self.type){
+            let identify:String = "StudioInfoList2Cell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoList2Cell
             //            cell.desc.text = infos2[indexPath.row]
-            cell.desc.text="xxx 给你的 xxx 点了赞"
+            cell.desc.text="xxx人"
             
             return cell
         }
         else{
-            let identify:String = "SubListCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubListCell
+            let identify:String = "StudioInfoListCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoListCell
             cell.icon.image=infos[indexPath.row].icon
             cell.name.text=infos[indexPath.row].name
             cell.time.text=infos[indexPath.row].time
             cell.title.text=infos[indexPath.row].title
             cell.desc.text=infos[indexPath.row].desc
-
-//            cell.icon.image=self.icon
-//            cell.name.text="wef"
-//            cell.time.text="2017-03-04"
-//            cell.title.text="新通知"
-//            cell.desc.text="新通知的描述"
+            
+            //            cell.icon.image=self.icon
+            //            cell.name.text="wef"
+            //            cell.time.text="2017-03-04"
+            //            cell.title.text="新通知"
+            //            cell.desc.text="新通知的描述"
             
             return cell
         }
@@ -125,8 +129,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     //通知请求
-    func notifiRequest(){
-        print("in notifiRequest()")
+    func studioInfoRequest(){
+        print("in studioInfoRequest()")
         switch self.type{
         case 0:
             Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
@@ -206,6 +210,45 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             }
             break
         case 2:
+            //话题
+            Alamofire.request(url+notifiBase2Url, method: .get, headers: headers).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        
+                    }
+                    
+                    self.infos.removeAll()
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        case 3:
             //点赞
             Alamofire.request(url+notifiBase2Url, method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
@@ -249,7 +292,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         print("out notifiRequest()")
     }
     //加载更多
-    func notifiRequestMore(){
+    func studioInfoRequestMore(){
         print("in notifiRequestMore()")
         switch self.type{
         case 0:
@@ -290,7 +333,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             break
         case 1:
             //话题
-            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+notifiBase1Url+loadMoreUrl, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -325,8 +368,44 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             }
             break
         case 2:
+            //话题
+            Alamofire.request(url+notifiBase2Url+loadMoreUrl, method: .get).responseJSON { response in
+                if let json = response.result.value {
+                    print(json)
+                    let jsonObj = JSON(data: response.data!)
+                    let results:Array = jsonObj["content"].arrayValue
+                    
+                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
+                    
+                    if(self.loadMoreUrl.length==0){
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                    }else {
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                    }
+                    
+                    for r in results{
+                        let id:Int = r["id"].intValue
+                        let name:String = r["asker"].stringValue
+                        
+                        //时间戳／ms转为/s
+                        let dateStamp = r["date"].intValue/1000
+                        // 时间戳转字符串
+                        let time:String = self.date2String(dateStamp: dateStamp)
+                        
+                        let title:String = r["question"].stringValue
+                        let desc:String = r["describtion"].stringValue
+                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                        self.infos.append(info)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        case 3:
             //点赞
-            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+notifiBase3Url+loadMoreUrl, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
@@ -385,28 +464,28 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             make.centerY.equalToSuperview()
         })
         
-//        //添加中间的环形进度条
-//        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-//        self.activityViewIndicator?.color = UIColor.darkGray
-//        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
-//        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
-//        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
-//                                                        width: (activityViewIndicator?.frame.width)!,
-//                                                        height: (activityViewIndicator?.frame.height)!)
-//        activityViewIndicator?.startAnimating()
-//        self.loadMoreView!.addSubview(activityViewIndicator!)
-//        
-//        activityViewIndicator?.snp.makeConstraints({ make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview()
-//        })
+        //        //添加中间的环形进度条
+        //        self.activityViewIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        //        self.activityViewIndicator?.color = UIColor.darkGray
+        //        let indicatorX = (self.loadMoreView!.frame.size.width-(activityViewIndicator?.frame.width)!)/2
+        //        let indicatorY = (self.loadMoreView!.frame.size.height-(activityViewIndicator?.frame.height)!)/2
+        //        self.activityViewIndicator?.frame = CGRect.init(x: indicatorX, y: indicatorY,
+        //                                                        width: (activityViewIndicator?.frame.width)!,
+        //                                                        height: (activityViewIndicator?.frame.height)!)
+        //        activityViewIndicator?.startAnimating()
+        //        self.loadMoreView!.addSubview(activityViewIndicator!)
+        //
+        //        activityViewIndicator?.snp.makeConstraints({ make in
+        //            make.centerX.equalToSuperview()
+        //            make.centerY.equalToSuperview()
+        //        })
         
     }
     
     func headerClick() {
         // 可在此处实现下拉刷新时要执行的代码
         // ......
-        self.notifiRequest()
+        self.studioInfoRequest()
         self.tableView.reloadData()
         if (loadMoreEnable) {
             tableView.tableFooterView = clearFooterView
@@ -454,7 +533,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     //计时器时间到
     func timeOut() {
         //加载更多
-        self.notifiRequestMore()
+        self.studioInfoRequestMore()
         
         timer.invalidate()
         timer = nil
@@ -469,4 +548,3 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     }
 
 }
-

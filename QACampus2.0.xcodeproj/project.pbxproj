@@ -72,11 +72,6 @@
 		069E15BF1EFD0E0B00A9C1FA /* StudioInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */; };
 		069E15C11EFD111200A9C1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069E15C01EFD111200A9C1FA /* Assets.xcassets */; };
 		069E15C31EFD2F7700A9C1FA /* studioInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */; };
-		069E15C61EFD32A100A9C1FA /* studioInfoSubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15C51EFD32A100A9C1FA /* studioInfoSubTitleView.swift */; };
-		069E15C81EFD338A00A9C1FA /* studioInfoSubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15C71EFD338A00A9C1FA /* studioInfoSubFactory.swift */; };
-		069E15CB1EFD34B700A9C1FA /* studioAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15CA1EFD34B700A9C1FA /* studioAnswerViewController.swift */; };
-		069E15D11EFD34E600A9C1FA /* studioHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15D01EFD34E600A9C1FA /* studioHotViewController.swift */; };
-		069E15D41EFD34FA00A9C1FA /* studioMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15D31EFD34FA00A9C1FA /* studioMemberViewController.swift */; };
 		069E15D71EFDF9DD00A9C1FA /* StudioHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15D61EFDF9DD00A9C1FA /* StudioHome.storyboard */; };
 		069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15D81EFE00C700A9C1FA /* studioHomeViewController.swift */; };
 		069E15DB1EFE01FF00A9C1FA /* UIColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15DA1EFE01FF00A9C1FA /* UIColorRGB.swift */; };
@@ -90,7 +85,6 @@
 		069E15F71EFE864400A9C1FA /* editNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E15F61EFE864400A9C1FA /* editNameTableViewCell.swift */; };
 		069E15F91EFE893F00A9C1FA /* EditName.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E15F81EFE893F00A9C1FA /* EditName.storyboard */; };
 		069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16001EFFA8FD00A9C1FA /* spaceTableViewCell.swift */; };
-		069E160D1EFFB81600A9C1FA /* studioTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E160C1EFFB81600A9C1FA /* studioTopicViewController.swift */; };
 		069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E160E1EFFB96900A9C1FA /* studioTopicEditViewController.swift */; };
 		069E16171F00ECFB00A9C1FA /* StudioTopicEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069E16161F00ECFB00A9C1FA /* StudioTopicEdit.storyboard */; };
 		069E16191F010AD300A9C1FA /* StudioTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16181F010AD300A9C1FA /* StudioTabViewController.swift */; };
@@ -140,6 +134,8 @@
 		D918CBEF1F135F3D005D0899 /* UserNotificationCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBEE1F135F3D005D0899 /* UserNotificationCustomCell.swift */; };
 		D918CBF31F137708005D0899 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBF21F137708005D0899 /* Info.swift */; };
 		D918CBF71F1473C7005D0899 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBF61F1473C7005D0899 /* Result.swift */; };
+		D918CBF91F18A25A005D0899 /* StudioInfoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBF81F18A25A005D0899 /* StudioInfoCustomCell.swift */; };
+		D918CBFB1F18A5AA005D0899 /* StudioInfoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918CBFA1F18A5AA005D0899 /* StudioInfoListController.swift */; };
 		D9344EFA1ECEF7DE0078A1BE /* UserHotCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344EF91ECEF7DE0078A1BE /* UserHotCustomCell.swift */; };
 		D98455671EC2E6620095D2EE /* UserHotSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98455661EC2E6620095D2EE /* UserHotSearchViewController.swift */; };
 		D9D320EF1F0739090063F831 /* searchSubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D320EE1F0739090063F831 /* searchSubTitleView.swift */; };
@@ -231,11 +227,6 @@
 		069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioInfo.storyboard; sourceTree = "<group>"; };
 		069E15C01EFD111200A9C1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = QACampus2.0/Assets.xcassets; sourceTree = "<group>"; };
 		069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioInfoViewController.swift; sourceTree = "<group>"; };
-		069E15C51EFD32A100A9C1FA /* studioInfoSubTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioInfoSubTitleView.swift; sourceTree = "<group>"; };
-		069E15C71EFD338A00A9C1FA /* studioInfoSubFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioInfoSubFactory.swift; sourceTree = "<group>"; };
-		069E15CA1EFD34B700A9C1FA /* studioAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioAnswerViewController.swift; sourceTree = "<group>"; };
-		069E15D01EFD34E600A9C1FA /* studioHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHotViewController.swift; sourceTree = "<group>"; };
-		069E15D31EFD34FA00A9C1FA /* studioMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioMemberViewController.swift; sourceTree = "<group>"; };
 		069E15D61EFDF9DD00A9C1FA /* StudioHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHome.storyboard; sourceTree = "<group>"; };
 		069E15D81EFE00C700A9C1FA /* studioHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHomeViewController.swift; sourceTree = "<group>"; };
 		069E15DA1EFE01FF00A9C1FA /* UIColorRGB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorRGB.swift; sourceTree = "<group>"; };
@@ -249,7 +240,6 @@
 		069E15F61EFE864400A9C1FA /* editNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editNameTableViewCell.swift; sourceTree = "<group>"; };
 		069E15F81EFE893F00A9C1FA /* EditName.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditName.storyboard; sourceTree = "<group>"; };
 		069E16001EFFA8FD00A9C1FA /* spaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spaceTableViewCell.swift; sourceTree = "<group>"; };
-		069E160C1EFFB81600A9C1FA /* studioTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioTopicViewController.swift; sourceTree = "<group>"; };
 		069E160E1EFFB96900A9C1FA /* studioTopicEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioTopicEditViewController.swift; sourceTree = "<group>"; };
 		069E16161F00ECFB00A9C1FA /* StudioTopicEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioTopicEdit.storyboard; sourceTree = "<group>"; };
 		069E16181F010AD300A9C1FA /* StudioTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioTabViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +301,8 @@
 		D918CBEE1F135F3D005D0899 /* UserNotificationCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCustomCell.swift; sourceTree = "<group>"; };
 		D918CBF21F137708005D0899 /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		D918CBF61F1473C7005D0899 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		D918CBF81F18A25A005D0899 /* StudioInfoCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioInfoCustomCell.swift; sourceTree = "<group>"; };
+		D918CBFA1F18A5AA005D0899 /* StudioInfoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioInfoListController.swift; sourceTree = "<group>"; };
 		D9344EF91ECEF7DE0078A1BE /* UserHotCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotCustomCell.swift; sourceTree = "<group>"; };
 		D98455661EC2E6620095D2EE /* UserHotSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotSearchViewController.swift; sourceTree = "<group>"; };
 		D9D320EE1F0739090063F831 /* searchSubTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchSubTitleView.swift; sourceTree = "<group>"; };
@@ -508,46 +500,10 @@
 			children = (
 				069E15BE1EFD0E0B00A9C1FA /* StudioInfo.storyboard */,
 				069E15C21EFD2F7700A9C1FA /* studioInfoViewController.swift */,
-				069E15C51EFD32A100A9C1FA /* studioInfoSubTitleView.swift */,
-				069E15C71EFD338A00A9C1FA /* studioInfoSubFactory.swift */,
-				069E15D21EFD34E900A9C1FA /* studioMember */,
-				069E15CF1EFD34D900A9C1FA /* studioHot */,
-				069E15CC1EFD34BA00A9C1FA /* studioTopic */,
-				069E15C91EFD349C00A9C1FA /* studioAnswer */,
+				D918CBF81F18A25A005D0899 /* StudioInfoCustomCell.swift */,
+				D918CBFA1F18A5AA005D0899 /* StudioInfoListController.swift */,
 			);
 			name = studioInfo;
-			sourceTree = "<group>";
-		};
-		069E15C91EFD349C00A9C1FA /* studioAnswer */ = {
-			isa = PBXGroup;
-			children = (
-				069E15CA1EFD34B700A9C1FA /* studioAnswerViewController.swift */,
-			);
-			name = studioAnswer;
-			sourceTree = "<group>";
-		};
-		069E15CC1EFD34BA00A9C1FA /* studioTopic */ = {
-			isa = PBXGroup;
-			children = (
-				069E160C1EFFB81600A9C1FA /* studioTopicViewController.swift */,
-			);
-			name = studioTopic;
-			sourceTree = "<group>";
-		};
-		069E15CF1EFD34D900A9C1FA /* studioHot */ = {
-			isa = PBXGroup;
-			children = (
-				069E15D01EFD34E600A9C1FA /* studioHotViewController.swift */,
-			);
-			name = studioHot;
-			sourceTree = "<group>";
-		};
-		069E15D21EFD34E900A9C1FA /* studioMember */ = {
-			isa = PBXGroup;
-			children = (
-				069E15D31EFD34FA00A9C1FA /* studioMemberViewController.swift */,
-			);
-			name = studioMember;
 			sourceTree = "<group>";
 		};
 		069E15D51EFDF9A800A9C1FA /* studioHome */ = {
@@ -1207,10 +1163,8 @@
 				062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */,
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
 				062B2ACD1F1376E00042B9A5 /* editAvatorTableViewCell.swift in Sources */,
-				069E15CB1EFD34B700A9C1FA /* studioAnswerViewController.swift in Sources */,
 				062D04FC1F161BFD00499EEB /* collectQuestionTableViewController.swift in Sources */,
 				D918CBF71F1473C7005D0899 /* Result.swift in Sources */,
-				069E15C81EFD338A00A9C1FA /* studioInfoSubFactory.swift in Sources */,
 				D9F9BC351ED710510063C025 /* history.xcdatamodeld in Sources */,
 				D9344EFA1ECEF7DE0078A1BE /* UserHotCustomCell.swift in Sources */,
 				069E15DD1EFE053300A9C1FA /* studioHomeSubTitleView.swift in Sources */,
@@ -1224,9 +1178,9 @@
 				0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */,
 				062B2AB71F132BA90042B9A5 /* personalInfoTableViewCell.swift in Sources */,
 				069E15D91EFE00C700A9C1FA /* studioHomeViewController.swift in Sources */,
-				069E160D1EFFB81600A9C1FA /* studioTopicViewController.swift in Sources */,
 				07E2ABA51F188610008CE259 /* AnswerEditorController.swift in Sources */,
 				062B2ACB1F1368B50042B9A5 /* PersonalEditTableViewController.swift in Sources */,
+				D918CBF91F18A25A005D0899 /* StudioInfoCustomCell.swift in Sources */,
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
@@ -1262,6 +1216,7 @@
 				D98455671EC2E6620095D2EE /* UserHotSearchViewController.swift in Sources */,
 				061F50281EED48F1001BBAF9 /* Authentication.swift in Sources */,
 				069E15EB1EFE421000A9C1FA /* studioInfoTableViewCell.swift in Sources */,
+				D918CBFB1F18A5AA005D0899 /* StudioInfoListController.swift in Sources */,
 				07C88A811EE3A23D00300810 /* Abstract.swift in Sources */,
 				D918CBED1F135DDC005D0899 /* UserNotificationViewController.swift in Sources */,
 				069E15DB1EFE01FF00A9C1FA /* UIColorRGB.swift in Sources */,
@@ -1273,10 +1228,8 @@
 				061CBF791F0664F30049EC6A /* addAdminButtons.swift in Sources */,
 				062B2ABB1F1364640042B9A5 /* GlobalConstant.swift in Sources */,
 				4091248E1EB45F3800347EEF /* AppDelegate.swift in Sources */,
-				069E15D11EFD34E600A9C1FA /* studioHotViewController.swift in Sources */,
 				062D04E71F14B36100499EEB /* personalQuestionTableViewController.swift in Sources */,
 				D918CBEF1F135F3D005D0899 /* UserNotificationCustomCell.swift in Sources */,
-				069E15D41EFD34FA00A9C1FA /* studioMemberViewController.swift in Sources */,
 				0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */,
 				D9D320EF1F0739090063F831 /* searchSubTitleView.swift in Sources */,
 				069E15F71EFE864400A9C1FA /* editNameTableViewCell.swift in Sources */,
@@ -1285,7 +1238,6 @@
 				069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */,
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
 				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,
-				069E15C61EFD32A100A9C1FA /* studioInfoSubTitleView.swift in Sources */,
 				07E2ABA31F188542008CE259 /* DetailEditorController.swift in Sources */,
 				064D9E901F17490800B1BD8C /* GetPicture.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
