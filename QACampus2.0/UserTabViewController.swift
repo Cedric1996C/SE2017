@@ -44,7 +44,8 @@ class UserTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        initUserInfo()
+//        localUserCheck()
+//        initUserInfo()
         initControllers()
         
         view.backgroundColor = sectionHeaderColor
@@ -172,9 +173,8 @@ extension UserTabViewController {
             let mainVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)
         } else {
-//            print(local_user)
-            let user = NSKeyedUnarchiver.unarchiveObject(with: local_user!) as! User
-//            print(user.email!)
+            initUserInfo()
+//            let user = NSKeyedUnarchiver.unarchiveObject(with: local_user!) as! User
         }
         
     }
