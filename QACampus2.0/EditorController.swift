@@ -9,6 +9,8 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
     
     var detailViewNotEdited: Bool = true
     
+    var isQuestion: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,10 +22,19 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         
         detailViewNotEdited = true
         
-        setDetailViewPlaceholder()
         configKeyboardEvent()
         configDetailViewKeyboard()
         adjustAppearance()
+    }
+    
+    func setQuestion() {
+        self.isQuestion = true
+        self.titleView.placeholder = "一句话描述你的问题"
+    }
+    
+    func setTopic() {
+        self.isQuestion = false
+        self.titleView.placeholder = "一句话概述你的话题"
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,10 +55,6 @@ class EditorController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         titleView.leftView = paddingView
         titleView.leftViewMode = .always
         putDetailViewPlaceholder()
-    }
-    
-    func setDetailViewPlaceholder() {
-        self.detailViewPlaceholder = ""
     }
     
     func putDetailViewPlaceholder() {
