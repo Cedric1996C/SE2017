@@ -26,19 +26,8 @@ class userStudioViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         initData()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.indicator.stopAnimating()
-        }
+        
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        //viewDidLoad->viewWillAppear->tableView->viewDidAppear
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,7 +95,7 @@ extension userStudioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: userStudioTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userStudio") as! userStudioTableViewCell
-        cell.bgimage.image = images[indexPath.row]
+        cell.bgimage.image = (images[indexPath.row] != nil) ? images[indexPath.row]:#imageLiteral(resourceName: "food")
         cell.name.text = tableData[indexPath.row].name
         cell.introduction.text = tableData[indexPath.row].introduction
         return cell
@@ -116,8 +105,7 @@ extension userStudioViewController: UITableViewDataSource {
 extension userStudioViewController {
     
     func initData() {
-//        indicator.startAnimating()
-//            Thread.sleep(forTimeInterval: 2)
+
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
@@ -127,8 +115,7 @@ extension userStudioViewController {
             var json = JSON(response.result.value!)
             let list: Array<JSON> = json["content"].arrayValue
         
-            let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.reload), userInfo: nil, repeats: false)
-            
+
             for json in list {
                 let name = json["name"].string
                 let introduction = json["introduction"].string
@@ -153,20 +140,18 @@ extension userStudioViewController {
                         Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
                             
                             if response.error == nil, let imagePath = response.destinationURL?.path {
-                                let image = UIImage(contentsOfFile: imagePath)
                                 self.images.append(getPicture(pic_path))
+                                self.reload()
                             }
                         }
                     }
                 }
             }
-//             let timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.reload), userInfo: nil, repeats: false)
         }
     
     }
     
     func reload() {
-        print(images.count)
         self.tableView.reloadData()
     }
 }

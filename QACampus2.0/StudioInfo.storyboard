@@ -186,7 +186,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="n9c-x0-HLs"/>
                     <connections>
+                        <outlet property="askView" destination="v9R-VW-G5D" id="Upp-P6-dyu"/>
+                        <outlet property="collectIcon" destination="NAO-zL-KYa" id="9Am-Gp-POL"/>
+                        <outlet property="collectLabel" destination="scj-be-xQp" id="Zah-SO-RZh"/>
+                        <outlet property="collectView" destination="6Cq-eN-Q7I" id="XrF-sG-KHj"/>
                         <outlet property="collectionView" destination="qK4-S5-ba3" id="BIq-bQ-gwJ"/>
+                        <outlet property="introduction" destination="4gH-kE-tph" id="QjR-y6-7Gb"/>
+                        <outlet property="studioName" destination="aXm-h3-O8T" id="aMf-vr-fmV"/>
                         <segue destination="XY7-A6-g0g" kind="show" identifier="showStudioInfoList" id="RqJ-mQ-ton"/>
                     </connections>
                 </viewController>

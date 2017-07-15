@@ -12,9 +12,12 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     
     @IBOutlet weak var collectionView: UICollectionView!
-//    @IBOutlet weak var studioAvator: UIImageView!
+    
+    @IBOutlet weak var collectView: UIView!
     @IBOutlet weak var collectIcon: UIImageView!
     @IBOutlet weak var collectLabel: UILabel!
+    
+    @IBOutlet weak var askView: UIView!
     
     @IBOutlet weak var studioName: UILabel!
     @IBOutlet weak var introduction: UILabel!

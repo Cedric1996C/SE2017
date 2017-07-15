@@ -40,7 +40,10 @@ func saveImage(currentImage:UIImage,path:String){
 func getPicture(_ path:String) -> UIImage {
     
     let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent(path)
-    print(fullPath)
-    return UIImage(contentsOfFile: fullPath)!
+    if let image = UIImage(contentsOfFile: fullPath) {
+        return image
+    } else {
+        return UIImage(named:"no.1")!
+    }
     
 }
