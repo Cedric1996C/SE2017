@@ -10,6 +10,7 @@ import Foundation
 
 class Question {
     
+    var id:Int?
     var name: String?
     var date:String?
     var title:String?
