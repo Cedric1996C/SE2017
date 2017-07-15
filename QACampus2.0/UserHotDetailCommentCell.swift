@@ -1,10 +1,10 @@
 import UIKit
 
-class UserHotDetailContentCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var questionDetailLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+class UserHotDetailCommentCell: UITableViewCell {
+    
+    @IBOutlet weak var userIdButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

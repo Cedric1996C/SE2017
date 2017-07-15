@@ -103,15 +103,19 @@ class UserHotDetailViewController: UITableViewController {
             cell.titleLabel.text = Detail.title
             cell.detailLabel.text = Detail.detail
             cell.titleLabel.sizeToFit()
+            cell.questionDetailLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
             return cell
         }
         else {
-            let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "contentCell") as! UserHotDetailContentCell
-            cell.titleLabel.text = "foo"
-            cell.detailLabel.text = "bar"
-            cell.titleLabel.sizeToFit()
-            cell.detailLabel.sizeToFit()
+            let cell: UserHotDetailCommentCell = self.tableView.dequeueReusableCell(withIdentifier: "commentCell") as! UserHotDetailCommentCell
+            cell.commentLabel.text = String(repeating: "这是评论", count: 100)
+            let formatter = DateFormatter()
+            formatter.dateStyle = .full
+            cell.timeLabel.text = formatter.string(from: Date())
+            cell.userIdButton.sizeToFit()
+            cell.timeLabel.sizeToFit()
+            cell.commentLabel.sizeToFit()
             return cell
         }
     }
