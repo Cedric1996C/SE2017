@@ -7,29 +7,26 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class PersonalEditTableViewController: editTableViewController {
 
     lazy var tagTitle:[String] = {
-        return ["昵称","简介","所在院系"]
+        return ["昵称","简介"]
     }()
     
-    var avator:UIImage?
+    var avator:UIImage = User.avator
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        animationForDismiss()
         cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
         authentication()
-        // 设置 tabelView 行高,自动计算行高
         tableView.rowHeight = UITableViewAutomaticDimension
-        // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
         tableView.estimatedRowHeight = 300
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +64,7 @@ class PersonalEditTableViewController: editTableViewController {
         case 0:
             return 1
         case 1:
-            return 3
+            return 2
         default:
             return 2
         }
@@ -101,6 +98,14 @@ class PersonalEditTableViewController: editTableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "editInfo", for: indexPath) as! editInfoTableViewCell
+            switch indexPath.row {
+            case 0:
+                cell.content.placeholder = User.name
+            case 1:
+                cell.content.placeholder = User.introduction
+            default:
+                cell.content.placeholder = User.department
+            }
             cell.tagTitle.text = tagTitle[indexPath.row]
             return cell
         default:
@@ -111,22 +116,14 @@ class PersonalEditTableViewController: editTableViewController {
     }
  
 
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
             selectIcon()
-//            let path = "/Users/njucong/Downloads/like01.png"
-//            prepareForStorage(path)
         case 2:
             if(indexPath.row == 0) {
-//                performSegue(withIdentifier: "reset", sender: self)
-                getPicture("1/avator.png")
+                performSegue(withIdentifier: "reset", sender: self)
             } else {
                 let loginVc = UIStoryboard.init(name: "Login", bundle: nil).instantiateInitialViewController()
                 self.present(loginVc!, animated: true, completion: nil)
@@ -138,6 +135,55 @@ class PersonalEditTableViewController: editTableViewController {
 
     func cancel(sender:Any){
         self.dismiss(animated: false, completion: nil)
-//        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func save(sender:Any) {
+        let path = "owner-service/owners/\(User.localUserId)"
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        
+        var index = IndexPath(row:0, section: 1)
+        var cell = tableView.cellForRow(at:index) as! editInfoTableViewCell
+        if cell.content.text != cell.content.placeholder {
+            changeDisplayName(name: cell.content.text,path: path)
+        }
+        index = IndexPath(row:1,section: 2)
+        cell = tableView.cellForRow(at:index) as! editInfoTableViewCell
+        if cell.content.text != cell.content.placeholder {
+            changeIntroduction(introduction: cell.content.text, path: path)
+        }
+        
+        if avator != User.avator {
+            let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("personalAvator")
+            //准备上传头像
+            prepareForStorage(fullPath, destination: storageRoot+"user/\(User.localUserId)")
+        }
+        
+    }
+    
+}
+
+extension PersonalEditTableViewController {
+    
+    func changeDisplayName(name:String,path:String) {
+        
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        let parameters:Parameters = ["displayname": name]
+        Alamofire.request("https://\(root):8443/\(path)/displayname" , method: .post, parameters:parameters,headers: headers).responseJSON { response in
+        
+        }
+    }
+    
+    func changeIntroduction(introduction:String,path:String) {
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        let parameters:Parameters = ["introduction": introduction]
+        Alamofire.request("https://\(root):8443/\(path)/introduction" , method: .post, parameters:parameters,headers: headers).responseJSON { response in
+            
+        }
     }
 }

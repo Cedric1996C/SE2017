@@ -13,6 +13,8 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var background: UIImageView!
+  
     @IBOutlet weak var collectView: UIView!
     @IBOutlet weak var collectIcon: UIImageView!
     @IBOutlet weak var collectLabel: UILabel!
@@ -21,6 +23,8 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @IBOutlet weak var studioName: UILabel!
     @IBOutlet weak var introduction: UILabel!
+    
+    @IBOutlet weak var studioAvator: UIImageView!
     
     var icons:[UIImage] = []
     
@@ -31,18 +35,11 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         return ["最新回答","最新话题","热门","成员"]
     }()
     
-    
-    lazy var studioAvator: UIImageView = { [unowned self] in
-        let avator = UIImageView()
-        return avator
-    }()
 
-    lazy var isCollected: Bool = {
-        return false
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        background.clipsToBounds = true
         // self.navigationController?.navigationBar.addSubview(studioAvator)
         // Do any additional setup after loading the view.
         icons.append(UIImage(named:"answer01")!)
@@ -52,18 +49,32 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        initInfo()
+        initAvator()
     }
     
     func initButton(){
-        let item=UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.plain, target: self, action: #selector(returnUser))
-        item.tintColor = defaultColor
-        self.navigationItem.leftBarButtonItem = item
+        let returnButton = UIButton()
+        background.addSubview(returnButton)
+        
+        background.snp.makeConstraints({ make in
+            make.height.width.equalTo(40.0)
+//            make.left.top.equalToSuperview().offset(60.0)
+            make.center.equalToSuperview()
+        })
+        
+        returnButton.setImage(#imageLiteral(resourceName: "back_pressed"), for: .normal)
+        returnButton.setImage(#imageLiteral(resourceName: "back"), for: .highlighted)
+        
+        returnButton.addTarget(self, action: #selector(cancel), for: UIControlEvents.touchUpInside)
     }
     
     func initInfo () {
-        studioName.text = SingletonStudio.title
-        studioAvator.image = SingletonStudio.avator
-        introduction.text = SingletonStudio.introduction
+        studioName.text = StudioDetail.title
+        studioAvator.image = StudioDetail.avator
+        introduction.text = StudioDetail.introduction
+        background.image = StudioDetail.background
+        isCollected()
     }
 
     func initAvator () {
@@ -110,7 +121,27 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
             d.type=self.type
         }
     }
+    
+    func cancel (sender:Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func isCollected () {
+        if StudioDetail.isCollected {
+            collectIcon.image = UIImage(named: "favorite02")
+            collectLabel.text = "已收藏"
+            collectLabel.textColor = UIColor.lightGray
+        } else {
+            collectIcon.image = UIImage(named: "favorite01")
+            collectLabel.text = "收藏"
+            collectLabel.textColor = iconColor
+        }
+    }
 
+    @IBAction func collectViewTap(_ sender: Any) {
+        StudioDetail.isCollected = !StudioDetail.isCollected
+        isCollected()
+    }
 }
 
 

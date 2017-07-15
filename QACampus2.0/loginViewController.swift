@@ -110,34 +110,34 @@ class loginViewController: UIViewController {
             "Authorization":userAuthorization
         ]
         
-        Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .post, parameters:parameters,headers: headers).responseJSON { response in
-            
-            var userJSON = JSON(response.result.value)
-            let id:Int = userJSON["id"].int!
-            //自定义对象存储
-            let user = User(id:id,email: self.email.text, password: self.password.text)
-            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
-            userDefault.set(modelData, forKey: "local_user")
-            
-            let path = "/user/\(id)"
-            //请求客户端的文件路径下的文件
-            Alamofire.request("https://localhost:6666/files\(path)", method: .get).responseJSON { response in
-                if let json = response.result.value {
-                    let pictures:[String] = json as! [String]
-                    let pic_path = path.appending("/" + pictures[1])
-                    
-                    //获取文件
-                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                        let fileURL = documentsURL.appendingPathComponent(pic_path)
-                        
-                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                    }
-                }
-            }
-            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
-            self.present(mainVC!, animated: true, completion: nil)
-        }
+//        Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .post, parameters:parameters,headers: headers).responseJSON { response in
+//            
+//            var userJSON = JSON(response.result.value)
+//            let id:Int = userJSON["id"].int!
+//            //自定义对象存储
+//            let user = User(id:id,email: self.email.text, password: self.password.text)
+//            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
+//            userDefault.set(modelData, forKey: "local_user")
+//            
+//            let path = "/user/\(id)"
+//            //请求客户端的文件路径下的文件
+//            Alamofire.request("https://localhost:6666/files\(path)", method: .get).responseJSON { response in
+//                if let json = response.result.value {
+//                    let pictures:[String] = json as! [String]
+//                    let pic_path = path.appending("/" + pictures[1])
+//                    
+//                    //获取文件
+//                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+//                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+//                        
+//                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+//                    }
+//                }
+//            }
+//            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
+//            self.present(mainVC!, animated: true, completion: nil)
+//        }
 
     }
     

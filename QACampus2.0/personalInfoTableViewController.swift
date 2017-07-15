@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class personalInfoTableViewController: UITableViewController {
 
@@ -17,18 +19,14 @@ class personalInfoTableViewController: UITableViewController {
     lazy var tagNums:[String] = {
         return ["0","0","0","0"]
     }()
-    
-    lazy var user:User = {
-        return User(name:"南大鸽子王",introduction:"逢约必鸽，不见不散",thumb_num:1,question_num:2)
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initData()
         view.backgroundColor = sectionHeaderColor
-        user.avator = UIImage(named:"no.1")
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,11 +58,11 @@ class personalInfoTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "personalInfo", for: indexPath) as! personalInfoTableViewCell
-            cell.name.text = user.name
-            cell.introduction.text = user.introduction
-            cell.questionNum.text = String(describing: user.question_num!)
-            cell.thumbNum.text = String(describing: user.thumb_num!)
-            cell.avator.image = user.avator as! UIImage
+            cell.name.text = User.name
+            cell.introduction.text = User.introduction
+            cell.questionNum.text = String(User.question_num)
+            cell.thumbNum.text = String(User.thumb_num)
+            cell.avator.image = User.avator
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
@@ -107,7 +105,6 @@ class personalInfoTableViewController: UITableViewController {
         }
     }
 
-    
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
@@ -140,5 +137,39 @@ class personalInfoTableViewController: UITableViewController {
         }
     }
     
-   
+}
+
+extension personalInfoTableViewController {
+  
+    //初始化personalInfo,头像、昵称、简介、各数字
+    func initData () {
+        let path = "owner-service/owners/\(User.localEmail)"
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        
+        Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                let pictures:[String] = json as! [String]
+                let pic_path = path.appending("/" + pictures[1])
+                
+                //获取文件
+                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let fileURL = documentsURL.appendingPathComponent(pic_path)
+                    
+                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                }
+                Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                    
+                    if response.error == nil, let imagePath = response.destinationURL?.path {
+                        StudioDetail.avator = getPicture(pic_path)
+                        self.performSegue(withIdentifier: "showStudioInfo", sender: self)
+                    }
+                }
+            }
+        }
+
+    }
+    
 }

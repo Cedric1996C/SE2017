@@ -59,7 +59,8 @@ class UserTabViewController: UIViewController {
         //自定义对象读取
         if let user = userDefault.data(forKey: "local_user") {
             let localUser = NSKeyedUnarchiver.unarchiveObject(with: user) as! User
-            localUser_id = localUser.userId
+            User.localUserId = localUser.userId!
+            User.localEmail = localUser.email!
         }
     }
     
