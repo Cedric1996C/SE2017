@@ -13,6 +13,11 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
 //    @IBOutlet weak var studioAvator: UIImageView!
+    @IBOutlet weak var collectIcon: UIImageView!
+    @IBOutlet weak var collectLabel: UILabel!
+    
+    @IBOutlet weak var studioName: UILabel!
+    @IBOutlet weak var introduction: UILabel!
     
     var icons:[UIImage] = []
     
@@ -25,30 +30,16 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     
     lazy var studioAvator: UIImageView = { [unowned self] in
-        let image = UIImageView()
-        image.image = UIImage(named:"no.1")
-        return image
+        let avator = UIImageView()
+        return avator
     }()
 
+    lazy var isCollected: Bool = {
+        return false
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initButton()
-        self.navigationController?.navigationBar.addSubview(studioAvator)
-        studioAvator.snp.makeConstraints ({ make in
-            make.height.width.equalTo(80)
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-        })
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        icons.append(UIImage(named:"answer01")!)
-        icons.append(UIImage(named:"comment01")!)
-        icons.append(UIImage(named:"hot01")!)
-        icons.append(UIImage(named:"user01")!)
-        
         // self.navigationController?.navigationBar.addSubview(studioAvator)
         // Do any additional setup after loading the view.
     }
@@ -58,7 +49,20 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         item.tintColor = defaultColor
         self.navigationItem.leftBarButtonItem = item
     }
+    
+    func initInfo () {
+        studioName.text = SingletonStudio.title
+        studioAvator.image = SingletonStudio.avator
+        introduction.text = SingletonStudio.introduction
+    }
 
+    func initAvator () {
+        self.navigationController?.navigationBar.addSubview(studioAvator)
+        studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
+        studioAvator.contentMode = .scaleAspectFill
+        studioAvator.layer.masksToBounds = true
+        studioAvator.layer.cornerRadius = studioAvator.frame.width/2
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -95,7 +99,6 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
             d.type=self.type
         }
     }
-
 
 }
 

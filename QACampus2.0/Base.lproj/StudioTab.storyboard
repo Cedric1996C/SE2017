@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="je2-ch-wzl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zds-lA-hsG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -72,7 +72,7 @@
                                                         </constraints>
                                                         <state key="normal" title="Button" image="add01"/>
                                                         <connections>
-                                                            <segue destination="iLw-QP-9t0" kind="presentation" id="wmN-e3-wtF"/>
+                                                            <segue destination="iLw-QP-9t0" kind="show" id="wmN-e3-wtF"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -155,18 +155,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTd-t7-beT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-750.72463768115949" y="904.89130434782612"/>
+            <point key="canvasLocation" x="188" y="904.49775112443785"/>
         </scene>
-        <!--StudioTopicEdit-->
+        <!--TopicEditor-->
         <scene sceneID="Hwy-bi-fSM">
             <objects>
-                <viewControllerPlaceholder storyboardName="StudioTopicEdit" id="iLw-QP-9t0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TopicEditor" id="iLw-QP-9t0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" enabled="NO" title="     " id="EUO-D8-ZgG"/>
                     <navigationItem key="navigationItem" id="UWz-Ez-GB3"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zIG-ql-OFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-916" y="1448"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x9L-gI-vJB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zds-lA-hsG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UO0-GH-v6Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="je2-ch-wzl" kind="relationship" relationship="rootViewController" id="vyV-FC-9wh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dac-Vb-GdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-751.20000000000005" y="904.49775112443785"/>
         </scene>
     </scenes>
     <resources>

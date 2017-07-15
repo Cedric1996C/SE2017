@@ -17,12 +17,12 @@ class studioQuestionTableViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var introduction: UILabel!
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        bgView.layer.cornerRadius = 10.0
-        bgView.layer.masksToBounds = true
-        bgView.backgroundColor = UIColor(red:255/255,green:235/255,blue:235/255,alpha:1)
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+        contentView.backgroundColor = UIColor(red:255/255,green:235/255,blue:235/255,alpha:1)
         // Initialization code
     }
 
@@ -31,5 +31,6 @@ class studioQuestionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }
