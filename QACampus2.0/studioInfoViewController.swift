@@ -42,6 +42,13 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         super.viewDidLoad()
         // self.navigationController?.navigationBar.addSubview(studioAvator)
         // Do any additional setup after loading the view.
+        icons.append(UIImage(named:"answer01")!)
+        icons.append(UIImage(named:"comment01")!)
+        icons.append(UIImage(named:"hot01")!)
+        icons.append(UIImage(named:"user01")!)
+        
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     func initButton(){
@@ -93,6 +100,7 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         self.type = indexPath.row
         performSegue(withIdentifier: "showStudioInfoList", sender: (Any).self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier=="showStudioInfoList"){
             let d = segue.destination as! StudioInfoListController
