@@ -41,7 +41,6 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     /// 子标题视图
     lazy var subTitleView: studioHomeSubTitleView = { [unowned self] in
         let view = studioHomeSubTitleView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 40))
-        //        view.addSubview(view)
         return view
         }()
     
@@ -61,6 +60,11 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let item=UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(returnUser))
+        item.tintColor = defaultColor
+        self.navigationItem.leftBarButtonItem = item
+
         initView()
         initPageView()
         initAvator()
@@ -91,12 +95,7 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
             make.top.equalTo(subTitleView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-//        
-//        devideLine.snp.makeConstraints{ make in
-//            make.height.equalTo(1)
-//            make.bottom.left.right.equalToSuperview()
-//        }
-//        
+        
         subTitleView.delegate = self as? studioHomeSubTitleViewDelegate
         subTitleView.titleArray = btnNames
         
@@ -104,10 +103,15 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     
     func initAvator () {
         self.navigationController?.navigationBar.addSubview(studioAvator)
+        studioAvator.image = LocalStudio.avator
         studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
         studioAvator.contentMode = .scaleAspectFill
         studioAvator.layer.masksToBounds = true
         studioAvator.layer.cornerRadius = studioAvator.frame.width/2
+        
+        studioName.text = LocalStudio.title
+        studioIntro.text = LocalStudio.introduction
+        QustionAndTopic.text = "解决了\(LocalStudio.answerNUm)个问题，获得了\(LocalStudio.thumbNum)个赞"
     }
     
     
@@ -127,7 +131,10 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func editStudioInfo(_ sender: UITapGestureRecognizer) {
 
     }
-
+    
+    func returnUser(sender:Any){
+        
+    }
 
 }
 

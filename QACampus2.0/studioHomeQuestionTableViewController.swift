@@ -13,18 +13,21 @@ import SwiftyJSON
 class studioHomeQuestionTableViewController: UITableViewController {
 
 //     var itemDatasource:studioHomeQuestion
+    lazy var itemData:[Question] = {
+        return []
+    }()
+    
+    lazy var avators:[Int:UIImage] = {
+        return [:]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         authentication()
         initData()
+        
         tableView.backgroundColor = sectionHeaderColor
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +35,6 @@ class studioHomeQuestionTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -41,7 +43,7 @@ class studioHomeQuestionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return itemData.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,18 +57,20 @@ class studioHomeQuestionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:studioHomeQuestionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioHomeQuestion") as! studioHomeQuestionTableViewCell
-                //        let item = itemDataSource[indexPath.section][indexPath.row]
-        cell.avator.image = UIImage(named:"no.1")
+        let item = itemData[indexPath.row]
+        let id:Int = item.id!
+        cell.avator.image = (avators[id] != nil) ? avators[id]:UIImage(named:"no.1")
+//        cell.question.text = item.title
+//        cell.byskyler.text = item.name
+//        cell.thumbTime.text = String(item.thumbNum)
         cell.question.text = "Python是强类型语言吗？"
         cell.byskyler.text = "南大鸽子王"
         return cell
     }
     
     func initData() {
-        Alamofire.request("http://localhost:2347/studios" ,method: .get).responseJSON { response in
-          
-//            print("Response: \(String(describing: response.response))") // http url response
-//            print("Result: \(response.result)")                         // response serialization result
+        Alamofire.request("http://\(root):8443/studios" ,method: .get).responseJSON { response in
+
             var json = JSON(response.result.value)
 //            switch response.result {
 //            case .success(let value):

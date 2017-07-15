@@ -130,21 +130,26 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
             let cell:studioAvatorTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioAvatorCell") as! studioAvatorTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
             cell.title.text = item
-            cell.avator.image = UIImage(named: "no.1")
+            cell.avator.image = LocalStudio.avator
             
             return cell
         } else if indexPath.section == 2 {
             let cell:studioInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioInfoCell") as! studioInfoTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
             cell.title.text = item
-            cell.content.text = "未设置"
-            cell.content.textColor = subTitleBorderColor
+            if indexPath.row == 0{
+                cell.content.text = LocalStudio.title != "" ? "未设置":LocalStudio.title
+                cell.content.textColor =  LocalStudio.title != "" ? subTitleBorderColor:.darkText
+            } else if indexPath.row == 3{
+                cell.content.text = LocalStudio.introduction != "" ? "未设置":LocalStudio.introduction
+                cell.content.textColor =  LocalStudio.introduction != "" ? subTitleBorderColor:.darkText
+            }
             return cell
         } else if indexPath.section == 3 || indexPath.section == 5{
             let cell:studioAdminTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioAdminCell") as! studioAdminTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
             cell.title.text = item
-            cell.content.text = "点击添加"
+            cell.content.text = indexPath.section == 3 ? "":"点击添加"
             cell.content.textColor = subTitleBorderColor
 
             return cell
