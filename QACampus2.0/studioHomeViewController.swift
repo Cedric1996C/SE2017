@@ -133,7 +133,7 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func returnUser(sender:Any){
-        
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

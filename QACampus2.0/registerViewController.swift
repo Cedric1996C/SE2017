@@ -49,8 +49,7 @@ class registerViewController: UIViewController {
             "email": email.text!,
             "password": password.text!
         ]
-//        var statusCode:Int?
-//        print(parameters)
+
         Alamofire.request("https://\(root):8443/register",method: .post, headers:headers).responseString { response in
             self.statusCode = (response.response?.statusCode)!
             print(self.statusCode)
@@ -62,7 +61,6 @@ class registerViewController: UIViewController {
 
     func registerResult(result:Int){
 
-//        let alert = alertView()
         self.view.addSubview(alert)
         alert.snp.makeConstraints({ make in
             make.center.equalToSuperview()
@@ -80,7 +78,7 @@ class registerViewController: UIViewController {
             alert.addContent(content: "该邮箱已被注册，请重试")
             alert.addImage(image: UIImage(named:"alert_wrong")!)
         default:
-            alert.addContent(content: "注册成功，正在登陆！")
+            alert.addContent(content: "注册成功，正在跳转登录界面！")
             alert.addImage(image: UIImage(named:"alert_right")!)
         }
         let timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(alertEnd), userInfo: nil, repeats: false);
@@ -89,20 +87,15 @@ class registerViewController: UIViewController {
 
     func alertEnd() {
         if statusCode == 200 {
-            
-            let userDefault = UserDefaults.standard
-            let user = User(id:0,email: email.text, password: password.text)
-            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
-            userDefault.set(modelData, forKey: "local_user")
-
-            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
-            self.present(mainVC!, animated: true, completion: nil)
+            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+            self.present(loginVC!, animated: true, completion: nil)
         } else {
              alert.removeFromSuperview()
         }
     }
     
     @IBAction func accountLogin(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
         let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
         self.present(loginVC!, animated: true, completion: nil)
     }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
@@ -43,9 +45,10 @@ class UserTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        authentication()
+       
         initUI()
-//        localUserCheck()
-//        initUserInfo()
+        initUserInfo()
         initControllers()
         
         view.backgroundColor = sectionHeaderColor
@@ -61,6 +64,64 @@ class UserTabViewController: UIViewController {
             let localUser = NSKeyedUnarchiver.unarchiveObject(with: user) as! User
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
+            
+            let path = "/user/\(localUser.userId!)"
+           
+            //请求用户的头像
+            Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                
+                if response.response?.statusCode == 200 {
+                    let json = response.result.value
+                    if let pictures:[String] = json as! [String] {
+                        let pic_path = path.appending("/" + pictures[1])
+                        
+                        //获取文件
+                        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                            let fileURL = documentsURL.appendingPathComponent(pic_path)
+                            
+                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                        }
+                        
+                        Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                            
+                            if response.error == nil, let imagePath = response.destinationURL?.path {
+                                User.avator = getPicture(pic_path)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            let headers:HTTPHeaders = [
+                "Authorization":userAuthorization
+            ]
+            
+            //请求用户的信息
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)", method: .get,headers: headers).responseJSON { response in
+                
+                if  response.result.value != nil {
+                    if (response.response?.statusCode)! == 200 {
+                        let userJSON = JSON(response.result.value!)
+                        print(userJSON)
+                        User.question_num = userJSON["question_num"].int
+                        User.answer_num = userJSON["answer_num"].int
+                        User.studio_num = userJSON["studio_num"].int
+                        var temp: JSON = userJSON["question"]
+                        User.myQuestion = temp.array?.count
+                        temp = userJSON["_question_collect"]
+                        User.collectQuestion = temp.array?.count
+                        temp = userJSON["_studio_collect"]
+                        User.collectStudio = temp.array?.count
+                        temp = userJSON["_topic_collect"]
+                        User.collectTopic = temp.array?.count
+                        User.name = userJSON["display_name"].string
+                        User.introduction = userJSON["introduction"].string
+                    }
+                }
+                
+            }
+
         }
     }
     

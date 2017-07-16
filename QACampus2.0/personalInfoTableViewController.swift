@@ -16,13 +16,18 @@ class personalInfoTableViewController: UITableViewController {
         return ["我的问题","收藏问题","收藏话题","收藏工作室"]
     }()
     
-    lazy var tagNums:[String] = {
-        return ["0","0","0","0"]
+    lazy var tagNums:[Int] = {
+        return [
+            User.myQuestion,
+            User.collectQuestion,
+            User.collectTopic,
+            User.collectStudio
+        ]
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
+//        initData()
         view.backgroundColor = sectionHeaderColor
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -61,7 +66,7 @@ class personalInfoTableViewController: UITableViewController {
             cell.name.text = User.name
             cell.introduction.text = User.introduction
             cell.questionNum.text = String(User.question_num)
-            cell.thumbNum.text = String(User.thumb_num)
+            cell.thumbNum.text = String(User.studio_num)
             cell.avator.image = User.avator
             return cell
         case 1:
@@ -72,7 +77,7 @@ class personalInfoTableViewController: UITableViewController {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
             cell.tagName.text = tagNames[indexPath.row]
-            cell.num.text = tagNums[indexPath.row]
+            cell.num.text = String(tagNums[indexPath.row])
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "space", for: indexPath) as! spaceTableViewCell
@@ -139,37 +144,12 @@ class personalInfoTableViewController: UITableViewController {
     
 }
 
-extension personalInfoTableViewController {
-  
-    //初始化personalInfo,头像、昵称、简介、各数字
-    func initData () {
-        let path = "owner-service/owners/\(User.localEmail)"
-        let headers:HTTPHeaders = [
-            "Authorization": userAuthorization
-        ]
-        
-        Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
-            if let json = response.result.value {
-                let pictures:[String] = json as! [String]
-                let pic_path = path.appending("/" + pictures[1])
-                
-                //获取文件
-                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                    let fileURL = documentsURL.appendingPathComponent(pic_path)
-                    
-                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                }
-                Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
-                    
-                    if response.error == nil, let imagePath = response.destinationURL?.path {
-                        StudioDetail.avator = getPicture(pic_path)
-                        self.performSegue(withIdentifier: "showStudioInfo", sender: self)
-                    }
-                }
-            }
-        }
-
-    }
-    
-}
+//extension personalInfoTableViewController {
+//  
+//    //初始化personalInfo,头像、昵称、简介、各数字
+//    func initData () {
+//        
+//
+//    }
+//    
+//}
