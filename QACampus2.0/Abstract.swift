@@ -10,14 +10,16 @@ import Foundation
 
 class Abstract {
     
+    let id: Int
     let count: Int
     let title: String
     let detail: String
     
-    init(count: Int, title: String, detail: String) {
-        self.count = count
-        self.title = title
-        self.detail = detail
+    init(id: Int?, count: Int?, title: String?, detail: String?) {
+        self.id = id ?? -1
+        self.count = count ?? 0
+        self.title = title ?? ""
+        self.detail = detail ?? ""
     }
     
 }
