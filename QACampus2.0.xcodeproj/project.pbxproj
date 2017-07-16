@@ -60,7 +60,6 @@
 		064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */; };
 		064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */; };
 		064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E961F1794BA00B1BD8C /* date2String.swift */; };
-		064D9E9A1F186A1E00B1BD8C /* SingletonStudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */; };
 		064D9E9D1F18A33800B1BD8C /* TopicDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 064D9E9C1F18A33800B1BD8C /* TopicDetail.storyboard */; };
 		064D9EA31F18AF5100B1BD8C /* topicDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA21F18AF5100B1BD8C /* topicDetailTableViewController.swift */; };
 		064D9EA51F18B05F00B1BD8C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9EA41F18B05F00B1BD8C /* Comment.swift */; };
@@ -109,7 +108,6 @@
 		069E16451F05E58000A9C1FA /* editIntroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16441F05E58000A9C1FA /* editIntroTableViewCell.swift */; };
 		069E16471F05EBF100A9C1FA /* editBlogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16461F05EBF100A9C1FA /* editBlogTableViewController.swift */; };
 		069E16491F05ECD000A9C1FA /* editBlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E16481F05ECD000A9C1FA /* editBlogTableViewCell.swift */; };
-		06DF485D1F1A016B00E5267E /* StudioInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06DF485C1F1A016B00E5267E /* StudioInfo.storyboard */; };
 		0700761C1EE17BF7009A5ED8 /* UserHotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0700761B1EE17BF7009A5ED8 /* UserHotDetailViewController.swift */; };
 		070C27771F19F609001FDA57 /* UserHotDetailCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C27761F19F609001FDA57 /* UserHotDetailCommentCell.swift */; };
 		078080711EF2BEA9005B590C /* UserHotDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078080701EF2BEA9005B590C /* UserHotDetail.storyboard */; };
@@ -223,7 +221,6 @@
 		064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewController.swift; sourceTree = "<group>"; };
 		064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		064D9E961F1794BA00B1BD8C /* date2String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = date2String.swift; sourceTree = "<group>"; };
-		064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletonStudio.swift; sourceTree = "<group>"; };
 		064D9E9C1F18A33800B1BD8C /* TopicDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TopicDetail.storyboard; sourceTree = "<group>"; };
 		064D9EA21F18AF5100B1BD8C /* topicDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicDetailTableViewController.swift; sourceTree = "<group>"; };
 		064D9EA41F18B05F00B1BD8C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -273,7 +270,6 @@
 		069E16441F05E58000A9C1FA /* editIntroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editIntroTableViewCell.swift; sourceTree = "<group>"; };
 		069E16461F05EBF100A9C1FA /* editBlogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editBlogTableViewController.swift; sourceTree = "<group>"; };
 		069E16481F05ECD000A9C1FA /* editBlogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editBlogTableViewCell.swift; sourceTree = "<group>"; };
-		06DF485C1F1A016B00E5267E /* StudioInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioInfo.storyboard; sourceTree = "<group>"; };
 		0700761B1EE17BF7009A5ED8 /* UserHotDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotDetailViewController.swift; sourceTree = "<group>"; };
 		070C27761F19F609001FDA57 /* UserHotDetailCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHotDetailCommentCell.swift; sourceTree = "<group>"; };
 		078080701EF2BEA9005B590C /* UserHotDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserHotDetail.storyboard; sourceTree = "<group>"; };
@@ -738,7 +734,6 @@
 				07C88A821EE3A3E500300810 /* Detail.swift */,
 				062B2AAE1F131E7A0042B9A5 /* Studio.swift */,
 				062D04EA1F14B49D00499EEB /* Question.swift */,
-				064D9E991F186A1E00B1BD8C /* SingletonStudio.swift */,
 				064D9EA41F18B05F00B1BD8C /* Comment.swift */,
 				064D9EA81F18C1FA00B1BD8C /* TopicDetail.swift */,
 			);
@@ -1219,7 +1214,6 @@
 				064D9EA91F18C1FA00B1BD8C /* TopicDetail.swift in Sources */,
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
-				064D9E9A1F186A1E00B1BD8C /* SingletonStudio.swift in Sources */,
 				069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */,
 				062D04F01F14D5AA00499EEB /* editPersonalTableViewController.swift in Sources */,
 				062D05001F16355200499EEB /* collectQuestionTableViewCell.swift in Sources */,
