@@ -14,7 +14,6 @@
         <!--编辑信息-->
         <scene sceneID="MVv-fX-CGz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QiX-MB-LRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="otf-Db-yqo" customClass="editStudioInfoTableViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="3jB-Nj-cec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -29,7 +28,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lt-Sb-0Ar">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lt-Sb-0Ar">
                                             <rect key="frame" x="110" y="13" width="200" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="5lt-Sb-0Ar" secondAttribute="height" multiplier="200:27" id="FSh-Dl-o07"/>
@@ -82,7 +81,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOP-8s-cPd">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOP-8s-cPd">
                                             <rect key="frame" x="108" y="9" width="200" height="36"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="36" id="YF6-Pc-z2G"/>
@@ -190,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="259" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3bI-7o-RnX" id="j62-Af-l29">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pra-4j-bO4">
@@ -235,6 +234,7 @@
                         <segue destination="qzy-vx-SOS" kind="presentation" identifier="addAdmin" id="LVm-mL-sZq"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QiX-MB-LRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7904.347826086957" y="1753.5326086956522"/>
         </scene>

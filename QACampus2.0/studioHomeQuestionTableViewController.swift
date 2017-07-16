@@ -71,17 +71,19 @@ class studioHomeQuestionTableViewController: UITableViewController {
     func initData() {
         Alamofire.request("http://\(root):8443/studios" ,method: .get).responseJSON { response in
 
-            var json = JSON(response.result.value)
-//            switch response.result {
-//            case .success(let value):
-//                json = JSON(value)
-//                print("JSON: \(json)")
-//            case .failure(let error):
-//                print(error)
-//            }
-            
-            let list: Array<JSON> = json["content"].arrayValue
-            print(list)
+            if response.result.value != nil {
+                var json = JSON(response.result.value!)
+    //            switch response.result {
+    //            case .success(let value):
+    //                json = JSON(value)
+    //                print("JSON: \(json)")
+    //            case .failure(let error):
+    //                print(error)
+    //            }
+                
+                let list: Array<JSON> = json["content"].arrayValue
+                print(list)
+            }
         
         }
     }

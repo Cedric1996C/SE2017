@@ -11,7 +11,6 @@ import UIKit
 class editNameTableViewController: editTableViewController {
 
     var nameString:String?
-//    var newString:String?
     var delegate:editTableViewControllerDelegate?
     
     override func viewDidLoad() {
