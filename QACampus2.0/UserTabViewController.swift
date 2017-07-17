@@ -76,7 +76,7 @@ class UserTabViewController: UIViewController {
                 if  response.result.value != nil {
                     if (response.response?.statusCode)! == 200 {
                         let userJSON = JSON(response.result.value!)
-                        print(userJSON)
+//                        print(userJSON)
                         User.question_num = userJSON["question_num"].int
                         User.answer_num = userJSON["answer_num"].int
                         User.studio_num = userJSON["studio_num"].int
@@ -98,16 +98,17 @@ class UserTabViewController: UIViewController {
             
             Alamofire.request("https://\(root):8443/studio-service/studios/\(User.localUserId!)/studio",method: .get, headers: headers).responseJSON { response in
                
-                var json = JSON(response.result.value!)
-                print(json)
-                let list: Array<JSON> = json.arrayValue
-                print(list)
-                for json in list {
-                    let name:String = json["name"].string!
-                    let id:Int = json["id"].int!
-                    User.studios.append(id)
-                    User.studios_name[id] = name
-                }
+                if  response.result.value != nil {
+                    var json = JSON(response.result.value!)
+                    print(json)
+                    let list: Array<JSON> = json.arrayValue
+                    print(list)
+                    for json in list {
+                        let name:String = json["name"].string!
+                        let id:Int = json["id"].int!
+                        User.studios_name[id] = name
+                    }
+            }
             }
         
 
@@ -232,6 +233,4 @@ extension UserTabViewController {
         }
         
     }
-
-    
 }

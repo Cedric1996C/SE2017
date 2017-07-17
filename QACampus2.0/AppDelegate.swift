@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let mainVc = UIStoryboard(name:"MainInterface",bundle:nil).instantiateInitialViewController()
+        let rightVc = UIStoryboard(name:"PickStudio",bundle:nil).instantiateInitialViewController()
+//        SlideMenuOptions.contentViewScale = 0.50
+        let slideMenuController = SlideMenuController(mainViewController: mainVc!,  rightMenuViewController: rightVc!)
+        
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SlideMenuControllerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02AA4C90471E218E908BD8E6FB3A1980</key>
+		<key>19012D5003A5DE596D5B6832FFC17967</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D5AC8015212144332444D59FC29F7B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +83,16 @@
 			<true/>
 		</dict>
 		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C58A0D833CC03B8B4D5038FCFE7A879</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5378FABE42098E6A9CE6FC01F8DE457C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,22 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6CD6083BF3B601A80F5774C095A354E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BDEB813FCEF6B9D51D782B56E9F32EE2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E14A62900910444707A5504D25EC98DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F6870EA7BFB1703DB86F154B77DCDE86</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
+class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
     
     @IBOutlet weak var collectionView: UICollectionView!

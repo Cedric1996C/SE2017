@@ -70,7 +70,9 @@
 		0667AB471F1AF89400AB75D4 /* StudioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB451F1AF89400AB75D4 /* StudioDetail.swift */; };
 		0667AB481F1AF89400AB75D4 /* LocalStudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB461F1AF89400AB75D4 /* LocalStudio.swift */; };
 		0667AB4A1F1AF8A800AB75D4 /* placeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB491F1AF8A800AB75D4 /* placeHolder.swift */; };
-		0667AB4E1F1CB0F300AB75D4 /* studioPickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB4D1F1CB0F300AB75D4 /* studioPickView.swift */; };
+		0667AB501F1CF96A00AB75D4 /* PickStudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0667AB4F1F1CF96A00AB75D4 /* PickStudio.storyboard */; };
+		0667AB541F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB531F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift */; };
+		0667AB561F1CFEAD00AB75D4 /* pickStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -236,7 +238,9 @@
 		0667AB451F1AF89400AB75D4 /* StudioDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioDetail.swift; sourceTree = "<group>"; };
 		0667AB461F1AF89400AB75D4 /* LocalStudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStudio.swift; sourceTree = "<group>"; };
 		0667AB491F1AF8A800AB75D4 /* placeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = placeHolder.swift; sourceTree = "<group>"; };
-		0667AB4D1F1CB0F300AB75D4 /* studioPickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioPickView.swift; sourceTree = "<group>"; };
+		0667AB4F1F1CF96A00AB75D4 /* PickStudio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PickStudio.storyboard; sourceTree = "<group>"; };
+		0667AB531F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickAvatorTableViewCell.swift; sourceTree = "<group>"; };
+		0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickStudioViewController.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -533,7 +537,9 @@
 		0667AB4C1F1CB0C700AB75D4 /* pickView */ = {
 			isa = PBXGroup;
 			children = (
-				0667AB4D1F1CB0F300AB75D4 /* studioPickView.swift */,
+				0667AB4F1F1CF96A00AB75D4 /* PickStudio.storyboard */,
+				0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */,
+				0667AB531F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift */,
 			);
 			name = pickView;
 			sourceTree = "<group>";
@@ -1009,6 +1015,7 @@
 				062B2AD11F13E0170042B9A5 /* ResetPassword.storyboard in Resources */,
 				062B2AC91F1368A20042B9A5 /* PersonalEdit.storyboard in Resources */,
 				062B2ABE1F1365EB0042B9A5 /* CollectStudio.storyboard in Resources */,
+				0667AB501F1CF96A00AB75D4 /* PickStudio.storyboard in Resources */,
 				069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */,
 				409124981EB45F3800347EEF /* LaunchScreen.storyboard in Resources */,
 				061CBF671F0633200049EC6A /* AddAdmin.storyboard in Resources */,
@@ -1237,6 +1244,7 @@
 				069E160F1EFFB96900A9C1FA /* studioTopicEditViewController.swift in Sources */,
 				064D9EA91F18C1FA00B1BD8C /* TopicDetail.swift in Sources */,
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
+				0667AB561F1CFEAD00AB75D4 /* pickStudioViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
 				069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */,
 				062D04F01F14D5AA00499EEB /* editPersonalTableViewController.swift in Sources */,
@@ -1276,7 +1284,6 @@
 				069E15EB1EFE421000A9C1FA /* studioInfoTableViewCell.swift in Sources */,
 				D918CBFB1F18A5AA005D0899 /* StudioInfoListController.swift in Sources */,
 				07C88A811EE3A23D00300810 /* Abstract.swift in Sources */,
-				0667AB4E1F1CB0F300AB75D4 /* studioPickView.swift in Sources */,
 				D918CBED1F135DDC005D0899 /* UserNotificationViewController.swift in Sources */,
 				069E15DB1EFE01FF00A9C1FA /* UIColorRGB.swift in Sources */,
 				061CBF591F05F2ED0049EC6A /* blogExampleTableViewCell.swift in Sources */,
@@ -1305,6 +1312,7 @@
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,
 				064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */,
+				0667AB541F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
