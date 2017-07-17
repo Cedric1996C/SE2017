@@ -224,11 +224,20 @@
                         <outlet property="email" destination="wa8-zN-eSk" id="rPx-n6-pzs"/>
                         <outlet property="password" destination="raf-nL-Zxh" id="rII-YW-Nic"/>
                         <outlet property="registerBtn" destination="at4-78-gXu" id="OAR-2n-cn0"/>
+                        <segue destination="Bii-uT-o8w" kind="showDetail" identifier="login" id="1tH-Kl-MU1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="du2-Ve-na4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="508" y="-145.27736131934034"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="MNi-mD-Lp1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="Bii-uT-o8w" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zwg-31-WGi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-117"/>
         </scene>
     </scenes>
     <resources>

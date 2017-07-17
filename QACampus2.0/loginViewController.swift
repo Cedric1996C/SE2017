@@ -48,6 +48,7 @@ class loginViewController: UIViewController {
     
    
     @IBAction func loginBtnClick(_ sender: Any) {
+        
         let headers:HTTPHeaders = [
             "email": email.text!,
             "password": password.text!
@@ -56,7 +57,9 @@ class loginViewController: UIViewController {
             
             self.statusCode = (response.response?.statusCode)!
             if let headers = response.response?.allHeaderFields as? [String: String]{
-                userAuthorization = headers["Authorization"]!
+                if self.statusCode == 200 {
+                    userAuthorization = headers["Authorization"]!
+                }
             }
             self.loginResult(result: self.statusCode)
             
@@ -100,47 +103,32 @@ class loginViewController: UIViewController {
     
     //存储登录的账户
     func saveLocalUser() {
+        
         let userDefault = UserDefaults.standard
         
-        let parameters:Parameters = [
-//            "email": email.text!
-            "email":"973935302@qq.com"
-        ]
         let headers:HTTPHeaders = [
-            "Authorization":userAuthorization
+            "Authorization":userAuthorization,
+            "email": email.text!
         ]
         
-        Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .post, parameters:parameters,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .get,headers: headers).responseJSON { response in
             
-            var userJSON = JSON(response.result.value)
-            let id:Int = userJSON["id"].int!
-            //自定义对象存储
-            let user = User(id:id,email: self.email.text, password: self.password.text)
-            let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
-            userDefault.set(modelData, forKey: "local_user")
-            
-            let path = "/user/\(id)"
-            //请求客户端的文件路径下的文件
-            Alamofire.request("https://localhost:6666/files\(path)", method: .get).responseJSON { response in
-                if let json = response.result.value {
-                    let pictures:[String] = json as! [String]
-                    let pic_path = path.appending("/" + pictures[1])
-                    
-                    //获取文件
-                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                        let fileURL = documentsURL.appendingPathComponent(pic_path)
-                        
-                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                    }
-                }
+            if  response.result.value != nil {
+                var userJSON = JSON(response.result.value!)
+                let id:Int = userJSON["id"].int!
+                
+                //自定义对象存储
+                let user = User(id:id,email: self.email.text, password: self.password.text)
+                let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
+                userDefault.set(modelData, forKey: "local_user")
+                
             }
             let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)
         }
-
     }
-    
+
+
     //重置登录的用户
     func resetLocalUser() {
         let userDefault = UserDefaults.standard

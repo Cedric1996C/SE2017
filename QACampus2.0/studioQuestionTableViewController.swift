@@ -7,21 +7,18 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class studioQuestionTableViewController: UITableViewController {
+class studioQuestionTableViewController: collectQuestionTableViewController {
 
-    lazy var itemData:[Question] = {
-        return []
-    }()
-    
-    lazy var images:[UIImage] = {
-        return []
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        let item=UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(returnUser))
+        item.tintColor = defaultColor
+        self.navigationItem.leftBarButtonItem = item
+        
         view.backgroundColor = UIColor(red:255/255,green:235/255,blue:235/255,alpha:1)
     }
 
@@ -39,71 +36,84 @@ class studioQuestionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
-//        return itemData.count
+        return itemData.count
     }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160.0
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
-        
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "studioQuestion", for: indexPath) as! studioQuestionTableViewCell
-//        cell.avator.image = images[indexPath.row]
-//        let item = itemData[indexPath.row]
-//        cell.name.text = item.name
-//        cell.date.text = item.date
-//        cell.title.text = item.title
-//        cell.introduction.text = item.introduction
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "collectQuestion", for: indexPath) as! collectQuestionTableViewCell
+        let result:Result = itemData[indexPath.row]
+        cell.title.text = result.title
+        cell.date.text = result.time
+        cell.name.text = result.name
+        cell.introduction.text = result.desc
+        cell.avator.image = (avators[result.id] != nil) ? avators[result.id]:UIImage(named: "no.1")
         return cell
     }
+
+    func returnUser(sender:Any){
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension studioQuestionTableViewController {
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func initData(){
+        
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        Alamofire.request("https://\(root):8443/qa-service/questions" ,method: .get,headers: headers).responseJSON { response in
+            
+            // response serialization result
+            var json = JSON(response.result.value!)
+            let list: Array<JSON> = json["content"].arrayValue
+            
+            
+            for json in list {
+                let id:Int = json["id"].int!
+                let title = json["question"].string
+                let name = json["asker"].string
+                let introduction = json["describtion"].string
+                //时间戳／ms转为/s
+                let dateStamp = json["date"].intValue/1000
+                // 时间戳转字符串
+                let date:String = date2String(dateStamp: dateStamp)
+                
+                let result = Result(id:id, name: name!, time: date, title: title!, desc:introduction!)
+                
+                let path:String = "user/1"
+                
+                self.itemData.append(result)
+                //请求客户端的文件路径下的文件
+                Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                    if let json = response.result.value {
+                        let pictures:[String] = json as! [String]
+                        let pic_path = path.appending("/" + pictures[1])
+                        
+                        //获取文件
+                        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                            let fileURL = documentsURL.appendingPathComponent(pic_path)
+                            
+                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                        }
+                        Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                            
+                            if response.error == nil, let imagePath = response.destinationURL?.path {
+                                self.avators[id] = getPicture(pic_path)
+                                self.reload()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

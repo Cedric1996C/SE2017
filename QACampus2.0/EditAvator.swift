@@ -69,7 +69,6 @@ extension editStudioInfoTableViewController {
         print(info)
         
         //保存图片至沙盒
-//        self.saveImage(currentImage: image, imageName: "iconImageFileName")
         let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("iconImageFileName")
         
         //存储后拿出更新头像
@@ -155,7 +154,7 @@ extension PersonalEditTableViewController:UIImagePickerControllerDelegate,UINavi
         //存储后拿出更新头像
         avator = UIImage(contentsOfFile: fullPath)!
         //准备上传头像
-        prepareForStorage(fullPath, destination: "https://localhost:6666/1/")
+//        prepareForStorage(fullPath, destination: "https://localhost:6666/1/")
         picker.dismiss(animated: true, completion: nil)
         tableView.reloadData()
         

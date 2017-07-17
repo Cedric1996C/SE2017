@@ -162,5 +162,9 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
         detailView!.scrollIndicatorInsets = contentInsets
     }
     
+    func addVoice () {
+        
+    }
+    
 }
 

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class personalInfoTableViewController: UITableViewController {
 
@@ -14,21 +16,22 @@ class personalInfoTableViewController: UITableViewController {
         return ["我的问题","收藏问题","收藏话题","收藏工作室"]
     }()
     
-    lazy var tagNums:[String] = {
-        return ["0","0","0","0"]
-    }()
-    
-    lazy var user:User = {
-        return User(name:"南大鸽子王",introduction:"逢约必鸽，不见不散",thumb_num:1,question_num:2)
+    lazy var tagNums:[Int] = {
+        return [
+            User.myQuestion,
+            User.collectQuestion,
+            User.collectTopic,
+            User.collectStudio
+        ]
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        initData()
         view.backgroundColor = sectionHeaderColor
-        user.avator = UIImage(named:"no.1")
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,11 +63,11 @@ class personalInfoTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "personalInfo", for: indexPath) as! personalInfoTableViewCell
-            cell.name.text = user.name
-            cell.introduction.text = user.introduction
-            cell.questionNum.text = String(describing: user.question_num!)
-            cell.thumbNum.text = String(describing: user.thumb_num!)
-            cell.avator.image = user.avator as! UIImage
+            cell.name.text = User.name
+            cell.introduction.text = User.introduction
+            cell.questionNum.text = String(User.question_num)
+            cell.thumbNum.text = String(User.studio_num)
+            cell.avator.image = User.avator
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
@@ -74,7 +77,7 @@ class personalInfoTableViewController: UITableViewController {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
             cell.tagName.text = tagNames[indexPath.row]
-            cell.num.text = tagNums[indexPath.row]
+            cell.num.text = String(tagNums[indexPath.row])
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "space", for: indexPath) as! spaceTableViewCell
@@ -107,7 +110,6 @@ class personalInfoTableViewController: UITableViewController {
         }
     }
 
-    
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
@@ -140,5 +142,14 @@ class personalInfoTableViewController: UITableViewController {
         }
     }
     
-   
 }
+
+//extension personalInfoTableViewController {
+//  
+//    //初始化personalInfo,头像、昵称、简介、各数字
+//    func initData () {
+//        
+//
+//    }
+//    
+//}

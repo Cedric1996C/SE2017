@@ -25,7 +25,7 @@ func prepareForStorage(_ path: String,destination:String) {
         "Authorization": userAuthorization
     ]
     let parameters:Parameters = ["md5": md5]
-    Alamofire.request("https://\(root):8443/storage" ,method: .post, parameters:parameters,headers: headers).responseJSON { response in
+    Alamofire.request("https://\(root):8443/storage/" ,method: .post, parameters:parameters,headers: headers).responseJSON { response in
         
         if let headers = response.response?.allHeaderFields as? [String: String]{
             fileAuthirization[path] = headers["Authorization"]!

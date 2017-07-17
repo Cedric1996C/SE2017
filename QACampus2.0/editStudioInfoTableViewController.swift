@@ -94,7 +94,7 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
                 performSegue(withIdentifier: "editIntro", sender: self)
             }
         }
-        else if(indexPath.section == 3 || indexPath.section == 5){
+        else if(indexPath.section == 5){
             performSegue(withIdentifier: "addAdmin", sender: self)
         }
         
@@ -130,7 +130,7 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
             let cell:studioAvatorTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioAvatorCell") as! studioAvatorTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
             cell.title.text = item
-            cell.avator.image = UIImage(named: "no.1")
+            cell.avator.image = LocalStudio.avator
             
             return cell
         } else if indexPath.section == 2 {
@@ -139,12 +139,19 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
             cell.title.text = item
             cell.content.text = "未设置"
             cell.content.textColor = subTitleBorderColor
+            if indexPath.row == 0{
+                cell.content.text = LocalStudio.title != "" ? "未设置":LocalStudio.title
+                cell.content.textColor =  LocalStudio.title != "" ? subTitleBorderColor:.darkText
+            } else if indexPath.row == 3{
+                cell.content.text = LocalStudio.introduction != "" ? "未设置":LocalStudio.introduction
+                cell.content.textColor =  LocalStudio.introduction != "" ? subTitleBorderColor:.darkText
+            }
             return cell
         } else if indexPath.section == 3 || indexPath.section == 5{
             let cell:studioAdminTableViewCell = tableView.dequeueReusableCell(withIdentifier: "studioAdminCell") as! studioAdminTableViewCell
             let item = itemDataSource[indexPath.section][indexPath.row]
             cell.title.text = item
-            cell.content.text = "点击添加"
+            cell.content.text = indexPath.section == 3 ? "":"点击添加"
             cell.content.textColor = subTitleBorderColor
 
             return cell
@@ -178,22 +185,22 @@ extension editStudioInfoTableViewController {
             navigation = segue.destination as! UINavigationController
             let editNameVc:editNameTableViewController = navigation.topViewController as! editNameTableViewController
             editNameVc.delegate = self
-            editNameVc.nameString = "123"
+            editNameVc.nameString = LocalStudio.title
         } else if (segue.identifier == "editUnit"){
             navigation = segue.destination as! UINavigationController
             let editUnitVc:editUnitTableViewController = navigation.topViewController as! editUnitTableViewController
             editUnitVc.delegate = self
-            editUnitVc.unitString = "456"
+            editUnitVc.unitString = ""
         } else if (segue.identifier == "editIntro") {
             navigation = segue.destination as! UINavigationController
             let editIntroVc:editIntroTableViewController = navigation.topViewController as! editIntroTableViewController
             editIntroVc.delegate = self
-            editIntroVc.introString = "456456645664566456645664566456645664566456645664566456645664566456645664566456645664566456"
+            editIntroVc.introString = LocalStudio.introduction
         } else if (segue.identifier == "editBlog") {
             navigation = segue.destination as! UINavigationController
             let editBlogVc:editBlogTableViewController = navigation.topViewController as! editBlogTableViewController
             editBlogVc.delegate = self
-            editBlogVc.blogString = "www.baidu.com"
+            editBlogVc.blogString = ""
         } else if (segue.identifier == "addAdmin") {
             let addAdminVc = segue.destination as! addAdminViewController
             let searchAdminVc = addAdminVc.controllers[0] as! searchAdminTableViewController
@@ -253,7 +260,7 @@ extension editStudioInfoTableViewController {
     
     func saveAddAdmin(controller: searchAdminTableViewController,name:String) {
 
-        itemDataSource[4].append(name)
+        itemDataSource[6].append(name)
         tableView.reloadData()
     }
     /*

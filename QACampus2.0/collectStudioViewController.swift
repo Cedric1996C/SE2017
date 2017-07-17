@@ -62,56 +62,65 @@ extension collectStudioViewController {
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
-        Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/studio-service/studios/\(User.localUserId!)/collect" ,method: .get,headers: headers).responseJSON { response in
             
-            // response serialization result
-            var json = JSON(response.result.value!)
-            let list: Array<JSON> = json["content"].arrayValue
-            
-            for json in list {
-                let name = json["name"].string
-                let introduction = json["introduction"].string
-                let id:Int = json["id"].int!
-                let studio = Studio(id:id ,name: name,introduction: introduction)
-                let path:String = "studio/\(id)"                
-                self.studios.append(studio)
-                //请求客户端的文件路径下的文件
-                Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
-                    if let json = response.result.value {
-                        let pictures:[String] = json as! [String]
-                        let avator_path = path.appending("/" + pictures[1])
-                        let background_path = path.appending("/" + pictures[2])
-                        
-                        //获取文件
-                        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                            let fileURL = documentsURL.appendingPathComponent(avator_path)
+            if (response.response?.statusCode)! == 200 {
+                // response serialization result
+                var json = JSON(response.result.value!)
+                let list: Array<JSON> = json.arrayValue
+                
+
+                for json in list {
+                    let name = json["name"].string
+                    let introduction = json["introduction"].string
+                    let id:Int = json["id"].int!
+                    let studio = Studio(id:id ,name: name,introduction: introduction)
+                    
+                    let path:String = "studio/\(id)"                
+                    self.studios.append(studio)
+                    
+                    //请求客户端的文件路径下的文件,此处为拉取工作室的头像和背景
+                    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                        if response.response?.statusCode == 200 {
+
+                        if let json = response.result.value {
+                            let pictures:[String] = json as! [String]
+                            let avator_path = path.appending("/" + pictures[1])
+                            let background_path = path.appending("/" + pictures[2])
                             
-                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                        }
-                        Alamofire.download("https://localhost:6666/\(avator_path)", to: destination).response { response in
-                            
-                            if response.error == nil, let imagePath = response.destinationURL?.path {
-                                self.avators[id] = getPicture(avator_path)
-                                self.reload()
+                            //获取文件
+                            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                let fileURL = documentsURL.appendingPathComponent(avator_path)
+                                
+                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            Alamofire.download("https://localhost:6666/\(avator_path)", to: destination).response { response in
+                                
+                                if response.error == nil, let imagePath = response.destinationURL?.path {
+                                    self.avators[id] = getPicture(avator_path)
+                                    self.reload()
+                                }
+                            }
+                            //获取文件
+                            let bg_destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                let fileURL = documentsURL.appendingPathComponent(background_path)
+                                
+                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            Alamofire.download("https://localhost:6666/\(background_path)", to: bg_destination).response { response in
+                                
+                                if response.error == nil, let imagePath = response.destinationURL?.path {
+                                    self.backgrounds[id] = getPicture(background_path)
+                                    self.reload()
+                                }
                             }
                         }
-                        //获取文件
-                        let bg_destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                            let fileURL = documentsURL.appendingPathComponent(background_path)
-                            
-                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                        }
-                        Alamofire.download("https://localhost:6666/\(background_path)", to: bg_destination).response { response in
-                            
-                            if response.error == nil, let imagePath = response.destinationURL?.path {
-                                self.backgrounds[id] = getPicture(background_path)
-                                self.reload()
-                            }
                         }
                     }
                 }
+                
             }
         }
     }

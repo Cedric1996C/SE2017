@@ -15,7 +15,9 @@ class userStudioViewController: UIViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var tableData: [Studio] = []
-    var images:[UIImage] = []
+    lazy var images:[Int:UIImage] = {
+        return [:]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,15 +60,18 @@ extension userStudioViewController: UITableViewDelegate {
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
         tableView.deselectRow(at: indexPath, animated: true)
-        //self.navigationController?.pushViewController(DetailViewController(), animated: true)
+    
         let studio:Studio = tableData[indexPath.row]
-        SingletonStudio.id = studio.id!
-        SingletonStudio.title = studio.name!
-        SingletonStudio.introduction = studio.introduction!
+        StudioDetail.id = studio.id!
+        StudioDetail.title = studio.name!
+        StudioDetail.introduction = studio.introduction!
+        StudioDetail.isCollected = false
+        StudioDetail.background = images[studio.id!]!
         //头像下载
-        let path = "studio/\(SingletonStudio.id)"
-        Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+        let path = "studio/\(StudioDetail.id)"
+        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
             if let json = response.result.value {
                 let pictures:[String] = json as! [String]
                 let pic_path = path.appending("/" + pictures[1])
@@ -81,7 +86,7 @@ extension userStudioViewController: UITableViewDelegate {
                 Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
                     
                     if response.error == nil, let imagePath = response.destinationURL?.path {
-                        SingletonStudio.avator = UIImage(contentsOfFile: imagePath)!
+                        StudioDetail.avator = getPicture(pic_path)
                         self.performSegue(withIdentifier: "showStudioInfo", sender: self)
                     }
                 }
@@ -95,9 +100,10 @@ extension userStudioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: userStudioTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userStudio") as! userStudioTableViewCell
-        cell.bgimage.image = (images[indexPath.row] != nil) ? images[indexPath.row]:#imageLiteral(resourceName: "food")
-        cell.name.text = tableData[indexPath.row].name
-        cell.introduction.text = tableData[indexPath.row].introduction
+        let studio = tableData[indexPath.row]
+        cell.bgimage.image = (images[studio.id!] != nil) ? images[studio.id!]:#imageLiteral(resourceName: "food")
+        cell.name.text = studio.name
+        cell.introduction.text = studio.introduction
         return cell
     }
 }
@@ -140,7 +146,7 @@ extension userStudioViewController {
                         Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
                             
                             if response.error == nil, let imagePath = response.destinationURL?.path {
-                                self.images.append(getPicture(pic_path))
+                                self.images[id] = getPicture(pic_path)
                                 self.reload()
                             }
                         }

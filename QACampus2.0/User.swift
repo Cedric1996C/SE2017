@@ -7,29 +7,35 @@
 //
 
 import Foundation
+import UIKit
 
 class User:NSObject,NSCoding{
     
     var userId: Int?
     var email: String?
     var password: String?
-    var name: String?
-    var introduction:String?
-    var thumb_num:Int?
-    var question_num:Int?
-    var avator:NSObject!
+    
+    static var name:String! = "南大鸽子王"
+    static var introduction:String! = "逢约必鸽，不见不散"
+    
+    static var answer_num:Int! = 0
+    static var studio_num:Int! = 0
+    static var question_num:Int! = 0
+    static var myQuestion:Int! = 0
+    static var collectQuestion:Int! = 0
+    static var collectStudio:Int! = 0
+    static var collectTopic:Int! = 0
+    
+    static var avator:UIImage! = UIImage(named: "no.1")
+    
+    static var localUserId:Int! = 0
+    static var localEmail:String! = "973935302@qq.com"
+    static var department:String! = "计算机科学与技术"
     
     required init(id:Int?,email: String?, password: String?){
         self.userId = id
         self.email = email
         self.password = password
-    }
-    
-    required init(name: String?,introduction:String?,thumb_num: Int?,question_num: Int?){
-        self.name = name
-        self.introduction = introduction
-        self.thumb_num = thumb_num
-        self.question_num = question_num
     }
     
     //从object解析回来

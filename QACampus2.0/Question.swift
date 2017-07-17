@@ -15,6 +15,7 @@ class Question {
     var date:String?
     var title:String?
     var introduction: String?
+    var thumbNum:Int?
     
     
     required init(name: String?,date:String?,title:String?, introduction: String?){

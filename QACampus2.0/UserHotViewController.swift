@@ -9,6 +9,7 @@
 import UIKit
 import MJRefresh
 import Alamofire
+import SwiftyJSON
 
 class UserHotViewController: UIViewController {
     
@@ -57,26 +58,34 @@ class UserHotViewController: UIViewController {
         indicator.startAnimating()
         DispatchQueue.global().async {
             // TODO: load data
-            /*authentication()
+            authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZXJpY3dlbkBpY2xvdWQuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6OSwiZXhwIjoxNDk5NTY1MTg2fQ.Jihs8kp7jVbpju3SyzLCJlIEpqKYbDSnKJy8jiJqsxHSa1z4c_wBaLwBwPo38RMkZJ4rMfjrEV8q8KPk0xU3DQ"
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
             ]
-            Alamofire.request("https://115.159.199.121:8443/recommends?page=0&size=5", method: .get, headers: headers).responseJSON { response in
-                if let json = response.result.value {
-                    print(json)
+            Alamofire.request("https://118.89.166.180:8443/qa-service/questions", method: .get, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let json = JSON(jsonData)
+                    let content = json["content"]
+                    for item in content {
+                        let id = item.1["id"].int
+                        let vote = item.1["thumb"].int
+                        let title = item.1["question"].string
+                        let description = item.1["describtion"].string
+                        self.tableData.append(Abstract(id: id, count: vote, title: title, detail: description))
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.indicator.stopAnimating()
+                    }
                 }
-            }*/
-            Thread.sleep(forTimeInterval: 2)
+            }
+            /*Thread.sleep(forTimeInterval: 2)
             self.tableData = [
                 Abstract(count: 63, title: "Python是强类型语言吗？", detail: "Python定义变量不显式指定类型，为什么…"),
                 Abstract(count: 7, title: "为什么这么多人用Java？", detail: "我感觉Java很繁琐，为什么工业界似乎还…"),
                 Abstract(count: 15, title: "C++在什么领域用得比较多？", detail: "现在在学C++，但是不知道C++今后会在什…"),
                 Abstract(count: 23, title: "这个title很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长", detail: "一个detail"),
-            ]
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.indicator.stopAnimating()
-            }
+            ]*/
         }
     }
     
