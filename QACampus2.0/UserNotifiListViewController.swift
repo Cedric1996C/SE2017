@@ -36,10 +36,11 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     var infos2:[String] = []
     
     let icon:UIImage = UIImage(named: "no.1")!
-    
+    let localUserId:Int = User.localUserId
+    var isNotifi:Bool = false
     //url
     let url:String="https://118.89.166.180:8443"
-    let notifiBase0Url:String="/qa-service/questions"
+    var notifiBase0Url:String=""
     let notifiBase1Url:String=""
     let notifiBase2Url:String=""
     var loadMoreUrl:String=""
@@ -53,7 +54,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initViewDetail()
-        
+
         //上拉加载
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
         self.tableView.mj_footer = footer
@@ -74,6 +75,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     func initViewDetail() {
         self.tableView.delegate=self
         self.tableView.dataSource=self
+        self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question"
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,20 +85,35 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     
     //返回表格行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(!isNotifi){
+            return 1
+        }
         return infos.count
     }
     //返回单元格高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(!isNotifi){
+            return 100.0
+        }
         return 180.0
     }
     //创建各单元显示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(!isNotifi){
+            let identify:String = "SubList2Cell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubList2Cell
+            //            cell.desc.text = infos2[indexPath.row]
+            cell.desc.text="没有新的通知"
+            cell.desc.textAlignment = NSTextAlignment.center
+            return cell
+
+        }
         if(2 == self.type){
             let identify:String = "SubList2Cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubList2Cell
             //            cell.desc.text = infos2[indexPath.row]
             cell.desc.text="xxx 给你的 xxx 点了赞"
-            
+            cell.desc.textAlignment = NSTextAlignment.left
             return cell
         }
         else{
@@ -106,6 +123,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             cell.name.text=infos[indexPath.row].name
             cell.time.text=infos[indexPath.row].time
             cell.title.text=infos[indexPath.row].title
+            cell.desc.numberOfLines = 3
+            cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
             cell.desc.text=infos[indexPath.row].desc
 
 //            cell.icon.image=self.icon
@@ -129,22 +148,16 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         print("in notifiRequest()")
         switch self.type{
         case 0:
-            Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
+            Alamofire.request(url+notifiBase0Url+"/0", method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                    
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                        self.tableView.tableFooterView = self.clearFooterView
-                        self.tableView.mj_footer = self.footer
-                        
+                    let results:Array = jsonObj.arrayValue
+                    //是否有通知
+                    if(results.count==0){
+                        self.isNotifi=false
+                    }else{
+                        self.isNotifi=true
                     }
                     
                     self.infos.removeAll()
@@ -162,6 +175,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
@@ -173,17 +201,12 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     print(json)
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                        self.tableView.tableFooterView = self.clearFooterView
-                        self.tableView.mj_footer = self.footer
-                        
+                    //是否有通知
+                    if(results.count==0){
+                        self.isNotifi=false
+                    }else{
+                        self.isNotifi=true
                     }
                     
                     self.infos.removeAll()
@@ -201,6 +224,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
@@ -212,17 +250,12 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     print(json)
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                        self.tableView.tableFooterView = self.clearFooterView
-                        self.tableView.mj_footer = self.footer
-                        
+                    //是否有通知
+                    if(results.count==0){
+                        self.isNotifi=false
+                    }else{
+                        self.isNotifi=true
                     }
                     
                     self.infos.removeAll()
@@ -240,6 +273,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos2.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
@@ -260,16 +308,6 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
                     
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                    
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                    }
-                    
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
@@ -284,6 +322,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
@@ -296,16 +349,6 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
                     
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                    
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                    }
-                    
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
@@ -320,6 +363,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
@@ -332,16 +390,6 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     let jsonObj = JSON(data: response.data!)
                     let results:Array = jsonObj["content"].arrayValue
                     
-                    self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                    
-                    if(self.loadMoreUrl.length==0){
-                        print("loadMore false")
-                        self.loadMoreEnable=false
-                    }else {
-                        print("loadMore true")
-                        self.loadMoreEnable=true
-                    }
-                    
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
@@ -356,6 +404,21 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
+                    
+                    //是否有更多的通知
+                    if(results.count==10){
+                        print("loadMore true")
+                        self.loadMoreEnable=true
+                        self.tableView.tableFooterView = self.clearFooterView
+                        self.tableView.mj_footer = self.footer
+                        self.loadMoreUrl="/\(self.infos2.count)"
+                    }
+                    else{
+                        print("loadMore false")
+                        self.loadMoreEnable=false
+                        self.loadMoreUrl=""
+                    }
+
                     self.tableView.reloadData()
                 }
             }
