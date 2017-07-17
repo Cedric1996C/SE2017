@@ -38,12 +38,11 @@ func prepareForStorage(_ path: String,destination:String) {
 
 func fileUpload(_ path: String,destination:String) {
     
-//    let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent(path)
     print("开始上传")
     let currentImage = UIImage(contentsOfFile: path)!
     let data = UIImageJPEGRepresentation(currentImage, 1.0)
-    let imageName = String(describing: "avator.png")
-    print(imageName)
+    let imageName = String(describing: "avator")
+//    print(imageName)
     
     let headers:HTTPHeaders = [
         "Authorization":fileAuthirization[path]!
@@ -51,15 +50,14 @@ func fileUpload(_ path: String,destination:String) {
     
     Alamofire.upload(
         multipartFormData: { multipartFormData in
-            multipartFormData.append(data!, withName: "file", fileName: imageName, mimeType: "image/png")
-//                multipartFormData.append(rainbowImageURL, withName: "rainbow")
+            multipartFormData.append(data!, withName: "file", fileName: imageName, mimeType: "image/jpeg")
     },
         to: destination, headers:headers,
         encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
-                    debugPrint(response)
+                    debugPrint(response.value!)
                 }
             case .failure(let encodingError):
                 print(encodingError)

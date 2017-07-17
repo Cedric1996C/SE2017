@@ -11,10 +11,12 @@ import Alamofire
 import SwiftyJSON
 
 class PersonalEditTableViewController: editTableViewController {
-
+    
     lazy var tagTitle:[String] = {
         return ["昵称","简介"]
     }()
+    
+    var delegate:editDelegate?
     
     var avator:UIImage = User.avator
     
@@ -22,7 +24,6 @@ class PersonalEditTableViewController: editTableViewController {
         super.viewDidLoad()
 //        animationForDismiss()
         cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
         authentication()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300
@@ -137,28 +138,31 @@ class PersonalEditTableViewController: editTableViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
-    func save(sender:Any) {
-        let path = "owner-service/owners/\(User.localUserId)"
+    override func save(sender:Any) {
+        let path = "owner-service/owners/\(User.localUserId!)"
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
         
         var index = IndexPath(row:0, section: 1)
         var cell = tableView.cellForRow(at:index) as! editInfoTableViewCell
-        if cell.content.text != cell.content.placeholder {
+        if cell.content.text != User.name && cell.content.text != "" {
             changeDisplayName(name: cell.content.text,path: path)
         }
-        index = IndexPath(row:1,section: 2)
+        index = IndexPath(row:1,section: 1)
         cell = tableView.cellForRow(at:index) as! editInfoTableViewCell
-        if cell.content.text != cell.content.placeholder {
+        if cell.content.text != User.introduction  && cell.content.text != ""{
             changeIntroduction(introduction: cell.content.text, path: path)
         }
         
         if avator != User.avator {
             let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("personalAvator")
             //准备上传头像
-            prepareForStorage(fullPath, destination: storageRoot+"user/\(User.localUserId)")
+            prepareForStorage(fullPath, destination: uploadRoot+"user/\(User.localUserId!)")
         }
+        
+        delegate?.saveClicked(controller: self)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -173,7 +177,7 @@ extension PersonalEditTableViewController {
         ]
         let parameters:Parameters = ["displayname": name]
         Alamofire.request("https://\(root):8443/\(path)/displayname" , method: .post, parameters:parameters,headers: headers).responseJSON { response in
-        
+            print(response.response?.statusCode)
         }
     }
     
@@ -187,3 +191,10 @@ extension PersonalEditTableViewController {
         }
     }
 }
+
+protocol editDelegate{
+    
+    func saveClicked(controller:PersonalEditTableViewController)
+
+}
+
