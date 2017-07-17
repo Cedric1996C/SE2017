@@ -41,8 +41,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
     //url
     let url:String="https://118.89.166.180:8443"
     var notifiBase0Url:String=""
-    let notifiBase1Url:String=""
-    let notifiBase2Url:String=""
+    var notifiBase1Url:String=""
+    var notifiBase2Url:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -76,6 +76,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         self.tableView.delegate=self
         self.tableView.dataSource=self
         self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question"
+        self.notifiBase1Url="/topic-service/topic/notice/\(localUserId)"
+        self.notifiBase2Url="/qa-service/answer/notice/thumb/\(localUserId)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,6 +107,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             //            cell.desc.text = infos2[indexPath.row]
             cell.desc.text="没有新的通知"
             cell.desc.textAlignment = NSTextAlignment.center
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
 
         }
@@ -114,6 +117,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             //            cell.desc.text = infos2[indexPath.row]
             cell.desc.text="xxx 给你的 xxx 点了赞"
             cell.desc.textAlignment = NSTextAlignment.left
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }
         else{
@@ -200,7 +204,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     
                     //是否有通知
                     if(results.count==0){
@@ -249,7 +253,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     
                     //是否有通知
                     if(results.count==0){
@@ -306,7 +310,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     
                     for r in results{
                         let id:Int = r["id"].intValue
@@ -343,11 +347,11 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             break
         case 1:
             //话题
-            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+notifiBase0Url, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     
                     for r in results{
                         let id:Int = r["id"].intValue
@@ -384,11 +388,11 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             break
         case 2:
             //点赞
-            Alamofire.request(url+notifiBase0Url+loadMoreUrl, method: .get).responseJSON { response in
+            Alamofire.request(url+notifiBase0Url, method: .get).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     
                     for r in results{
                         let id:Int = r["id"].intValue
