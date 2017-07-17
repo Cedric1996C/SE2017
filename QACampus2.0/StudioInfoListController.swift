@@ -16,6 +16,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    @IBOutlet weak var studioTitle: UINavigationItem!
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
@@ -30,6 +33,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
 
     //0:最新回答 1:最新话题 2:热门 3:成员
     var type:Int = 0
+    var studioName:String = ""
     var infos:[Info] = []
     
     let icon:UIImage = UIImage(named: "no.1")!
@@ -62,7 +66,13 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.studioTitle.title = self.studioName
         
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = true
+        
+        //self.view.backgroundColor = pinkColor
         //上拉加载
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
         self.tableView.mj_footer = footer
@@ -480,6 +490,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
         //            make.centerY.equalToSuperview()
         //        })
         
+    }
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func headerClick() {
