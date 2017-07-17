@@ -40,7 +40,8 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     var icons:[UIImage] = []
     //url
     let url:String="https://118.89.166.180:8443"
-    let notifiBaseUrl:String="/qa-service/questions"
+    var localUserId:Int=0
+    var notifiBaseUrl:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -56,12 +57,16 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initViewDetail()
-        self.numLabel.text="3条"
+        self.numLabel.text="新通知"
         self.numLabel.textAlignment=NSTextAlignment.right
         
         icons.append(UIImage(named:"answer01")!)
         icons.append(UIImage(named:"comment01")!)
         icons.append(UIImage(named:"nice01")!)
+        
+        self.localUserId=User.localUserId;
+        self.notifiBaseUrl="/qa-service/questions/\(localUserId)/notice/question"
+
         
         //上拉加载
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
@@ -77,6 +82,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
+        self.notifiRequest()
         
     }
     
@@ -98,8 +104,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     
     //返回表格行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return infos!.count
-        return 3
+        return infos.count
     }
     //返回单元格高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,17 +115,19 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identify:String = "NotifiListCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserNotificationListCell
-//            cell.icon.image=infos?[indexPath.row].icon
-//            cell.name.text=infos?[indexPath.row].name
-//            cell.time.text=infos?[indexPath.row].time
-//            cell.title.text=infos?[indexPath.row].title
-//            cell.desc.text=infos?[indexPath.row].desc
+        //cell.icon.image=infos[indexPath.row].icon
+        cell.name.text=infos[indexPath.row].name
+        cell.time.text=infos[indexPath.row].time
+        cell.title.text=infos[indexPath.row].title
+        cell.desc.numberOfLines = 3
+        cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        cell.desc.text=infos[indexPath.row].desc
 
-        cell.icon.image=self.icon
-        cell.name.text="wef"
-        cell.time.text="2017-03-04"
-        cell.title.text="新通知"
-        cell.desc.text="新通知的描述"
+//        cell.icon.image=self.icon
+//        cell.name.text="wef"
+//        cell.time.text="2017-03-04"
+//        cell.title.text="新通知"
+//        cell.desc.text="新通知的描述"
         
         return cell
     }
@@ -147,16 +154,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
             if let json = response.result.value {
                 print(json)
                 let jsonObj = JSON(data: response.data!)
-                let results:Array = jsonObj["content"].arrayValue
-                self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                
-                if(self.loadMoreUrl.length==0){
-                    print("loadMore false")
-                    self.loadMoreEnable=false
-                }else {
-                    print("loadMore true")
-                    self.loadMoreEnable=true
-                }
+                let results:Array = jsonObj.arrayValue
                 
                 self.infos.removeAll()
                 for r in results{
@@ -173,6 +171,21 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                     let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                     self.infos.append(info)
                 }
+                
+                //是否有更多的通知
+                if(results.count==10){
+                    print("loadMore true")
+                    self.loadMoreEnable=true
+                    self.tableView.tableFooterView = self.clearFooterView
+                    self.tableView.mj_footer = self.footer
+                    self.loadMoreUrl="/\(self.infos.count)"
+                }
+                else{
+                    print("loadMore false")
+                    self.loadMoreEnable=false
+                    self.loadMoreUrl=""
+                }
+                
                 self.tableView.reloadData()
             }
         }
@@ -187,17 +200,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
             if let json = response.result.value {
                 print(json)
                 let jsonObj = JSON(data: response.data!)
-                let results:Array = jsonObj["content"].arrayValue
-                
-                self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
-                
-                if(self.loadMoreUrl.length==0){
-                    print("loadMore false")
-                    self.loadMoreEnable=false
-                }else {
-                    print("loadMore true")
-                    self.loadMoreEnable=true
-                }
+                let results:Array = jsonObj.arrayValue
                 
                 for r in results{
                     let id:Int = r["id"].intValue
@@ -212,6 +215,20 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                     let desc:String = r["describtion"].stringValue
                     let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                     self.infos.append(info)
+                }
+                
+                //是否有更多的通知
+                if(results.count==10){
+                    print("loadMore true")
+                    self.loadMoreEnable=true
+                    self.tableView.tableFooterView = self.clearFooterView
+                    self.tableView.mj_footer = self.footer
+                    self.loadMoreUrl="/\(self.infos.count)"
+                }
+                else{
+                    print("loadMore false")
+                    self.loadMoreEnable=false
+                    self.loadMoreUrl=""
                 }
                 self.tableView.reloadData()
             }

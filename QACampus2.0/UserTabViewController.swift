@@ -48,7 +48,7 @@ class UserTabViewController: UIViewController {
         authentication()
        
         initUI()
-        initUserInfo()
+ 
         initControllers()
         
         view.backgroundColor = sectionHeaderColor
@@ -223,7 +223,6 @@ extension UserTabViewController {
         
         //自定义对象读取
         let local_user = userDefault.data(forKey: "local_user")
-        
         if(local_user == nil){
             let mainVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)

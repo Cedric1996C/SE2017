@@ -127,6 +127,7 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier=="showStudioInfoList"){
             let d = segue.destination as! StudioInfoListController
+            d.studioName=self.studioName.text!
             d.type=self.type
         }
     }
