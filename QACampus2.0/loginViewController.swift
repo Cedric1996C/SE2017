@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SlideMenuControllerSwift
 
 class loginViewController: UIViewController {
 
@@ -124,8 +125,14 @@ class loginViewController: UIViewController {
                 userDefault.set(modelData, forKey: "local_user")
                 
             }
-            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
-            self.present(mainVC!, animated: true, completion: nil)
+            
+            let containerVc = UIStoryboard(name: "Silder", bundle: nil).instantiateInitialViewController()
+//            let mainVc = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
+//            let rightVc = UIStoryboard(name:"PickStudio",bundle:nil).instantiateInitialViewController()
+//            self.slideMenuController()?.mainViewController = mainVC
+//            self.slideMenuController()?.rightViewController = rightVc
+//            self.dismiss(animated: true, completion: nil)
+            self.present(containerVc!, animated: true, completion: nil)
         }
     }
 

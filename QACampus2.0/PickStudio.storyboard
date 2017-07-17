@@ -24,8 +24,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vy0-NO-Y0u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no.1" translatesAutoresizingMaskIntoConstraints="NO" id="eqo-fD-WSG">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no.2" translatesAutoresizingMaskIntoConstraints="NO" id="eqo-fD-WSG">
                                         <rect key="frame" x="137" y="36" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Fcd-ii-OM4"/>
+                                            <constraint firstAttribute="height" constant="100" id="p8y-yB-ufN"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYS-FA-LW9">
                                         <rect key="frame" x="36" y="175" width="300" height="40"/>
@@ -63,7 +67,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="123121413123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yp1-Jc-HUE">
-                                                    <rect key="frame" x="14.204479534105872" y="4.2630406534151462" width="345" height="43.999999999999972"/>
+                                                    <rect key="frame" x="14" y="4.5" width="345" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -103,6 +107,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="no.1" width="100" height="100"/>
+        <image name="no.2" width="166" height="65"/>
     </resources>
 </document>

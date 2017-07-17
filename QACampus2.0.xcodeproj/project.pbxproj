@@ -73,6 +73,8 @@
 		0667AB501F1CF96A00AB75D4 /* PickStudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0667AB4F1F1CF96A00AB75D4 /* PickStudio.storyboard */; };
 		0667AB541F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB531F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift */; };
 		0667AB561F1CFEAD00AB75D4 /* pickStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */; };
+		0667AB591F1D28C600AB75D4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB581F1D28C600AB75D4 /* ContainerViewController.swift */; };
+		0667AB5B1F1D295400AB75D4 /* Silder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0667AB5A1F1D295400AB75D4 /* Silder.storyboard */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
@@ -241,6 +243,8 @@
 		0667AB4F1F1CF96A00AB75D4 /* PickStudio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PickStudio.storyboard; sourceTree = "<group>"; };
 		0667AB531F1CFB3300AB75D4 /* pickAvatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickAvatorTableViewCell.swift; sourceTree = "<group>"; };
 		0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickStudioViewController.swift; sourceTree = "<group>"; };
+		0667AB581F1D28C600AB75D4 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		0667AB5A1F1D295400AB75D4 /* Silder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Silder.storyboard; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -544,6 +548,15 @@
 			name = pickView;
 			sourceTree = "<group>";
 		};
+		0667AB571F1D28A200AB75D4 /* sliderView */ = {
+			isa = PBXGroup;
+			children = (
+				0667AB5A1F1D295400AB75D4 /* Silder.storyboard */,
+				0667AB581F1D28C600AB75D4 /* ContainerViewController.swift */,
+			);
+			name = sliderView;
+			sourceTree = "<group>";
+		};
 		069E15BD1EFD0C2800A9C1FA /* studioInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +826,7 @@
 		4091248C1EB45F3800347EEF /* QACampus2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				0667AB571F1D28A200AB75D4 /* sliderView */,
 				0667AB4C1F1CB0C700AB75D4 /* pickView */,
 				064D9E9B1F18A31F00B1BD8C /* topicDetail */,
 				062D04F21F15157000499EEB /* Login */,
@@ -1027,6 +1041,7 @@
 				069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */,
 				069E16241F022B3000A9C1FA /* UserHot.storyboard in Resources */,
 				062D04ED1F14B86300499EEB /* CollectQuestion.storyboard in Resources */,
+				0667AB5B1F1D295400AB75D4 /* Silder.storyboard in Resources */,
 				07FE8B451EE103450059BB10 /* QuestionEditor.storyboard in Resources */,
 				062D04F61F15160100499EEB /* Register.storyboard in Resources */,
 				078080711EF2BEA9005B590C /* UserHotDetail.storyboard in Resources */,
@@ -1246,6 +1261,7 @@
 				062D04FE1F161C4C00499EEB /* collectTopicTableViewController.swift in Sources */,
 				0667AB561F1CFEAD00AB75D4 /* pickStudioViewController.swift in Sources */,
 				069E163B1F05157A00A9C1FA /* editUnitTableViewController.swift in Sources */,
+				0667AB591F1D28C600AB75D4 /* ContainerViewController.swift in Sources */,
 				069E16011EFFA8FD00A9C1FA /* spaceTableViewCell.swift in Sources */,
 				062D04F01F14D5AA00499EEB /* editPersonalTableViewController.swift in Sources */,
 				062D05001F16355200499EEB /* collectQuestionTableViewCell.swift in Sources */,

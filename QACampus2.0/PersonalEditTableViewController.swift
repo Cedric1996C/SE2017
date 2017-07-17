@@ -17,7 +17,7 @@ class PersonalEditTableViewController: editTableViewController {
     }()
     
     var delegate:editDelegate?
-    
+    var tabDelegate:tabDelegate?
     var avator:UIImage = User.avator
     
     override func viewDidLoad() {
@@ -126,6 +126,8 @@ class PersonalEditTableViewController: editTableViewController {
             if(indexPath.row == 0) {
                 performSegue(withIdentifier: "reset", sender: self)
             } else {
+                tabDelegate?.tab()
+//                view.bringSubview(toFront: newController.view);
                 let loginVc = UIStoryboard.init(name: "Login", bundle: nil).instantiateInitialViewController()
                 self.present(loginVc!, animated: true, completion: nil)
             }

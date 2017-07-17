@@ -57,10 +57,7 @@ class UserHotViewController: UIViewController {
         let leftVc = self.slideMenuController()?.rightViewController as! pickStudioViewController
         leftVc.rightWillOpen()
     }
-    
-//    func rightWillOpen() {
-//        delegate.tableView.reloadData()
-//    }
+
     
     func loadHotData() {
         indicator.startAnimating()

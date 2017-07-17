@@ -14,7 +14,7 @@ let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
 
 
-class UserTabViewController: UIViewController {
+class UserTabViewController: UIViewController,tabDelegate {
 
     
     @IBOutlet weak var hotView: UIView!
@@ -132,6 +132,7 @@ class UserTabViewController: UIViewController {
         
         infoVc = UIStoryboard.init(name: "PersonalInfo", bundle: nil).instantiateInitialViewController()
         infoVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
+
         self.addChildViewController(infoVc!)
         
         notificationVc = UIStoryboard.init(name: "UserNotification", bundle: nil).instantiateInitialViewController()
@@ -232,4 +233,12 @@ extension UserTabViewController {
         }
         
     }
+    
+    func tab() {
+        replaceController(newController: hotVc!)
+    }
+}
+
+protocol tabDelegate {
+    func tab()
 }
