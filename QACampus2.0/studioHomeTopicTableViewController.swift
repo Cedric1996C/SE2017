@@ -78,7 +78,7 @@ extension studioHomeTopicTableViewController{
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
-        Alamofire.request("https://\(root):8443/topic-service/topic" ,method: .get,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/topic-service/\(LocalStudio.id)/topic" ,method: .get,headers: headers).responseJSON { response in
             
             // response serialization result
             if response.result.value != nil {

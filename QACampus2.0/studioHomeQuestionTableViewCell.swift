@@ -21,6 +21,9 @@ class studioHomeQuestionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         seperateView.backgroundColor = sectionHeaderColor
+        avator.contentMode = .scaleAspectFill
+        avator.layer.masksToBounds = true
+        avator.layer.cornerRadius = avator.frame.width/2
         // Initialization code
     }
 

@@ -67,7 +67,7 @@ extension userStudioViewController: UITableViewDelegate {
         StudioDetail.id = studio.id!
         StudioDetail.title = studio.name!
         StudioDetail.introduction = studio.introduction!
-        StudioDetail.isCollected = false
+        StudioDetail.isCollected = studio.isCollected
         StudioDetail.background = images[studio.id!]!
         //头像下载
         let path = "studio/\(StudioDetail.id)"

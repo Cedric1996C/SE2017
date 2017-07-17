@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
 
@@ -26,7 +27,9 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @IBOutlet weak var studioAvator: UIImageView!
     
+    @IBOutlet weak var infoView: UIView!
     var icons:[UIImage] = []
+    var cancelBtn = UIButton()
     
     var type:Int = 0
     // MARK:- 懒加载属性
@@ -40,34 +43,47 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         super.viewDidLoad()
         
         background.clipsToBounds = true
-        // self.navigationController?.navigationBar.addSubview(studioAvator)
-        // Do any additional setup after loading the view.
-        icons.append(UIImage(named:"answer01")!)
-        icons.append(UIImage(named:"comment01")!)
-        icons.append(UIImage(named:"hot01")!)
-        icons.append(UIImage(named:"user01")!)
+      
+        icons.append(UIImage(named:"最新回答")!)
+        icons.append(UIImage(named:"最新话题")!)
+        icons.append(UIImage(named:"热门")!)
+        icons.append(UIImage(named:"成员")!)
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        initButton()
         initInfo()
         initAvator()
+        
     }
     
     func initButton(){
-        let returnButton = UIButton()
-        background.addSubview(returnButton)
+       
+        cancelBtn.setImage(UIImage(named:"back"),for: .normal)
+        cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
+        cancelBtn.tintColor = .white
+        cancelBtn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
-        background.snp.makeConstraints({ make in
-            make.height.width.equalTo(40.0)
-//            make.left.top.equalToSuperview().offset(60.0)
-            make.center.equalToSuperview()
-        })
+        self.navigationController?.navigationBar.addSubview(cancelBtn)
         
-        returnButton.setImage(#imageLiteral(resourceName: "back_pressed"), for: .normal)
-        returnButton.setImage(#imageLiteral(resourceName: "back"), for: .highlighted)
+        cancelBtn.snp.makeConstraints{ make in
+            make.width.height.equalTo(30)
+            make.top.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(10)
+        }
         
-        returnButton.addTarget(self, action: #selector(cancel), for: UIControlEvents.touchUpInside)
-    }
+        self.view.backgroundColor = pinkColor
+        infoView.backgroundColor = pinkColor
+        collectView.backgroundColor = pinkColor
+        askView.backgroundColor = pinkColor
+        collectionView.backgroundColor = pinkColor
+        
+  }
     
     func initInfo () {
         studioName.text = StudioDetail.title
@@ -78,8 +94,6 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     }
 
     func initAvator () {
-        self.navigationController?.navigationBar.addSubview(studioAvator)
-        studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
         studioAvator.contentMode = .scaleAspectFill
         studioAvator.layer.masksToBounds = true
         studioAvator.layer.cornerRadius = studioAvator.frame.width/2
@@ -89,12 +103,7 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    func returnUser(sender:Any){
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+
     //collectionView Cell个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -127,11 +136,21 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     }
     
     func isCollected () {
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization,
+            "studio":  String(LocalStudio.id)
+        ]
         if StudioDetail.isCollected {
             collectIcon.image = UIImage(named: "favorite02")
             collectLabel.text = "已收藏"
             collectLabel.textColor = UIColor.lightGray
+            
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/studio/collect" ,method: .post,headers: headers).responseJSON { response in
+            }
+            
         } else {
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/studio/collect" ,method: .delete,headers: headers).responseJSON { response in
+            }
             collectIcon.image = UIImage(named: "favorite01")
             collectLabel.text = "收藏"
             collectLabel.textColor = iconColor

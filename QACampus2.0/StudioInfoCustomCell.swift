@@ -18,18 +18,10 @@ class StudioInfoCollectioCell:UICollectionViewCell{
         super.awakeFromNib()
         contentView.layer.cornerRadius = 6.0
         contentView.backgroundColor = iconColor
+        contentView.backgroundColor = .white
         // Initialization code
     }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
-
-//    required init?(coder aDecoder: NSCoder) {
-//    }
-    
+        
 }
 
 class StudioInfoListCell:UITableViewCell{

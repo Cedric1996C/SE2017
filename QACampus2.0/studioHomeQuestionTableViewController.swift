@@ -101,35 +101,33 @@ class studioHomeQuestionTableViewController: UITableViewController {
                             result.name = name!
                             self.itemData.append(result)
                         }
-                    }
-                    
-                    let path:String = "user/\(name)"
-                    //请求客户端的文件路径下的文件
-                    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
-                        if let json = response.result.value {
-                            
-                            if response.response?.statusCode == 200 {
-                                let pictures:[String] = json as! [String]
-                                let pic_path = path.appending("/" + pictures[0])
+                        let path:String = "user/\(name)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                            if let json = response.result.value {
                                 
-                                //获取文件
-                                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                                    let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
                                     
-                                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                                }
-                                Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
-                                    
-                                    if response.error == nil, let imagePath = response.destinationURL?.path {
-                                        self.avators[id] = getPicture(pic_path)
-                                        self.reload()
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            self.avators[id] = getPicture(pic_path)
+                                            self.reload()
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    
                 }
             }
         }

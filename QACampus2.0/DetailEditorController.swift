@@ -30,7 +30,10 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
     }
     
     func configNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneClicked))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title:"完成",style: .plain, target: self, action: #selector(doneClicked))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target:self, action: #selector(cancel))
+        self.navigationItem.leftBarButtonItem?.tintColor = iconColor
+        self.navigationItem.rightBarButtonItem?.tintColor = iconColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +48,10 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
         let detailText = detailView?.text
         let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
         let detailDataEncoded = detailData.base64EncodedString()
+    }
+    
+    func cancel () {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // TO BE OVERRIDDEN
