@@ -166,8 +166,7 @@ extension personalInfoTableViewController {
         print(path)
         //请求用户的头像
         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
-            
-            print(response.response?.statusCode)
+           
             if response.response?.statusCode == 200 {
                 let json = response.result.value
 //                print(json)

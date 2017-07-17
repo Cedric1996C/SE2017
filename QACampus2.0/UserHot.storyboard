@@ -141,6 +141,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="热门" id="LB8-kE-avn">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Kvh-4c-qjI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="phU-HP-hVD">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <connections>
+                                <action selector="showPickView:" destination="pKp-N2-0Q0" id="EWI-YA-ibj"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="9LF-Dn-iEs">
                             <view key="customView" contentMode="scaleToFill" id="zx1-90-WfW">
                                 <rect key="frame" x="276" y="5" width="83" height="33"/>

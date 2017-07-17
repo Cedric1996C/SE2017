@@ -13,6 +13,7 @@ target 'QACampus2.0' do
   pod 'MJRefresh'
   pod 'SwiftyJSON'
   pod 'CryptoSwift'
+  pod 'SlideMenuControllerSwift'
 
   # Pods for QACampus2.0
 

@@ -23,8 +23,21 @@ class UserHotViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
+    lazy var pickView: studioPickView = {
+        let view = studioPickView()
+        view.layer.zPosition = 100
+        view.frame = CGRect(x:ScreenWidth/2,y: ScreenHeight,width:100.0,height:200.0)
+        return view
+    }()
+    
+    let demo:UIImageView = UIImageView()
+    
+    @IBAction func showPickView(_ sender: Any) {
+        pickView.isHidden = pickView.isHidden
+    }
+    
     @IBAction func EnterTeamBtnPressed(_ sender: UIBarButtonItem) {
-        pickerView.isHidden = !pickerView.isHidden
+//        pickerView.isHidden = !pickerView.isHidden
     }
 
     override func viewDidLoad() {
@@ -51,6 +64,21 @@ class UserHotViewController: UIViewController {
         pickerView.delegate = self
         
         loadHotData()
+        pickView.delegate = self
+        pickView.dataSource = self
+        
+        tableView.addSubview(pickView)
+        pickView.layer.zPosition = 100
+        
+        self.view.addSubview(demo)
+        self.view.bringSubview(toFront: demo);
+        demo.layer.zPosition = 1000
+        
+//        initPickView()
+        
+    }
+    
+    func initPickView(){
         
     }
     

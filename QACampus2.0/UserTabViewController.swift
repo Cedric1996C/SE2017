@@ -65,8 +65,6 @@ class UserTabViewController: UIViewController {
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
             userAuthorization = localUser.authorization!
-            print(localUser.email!)
-            print(userAuthorization)
             let path = "/user/\(localUser.userId!)"
             let headers:HTTPHeaders = [
                 "Authorization":userAuthorization
@@ -82,6 +80,7 @@ class UserTabViewController: UIViewController {
                         User.question_num = userJSON["question_num"].int
                         User.answer_num = userJSON["answer_num"].int
                         User.studio_num = userJSON["studio_num"].int
+                        User.studios = userJSON["studio"].arrayObject as! [Int]
                         var temp: JSON = userJSON["question"]
                         User.myQuestion = temp.array?.count
                         temp = userJSON["_question_collect"]
@@ -96,6 +95,23 @@ class UserTabViewController: UIViewController {
                 }
                 
             }
+            
+            Alamofire.request("https://\(root):8443/studio-service/studios/\(User.localUserId!)/studio",method: .get, headers: headers).responseJSON { response in
+               
+                var json = JSON(response.result.value!)
+                print(json)
+                let list: Array<JSON> = json.arrayValue
+                print(list)
+                for json in list {
+                    let name:String = json["name"].string!
+                    let id:Int = json["id"].int!
+                    User.studios.append(id)
+                    User.studios_name[id] = name
+                }
+            }
+        
+
+            
 
         }
     }

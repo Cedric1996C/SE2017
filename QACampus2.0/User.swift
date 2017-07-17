@@ -26,9 +26,10 @@ class User:NSObject,NSCoding{
     static var collectQuestion:Int! = 0
     static var collectStudio:Int! = 0
     static var collectTopic:Int! = 0
+    static var studios:[Int] = []
+    static var studios_name:[Int:String] = [:]
     
     static var avator:UIImage! = UIImage(named: "no.1")
-    
     static var localUserId:Int! = 0
     static var localEmail:String! = "973935302@qq.com"
     static var department:String! = "计算机科学与技术"
