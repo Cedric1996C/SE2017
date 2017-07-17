@@ -64,35 +64,10 @@ class UserTabViewController: UIViewController {
             let localUser = NSKeyedUnarchiver.unarchiveObject(with: user) as! User
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
-            
+            userAuthorization = localUser.authorization!
+            print(localUser.email!)
+            print(userAuthorization)
             let path = "/user/\(localUser.userId!)"
-           
-            //请求用户的头像
-            Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
-                
-                if response.response?.statusCode == 200 {
-                    let json = response.result.value
-                    if let pictures:[String] = json as! [String] {
-                        let pic_path = path.appending("/" + pictures[1])
-                        
-                        //获取文件
-                        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                            let fileURL = documentsURL.appendingPathComponent(pic_path)
-                            
-                            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                        }
-                        
-                        Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
-                            
-                            if response.error == nil, let imagePath = response.destinationURL?.path {
-                                User.avator = getPicture(pic_path)
-                            }
-                        }
-                    }
-                }
-            }
-            
             let headers:HTTPHeaders = [
                 "Authorization":userAuthorization
             ]

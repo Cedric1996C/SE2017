@@ -14,6 +14,7 @@ class User:NSObject,NSCoding{
     var userId: Int?
     var email: String?
     var password: String?
+    var authorization: String?
     
     static var name:String! = "南大鸽子王"
     static var introduction:String! = "逢约必鸽，不见不散"
@@ -32,10 +33,11 @@ class User:NSObject,NSCoding{
     static var localEmail:String! = "973935302@qq.com"
     static var department:String! = "计算机科学与技术"
     
-    required init(id:Int?,email: String?, password: String?){
+    required init(id:Int?,email: String?, password: String?, authorization:String?){
         self.userId = id
         self.email = email
         self.password = password
+        self.authorization = authorization
     }
     
     //从object解析回来
@@ -43,7 +45,7 @@ class User:NSObject,NSCoding{
         self.email = decoder.decodeObject(forKey: "email") as? String ?? ""
         self.password = decoder.decodeObject(forKey: "password") as? String ?? ""
         self.userId = decoder.decodeObject(forKey: "userId") as? Int
-
+        self.authorization = decoder.decodeObject(forKey: "authorization") as? String ?? ""
     }
     
     //编码成object
@@ -51,5 +53,6 @@ class User:NSObject,NSCoding{
         coder.encode(email, forKey:"email")
         coder.encode(password, forKey:"password")
         coder.encode(userId, forKey:"userId")
+        coder.encode(authorization, forKey: "authorization")
     }
 }

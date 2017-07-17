@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E92-mI-Dky">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e1g-bQ-7UR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="8Af-tB-HRq">
+            <objects>
+                <navigationController id="e1g-bQ-7UR" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5fj-qa-q8s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="E92-mI-Dky" kind="relationship" relationship="rootViewController" id="2gq-tG-0UT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jI0-pr-qZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-489" y="-159"/>
+        </scene>
         <!--Studio Info View Controller-->
         <scene sceneID="HDw-G6-ugM">
             <objects>
@@ -23,7 +39,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add02" translatesAutoresizingMaskIntoConstraints="NO" id="IQI-RH-1Y1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add01" translatesAutoresizingMaskIntoConstraints="NO" id="IQI-RH-1Y1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="64D-PI-4h8"/>
@@ -190,6 +206,7 @@
                             <constraint firstItem="IQI-RH-1Y1" firstAttribute="top" secondItem="wcT-Xd-m7p" secondAttribute="top" id="Ymr-ei-xTt"/>
                             <constraint firstItem="AvO-AF-aAp" firstAttribute="top" secondItem="qK4-S5-ba3" secondAttribute="bottom" constant="10" id="ZlB-Hx-r3U"/>
                             <constraint firstAttribute="trailing" secondItem="B8t-4Z-Any" secondAttribute="trailing" id="dtb-Hk-KSb"/>
+                            <constraint firstItem="IQI-RH-1Y1" firstAttribute="top" secondItem="wcT-Xd-m7p" secondAttribute="top" id="g4P-iX-Hk8"/>
                             <constraint firstItem="IQI-RH-1Y1" firstAttribute="leading" secondItem="wcT-Xd-m7p" secondAttribute="leading" id="jcw-F7-YKu"/>
                             <constraint firstItem="B8t-4Z-Any" firstAttribute="top" secondItem="2nm-Dt-bNT" secondAttribute="bottom" constant="15" id="nVD-sa-PTV"/>
                             <constraint firstAttribute="trailing" secondItem="qK4-S5-ba3" secondAttribute="trailing" constant="15" id="pla-tD-XE6"/>
@@ -205,6 +222,7 @@
                         <outlet property="collectLabel" destination="scj-be-xQp" id="BfZ-Yj-Djd"/>
                         <outlet property="collectView" destination="6Cq-eN-Q7I" id="iaF-fF-m6w"/>
                         <outlet property="collectionView" destination="qK4-S5-ba3" id="BIq-bQ-gwJ"/>
+                        <outlet property="infoView" destination="B8t-4Z-Any" id="7oJ-tQ-rge"/>
                         <outlet property="introduction" destination="4gH-kE-tph" id="m0W-Mz-akP"/>
                         <outlet property="studioAvator" destination="2nm-Dt-bNT" id="GTU-jl-cCz"/>
                         <outlet property="studioName" destination="aXm-h3-O8T" id="cwQ-Bt-CCC"/>
@@ -273,7 +291,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KX1-hX-x1e" id="HNx-ye-Sk6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2K-ZP-hnm">
@@ -288,7 +306,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is  description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udc-in-CtD">
-                                                    <rect key="frame" x="17" y="57.5" width="350" height="118.5"/>
+                                                    <rect key="frame" x="17" y="57.5" width="350" height="119"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -322,7 +340,7 @@
                                         <rect key="frame" x="0.0" y="208" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J0Z-EN-ZHR" id="g13-nI-vAq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLj-nj-hOn">
@@ -354,7 +372,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add02" width="128" height="128"/>
+        <image name="add01" width="128" height="128"/>
         <image name="ask01" width="128" height="128"/>
         <image name="favorite01" width="128" height="128"/>
         <image name="no.1" width="100" height="100"/>

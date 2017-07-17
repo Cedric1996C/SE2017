@@ -13,8 +13,10 @@ class Studio{
     var id: Int?
     var name: String?
     var introduction: String?
+    var isCollected:Bool
     
     required init(id:Int, name: String?, introduction: String?){
+        self.isCollected = false
         self.id = id
         self.name = name
         self.introduction = introduction

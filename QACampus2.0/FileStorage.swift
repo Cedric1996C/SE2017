@@ -38,7 +38,6 @@ func prepareForStorage(_ path: String,destination:String) {
 
 func fileUpload(_ path: String,destination:String) {
     
-//    let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent(path)
     print("开始上传")
     let currentImage = UIImage(contentsOfFile: path)!
     let data = UIImageJPEGRepresentation(currentImage, 1.0)
@@ -52,7 +51,7 @@ func fileUpload(_ path: String,destination:String) {
     Alamofire.upload(
         multipartFormData: { multipartFormData in
             multipartFormData.append(data!, withName: "file", fileName: imageName, mimeType: "image/png")
-//                multipartFormData.append(rainbowImageURL, withName: "rainbow")
+    
     },
         to: destination, headers:headers,
         encodingCompletion: { encodingResult in

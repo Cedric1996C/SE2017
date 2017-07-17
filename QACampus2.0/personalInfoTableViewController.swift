@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class personalInfoTableViewController: UITableViewController {
+class personalInfoTableViewController: UITableViewController ,editDelegate{
 
     lazy var tagNames:[String] = {
         return ["我的问题","收藏问题","收藏话题","收藏工作室"]
@@ -26,8 +26,9 @@ class personalInfoTableViewController: UITableViewController {
     }()
 
     override func viewDidLoad() {
+        authentication()
         super.viewDidLoad()
-//        initData()
+        initData()
         view.backgroundColor = sectionHeaderColor
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -91,8 +92,6 @@ class personalInfoTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             performSegue(withIdentifier: "myEdit", sender: self)
-        case 1:
-            performSegue(withIdentifier: "myNews", sender: self)
         case 2:
             if(indexPath.section == 2 ){
                 if (indexPath.row == 0){
@@ -144,12 +143,93 @@ class personalInfoTableViewController: UITableViewController {
     
 }
 
-//extension personalInfoTableViewController {
-//  
-//    //初始化personalInfo,头像、昵称、简介、各数字
-//    func initData () {
-//        
-//
-//    }
-//    
-//}
+extension personalInfoTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigation:UINavigationController
+        if(segue.identifier == "myEdit"){
+            navigation = segue.destination as! UINavigationController
+            let editVc:PersonalEditTableViewController = navigation.topViewController as! PersonalEditTableViewController
+            editVc.delegate = self
+        }
+    }
+    
+}
+
+
+
+extension personalInfoTableViewController {
+  
+    //初始化personalInfo,头像、昵称、简介、各数字
+    func initData () {
+        
+        let path = "user/\(User.localUserId!)"
+        print(path)
+        //请求用户的头像
+        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+            
+            print(response.response?.statusCode)
+            if response.response?.statusCode == 200 {
+                let json = response.result.value
+//                print(json)
+                if let pictures:[String] = json as! [String] {
+                    let pic_path = path.appending("/" + pictures[0])
+                    print(pic_path)
+                    //获取文件
+                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                        
+                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                    }
+                    
+                    Alamofire.download(uploadRoot + pic_path, to: destination).response { response in
+                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                            User.avator = getPicture(pic_path)
+                            self.reload()
+                        }
+                    }
+                }
+            }
+        }
+        
+        let headers:HTTPHeaders = [
+            "Authorization":userAuthorization
+        ]
+        
+        //请求用户的信息
+        Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)", method: .get,headers: headers).responseJSON { response in
+            
+            if  response.result.value != nil {
+                if (response.response?.statusCode)! == 200 {
+                    let userJSON = JSON(response.result.value!)
+                
+                    User.question_num = userJSON["question_num"].int
+                    User.answer_num = userJSON["answer_num"].int
+                    User.studio_num = userJSON["studio_num"].int
+                    var temp: JSON = userJSON["question"]
+                    User.myQuestion = temp.array?.count
+                    temp = userJSON["_question_collect"]
+                    User.collectQuestion = temp.array?.count
+                    temp = userJSON["_studio_collect"]
+                    User.collectStudio = temp.array?.count
+                    temp = userJSON["_topic_collect"]
+                    User.collectTopic = temp.array?.count
+                    User.name = userJSON["display_name"].string
+                    User.introduction = userJSON["introduction"].string
+                }
+            }
+            self.reload()
+            
+        }
+
+    }
+    
+    func saveClicked(controller: PersonalEditTableViewController) {
+        initData()
+    }
+    
+    func reload () {
+        self.tableView.reloadData()
+    }
+    
+}

@@ -26,7 +26,7 @@ class editTableViewController: UITableViewController {
         
         cancelBtn.setImage(UIImage(named:"back"),for: .normal)
                 cancelBtn.setImage(UIImage(named:"cancel02"), for: .selected)
-        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        saveBtn = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = saveBtn
         
         saveBtn.tintColor = defaultColor
@@ -67,6 +67,10 @@ class editTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
+    }
+    
+    func save(sender:Any){
+        
     }
     
 }

@@ -87,7 +87,7 @@ extension editBlogTableViewController {
     }
     
     //Ajax请求 保存相应的信息，并返回
-    func save(sender:Any) {
+    override func save(sender:Any) {
         let index = IndexPath(row:0, section: 1)
         let cell = tableView.cellForRow(at:index) as! editBlogTableViewCell
         let txt = cell.blog.text

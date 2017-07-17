@@ -24,7 +24,6 @@ class personalInfoTableViewCell: UITableViewCell {
         avator.contentMode = .scaleAspectFill
         avator.layer.masksToBounds = true
         avator.layer.cornerRadius = avator.frame.width/2
-//        questionNum.font = 
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -78,7 +78,7 @@ extension studioHomeTopicTableViewController{
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
-        Alamofire.request("https://\(root):8443/topic-service/topic" ,method: .get,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/topic-service/\(LocalStudio.id)/topic" ,method: .get,headers: headers).responseJSON { response in
             
             // response serialization result
             if response.result.value != nil {
@@ -102,7 +102,7 @@ extension studioHomeTopicTableViewController{
                         if let json = response.result.value {
                             print(json)
                             let pictures:[String] = json as! [String]
-                            let pic_path = path.appending("/" + pictures[1])
+                            let pic_path = path.appending("/" + pictures[0])
                             
                             //获取文件
                             let destination: DownloadRequest.DownloadFileDestination = { _, _ in

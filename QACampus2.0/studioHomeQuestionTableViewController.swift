@@ -60,32 +60,80 @@ class studioHomeQuestionTableViewController: UITableViewController {
         let item = itemData[indexPath.row]
         let id:Int = item.id!
         cell.avator.image = (avators[id] != nil) ? avators[id]:UIImage(named:"no.1")
-//        cell.question.text = item.title
-//        cell.byskyler.text = item.name
-//        cell.thumbTime.text = String(item.thumbNum)
-        cell.question.text = "Python是强类型语言吗？"
-        cell.byskyler.text = "南大鸽子王"
+        cell.question.text = item.title
+        cell.thumbTime.text = String(describing: item.thumb_num!)
+        cell.answer_num.text = "\(item.answer_num!)位答主回答了此问题"
+        cell.date.text = item.date
         return cell
     }
     
     func initData() {
-        Alamofire.request("http://\(root):8443/studios" ,method: .get).responseJSON { response in
-
-            if response.result.value != nil {
-                var json = JSON(response.result.value!)
-    //            switch response.result {
-    //            case .success(let value):
-    //                json = JSON(value)
-    //                print("JSON: \(json)")
-    //            case .failure(let error):
-    //                print(error)
-    //            }
-                
-                let list: Array<JSON> = json["content"].arrayValue
-                print(list)
-            }
         
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        Alamofire.request("https://\(root):8443/qa-service/questions/\(LocalStudio.id)/answered" ,method: .get,headers: headers).responseJSON { response in
+            
+            print(response.result.value!)
+            if response.response?.statusCode == 200 && response.result.value != nil {
+                // response serialization result
+                var json = JSON(response.result.value!)
+                let list: Array<JSON> = json.arrayValue
+                
+                for json in list {
+                    let list: Array<JSON> = json["answer"].arrayValue
+                    let answer_num:Int = list.count
+                    let id:Int = json["id"].int!
+                    let title = json["question"].string
+                    let name = json["asker"].int!
+                    let introduction = json["describtion"].string
+                    let dateStamp = json["date"].intValue/1000
+                    let date:String = date2String(dateStamp: dateStamp)
+                    
+                    let result = Question(id:id, name:"", date: date, title: title!, introduction:introduction!, answer_num:answer_num)
+                    let thumb_num:Int = json["thumb"].int!
+                    result.thumb_num = thumb_num
+                    
+                    Alamofire.request("https://\(root):8443/owner-service/owners/\(name)" ,method: .get,headers: headers).responseJSON { response in
+                        if response.response?.statusCode == 200 {
+                            let json = JSON(response.result.value!)
+                            let name = json["display_name"].string
+                            result.name = name!
+                            self.itemData.append(result)
+                        }
+                        let path:String = "user/\(name)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            self.avators[id] = getPicture(pic_path)
+                                            self.reload()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
+    
+    func reload() {
+        self.tableView.reloadData()
+    }
 }
