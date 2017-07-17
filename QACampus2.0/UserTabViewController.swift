@@ -64,7 +64,9 @@ class UserTabViewController: UIViewController {
             let localUser = NSKeyedUnarchiver.unarchiveObject(with: user) as! User
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
-            
+            userAuthorization = localUser.authorization!
+            print(localUser.email!)
+            print(userAuthorization)
             let path = "/user/\(localUser.userId!)"
             let headers:HTTPHeaders = [
                 "Authorization":userAuthorization

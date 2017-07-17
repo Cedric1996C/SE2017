@@ -11,7 +11,7 @@ import UIKit
 
 class LocalStudio {
     
-    static var id:Int = 0
+    static var id:Int = 1
     static var answerNUm:Int = 0
     static var thumbNum:Int = 0
     static var title: String = "IOS开发组"

@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/studioHomeViewController.swift"
-            timestampString = "521830386.031657"
+            timestampString = "521954195.115524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "initView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -842,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/UserTabViewController.swift"
-            timestampString = "521907163.814287"
+            timestampString = "521959952.244622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "switchStudio(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1143,11 +1143,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/loginViewController.swift"
-            timestampString = "521884164.981463"
+            timestampString = "521959448.528631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "resetLocalUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1331,11 +1331,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/UserTabViewController.swift"
-            timestampString = "521907163.814287"
+            timestampString = "521959952.244622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "initUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1474,12 +1474,92 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/personalInfoTableViewController.swift"
-            timestampString = "521949159.458348"
+            filePath = "QACampus2.0/UserTabViewController.swift"
+            timestampString = "521959952.244622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "initUserInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalInfoTableViewController.swift"
+            timestampString = "521961582.914289"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "initData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.personalInfoTableViewController.initData () -&gt; ()"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/personalInfoTableViewController.swift"
+                  timestampString = "521961583.130166"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "670">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QACampus2_0.personalInfoTableViewController.(initData () -&gt; ()).(closure #1)"
+                  moduleName = "QACampus2.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/njucong/SE2017/QACampus2.0/personalInfoTableViewController.swift"
+                  timestampString = "521961583.13273"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalInfoTableViewController.swift"
+            timestampString = "521961584.362616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "initData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalInfoTableViewController.swift"
+            timestampString = "521961680.633083"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "initData()"
             landmarkType = "7">
          </BreakpointContent>

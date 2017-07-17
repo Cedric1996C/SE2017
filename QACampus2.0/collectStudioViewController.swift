@@ -85,8 +85,8 @@ extension collectStudioViewController {
 
                         if let json = response.result.value {
                             let pictures:[String] = json as! [String]
-                            let avator_path = path.appending("/" + pictures[1])
-                            let background_path = path.appending("/" + pictures[2])
+                            let avator_path = path.appending("/" + pictures[0])
+                            let background_path = path.appending("/" + pictures[1])
                             
                             //获取文件
                             let destination: DownloadRequest.DownloadFileDestination = { _, _ in

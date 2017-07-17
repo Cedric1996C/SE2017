@@ -74,7 +74,7 @@ extension userStudioViewController: UITableViewDelegate {
         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
             if let json = response.result.value {
                 let pictures:[String] = json as! [String]
-                let pic_path = path.appending("/" + pictures[1])
+                let pic_path = path.appending("/" + pictures[0])
                 
                 //获取文件
                 let destination: DownloadRequest.DownloadFileDestination = { _, _ in
@@ -134,7 +134,7 @@ extension userStudioViewController {
                 Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
                     if let json = response.result.value {
                         let pictures:[String] = json as! [String]
-                        let pic_path = path.appending("/" + pictures[2])
+                        let pic_path = path.appending("/" + pictures[1])
                         
                         //获取文件
                         let destination: DownloadRequest.DownloadFileDestination = { _, _ in

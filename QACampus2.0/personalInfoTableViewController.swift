@@ -26,6 +26,7 @@ class personalInfoTableViewController: UITableViewController ,editDelegate{
     }()
 
     override func viewDidLoad() {
+        authentication()
         super.viewDidLoad()
         initData()
         view.backgroundColor = sectionHeaderColor
@@ -161,17 +162,18 @@ extension personalInfoTableViewController {
     //初始化personalInfo,头像、昵称、简介、各数字
     func initData () {
         
-        let path = "/user/\(User.localUserId!)"
+        let path = "user/\(User.localUserId!)"
+        print(path)
         //请求用户的头像
         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
             
             print(response.response?.statusCode)
-            if (response.response?.statusCode)! == 200 {
+            if response.response?.statusCode == 200 {
                 let json = response.result.value
 //                print(json)
                 if let pictures:[String] = json as! [String] {
-                    let pic_path = path.appending("/" + pictures[1])
-                    
+                    let pic_path = path.appending("/" + pictures[0])
+                    print(pic_path)
                     //获取文件
                     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -180,8 +182,7 @@ extension personalInfoTableViewController {
                         return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                     }
                     
-                    Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
-//                        print(pic_path)
+                    Alamofire.download(uploadRoot + pic_path, to: destination).response { response in
                         if response.error == nil, let imagePath = response.destinationURL?.path {
                             User.avator = getPicture(pic_path)
                             self.reload()

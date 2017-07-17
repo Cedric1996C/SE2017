@@ -46,19 +46,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="答主：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0E-PM-ntB">
-                                            <rect key="frame" x="25" y="43" width="43" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-oc-Xdd">
-                                            <rect key="frame" x="63" y="43" width="237" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3位成员解答了该问题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-oc-Xdd">
+                                            <rect key="frame" x="25" y="43" width="160" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="237" id="DgU-fy-f5n"/>
-                                                <constraint firstAttribute="width" secondItem="Geg-oc-Xdd" secondAttribute="height" multiplier="237:20" id="Z5X-nQ-CQF"/>
-                                                <constraint firstAttribute="height" constant="20" id="zCH-al-bAc"/>
+                                                <constraint firstAttribute="width" constant="160" id="cBp-rQ-lCi"/>
+                                                <constraint firstAttribute="height" constant="20" id="nef-15-yIb"/>
+                                                <constraint firstAttribute="width" secondItem="Geg-oc-Xdd" secondAttribute="height" multiplier="8:1" id="teM-xo-smd"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
@@ -86,23 +79,38 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-07-17" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0E-PM-ntB">
+                                            <rect key="frame" x="215" y="43" width="86" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="A0E-PM-ntB" secondAttribute="height" multiplier="43:10" id="ZUB-LS-Oy5"/>
+                                                <constraint firstAttribute="height" constant="20" id="ds9-6Z-cZX"/>
+                                                <constraint firstAttribute="width" constant="86" id="eCx-kb-oeJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Geg-oc-Xdd" firstAttribute="top" secondItem="OWt-Tx-u3B" secondAttribute="bottom" constant="8" id="8i6-E0-o0f"/>
+                                        <constraint firstItem="A0E-PM-ntB" firstAttribute="leading" secondItem="Geg-oc-Xdd" secondAttribute="trailing" constant="30" id="9tS-aD-rzB"/>
+                                        <constraint firstItem="A7j-F6-k7T" firstAttribute="leading" secondItem="A0E-PM-ntB" secondAttribute="trailing" constant="8" id="FZ1-AY-Wtm"/>
+                                        <constraint firstAttribute="bottom" secondItem="A0E-PM-ntB" secondAttribute="bottom" constant="6.5" id="X9Y-de-aKS"/>
                                         <constraint firstItem="OWt-Tx-u3B" firstAttribute="leading" secondItem="Tfa-8g-IF2" secondAttribute="trailing" constant="8" id="aOI-eQ-0LB"/>
                                         <constraint firstItem="A7j-F6-k7T" firstAttribute="centerY" secondItem="Nww-DR-J3e" secondAttribute="centerY" id="bLS-XU-3Vw"/>
                                         <constraint firstItem="caV-xV-aLn" firstAttribute="trailing" secondItem="Nww-DR-J3e" secondAttribute="trailingMargin" id="diR-4s-5ep"/>
                                         <constraint firstItem="Tfa-8g-IF2" firstAttribute="top" secondItem="Nww-DR-J3e" secondAttribute="topMargin" id="eNw-bS-3oJ"/>
                                         <constraint firstItem="caV-xV-aLn" firstAttribute="leading" secondItem="A7j-F6-k7T" secondAttribute="trailing" id="gMZ-LM-SFS"/>
                                         <constraint firstItem="OWt-Tx-u3B" firstAttribute="top" secondItem="Nww-DR-J3e" secondAttribute="topMargin" constant="3" id="h3I-qi-YF4"/>
-                                        <constraint firstItem="Geg-oc-Xdd" firstAttribute="leading" secondItem="Nww-DR-J3e" secondAttribute="leading" constant="63" id="jAf-b6-Ea6"/>
+                                        <constraint firstItem="Geg-oc-Xdd" firstAttribute="leading" secondItem="Nww-DR-J3e" secondAttribute="leading" constant="25" id="i4g-5k-9D1"/>
                                         <constraint firstItem="caV-xV-aLn" firstAttribute="top" secondItem="Nww-DR-J3e" secondAttribute="topMargin" constant="14" id="oOt-3U-LlW"/>
+                                        <constraint firstAttribute="bottom" secondItem="Geg-oc-Xdd" secondAttribute="bottom" constant="6.5" id="w6B-Yi-KVa"/>
                                         <constraint firstItem="Tfa-8g-IF2" firstAttribute="leading" secondItem="Nww-DR-J3e" secondAttribute="leadingMargin" constant="17" id="wAC-K8-9jt"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="answer_num" destination="Geg-oc-Xdd" id="07I-zD-NDb"/>
                                     <outlet property="avator" destination="Tfa-8g-IF2" id="eBC-0p-BNK"/>
-                                    <outlet property="byskyler" destination="Geg-oc-Xdd" id="J7y-G9-wi1"/>
+                                    <outlet property="date" destination="A0E-PM-ntB" id="Ptq-h2-M0X"/>
                                     <outlet property="question" destination="OWt-Tx-u3B" id="yDE-hq-0ux"/>
                                     <outlet property="seperateView" destination="5fV-SX-jxx" id="4SL-KI-kF0"/>
                                     <outlet property="thumbTime" destination="caV-xV-aLn" id="Ihu-6z-8dN"/>

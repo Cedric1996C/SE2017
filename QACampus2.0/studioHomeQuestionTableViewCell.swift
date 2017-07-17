@@ -12,10 +12,11 @@ class studioHomeQuestionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avator: UIImageView!
     @IBOutlet weak var question: UILabel!
-    @IBOutlet weak var byskyler: UILabel!
+    @IBOutlet weak var answer_num: UILabel!
     @IBOutlet weak var thumbTime: UILabel!
     
     @IBOutlet weak var seperateView: UIView!
+    @IBOutlet weak var date: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -113,12 +113,13 @@ class loginViewController: UIViewController {
         
         Alamofire.request("https://\(root):8443/owner-service/owners/email", method: .get,headers: headers).responseJSON { response in
             
-            if  response.result.value != nil {
+            if  (response.response?.statusCode == 200) && response.result.value != nil {
                 var userJSON = JSON(response.result.value!)
                 let id:Int = userJSON["id"].int!
                 
                 //自定义对象存储
-                let user = User(id:id,email: self.email.text, password: self.password.text)
+                let user = User(id:id,email: self.email.text, password: self.password.text,authorization: userAuthorization)
+                
                 let modelData = NSKeyedArchiver.archivedData(withRootObject: user)
                 userDefault.set(modelData, forKey: "local_user")
                 

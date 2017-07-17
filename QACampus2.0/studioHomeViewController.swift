@@ -65,6 +65,7 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
         item.tintColor = defaultColor
         self.navigationItem.leftBarButtonItem = item
 
+        initData()
         initView()
         initPageView()
         initAvator()
@@ -102,16 +103,13 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func initAvator () {
+        
         self.navigationController?.navigationBar.addSubview(studioAvator)
-        studioAvator.image = LocalStudio.avator
         studioAvator.frame = CGRect(x:SCREEN_WIDTH/2-40,y:5.0,width:80.0,height:80.0)
         studioAvator.contentMode = .scaleAspectFill
         studioAvator.layer.masksToBounds = true
         studioAvator.layer.cornerRadius = studioAvator.frame.width/2
         
-        studioName.text = LocalStudio.title
-        studioIntro.text = LocalStudio.introduction
-        QustionAndTopic.text = "解决了\(LocalStudio.answerNUm)个问题，获得了\(LocalStudio.thumbNum)个赞"
     }
     
     
@@ -136,6 +134,17 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
         self.dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension studioHomeViewController {
+   
+    func initData() {
+        studioAvator.image = LocalStudio.avator
+        studioName.text = LocalStudio.title
+        studioIntro.text = LocalStudio.introduction
+        QustionAndTopic.text = "解决了\(LocalStudio.answerNUm)个问题，获得了\(LocalStudio.thumbNum)个赞"
+    }
+    
 }
 
 // MARK: - pageViewController代理

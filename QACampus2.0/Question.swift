@@ -15,14 +15,18 @@ class Question {
     var date:String?
     var title:String?
     var introduction: String?
-    var thumbNum:Int?
+    var answer_num:Int?
+    var thumb_num:Int?
     
     
-    required init(name: String?,date:String?,title:String?, introduction: String?){
+    required init(id:Int, name: String?,date:String?,title:String?, introduction: String?,answer_num:Int){
+        thumb_num = 0
+        self.id = id
         self.name = name
         self.date = date
         self.title = title
         self.introduction = introduction
+        self.answer_num = answer_num
         
     }
 

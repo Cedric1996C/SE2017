@@ -737,6 +737,7 @@
 		07C88A7B1EE3A11300300810 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
 				0667AB451F1AF89400AB75D4 /* StudioDetail.swift */,
 				0667AB461F1AF89400AB75D4 /* LocalStudio.swift */,
 				061BA6211ED730BA000030CD /* userResponse.swift */,
@@ -814,7 +815,6 @@
 				069E15BD1EFD0C2800A9C1FA /* studioInfo */,
 				069E15D51EFDF9A800A9C1FA /* studioHome */,
 				062D04F81F15B8D100499EEB /* Utils */,
-				062B2ABA1F1364640042B9A5 /* GlobalConstant.swift */,
 				4091248D1EB45F3800347EEF /* AppDelegate.swift */,
 				409124961EB45F3800347EEF /* LaunchScreen.storyboard */,
 				0667AB431F1AF85100AB75D4 /* Info.plist */,
