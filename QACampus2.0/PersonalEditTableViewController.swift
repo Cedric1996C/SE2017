@@ -159,6 +159,9 @@ class PersonalEditTableViewController: editTableViewController {
             let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent("personalAvator")
             //准备上传头像
             prepareForStorage(fullPath, destination: uploadRoot+"user/\(User.localUserId!)")
+            print(uploadRoot+"user/\(User.localUserId!)")
+//            prepareForStorage(fullPath, destination: "https://localhost:6666/user/1")
+
         }
         
         delegate?.saveClicked(controller: self)

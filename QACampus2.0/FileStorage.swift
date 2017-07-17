@@ -41,8 +41,8 @@ func fileUpload(_ path: String,destination:String) {
     print("开始上传")
     let currentImage = UIImage(contentsOfFile: path)!
     let data = UIImageJPEGRepresentation(currentImage, 1.0)
-    let imageName = String(describing: "avator")
-//    print(imageName)
+    let imageName = String(describing: "avator.png")
+    print(imageName)
     
     let headers:HTTPHeaders = [
         "Authorization":fileAuthirization[path]!
@@ -50,14 +50,15 @@ func fileUpload(_ path: String,destination:String) {
     
     Alamofire.upload(
         multipartFormData: { multipartFormData in
-            multipartFormData.append(data!, withName: "file", fileName: imageName, mimeType: "image/jpeg")
+            multipartFormData.append(data!, withName: "file", fileName: imageName, mimeType: "image/png")
+    
     },
         to: destination, headers:headers,
         encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
-                    debugPrint(response.value!)
+                    debugPrint(response)
                 }
             case .failure(let encodingError):
                 print(encodingError)
