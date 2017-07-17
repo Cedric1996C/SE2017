@@ -13,7 +13,11 @@ import SwiftyJSON
 
 class UserHotViewController: UIViewController {
     
+    let ipAddress = "https://118.89.166.180:8443"
+    
     var tableData: [Abstract] = []
+    var nextPage: Int = 0
+    var nextPageUrl: String = ""
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -62,7 +66,7 @@ class UserHotViewController: UIViewController {
             let headers: HTTPHeaders = [
                 "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
             ]
-            Alamofire.request("https://118.89.166.180:8443/qa-service/questions", method: .get, headers: headers).responseJSON { response in
+            Alamofire.request(self.ipAddress + "/qa-service/questions", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
                     let content = json["content"]
@@ -73,19 +77,19 @@ class UserHotViewController: UIViewController {
                         let description = item.1["describtion"].string
                         self.tableData.append(Abstract(id: id, count: vote, title: title, detail: description))
                     }
+                    let isLast = json["last"].boolValue
+                    if !isLast {
+                        self.nextPageUrl = self.ipAddress + json["_links"]["next"]["href"].stringValue
+                    }
+                    else {
+                        self.nextPageUrl = ""
+                    }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.indicator.stopAnimating()
                     }
                 }
             }
-            /*Thread.sleep(forTimeInterval: 2)
-            self.tableData = [
-                Abstract(count: 63, title: "Python是强类型语言吗？", detail: "Python定义变量不显式指定类型，为什么…"),
-                Abstract(count: 7, title: "为什么这么多人用Java？", detail: "我感觉Java很繁琐，为什么工业界似乎还…"),
-                Abstract(count: 15, title: "C++在什么领域用得比较多？", detail: "现在在学C++，但是不知道C++今后会在什…"),
-                Abstract(count: 23, title: "这个title很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长", detail: "一个detail"),
-            ]*/
         }
     }
     
@@ -98,9 +102,10 @@ class UserHotViewController: UIViewController {
         // 可在此处实现下拉刷新时要执行的代码
         // ......
         
+        self.tableData.removeAll()
+        tableView.mj_footer.resetNoMoreData()
+        loadHotData()
         
-        // 模拟延迟3秒
-        Thread.sleep(forTimeInterval: 2)
         // 结束刷新
         tableView.mj_header.endRefreshing()
     }
@@ -109,9 +114,44 @@ class UserHotViewController: UIViewController {
         // 可在此处实现上拉加载时要执行的代码
         // ......
         
+        if nextPageUrl.isEmpty {
+            tableView.mj_footer.endRefreshingWithNoMoreData()
+            return
+        }
         
-        // 模拟延迟3秒
-        Thread.sleep(forTimeInterval: 2)
+        DispatchQueue.global().async {
+            // TODO: load data
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+            ]
+            Alamofire.request(self.nextPageUrl, method: .get, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let json = JSON(jsonData)
+                    print(json)
+                    let content = json["content"]
+                    for item in content {
+                        let id = item.1["id"].int
+                        let vote = item.1["thumb"].int
+                        let title = item.1["question"].string
+                        let description = item.1["describtion"].string
+                        self.tableData.append(Abstract(id: id, count: vote, title: title, detail: description))
+                    }
+                    let isLast = json["last"].boolValue
+                    if !isLast {
+                        self.nextPageUrl = self.ipAddress + json["_links"]["next"]["href"].stringValue
+                    }
+                    else {
+                        self.nextPageUrl = ""
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.indicator.stopAnimating()
+                    }
+                }
+            }
+        }
+        
         // 结束刷新
         tableView.mj_footer.endRefreshing()
     }
