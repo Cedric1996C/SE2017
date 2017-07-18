@@ -45,10 +45,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     var notifiBase1Url:String=""
     var loadMoreUrl:String=""
     
-    let headers: HTTPHeaders = [
-        "Authorization": userAuthorization
-    ]
-    
+    var headers: HTTPHeaders = [:]
     lazy var icon_titles:[String] = {
         return ["回答","评论","点赞"]
     }()
@@ -66,7 +63,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
         icons.append(UIImage(named:"nice01")!)
         
         self.localUserId=User.localUserId;
-        self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question"
+        self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question/0"
         self.notifiBase1Url="/topic-service/topic/notice/\(localUserId)"
 
         
@@ -84,8 +81,10 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        self.notifiRequest()
-        
+        self.headers=[
+            "Authorization": userAuthorization
+        ]
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -151,6 +150,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     //通知请求
     func notifiRequest(){
         print("in notifiRequest()")
+        self.infos.removeAll()
         //通知
         Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
             if let json = response.result.value {
@@ -158,7 +158,6 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                 let jsonObj = JSON(data: response.data!)
                 let results:Array = jsonObj.arrayValue
                 
-                self.infos.removeAll()
                 for r in results{
                     let id:Int = r["id"].intValue
                     let name:String = r["asker"].stringValue
@@ -214,20 +213,6 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                     let desc:String = r["content"].stringValue
                     let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                     self.infos.append(info)
-                }
-                
-                //是否有更多的通知
-                if(results.count==10){
-                    print("loadMore true")
-                    self.loadMoreEnable=true
-                    self.tableView.tableFooterView = self.clearFooterView
-                    self.tableView.mj_footer = self.footer
-                    self.loadMoreUrl="/\(self.infos.count)"
-                }
-                else{
-                    print("loadMore false")
-                    self.loadMoreEnable=false
-                    self.loadMoreUrl=""
                 }
                 
                 self.tableView.reloadData()
