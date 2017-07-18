@@ -16,6 +16,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    @IBOutlet weak var studioTitle: UINavigationItem!
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
@@ -30,16 +33,18 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
 
     //0:最新回答 1:最新话题 2:热门 3:成员
     var type:Int = 0
+    var studioName:String = ""
+    var studioId:Int = 0
     var infos:[Info] = []
     
     let icon:UIImage = UIImage(named: "no.1")!
     
     //url
     let url:String="https://118.89.166.180:8443"
-    let notifiBase0Url:String="/qa-service/questions"
-    let notifiBase1Url:String=""
-    let notifiBase2Url:String=""
-    let notifiBase3Url:String=""
+    var notifiBase0Url:String=""
+    var notifiBase1Url:String=""
+    var notifiBase2Url:String=""
+    var notifiBase3Url:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -62,7 +67,20 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.studioTitle.title = self.studioName
         
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = true
+        
+        self.studioId=LocalStudio.id
+        
+        self.notifiBase0Url="/qa-service/questions/\(studioId)/answered"
+        self.notifiBase1Url="/topic-service/topic/\(studioId)/topic"
+        self.notifiBase2Url="/qa-service/questions/\(studioId)/answered"
+        self.notifiBase3Url="/owner-service/owners/\(studioId)/studio/member"
+        
+        //self.view.backgroundColor = pinkColor
         //上拉加载
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
         self.tableView.mj_footer = footer
@@ -95,15 +113,15 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     }
     //创建各单元显示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(3 == self.type){
-            let identify:String = "StudioInfoList2Cell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoList2Cell
-            //            cell.desc.text = infos2[indexPath.row]
-            cell.desc.text="xxx人"
-            
-            return cell
-        }
-        else{
+//        if(3 == self.type){
+//            let identify:String = "StudioInfoList2Cell"
+//            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoList2Cell
+//            cell.desc.text = infos2[indexPath.row]
+//            //cell.desc.text="xxx人"
+//            
+//            return cell
+//        }
+        //else{
             let identify:String = "StudioInfoListCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoListCell
             cell.icon.image=infos[indexPath.row].icon
@@ -111,6 +129,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
             cell.time.text=infos[indexPath.row].time
             cell.title.text=infos[indexPath.row].title
             cell.desc.text=infos[indexPath.row].desc
+        
             
             //            cell.icon.image=self.icon
             //            cell.name.text="wef"
@@ -119,7 +138,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
             //            cell.desc.text="新通知的描述"
             
             return cell
-        }
+        //}
     }
     // 点击TableView的一行时调用
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -133,11 +152,12 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
         print("in studioInfoRequest()")
         switch self.type{
         case 0:
+            //问题／回答过
             Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -155,7 +175,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
@@ -176,7 +198,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -193,15 +215,18 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     self.infos.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let studioId:Int = r["studio"].intValue
+                        //加载头像
                         
+                        //
+                        let name:String = r["title"].stringValue
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
                         let time:String = self.date2String(dateStamp: dateStamp)
                         
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let title:String = r["brief"].stringValue
+                        let desc:String = r["content"].stringValue
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
@@ -210,12 +235,12 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
             }
             break
         case 2:
-            //话题
+            //问题
             Alamofire.request(url+notifiBase2Url, method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -233,7 +258,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
@@ -249,12 +276,12 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
             }
             break
         case 3:
-            //点赞
-            Alamofire.request(url+notifiBase2Url, method: .get, headers: headers).responseJSON { response in
+            //成员
+            Alamofire.request(url+notifiBase3Url, method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -271,15 +298,17 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     self.infos.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let name:String = "邮箱："+r["email"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
+                        //let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
+                        let time:String = ""//self.date2String(dateStamp: dateStamp)
                         
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let title:String = r["display_name"].stringValue
+                        let desc:String = r["introduction"].stringValue
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
@@ -480,6 +509,9 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
         //            make.centerY.equalToSuperview()
         //        })
         
+    }
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func headerClick() {

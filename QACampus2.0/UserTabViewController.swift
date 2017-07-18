@@ -14,7 +14,7 @@ let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
 
 
-class UserTabViewController: UIViewController {
+class UserTabViewController: UIViewController,tabDelegate {
 
     
     @IBOutlet weak var hotView: UIView!
@@ -48,7 +48,7 @@ class UserTabViewController: UIViewController {
         authentication()
        
         initUI()
-        initUserInfo()
+ 
         initControllers()
         
         view.backgroundColor = sectionHeaderColor
@@ -65,8 +65,6 @@ class UserTabViewController: UIViewController {
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
             userAuthorization = localUser.authorization!
-            print(localUser.email!)
-            print(userAuthorization)
             let path = "/user/\(localUser.userId!)"
             let headers:HTTPHeaders = [
                 "Authorization":userAuthorization
@@ -78,10 +76,11 @@ class UserTabViewController: UIViewController {
                 if  response.result.value != nil {
                     if (response.response?.statusCode)! == 200 {
                         let userJSON = JSON(response.result.value!)
-                        print(userJSON)
+//                        print(userJSON)
                         User.question_num = userJSON["question_num"].int
                         User.answer_num = userJSON["answer_num"].int
                         User.studio_num = userJSON["studio_num"].int
+                        User.studios = userJSON["studio"].arrayObject as! [Int]
                         var temp: JSON = userJSON["question"]
                         User.myQuestion = temp.array?.count
                         temp = userJSON["_question_collect"]
@@ -96,6 +95,24 @@ class UserTabViewController: UIViewController {
                 }
                 
             }
+            
+            Alamofire.request("https://\(root):8443/studio-service/studios/\(User.localUserId!)/studio",method: .get, headers: headers).responseJSON { response in
+               
+                if  response.result.value != nil {
+                    var json = JSON(response.result.value!)
+                    print(json)
+                    let list: Array<JSON> = json.arrayValue
+                    print(list)
+                    for json in list {
+                        let name:String = json["name"].string!
+                        let id:Int = json["id"].int!
+                        User.studios_name[id] = name
+                    }
+            }
+            }
+        
+
+            
 
         }
     }
@@ -115,6 +132,7 @@ class UserTabViewController: UIViewController {
         
         infoVc = UIStoryboard.init(name: "PersonalInfo", bundle: nil).instantiateInitialViewController()
         infoVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
+
         self.addChildViewController(infoVc!)
         
         notificationVc = UIStoryboard.init(name: "UserNotification", bundle: nil).instantiateInitialViewController()
@@ -206,7 +224,6 @@ extension UserTabViewController {
         
         //自定义对象读取
         let local_user = userDefault.data(forKey: "local_user")
-        
         if(local_user == nil){
             let mainVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             self.present(mainVC!, animated: true, completion: nil)
@@ -216,6 +233,12 @@ extension UserTabViewController {
         }
         
     }
-
     
+    func tab() {
+        replaceController(newController: hotVc!)
+    }
+}
+
+protocol tabDelegate {
+    func tab()
 }

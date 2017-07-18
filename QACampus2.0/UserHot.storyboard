@@ -140,28 +140,9 @@
                             <constraint firstItem="TEP-nw-CQb" firstAttribute="centerX" secondItem="eB5-yP-H1g" secondAttribute="centerX" id="vQw-T7-GQ1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="热门" id="LB8-kE-avn">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="9LF-Dn-iEs">
-                            <view key="customView" contentMode="scaleToFill" id="zx1-90-WfW">
-                                <rect key="frame" x="276" y="5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJ5-S5-bvM">
-                                        <rect key="frame" x="0.0" y="-2" width="83" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    </pickerView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <connections>
-                                <action selector="EnterTeamBtnPressed:" destination="pKp-N2-0Q0" id="yYj-Mb-zlk"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="热门" id="LB8-kE-avn"/>
                     <connections>
-                        <outlet property="EnterTeam" destination="9LF-Dn-iEs" id="FZI-aO-Yj5"/>
                         <outlet property="indicator" destination="TEP-nw-CQb" id="fMO-CX-syz"/>
-                        <outlet property="pickerView" destination="oJ5-S5-bvM" id="AUW-Tu-KvB"/>
                         <outlet property="searchBar" destination="dh2-n1-SKy" id="UJz-V5-7R6"/>
                         <outlet property="tableView" destination="I9M-CS-hAR" id="3ne-OP-c6I"/>
                         <segue destination="JNH-nN-CVz" kind="show" identifier="TMP" id="Xx0-Rg-g2y"/>

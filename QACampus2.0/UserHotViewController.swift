@@ -10,24 +10,19 @@ import UIKit
 import MJRefresh
 import Alamofire
 import SwiftyJSON
+import SlideMenuControllerSwift
 
 class UserHotViewController: UIViewController {
     
     var tableData: [Abstract] = []
     var nextPage: Int = 0
     var nextPageUrl: String = ""
+    var delegate:SlideMenuControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    @IBOutlet weak var EnterTeam: UIBarButtonItem!
-    
-    @IBOutlet weak var pickerView: UIPickerView!
-    
-    @IBAction func EnterTeamBtnPressed(_ sender: UIBarButtonItem) {
-        pickerView.isHidden = !pickerView.isHidden
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +43,18 @@ class UserHotViewController: UIViewController {
         footer.setRefreshingTarget(self, refreshingAction: #selector(UserHotViewController.footerClick))
         tableView.mj_footer = footer
         
-        //滑动选择模块
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        
         loadHotData()
-        
+
+        delegate = self.slideMenuController()?.delegate
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title:"工作室",style: .plain, target: self, action: #selector(pickViewClicked))
+    }
+
+    
+    func pickViewClicked(){
+        self.slideMenuController()?.openRight()
+//        delegate?.rightWillOpen!()
+        let leftVc = self.slideMenuController()?.rightViewController as! pickStudioViewController
+        leftVc.rightWillOpen()
     }
 
     func loadHotData() {
@@ -193,30 +194,5 @@ extension UserHotViewController: UITableViewDataSource {
         cell.detail.text = self.tableData[indexPath.row].detail
         cell.count.text = String(self.tableData[indexPath.row].count)
         return cell
-    }
-}
-
-extension UserHotViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "TEST"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 4
-    }
-}
-
-extension UserHotViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let width = self.view.frame.width
-        let height = self.view.frame.height        
-        let userVc =  UIStoryboard.init(name: "StudioTab", bundle: nil).instantiateInitialViewController()
-        userVc!.view.frame = CGRect(x:0, y:0,width: width, height:height)
-        self.present(userVc!, animated: true, completion: nil)
-
     }
 }

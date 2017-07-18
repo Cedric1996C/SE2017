@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SlideMenuControllerSwift
 
 class loginViewController: UIViewController {
 
@@ -104,8 +105,6 @@ class loginViewController: UIViewController {
     //存储登录的账户
     func saveLocalUser() {
         
-        let userDefault = UserDefaults.standard
-        
         let headers:HTTPHeaders = [
             "Authorization":userAuthorization,
             "email": email.text!
@@ -117,6 +116,7 @@ class loginViewController: UIViewController {
                 var userJSON = JSON(response.result.value!)
                 let id:Int = userJSON["id"].int!
                 
+                let userDefault = UserDefaults.standard
                 //自定义对象存储
                 let user = User(id:id,email: self.email.text, password: self.password.text,authorization: userAuthorization)
                 
@@ -124,8 +124,9 @@ class loginViewController: UIViewController {
                 userDefault.set(modelData, forKey: "local_user")
                 
             }
-            let mainVC = UIStoryboard(name: "MainInterface", bundle: nil).instantiateInitialViewController()
-            self.present(mainVC!, animated: true, completion: nil)
+            
+            let containerVc = UIStoryboard(name: "Silder", bundle: nil).instantiateInitialViewController()
+            self.present(containerVc!, animated: true, completion: nil)
         }
     }
 

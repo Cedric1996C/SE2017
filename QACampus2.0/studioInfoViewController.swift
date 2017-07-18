@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
+class studioInfoViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -127,6 +127,8 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier=="showStudioInfoList"){
             let d = segue.destination as! StudioInfoListController
+            d.studioName=self.studioName.text!
+            d.studioId = LocalStudio.id
             d.type=self.type
         }
     }

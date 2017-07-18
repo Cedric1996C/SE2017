@@ -1,4 +1,6 @@
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class DetailEditorController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
@@ -45,9 +47,7 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
     }
     
     func doneClicked() {
-        let detailText = detailView?.text
-        let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
-        let detailDataEncoded = detailData.base64EncodedString()
+        
     }
     
     func cancel () {
