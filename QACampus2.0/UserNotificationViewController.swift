@@ -41,7 +41,8 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     //url
     let url:String="https://118.89.166.180:8443"
     var localUserId:Int=0
-    var notifiBaseUrl:String=""
+    var notifiBase0Url:String=""
+    var notifiBase1Url:String=""
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -65,7 +66,8 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
         icons.append(UIImage(named:"nice01")!)
         
         self.localUserId=User.localUserId;
-        self.notifiBaseUrl="/qa-service/questions/\(localUserId)/notice/question"
+        self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question"
+        self.notifiBase1Url="/topic-service/topic/notice/\(localUserId)"
 
         
         //上拉加载
@@ -150,7 +152,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     func notifiRequest(){
         print("in notifiRequest()")
         //通知
-        Alamofire.request(url+notifiBaseUrl, method: .get, headers: headers).responseJSON { response in
+        Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
             if let json = response.result.value {
                 print(json)
                 let jsonObj = JSON(data: response.data!)
@@ -168,6 +170,48 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                     
                     let title:String = r["question"].stringValue
                     let desc:String = r["describtion"].stringValue
+                    let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                    self.infos.append(info)
+                }
+                
+                //是否有更多的通知
+                if(results.count==10){
+                    print("loadMore true")
+                    self.loadMoreEnable=true
+                    self.tableView.tableFooterView = self.clearFooterView
+                    self.tableView.mj_footer = self.footer
+                    self.loadMoreUrl="/\(self.infos.count)"
+                }
+                else{
+                    print("loadMore false")
+                    self.loadMoreEnable=false
+                    self.loadMoreUrl=""
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+        Alamofire.request(url+notifiBase1Url, method: .get, headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                print(json)
+                let jsonObj = JSON(data: response.data!)
+                let results:Array = jsonObj.arrayValue
+                
+                //self.infos.removeAll()
+                for r in results{
+                    let id:Int = r["id"].intValue
+                    let studioId:Int = r["studio"].intValue
+                    //加载头像
+                    
+                    //
+                    let name:String = r["title"].stringValue
+                    //时间戳／ms转为/s
+                    let dateStamp = r["date"].intValue/1000
+                    // 时间戳转字符串
+                    let time:String = self.date2String(dateStamp: dateStamp)
+                    
+                    let title:String = r["brief"].stringValue
+                    let desc:String = r["content"].stringValue
                     let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                     self.infos.append(info)
                 }
