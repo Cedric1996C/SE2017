@@ -10,16 +10,26 @@ import Foundation
 import Alamofire
 
 //图片下载
-func downloadPicture(_ path:String,id:Int){
+func downloadQuestion(_ path:String){
+   
+    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(path)
+        
+        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+    }
     
-    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
-        if let json = response.result.value {
-            let pictures:[String] = json as! [String]
-            let pic_path = path.appending("/" + pictures[0])
-            print(pic_path)
+    Alamofire.download(uploadRoot+path, to: destination).response { response in
+        
+        if response.error == nil, let data = response.destinationURL?.path {
+//            print(data)
         }
+        
+        debugPrint(response)
+        
     }
 }
+
 
 
 //MARK: - 保存图片至沙盒

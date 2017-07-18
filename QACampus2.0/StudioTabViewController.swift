@@ -74,10 +74,7 @@ class StudioTabViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        print("finish stuidotab")
-    }
-    
+  
     @IBAction func switchHome(_ sender: Any) {
         replaceController(newController: homeVc!)
     }

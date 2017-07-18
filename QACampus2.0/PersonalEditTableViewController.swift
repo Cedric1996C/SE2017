@@ -126,7 +126,6 @@ class PersonalEditTableViewController: editTableViewController {
             if(indexPath.row == 0) {
                 performSegue(withIdentifier: "reset", sender: self)
             } else {
-                tabDelegate?.tab()
 //                view.bringSubview(toFront: newController.view);
                 let loginVc = UIStoryboard.init(name: "Login", bundle: nil).instantiateInitialViewController()
                 self.present(loginVc!, animated: true, completion: nil)
