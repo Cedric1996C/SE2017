@@ -54,9 +54,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var cellHeight:CGFloat = 44.0
     //url
     let url:String="https://118.89.166.180:8443"
-    let qaBaseUrl:String="/qa-service"
-    let topicBaseUrl:String="/topic-service"
-    let studioBaseUrl:String="/studio-service"
+    let qaBaseUrl:String="/qa-service/questions/search"
+    let topicBaseUrl:String="/topic-service/topic/search"
+    let studioBaseUrl:String="/studio-service/studio/search"
     var loadMoreUrl:String=""
     
     let headers: HTTPHeaders = [
@@ -101,7 +101,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         //self.historyTable.register(UITableViewCell.self,forCellReuseIdentifier: "HisListCell")
         //self.historyTable.register(UITableViewCell.self,forCellReuseIdentifier: "ResListCell")
         
-        // 隐藏TableView分割线
+        //
         self.clearFooterView?.backgroundColor = UIColor.clear
         self.historyTable.tableFooterView = self.clearFooterView
         //上拉加载
@@ -247,6 +247,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             let cell = tableView.cellForRow(at: indexPath) as! UserHotHisListCell
             searchInput.text=cell.label.text
             self.searchRequest()
+            self.historyTable.reloadData()
             //print(cell!.textLabel?.text!)
         }
 
@@ -254,10 +255,11 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     }
     
     @IBAction func searchTypeChange(_ sender: Any) {
-        if(self.searchInput.text != ""){
+        //if(self.searchInput.text != ""){
+            self.resultsSel=[]
             self.searchRequest()
             self.historyTable.reloadData()
-        }
+        //}
     }
     // 搜索代理UISearchBarDelegate方法，每次改变搜索内容时都会调用
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -291,16 +293,18 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     //搜索请求
     func searchRequest(){
         print("in searchRequest()")
-        
         self.isResults=true
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
-            Alamofire.request(url+qaBaseUrl+"/questions", method: .get, headers: headers).responseJSON { response in
+            let con:String = self.searchInput.text!
+            let parameters: Parameters = ["content": con]
+            print(parameters)
+            Alamofire.request(url+qaBaseUrl, method: .post, parameters: parameters, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -315,7 +319,9 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
@@ -332,11 +338,14 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
-            Alamofire.request(url+topicBaseUrl+"/topic", method: .get, headers: headers).responseJSON { response in
+            let con:String = self.searchInput.text!
+            let parameters: Parameters = ["content": con]
+            print(parameters)
+            Alamofire.request(url+topicBaseUrl, method: .post, parameters: parameters, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -350,15 +359,17 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     self.resultsSel.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let name:String = r["title"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
                         let time:String = date2String(dateStamp: dateStamp)
                         
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let title:String = r["brief"].stringValue
+                        let desc:String = r["content"].stringValue
                         let result = Result(id: id, name: name, time: time, title: title, desc: desc)
                         self.resultsSel.append(result)
                     }
@@ -368,11 +379,14 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
-            Alamofire.request(url+studioBaseUrl+"/studio", method: .get, headers: headers).responseJSON { response in
+            let con:String = self.searchInput.text!
+            let parameters: Parameters = ["content": con]
+            print(parameters)
+            Alamofire.request(url+studioBaseUrl, method: .post, parameters: parameters, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
                     let jsonObj = JSON(data: response.data!)
-                    let results:Array = jsonObj["content"].arrayValue
+                    let results:Array = jsonObj.arrayValue
                     self.loadMoreUrl = jsonObj["_links"]["next"]["href"].stringValue
                     
                     if(self.loadMoreUrl.length==0){
@@ -386,15 +400,17 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     self.resultsSel.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let name:String = r["name"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
                         let time:String = date2String(dateStamp: dateStamp)
                         
                         let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let desc:String = r["introduction"].stringValue
                         let result = Result(id: id, name: name, time: time, title: title, desc: desc)
                         self.resultsSel.append(result)
                     }
