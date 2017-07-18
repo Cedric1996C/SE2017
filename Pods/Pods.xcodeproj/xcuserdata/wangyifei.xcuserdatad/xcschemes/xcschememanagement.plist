@@ -59,6 +59,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>SlideMenuControllerSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -84,6 +89,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>19012D5003A5DE596D5B6832FFC17967</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D5AC8015212144332444D59FC29F7B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>24EEC77B8D5F257C920225E1717D38B8</key>
 		<dict>
 			<key>primary</key>
@@ -95,6 +110,16 @@
 			<true/>
 		</dict>
 		<key>34A366AE9CE6F9F19E93C890CAB98CEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C58A0D833CC03B8B4D5038FCFE7A879</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5378FABE42098E6A9CE6FC01F8DE457C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

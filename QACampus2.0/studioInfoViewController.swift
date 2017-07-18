@@ -128,6 +128,7 @@ class studioInfoViewController: UIViewController,UICollectionViewDelegate,UIColl
         if(segue.identifier=="showStudioInfoList"){
             let d = segue.destination as! StudioInfoListController
             d.studioName=self.studioName.text!
+            d.studioId = LocalStudio.id
             d.type=self.type
         }
     }

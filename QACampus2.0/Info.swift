@@ -24,5 +24,9 @@ class Info{
         self.title = title
         self.desc = desc
     }
+    
+    public func setIcon(icon:UIImage){
+        self.icon=icon
+    }
 }
 

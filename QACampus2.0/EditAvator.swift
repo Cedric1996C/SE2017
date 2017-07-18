@@ -73,7 +73,7 @@ extension editStudioInfoTableViewController {
         
         //存储后拿出更新头像
         avator = UIImage(contentsOfFile: fullPath)
-        prepareForStorage(fullPath, destination: "https://localhost:6666/1/")
+        prepareForStorage(fullPath, destination: "https://192.168.1.108:6666/1/")
         picker.dismiss(animated: true, completion: nil)
         tableView.reloadData()
         
@@ -154,7 +154,7 @@ extension PersonalEditTableViewController:UIImagePickerControllerDelegate,UINavi
         //存储后拿出更新头像
         avator = UIImage(contentsOfFile: fullPath)!
         //准备上传头像
-//        prepareForStorage(fullPath, destination: "https://localhost:6666/1/")
+//        prepareForStorage(fullPath, destination: "https://192.168.1.108:6666/1/")
         picker.dismiss(animated: true, completion: nil)
         tableView.reloadData()
         

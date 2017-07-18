@@ -80,7 +80,7 @@ extension collectStudioViewController {
                     self.studios.append(studio)
                     
                     //请求客户端的文件路径下的文件,此处为拉取工作室的头像和背景
-                    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                    Alamofire.request("https://192.168.1.108:6666/files/\(path)", method: .get).responseJSON { response in
                         if response.response?.statusCode == 200 {
 
                         if let json = response.result.value {
@@ -95,7 +95,7 @@ extension collectStudioViewController {
                                 
                                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                             }
-                            Alamofire.download("https://localhost:6666/\(avator_path)", to: destination).response { response in
+                            Alamofire.download("https://192.168.1.108:6666/\(avator_path)", to: destination).response { response in
                                 
                                 if response.error == nil, let imagePath = response.destinationURL?.path {
                                     self.avators[id] = getPicture(avator_path)
@@ -109,7 +109,7 @@ extension collectStudioViewController {
                                 
                                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                             }
-                            Alamofire.download("https://localhost:6666/\(background_path)", to: bg_destination).response { response in
+                            Alamofire.download("https://192.168.1.108:6666/\(background_path)", to: bg_destination).response { response in
                                 
                                 if response.error == nil, let imagePath = response.destinationURL?.path {
                                     self.backgrounds[id] = getPicture(background_path)

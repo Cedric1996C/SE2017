@@ -12,7 +12,7 @@ import Alamofire
 //图片下载
 func downloadPicture(_ path:String,id:Int){
     
-    Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+    Alamofire.request("https://192.168.1.108:6666/files/\(path)", method: .get).responseJSON { response in
         if let json = response.result.value {
             let pictures:[String] = json as! [String]
             let pic_path = path.appending("/" + pictures[0])
