@@ -90,6 +90,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         if(!isNotifi){
             return 1
         }
+        if(2 == self.type){
+            return infos2.count
+        }
         return infos.count
     }
     //返回单元格高度
@@ -115,7 +118,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
             let identify:String = "SubList2Cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! SubList2Cell
             //            cell.desc.text = infos2[indexPath.row]
-            cell.desc.text="xxx 给你的 xxx 点了赞"
+            cell.desc.text=self.infos2[indexPath.row]
+            cell.desc.numberOfLines = 3
             cell.desc.textAlignment = NSTextAlignment.left
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
@@ -168,7 +172,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
@@ -216,15 +222,18 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     self.infos.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let studioId:Int = r["studio"].intValue
+                        //加载头像
                         
+                        //
+                        let name:String = r["title"].stringValue
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
                         let time:String = self.date2String(dateStamp: dateStamp)
                         
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let title:String = r["brief"].stringValue
+                        let desc:String = r["content"].stringValue
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
@@ -264,18 +273,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     
                     self.infos.removeAll()
                     for r in results{
-                        let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
-                        
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let desc:String = r.stringValue
+                        self.infos2.append(desc)
                     }
                     
                     //是否有更多的通知
@@ -315,7 +314,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        //加载头像
                         
+                        //
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
@@ -355,15 +356,18 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     
                     for r in results{
                         let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
+                        let studioId:Int = r["studio"].intValue
+                        //加载头像
                         
+                        //
+                        let name:String = r["title"].stringValue
                         //时间戳／ms转为/s
                         let dateStamp = r["date"].intValue/1000
                         // 时间戳转字符串
                         let time:String = self.date2String(dateStamp: dateStamp)
                         
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
+                        let title:String = r["brief"].stringValue
+                        let desc:String = r["content"].stringValue
                         let info = Info(id: id, name: name, time: time, title: title, desc: desc)
                         self.infos.append(info)
                     }
@@ -395,18 +399,8 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     let results:Array = jsonObj.arrayValue
                     
                     for r in results{
-                        let id:Int = r["id"].intValue
-                        let name:String = r["asker"].stringValue
-                        
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let desc:String = r.stringValue
+                        self.infos2.append(desc)
                     }
                     
                     //是否有更多的通知

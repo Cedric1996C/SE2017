@@ -161,7 +161,7 @@ class PersonalEditTableViewController: editTableViewController {
             //准备上传头像
             prepareForStorage(fullPath, destination: uploadRoot+"user/\(User.localUserId!)")
             print(uploadRoot+"user/\(User.localUserId!)")
-//            prepareForStorage(fullPath, destination: "https://localhost:6666/user/1")
+//            prepareForStorage(fullPath, destination: "https://192.168.1.108:6666/user/1")
 
         }
         
