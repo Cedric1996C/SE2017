@@ -56,7 +56,6 @@
 		062D05041F1659C300499EEB /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D05031F1659C300499EEB /* FileUpload.swift */; };
 		0638D9B91EEE453D00D74F4C /* collectStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */; };
 		0638D9BB1EEE880700D74F4C /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638D9BA1EEE880700D74F4C /* pageViewController.swift */; };
-		064D9E901F17490800B1BD8C /* FileDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E8F1F17490800B1BD8C /* FileDownload.swift */; };
 		064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */; };
 		064D9E951F17910600B1BD8C /* studioQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */; };
 		064D9E971F1794BA00B1BD8C /* date2String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D9E961F1794BA00B1BD8C /* date2String.swift */; };
@@ -75,13 +74,14 @@
 		0667AB561F1CFEAD00AB75D4 /* pickStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */; };
 		0667AB591F1D28C600AB75D4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB581F1D28C600AB75D4 /* ContainerViewController.swift */; };
 		0667AB5B1F1D295400AB75D4 /* Silder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0667AB5A1F1D295400AB75D4 /* Silder.storyboard */; };
+		0667AB5D1F1E0C1D00AB75D4 /* userStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB5C1F1E0C1D00AB75D4 /* userStudioViewController.swift */; };
+		0667AB5F1F1E0C3200AB75D4 /* FileDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667AB5E1F1E0C3200AB75D4 /* FileDownload.swift */; };
 		06945A461EC7EDD0005EA1CF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06945A451EC7EDD0005EA1CF /* loginViewController.swift */; };
 		069AD2211F0B1FF300D5102A /* StudioHomeQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */; };
 		069AD2231F0B1FFD00D5102A /* StudioHomeTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2221F0B1FFD00D5102A /* StudioHomeTopic.storyboard */; };
 		069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2241F0B204D00D5102A /* studioHomeQuestionTableViewController.swift */; };
 		069AD2271F0B20BA00D5102A /* studioHomeTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2261F0B20BA00D5102A /* studioHomeTopicTableViewController.swift */; };
 		069AD2291F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2281F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift */; };
-		069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD22E1F0C832B00D5102A /* userStudioViewController.swift */; };
 		069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */; };
 		069AD2331F11F4F100D5102A /* PersonalInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */; };
 		069E15C11EFD111200A9C1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069E15C01EFD111200A9C1FA /* Assets.xcassets */; };
@@ -226,7 +226,6 @@
 		062D05031F1659C300499EEB /* FileUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		0638D9B81EEE453D00D74F4C /* collectStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectStudioViewController.swift; sourceTree = "<group>"; };
 		0638D9BA1EEE880700D74F4C /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
-		064D9E8F1F17490800B1BD8C /* FileDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDownload.swift; sourceTree = "<group>"; };
 		064D9E921F17900300B1BD8C /* studioQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewController.swift; sourceTree = "<group>"; };
 		064D9E941F17910600B1BD8C /* studioQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		064D9E961F1794BA00B1BD8C /* date2String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = date2String.swift; sourceTree = "<group>"; };
@@ -245,6 +244,8 @@
 		0667AB551F1CFEAD00AB75D4 /* pickStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pickStudioViewController.swift; sourceTree = "<group>"; };
 		0667AB581F1D28C600AB75D4 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		0667AB5A1F1D295400AB75D4 /* Silder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Silder.storyboard; sourceTree = "<group>"; };
+		0667AB5C1F1E0C1D00AB75D4 /* userStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioViewController.swift; sourceTree = "<group>"; };
+		0667AB5E1F1E0C3200AB75D4 /* FileDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDownload.swift; sourceTree = "<group>"; };
 		06945A441EC7EB23005EA1CF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		06945A451EC7EDD0005EA1CF /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		069AD2201F0B1FF300D5102A /* StudioHomeQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudioHomeQuestion.storyboard; sourceTree = "<group>"; };
@@ -252,7 +253,6 @@
 		069AD2241F0B204D00D5102A /* studioHomeQuestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHomeQuestionTableViewController.swift; sourceTree = "<group>"; };
 		069AD2261F0B20BA00D5102A /* studioHomeTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHomeTopicTableViewController.swift; sourceTree = "<group>"; };
 		069AD2281F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studioHomeQuestionTableViewCell.swift; sourceTree = "<group>"; };
-		069AD22E1F0C832B00D5102A /* userStudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioViewController.swift; sourceTree = "<group>"; };
 		069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStudioTableViewCell.swift; sourceTree = "<group>"; };
 		069AD2321F11F4F100D5102A /* PersonalInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonalInfo.storyboard; sourceTree = "<group>"; };
 		069E15C01EFD111200A9C1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = QACampus2.0/Assets.xcassets; sourceTree = "<group>"; };
@@ -421,9 +421,9 @@
 		061F50261EED4117001BBAF9 /* http */ = {
 			isa = PBXGroup;
 			children = (
+				0667AB5E1F1E0C3200AB75D4 /* FileDownload.swift */,
 				061F50271EED48F1001BBAF9 /* Authentication.swift */,
 				062D05031F1659C300499EEB /* FileUpload.swift */,
-				064D9E8F1F17490800B1BD8C /* FileDownload.swift */,
 				061CBF5A1F05FF970049EC6A /* EditAvator.swift */,
 			);
 			name = http;
@@ -674,7 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				069E16251F0241A500A9C1FA /* UserStudio.storyboard */,
-				069AD22E1F0C832B00D5102A /* userStudioViewController.swift */,
+				0667AB5C1F1E0C1D00AB75D4 /* userStudioViewController.swift */,
 				069AD2301F0CCBD000D5102A /* userStudioTableViewCell.swift */,
 			);
 			name = userStudio;
@@ -1236,6 +1236,7 @@
 				409124901EB45F3800347EEF /* ViewController.swift in Sources */,
 				062B2AB31F1327B40042B9A5 /* personalInfoTableViewController.swift in Sources */,
 				061CBF7D1F0665CD0049EC6A /* searchCollectTableViewController.swift in Sources */,
+				0667AB5D1F1E0C1D00AB75D4 /* userStudioViewController.swift in Sources */,
 				062B2ACD1F1376E00042B9A5 /* editAvatorTableViewCell.swift in Sources */,
 				062D04FC1F161BFD00499EEB /* collectQuestionTableViewController.swift in Sources */,
 				D918CBF71F1473C7005D0899 /* Result.swift in Sources */,
@@ -1283,7 +1284,6 @@
 				062B2AAF1F131E7A0042B9A5 /* Studio.swift in Sources */,
 				064D9EA71F18C15C00B1BD8C /* topicTableViewCell.swift in Sources */,
 				069E16491F05ECD000A9C1FA /* editBlogTableViewCell.swift in Sources */,
-				069AD22F1F0C832B00D5102A /* userStudioViewController.swift in Sources */,
 				069E15ED1EFE547700A9C1FA /* studioAdminTableViewCell.swift in Sources */,
 				07E2ABA71F1887B1008CE259 /* CommentEditorController.swift in Sources */,
 				069E16471F05EBF100A9C1FA /* editBlogTableViewController.swift in Sources */,
@@ -1321,10 +1321,10 @@
 				069AD2291F0B22FF00D5102A /* studioHomeQuestionTableViewCell.swift in Sources */,
 				064D9EA31F18AF5100B1BD8C /* topicDetailTableViewController.swift in Sources */,
 				069E163D1F0515C700A9C1FA /* editTableViewController.swift in Sources */,
+				0667AB5F1F1E0C3200AB75D4 /* FileDownload.swift in Sources */,
 				069AD2311F0CCBD000D5102A /* userStudioTableViewCell.swift in Sources */,
 				062B2AD41F13E03D0042B9A5 /* resetPasswordTableViewController.swift in Sources */,
 				07E2ABA31F188542008CE259 /* DetailEditorController.swift in Sources */,
-				064D9E901F17490800B1BD8C /* FileDownload.swift in Sources */,
 				069AD2251F0B204D00D5102A /* studioHomeQuestionTableViewController.swift in Sources */,
 				061BA6251ED730BA000030CD /* registerViewController.swift in Sources */,
 				064D9E931F17900300B1BD8C /* studioQuestionTableViewController.swift in Sources */,
