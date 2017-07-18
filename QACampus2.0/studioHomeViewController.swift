@@ -8,6 +8,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class studioHomeViewController: UIViewController, UINavigationControllerDelegate {
 
@@ -61,6 +63,7 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        authentication()
         let item=UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(returnUser))
         item.tintColor = defaultColor
         self.navigationItem.leftBarButtonItem = item
@@ -139,12 +142,51 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
 extension studioHomeViewController {
    
     func initData() {
+        
+        downloadData()
         studioAvator.image = LocalStudio.avator
         studioName.text = LocalStudio.title
         studioIntro.text = LocalStudio.introduction
         QustionAndTopic.text = "解决了\(LocalStudio.answerNUm)个问题，获得了\(LocalStudio.thumbNum)个赞"
     }
     
+    func downloadData(){
+        
+        let headers:HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        
+        Alamofire.request("https://\(root):8443/studio-service/studios/\(LocalStudio.id)" ,method: .get, headers: headers).responseJSON { response in
+            
+            if response.result.value != nil {
+                // response serialization result
+                var json = JSON(response.result.value!)
+                let list: JSON = json["content"].arrayValue[0]
+                
+                LocalStudio.introduction = json["introduction"].string!
+                let path:String = "studio/\(LocalStudio.id)"
+                
+                //请求客户端的文件路径下的文件
+                Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                    if response.response?.statusCode == 200 {
+                        if let json = response.result.value {
+                            let pictures:[String] = json as! [String]
+                            let pic_path = path.appending("/" + pictures[0])
+                            
+                            //获取文件
+                            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                
+                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                                
+                                if response.error == nil, let imagePath = response.destinationURL?.path {
+                                    LocalStudio.avator = getPicture(pic_path)
+                                }
+                            }
+    }}}}}}
 }
 
 // MARK: - pageViewController代理

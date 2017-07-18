@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QACampus2.0/studioHomeViewController.swift"
-            timestampString = "521954195.115524"
+            timestampString = "522059737.733943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "initView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -349,285 +349,6 @@
             endingLineNumber = "72"
             landmarkName = "configSubTitles()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/studioHomeViewController.swift"
-            timestampString = "521829877.002412"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "PageVc"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.PageVc.getter : QACampus2_0.pageViewController"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.244118"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "176">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.PageVc.setter : QACampus2_0.pageViewController"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.247287"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "65">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.(PageVc.getter : QACampus2_0.pageViewController).(closure #1)"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.249974"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; QACampus2_0.studioHomeViewController"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.252828"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "616">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;QACampus2_0.studioHomeViewController&gt;"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.255977"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "527">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/studioHomeViewController.swift"
-            timestampString = "519966865.111342"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "subTitleView"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.subTitleView.getter : QACampus2_0.studioHomeSubTitleView"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.265969"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "186">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.subTitleView.setter : QACampus2_0.studioHomeSubTitleView"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.269201"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "65">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.(subTitleView.getter : QACampus2_0.studioHomeSubTitleView).(closure #1)"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.27207"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; QACampus2_0.studioHomeViewController"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.274747"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "587">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;QACampus2_0.studioHomeViewController&gt;"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.277923"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "504">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/studioHomeViewController.swift"
-            timestampString = "519966866.007274"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "controllers"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.controllers.getter : Swift.Array&lt;__ObjC.UIViewController&gt;"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.288156"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "181">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.controllers.setter : Swift.Array&lt;__ObjC.UIViewController&gt;"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.290849"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "65">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Stack Promoted from Box&gt; of QACampus2_0.studioHomeViewController.(controllers.getter : Swift.Array&lt;__ObjC.UIViewController&gt;).(closure #1)"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.294215"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; QACampus2_0.studioHomeViewController"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.297053"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "558">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.studioHomeViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;QACampus2_0.studioHomeViewController&gt;"
-                  moduleName = "QACampus2.0"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/njucong/QACampus2.0/QACampus2.0/studioHomeViewController.swift"
-                  timestampString = "519966874.300183"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "481">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1791,11 +1512,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.downloadFile (Swift.String) -&gt; ()"
+                  symbolName = "QACampus2_0.downloadQuestion (Swift.String) -&gt; ()"
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileDownload.swift"
-                  timestampString = "522052057.890309"
+                  timestampString = "522061797.405361"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -1806,11 +1527,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QACampus2_0.(downloadFile (Swift.String) -&gt; ()).(closure #2)"
+                  symbolName = "QACampus2_0.(downloadQuestion (Swift.String) -&gt; ()).(closure #2)"
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileDownload.swift"
-                  timestampString = "522052057.893489"
+                  timestampString = "522061797.408856"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -1818,6 +1539,54 @@
                   offsetFromSymbolStart = "1174">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalQuestionTableViewController.swift"
+            timestampString = "522061542.716809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "initData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalQuestionTableViewController.swift"
+            timestampString = "522061542.716809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "initData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/personalQuestionTableViewController.swift"
+            timestampString = "522061542.716809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "initData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

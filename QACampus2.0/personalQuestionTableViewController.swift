@@ -41,7 +41,6 @@ extension personalQuestionTableViewController {
                 var json = JSON(response.result.value!)
                 let list: Array<JSON> = json.arrayValue
                 for json in list {
-                    
                     let id:Int = json["id"].int!
                     let title = json["question"].string
                     let name = json["studio"].int!
@@ -54,10 +53,12 @@ extension personalQuestionTableViewController {
                     
                     Alamofire.request("https://\(root):8443/owner-service/owners/\(name)" ,method: .get,headers: headers).responseJSON { response in
                         
-                        if response.response?.statusCode == 200 {
+                        if response.response?.statusCode == 200 && (response.result.value != nil){
                             let json = JSON(response.result.value!)
-                            let name = json["display_name"].string
-                            result.name = name!
+                            print(name)
+                            print(json)
+                            let display_name = json["display_name"].string
+                            result.name = (display_name != nil) ? display_name! : ""
                             self.itemData.append(result)
                         }
                         
