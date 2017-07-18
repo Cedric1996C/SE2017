@@ -13,8 +13,6 @@ import SwiftyJSON
 
 class UserHotViewController: UIViewController {
     
-    let ipAddress = "https://118.89.166.180:8443"
-    
     var tableData: [Abstract] = []
     var nextPage: Int = 0
     var nextPageUrl: String = ""
@@ -57,16 +55,16 @@ class UserHotViewController: UIViewController {
         loadHotData()
         
     }
-    
+
     func loadHotData() {
         indicator.startAnimating()
         DispatchQueue.global().async {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
             ]
-            Alamofire.request(self.ipAddress + "/qa-service/questions", method: .get, headers: headers).responseJSON { response in
+            Alamofire.request("https://\(root):8443/qa-service/questions", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
                     let content = json["content"]
@@ -79,7 +77,7 @@ class UserHotViewController: UIViewController {
                     }
                     let isLast = json["last"].boolValue
                     if !isLast {
-                        self.nextPageUrl = self.ipAddress + json["_links"]["next"]["href"].stringValue
+                        self.nextPageUrl = "https://\(root):8443/\(json["_links"]["next"]["href"].stringValue)"
                     }
                     else {
                         self.nextPageUrl = ""
@@ -123,12 +121,11 @@ class UserHotViewController: UIViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4Mzc5NDA1OTNAcXEuY29tIiwicm9sZXMiOiJbVVNFUl0iLCJpZCI6MSwiZXhwIjoxNTAwMzYzOTc2fQ.UUWxPoQyf99bwV7vuGVXqVNobEoS2eWOWpqt_Mm_AzNT9lcgWTjNEbOwym4KRVGCMFrLk5vzZFRtyr4jC3N9yg"
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
             ]
             Alamofire.request(self.nextPageUrl, method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
-                    print(json)
                     let content = json["content"]
                     for item in content {
                         let id = item.1["id"].int
@@ -139,7 +136,7 @@ class UserHotViewController: UIViewController {
                     }
                     let isLast = json["last"].boolValue
                     if !isLast {
-                        self.nextPageUrl = self.ipAddress + json["_links"]["next"]["href"].stringValue
+                        self.nextPageUrl = "https://\(root):8443/\(json["_links"]["next"]["href"].stringValue)"
                     }
                     else {
                         self.nextPageUrl = ""
@@ -177,8 +174,8 @@ extension UserHotViewController: UITableViewDelegate {
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        Detail.title = String(repeating: tableData[indexPath.row].title, count: 3)
-        Detail.detail = String(repeating: tableData[indexPath.row].detail, count: 10)
+        Detail.id = tableData[indexPath.row].id
+        Detail.title = tableData[indexPath.row].title
         //self.navigationController?.pushViewController(DetailViewController(), animated: true)
         performSegue(withIdentifier: "showDetail", sender: self)
     }

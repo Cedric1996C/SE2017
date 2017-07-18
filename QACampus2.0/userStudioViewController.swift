@@ -117,6 +117,10 @@ extension userStudioViewController {
         ]
         Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
             
+            if response.result.isFailure {
+                return
+            }
+            
             // response serialization result
             var json = JSON(response.result.value!)
             let list: Array<JSON> = json["content"].arrayValue

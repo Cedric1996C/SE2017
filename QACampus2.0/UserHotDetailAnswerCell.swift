@@ -1,9 +1,9 @@
 import UIKit
 
-class UserHotDetailContentCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+class UserHotDetailAnswerCell: UITableViewCell {
+    
+    @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var answererButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
