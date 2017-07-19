@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 class TopicDetail {
-    
+    static var id:Int = 0
     static var title: String = "深入了解分布式系统"
     static var authorName:String = "张天"
     static var date:String = "2017.7.14"

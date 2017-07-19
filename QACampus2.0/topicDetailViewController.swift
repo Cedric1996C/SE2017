@@ -10,7 +10,7 @@ import UIKit
 
 class topicDetailViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let _width = self.view.frame.width
@@ -18,6 +18,7 @@ class topicDetailViewController: UIViewController {
         let detailVc =  UIStoryboard.init(name: "TopicDetail", bundle: nil).instantiateViewController(withIdentifier: "TopicDetail")
         detailVc.view.frame = CGRect(x:0, y:0,width: _width, height:_height)
         self.view.addSubview(detailVc.view)
+        self.view.backgroundColor  = .red
         detailVc.view.layer.zPosition = 99
         bottomView.layer.zPosition = 100
         // Do any additional setup after loading the view.
@@ -26,6 +27,10 @@ class topicDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
 }

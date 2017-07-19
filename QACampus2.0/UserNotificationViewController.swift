@@ -41,13 +41,11 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     //url
     let url:String="https://118.89.166.180:8443"
     var localUserId:Int=0
-    var notifiBaseUrl:String=""
+    var notifiBase0Url:String=""
+    var notifiBase1Url:String=""
     var loadMoreUrl:String=""
     
-    let headers: HTTPHeaders = [
-        "Authorization": userAuthorization
-    ]
-    
+    var headers: HTTPHeaders = [:]
     lazy var icon_titles:[String] = {
         return ["回答","评论","点赞"]
     }()
@@ -65,7 +63,8 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
         icons.append(UIImage(named:"nice01")!)
         
         self.localUserId=User.localUserId;
-        self.notifiBaseUrl="/qa-service/questions/\(localUserId)/notice/question"
+        self.notifiBase0Url="/qa-service/questions/\(localUserId)/notice/question/0"
+        self.notifiBase1Url="/topic-service/topic/notice/\(localUserId)"
 
         
         //上拉加载
@@ -82,8 +81,10 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        self.notifiRequest()
-        
+        self.headers=[
+            "Authorization": userAuthorization
+        ]
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -149,14 +150,14 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
     //通知请求
     func notifiRequest(){
         print("in notifiRequest()")
+        self.infos.removeAll()
         //通知
-        Alamofire.request(url+notifiBaseUrl, method: .get, headers: headers).responseJSON { response in
+        Alamofire.request(url+notifiBase0Url, method: .get, headers: headers).responseJSON { response in
             if let json = response.result.value {
                 print(json)
                 let jsonObj = JSON(data: response.data!)
                 let results:Array = jsonObj.arrayValue
                 
-                self.infos.removeAll()
                 for r in results{
                     let id:Int = r["id"].intValue
                     let name:String = r["asker"].stringValue
@@ -184,6 +185,34 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                     print("loadMore false")
                     self.loadMoreEnable=false
                     self.loadMoreUrl=""
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+        Alamofire.request(url+notifiBase1Url, method: .get, headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                print(json)
+                let jsonObj = JSON(data: response.data!)
+                let results:Array = jsonObj.arrayValue
+                
+                //self.infos.removeAll()
+                for r in results{
+                    let id:Int = r["id"].intValue
+                    let studioId:Int = r["studio"].intValue
+                    //加载头像
+                    
+                    //
+                    let name:String = r["title"].stringValue
+                    //时间戳／ms转为/s
+                    let dateStamp = r["date"].intValue/1000
+                    // 时间戳转字符串
+                    let time:String = self.date2String(dateStamp: dateStamp)
+                    
+                    let title:String = r["brief"].stringValue
+                    let desc:String = r["content"].stringValue
+                    let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                    self.infos.append(info)
                 }
                 
                 self.tableView.reloadData()

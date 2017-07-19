@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class topicDetailTableViewController: UITableViewController {
 
@@ -27,7 +29,33 @@ class topicDetailTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+//    // MARK: - Table view data source
+//    override func viewWillAppear(_ animated: Bool) {
+//        let headers: HTTPHeaders = [
+//            "Authorization": userAuthorization
+//        ]
+//        Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
+//            if let json = response.result.value {
+//                print(json)
+//                let jsonObj = JSON(data: response.data!)
+//                
+//                let studioId:Int = jsonObj["content"]["studio"].intValue
+//                //加载studioName
+//                //TopicDetail.studio =
+//                //加载头像
+//                    
+//                //
+//                TopicDetail.title = jsonObj["content"]["title"].stringValue
+//                //时间戳／ms转为/s
+//                let dateStamp = jsonObj["content"]["date"].intValue/1000
+//                // 时间戳转字符串
+//                TopicDetail.date = date2String(dateStamp: dateStamp)
+//                
+//                    
+//                TopicDetail.thumbNum = jsonObj["content"]["thumb_num"].intValue
+//            }
+//        }
+//    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
