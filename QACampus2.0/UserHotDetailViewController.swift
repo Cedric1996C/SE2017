@@ -25,6 +25,8 @@ class UserHotDetailViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         requestData()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "s"), style: .plain, target: self, action: nil)
     }
     
     func requestData() {

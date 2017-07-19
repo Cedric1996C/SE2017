@@ -54,7 +54,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WKr-sz-FkC">
-                                            <rect key="frame" x="219.5" y="306.5" width="139.5" height="30"/>
+                                            <rect key="frame" x="146.5" y="306.5" width="212.5" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3247483648" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-6z-MU1" userLabel="likeCount">
                                                     <rect key="frame" x="0.0" y="0.0" width="101.5" height="30"/>
@@ -65,6 +65,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-Zk-XCq">
                                                     <rect key="frame" x="109.5" y="0.0" width="30" height="30"/>
                                                     <state key="normal" title="like"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lK-Dt-w1j" userLabel="comment">
+                                                    <rect key="frame" x="147.5" y="0.0" width="65" height="30"/>
+                                                    <state key="normal" title="comment"/>
                                                 </button>
                                             </subviews>
                                         </stackView>
