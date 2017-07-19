@@ -4,6 +4,7 @@ class UserHotDetailContentCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -34,11 +34,13 @@ class UserHotDetailViewController: UITableViewController {
             let headers: HTTPHeaders = [
                 "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
             ]
-            Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.id)", method: .get, headers: headers).responseJSON { response in
+            Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
-                    Detail.title = json["question"].stringValue
-                    Detail.detail = json["describtion"].stringValue
+                    print(json)
+                    Detail.voteCount = json["vote"].intValue
+                    Detail.questionTitle = json["question"].stringValue
+                    Detail.questionDetail = json["describtion"].stringValue
                     let answer = json["answer"].arrayValue
                     for ans in answer {
                         self.answerList.append(Answer(id: 0, str: ans["details"].string))
@@ -74,10 +76,12 @@ class UserHotDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "TitleDetailCell") as! UserHotDetailContentCell
-            cell.titleLabel.text = Detail.title
-            cell.detailLabel.text = Detail.detail
+            cell.titleLabel.text = Detail.questionTitle
+            cell.detailLabel.text = Detail.questionDetail
+            cell.likeCountLabel.text = String(Detail.voteCount)
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
+            cell.likeCountLabel.sizeToFit()
             return cell
         }
         else {

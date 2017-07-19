@@ -70,11 +70,11 @@ class UserHotViewController: UIViewController {
                     let json = JSON(jsonData)
                     let content = json["content"]
                     for item in content {
+                        let viewCount = item.1["viewcount"].int
                         let id = item.1["id"].int
-                        let vote = item.1["thumb"].int
                         let title = item.1["question"].string
                         let description = item.1["describtion"].string
-                        self.tableData.append(Abstract(id: id, count: vote, title: title, detail: description))
+                        self.tableData.append(Abstract(id: id, count: viewCount, title: title, detail: description))
                     }
                     let isLast = json["last"].boolValue
                     if !isLast {
@@ -129,11 +129,11 @@ class UserHotViewController: UIViewController {
                     let json = JSON(jsonData)
                     let content = json["content"]
                     for item in content {
+                        let viewCount = item.1["viewcount"].int
                         let id = item.1["id"].int
-                        let vote = item.1["thumb"].int
                         let title = item.1["question"].string
                         let description = item.1["describtion"].string
-                        self.tableData.append(Abstract(id: id, count: vote, title: title, detail: description))
+                        self.tableData.append(Abstract(id: id, count: viewCount, title: title, detail: description))
                     }
                     let isLast = json["last"].boolValue
                     if !isLast {
@@ -175,8 +175,8 @@ extension UserHotViewController: UITableViewDelegate {
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        Detail.id = tableData[indexPath.row].id
-        Detail.title = tableData[indexPath.row].title
+        Detail.questionId = tableData[indexPath.row].id
+        Detail.questionTitle = tableData[indexPath.row].title
         //self.navigationController?.pushViewController(DetailViewController(), animated: true)
         performSegue(withIdentifier: "showDetail", sender: self)
     }
