@@ -48,15 +48,14 @@ class AnswerEditorController: DetailEditorController {
             if response.result.value != nil {
                 // response serialization result
                 var json = JSON(response.result.value!)
-                print(json)
-                Question.question_id = json.int!
+                Question.question_id = json.int ?? 0
             }
             
-            let path:String = "quesiotn/\(Question.question_id)/\(User.localUserId!)/answer"
+            let path:String = "question/\(Question.question_id)/\(User.localUserId!)/answer"
             userDefault.set(detailData, forKey: path)
             prepareFile(path,destination: uploadRoot+path)
         }
         
-
+        self.dismiss(animated: true, completion: nil)
     }
 }

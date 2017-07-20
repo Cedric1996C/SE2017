@@ -41,7 +41,7 @@ class UserHotDetailViewController: UITableViewController {
     }
     
     func addAnswer() {
-        Question.ask_id = Detail.questionId
+        Question.question_id = Detail.questionId
         performSegue(withIdentifier: "ToAnswer", sender: nil)
     }
     
