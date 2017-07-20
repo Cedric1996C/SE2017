@@ -20,6 +20,7 @@ class StudioInfoCollectioCell:UICollectionViewCell{
         contentView.backgroundColor = iconColor
         contentView.backgroundColor = .white
         // Initialization code
+        
     }
         
 }
@@ -31,6 +32,18 @@ class StudioInfoListCell:UITableViewCell{
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        icon.contentMode = .scaleAspectFill
+        //设置遮罩
+        icon.layer.masksToBounds = true
+        //设置圆角半径(宽度的一半)，显示成圆形。
+        icon.layer.cornerRadius = icon.frame.width/2
+        // Initialization code
+    }
+    
+
 }
 
 class StudioInfoList2Cell:UITableViewCell{

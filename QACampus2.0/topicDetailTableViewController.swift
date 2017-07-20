@@ -16,6 +16,11 @@ class topicDetailTableViewController: UITableViewController {
         return []
     }()
     
+    override func loadView() {
+        super.loadView()
+        //tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -23,7 +28,15 @@ class topicDetailTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 300
         tableView.separatorStyle = .none
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

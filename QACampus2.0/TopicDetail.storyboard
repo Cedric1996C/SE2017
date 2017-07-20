@@ -14,7 +14,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Uyc-Yi-rZ6">
             <objects>
-                <navigationController id="rI0-qD-hDj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="topicDetailNavigation" id="rI0-qD-hDj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t50-hy-TpY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,8 +30,8 @@
         <!--Topic Detail Table View Controller-->
         <scene sceneID="DRL-DP-P6v">
             <objects>
-                <tableViewController restorationIdentifier="TopicDetail" storyboardIdentifier="TopicDetail" id="Dr8-yA-CDp" customClass="topicDetailTableViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qtW-YM-box" customClass="topic">
+                <tableViewController storyboardIdentifier="TopicDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dr8-yA-CDp" customClass="topicDetailTableViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qtW-YM-box">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -284,7 +284,7 @@
         <!--Topic Detail View Controller-->
         <scene sceneID="bYB-bm-LR6">
             <objects>
-                <viewController id="6P4-QF-2hy" customClass="topicDetailViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="topicDetailView" id="6P4-QF-2hy" customClass="topicDetailViewController" customModule="QACampus2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ab6-dh-R4P"/>
                         <viewControllerLayoutGuide type="bottom" id="K24-Nu-pvR"/>
