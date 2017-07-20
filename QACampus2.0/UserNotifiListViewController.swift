@@ -149,6 +149,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         //释放选中效果
         tableView.deselectRow(at: indexPath, animated: true)
         //界面跳转
+        if(!isNotifi){
+            return
+        }
         if(self.type==0){
             //问题详情
             Detail.questionId = self.infos[indexPath.row].id
