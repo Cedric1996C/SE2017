@@ -123,7 +123,7 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
         cell.desc.numberOfLines = 3
         cell.desc.lineBreakMode = NSLineBreakMode.byTruncatingTail
         cell.desc.text=infos[indexPath.row].desc
-
+        cell.selectionStyle = .none
 //        cell.icon.image=self.icon
 //        cell.name.text="wef"
 //        cell.time.text="2017-03-04"
@@ -160,8 +160,11 @@ class UserNotificationViewController: UIViewController,UITableViewDataSource,UIT
                 
                 for r in results{
                     let id:Int = r["id"].intValue
+                    let askerId:Int = r["asker"].intValue
                     let name:String = r["asker"].stringValue
+                    //加载头像
                     
+                    //
                     //时间戳／ms转为/s
                     let dateStamp = r["date"].intValue/1000
                     // 时间戳转字符串

@@ -135,7 +135,23 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //释放选中效果
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        //界面跳转
+        if(self.type==0){
+            //问题详情
+            Detail.questionId = self.infos[indexPath.row].id
+            let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+            self.present(questionDetailView!, animated: true, completion: nil)
+        }else if(self.type==1){
+            //话题详情
+            TopicDetail.id = self.infos[indexPath.row].id
+            let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+            self.present(topicDetailView!, animated: true, completion: nil)
+        }else if(self.type==2){
+            //问题详情
+            Detail.questionId = self.infos[indexPath.row].id
+            let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+            self.present(questionDetailView!, animated: true, completion: nil)
+        }
     }
     
     //通知请求

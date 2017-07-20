@@ -151,8 +151,9 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         //界面跳转
         if(self.type==0){
             //问题详情
-            
-            
+            Detail.questionId = self.infos[indexPath.row].id
+            let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+            self.present(questionDetailView!, animated: true, completion: nil)
         }else if(self.type==1){
             //话题详情
             TopicDetail.id = self.infos[indexPath.row].id
@@ -166,6 +167,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
         print("in notifiRequest()")
         switch self.type{
         case 0:
+            //
             Alamofire.request(url+notifiBase0Url+"/0", method: .get, headers: headers).responseJSON { response in
                 if let json = response.result.value {
                     print(json)
@@ -181,6 +183,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     self.infos.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
+                        let askerId:Int = r["asker"].intValue
                         let name:String = r["asker"].stringValue
                         //加载头像
                         
@@ -323,6 +326,7 @@ class UserNotifiListViewController: UIViewController,UITableViewDataSource,UITab
                     
                     for r in results{
                         let id:Int = r["id"].intValue
+                        let askerId:Int = r["asker"].intValue
                         let name:String = r["asker"].stringValue
                         //加载头像
                         

@@ -25,6 +25,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     @IBOutlet weak var historyTable: UITableView!
     
+    var type:Int = 0
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
@@ -235,6 +236,18 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         if(self.isResults){
             //添加历史记录
             self.addHistory()
+            //界面跳转
+            if(self.type==0){
+                //问题详情
+                Detail.questionId = self.resultsSel[indexPath.row].id
+                let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+                self.present(questionDetailView!, animated: true, completion: nil)
+            }else if(self.type==1){
+                //话题详情
+                TopicDetail.id = self.resultsSel[indexPath.row].id
+                let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+                self.present(topicDetailView!, animated: true, completion: nil)
+            }
             
         }else if(indexPath.row==0){
            
@@ -297,6 +310,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
+            self.type=0
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
@@ -318,6 +332,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     self.resultsSel.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
+                        let askerId = r["asker"].intValue
                         let name:String = r["asker"].stringValue
                         //加载头像
                         
@@ -338,6 +353,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
+            self.type=1
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
@@ -379,6 +395,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
+            self.type=2
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
