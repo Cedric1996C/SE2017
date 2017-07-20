@@ -98,7 +98,8 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
-            // TODO: cell.topicDetailLabel.text = ...
+            let data = topicData ?? Data()
+            cell.topicDetailLabel.attributedText = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSAttributedString
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell
