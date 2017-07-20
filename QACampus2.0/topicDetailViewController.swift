@@ -164,6 +164,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         ]
         Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
             if let jsonData = response.result.value {
+                print(jsonData)
                 let json = JSON(jsonData)["content"].arrayValue[0]
 //                print(json)
                 TopicDetail.id = json["id"].intValue
@@ -240,7 +241,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
                     let detail = com["content"].stringValue
                     let date = date2String(dateStamp:com["date"].intValue/1000)
                     //                    let writer = com["writer"].intValue
-                    let result = Comment(id: id,introduction:detail)
+                    let result = Comment(id: id, introduction:detail)
                     result.date = date
                     self.comments.append(result)
                     

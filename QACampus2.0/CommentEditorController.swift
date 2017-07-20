@@ -32,14 +32,15 @@ class CommentEditorController: DetailEditorController {
         ]
         
         let parameters:Parameters = [
-            "content":detailText,
+            "content":detailText!,
             "wid": String(User.localUserId)
         ]
         
         Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)/comment",method: .post, parameters:parameters,headers:headers).responseJSON { response in
             debugPrint(response)
         }
-      
+       
+        self.dismiss(animated: true, completion: nil)
 
     }
 }

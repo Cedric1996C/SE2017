@@ -12,7 +12,7 @@ import UIKit
 class Comment {
     var id:Int?
     var name:String? = ""
-    var content:String? = ""
+    var content:String!
     var avator = UIImage(named:"no.1")
     var date:String = "1970-1-1"
     

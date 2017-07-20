@@ -67,6 +67,7 @@ class QuestionEditorController: TitleDetailEditorController {
             userDefault.set(detailData, forKey: path)
             prepareFile(path, destination: uploadRoot+path)
         }
+        self.dismiss(animated: true, completion: nil)
 
     }
     
@@ -74,9 +75,5 @@ class QuestionEditorController: TitleDetailEditorController {
     
     override func cancel() {
         self.dismiss(animated: true, completion: nil)
-//        let path:String = "question/\(Question.ask_id)/\(User.localUserId!)/question"
-        let path:String = "question/\(Question.ask_id)/\(User.localUserId!)/question"
-        print(path)
-        downloadQuestion(path)
     }
 }

@@ -78,7 +78,8 @@ class personalInfoTableViewController: UITableViewController ,editDelegate{
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagNavigation", for: indexPath) as! tagNavigationTableViewCell
             cell.tagName.text = tagNames[indexPath.row]
-            cell.num.text = String(tagNums[indexPath.row])
+//            cell.num.text = String(tagNums[indexPath.row])
+            cell.num.text = ""
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "space", for: indexPath) as! spaceTableViewCell

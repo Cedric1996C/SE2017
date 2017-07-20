@@ -45,7 +45,7 @@ class AnswerEditorController: DetailEditorController {
         
         Alamofire.request("https://\(root):8443/qa-service/questions/\(Question.question_id)/answers",method: .post, parameters:parameters,headers:headers).responseJSON { response in
             debugPrint(response)
-            if response.result.value != nil {
+            if response.result.value != nil && response.response?.statusCode == 200{
                 // response serialization result
                 var json = JSON(response.result.value!)
                 print(json)
@@ -56,7 +56,7 @@ class AnswerEditorController: DetailEditorController {
             userDefault.set(detailData, forKey: path)
             prepareFile(path,destination: uploadRoot+path)
         }
-        
+        self.dismiss(animated: true, completion: nil)
 
     }
 }

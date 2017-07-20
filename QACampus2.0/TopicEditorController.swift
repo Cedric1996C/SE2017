@@ -61,6 +61,7 @@ class TopicEditorController: TitleDetailEditorController {
             userDefault.set(detailData, forKey: path)
             prepareFile(path,destination: uploadRoot+path)
         }
+        self.dismiss(animated: true, completion: nil)
 
     }
     
