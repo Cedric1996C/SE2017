@@ -25,6 +25,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     @IBOutlet weak var historyTable: UITableView!
     
+    var type:Int = 0
     //表格底部的空白视图
     var clearFooterView:UIView? = UIView()
     //表格底部用来提示数据加载的视图
@@ -171,7 +172,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 //工作室
                 let identify:String = "ResListCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-                cell.icon.image = icon
+                cell.icon.image = self.resultsSel[indexPath.row].icon
                 cell.name.text = self.resultsSel[indexPath.row].name
                 cell.time.text = self.resultsSel[indexPath.row].time
                 cell.title.text = self.resultsSel[indexPath.row].title
@@ -188,7 +189,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 //问题/话题
                 let identify:String = "ResListCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-                cell.icon.image = icon
+                cell.icon.image = self.resultsSel[indexPath.row].icon
                 cell.name.text = self.resultsSel[indexPath.row].name
                 cell.time.text = self.resultsSel[indexPath.row].time
                 cell.title.text = self.resultsSel[indexPath.row].title
@@ -235,6 +236,23 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         if(self.isResults){
             //添加历史记录
             self.addHistory()
+            //界面跳转
+            if(self.type==0){
+                //问题详情
+                Detail.questionId = self.resultsSel[indexPath.row].id
+                let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+                self.present(questionDetailView!, animated: true, completion: nil)
+            }else if(self.type==1){
+                //话题详情
+                TopicDetail.id = self.resultsSel[indexPath.row].id
+                let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+                self.present(topicDetailView!, animated: true, completion: nil)
+            }else if(self.type==2){
+                //工作室详情
+                StudioDetail.id = self.resultsSel[indexPath.row].id
+                let studioDetailView = UIStoryboard(name: "StudioInfo", bundle: nil).instantiateInitialViewController()
+                self.present(studioDetailView!, animated: true, completion: nil)
+            }
             
         }else if(indexPath.row==0){
            
@@ -297,6 +315,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         switch subTitleView.currentSelectedBtn.currentTitle! {
         case btnNames[0]:
             //问题
+            self.type=0
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
@@ -318,19 +337,49 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     self.resultsSel.removeAll()
                     for r in results{
                         let id:Int = r["id"].intValue
+                        let askerId:Int = r["asker"].intValue
                         let name:String = r["asker"].stringValue
-                        //加载头像
-                        
-                        //
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
-                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
-                        self.resultsSel.append(result)
+                     
+                        let path:String = "user/\(askerId)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                            self.resultsSel.append(result)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            result.setIcon(icon:getPicture(pic_path))
+                                            self.historyTable.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                     self.historyTable.reloadData()
                 }
@@ -338,6 +387,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[1]:
             //话题
+            self.type=1
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
@@ -360,18 +410,47 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["title"].stringValue
-                        //加载头像
+                        let studio_id:Int = r["studio"].intValue
                         
-                        //
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["brief"].stringValue
-                        let desc:String = r["content"].stringValue
-                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
-                        self.resultsSel.append(result)
+                        let path:String = "studio/\(studio_id)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                            self.resultsSel.append(result)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            result.setIcon(icon:getPicture(pic_path))
+                                            self.historyTable.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     self.historyTable.reloadData()
                 }
@@ -379,6 +458,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             break
         case btnNames[2]:
             //工作室
+            self.type=2
             let con:String = self.searchInput.text!
             let parameters: Parameters = ["content": con]
             print(parameters)
@@ -401,18 +481,47 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["name"].stringValue
-                        //加载头像
+                        let studio_id:Int = r["studio"].intValue
                         
-                        //
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["introduction"].stringValue
-                        let result = Result(id: id, name: name, time: time, title: title, desc: desc)
-                        self.resultsSel.append(result)
+                        let path:String = "studio/\(studio_id)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let result = Result(id: id, name: name, time: time, title: title, desc: desc)
+                            self.resultsSel.append(result)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            result.setIcon(icon:getPicture(pic_path))
+                                            self.historyTable.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     self.historyTable.reloadData()
                 }
