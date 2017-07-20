@@ -34,7 +34,22 @@ class UserHotDetailViewController: UITableViewController {
     }
     
     func addToFav() {
-        print("haha")
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization,
+                "question": String(Detail.questionId)
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/question/collect", method: .post, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let ac = UIAlertController(title: "收藏成功", message: nil, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: (UInt64)(2 * NSEC_PER_SEC))) {
+                        ac.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
     func cancel() {
@@ -45,7 +60,7 @@ class UserHotDetailViewController: UITableViewController {
         DispatchQueue.global().async {
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/owner-service/owners/\(askerId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
@@ -65,7 +80,7 @@ class UserHotDetailViewController: UITableViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {

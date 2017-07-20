@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="egI-Tc-eCK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GDk-mv-1eQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="qaj-m0-RGd" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="W8y-3U-u73">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -23,6 +22,7 @@
                         <segue destination="G1d-A8-N5A" kind="relationship" relationship="rootViewController" id="vj1-Bm-XQE"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GDk-mv-1eQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-487" y="202"/>
         </scene>
