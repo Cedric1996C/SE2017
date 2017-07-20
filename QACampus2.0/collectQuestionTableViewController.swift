@@ -57,6 +57,12 @@ class collectQuestionTableViewController: editPersonalTableViewController {
         cell.avator.image = (avators[result.id] != nil) ? avators[result.id]:UIImage(named: "no.1")
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Detail.questionId =  itemData[indexPath.row].id
+        let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+        self.present(questionDetailView!, animated: true, completion: nil)
+    }
 
     func cancel(sender:Any) {
         self.dismiss(animated: true, completion: nil)

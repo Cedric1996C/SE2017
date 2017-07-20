@@ -51,6 +51,13 @@ class studioQuestionTableViewController: collectQuestionTableViewController {
         cell.seperateView.backgroundColor = pinkColor
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //问题详情
+        Detail.questionId =  itemData[indexPath.row].id
+        let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+        self.present(questionDetailView!, animated: true, completion: nil)
+    }
 
     func returnUser(sender:Any){
         self.dismiss(animated: true, completion: nil)
@@ -72,17 +79,17 @@ extension studioQuestionTableViewController {
                 let list: Array<JSON> = json.arrayValue
                 
                 for json in list {
-                    let id:Int = json["id"].int!
-                    let title = json["question"].string
-                    let name = json["asker"].int!
-                    let introduction = json["describtion"].string
+                    let id:Int = json["id"].intValue
+                    let title = json["question"].stringValue
+                    let askerId = json["asker"].intValue
+                    let introduction = json["describtion"].stringValue
                     
                     let dateStamp = json["date"].intValue/1000
                     let date:String = date2String(dateStamp: dateStamp)
                     
-                    let result = Result(id:id, name:"", time: date, title: title!, desc:introduction!)
+                    let result = Result(id:id, name:"", time: date, title: title, desc:introduction)
                     
-                    Alamofire.request("https://\(root):8443/owner-service/owners/\(name)" ,method: .get,headers: headers).responseJSON { response in
+                    Alamofire.request("https://\(root):8443/owner-service/owners/\(askerId)" ,method: .get,headers: headers).responseJSON { response in
                         if response.response?.statusCode == 200 {
                             let json = JSON(response.result.value!)
                             let name = json["display_name"].string
@@ -90,8 +97,8 @@ extension studioQuestionTableViewController {
                             self.itemData.append(result)
                         }
                     }
-                    let path:String = "user/\(name)"
-                    print(name)
+                    let path:String = "user/\(askerId)"
+//                    print(name)
                     //请求客户端的文件路径下的文件
                     Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                         if let json = response.result.value {

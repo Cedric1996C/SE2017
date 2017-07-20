@@ -48,6 +48,9 @@ class studioHomeQuestionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        Detail.questionId = itemData[indexPath.row].id!
+        let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+        self.present(questionDetailView!, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -72,7 +75,7 @@ class studioHomeQuestionTableViewController: UITableViewController {
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
-        Alamofire.request("https://\(root):8443/qa-service/questions/\(LocalStudio.id)/answered" ,method: .get,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/qa-service/questions/1/answered" ,method: .get,headers: headers).responseJSON { response in
             
             print(response.result.value!)
             if response.response?.statusCode == 200 && response.result.value != nil {

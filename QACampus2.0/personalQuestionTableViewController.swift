@@ -24,6 +24,12 @@ class personalQuestionTableViewController: collectQuestionTableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Detail.questionId =  itemData[indexPath.row].id
+        let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+        self.present(questionDetailView!, animated: true, completion: nil)
+    }
+    
 }
 
 extension personalQuestionTableViewController {

@@ -68,7 +68,7 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
         item.tintColor = defaultColor
         self.navigationItem.leftBarButtonItem = item
 
-        initData()
+        downloadData()
         initView()
         initPageView()
         initAvator()
@@ -142,11 +142,10 @@ class studioHomeViewController: UIViewController, UINavigationControllerDelegate
 extension studioHomeViewController {
    
     func initData() {
-        
-        downloadData()
-        studioAvator.image = LocalStudio.avator
-        studioName.text = LocalStudio.title
-        studioIntro.text = LocalStudio.introduction
+//        print(LocalStudio.avator)
+        studioAvator.image = LocalStudio.avator == nil ? UIImage(named:"no.1"):LocalStudio.avator
+        studioName.text = LocalStudio.title == "" ? "未设置":LocalStudio.title
+        studioIntro.text = LocalStudio.introduction == "" ? "未设置":LocalStudio.introduction
         QustionAndTopic.text = "解决了\(LocalStudio.answerNUm)个问题，获得了\(LocalStudio.thumbNum)个赞"
     }
     
@@ -163,7 +162,11 @@ extension studioHomeViewController {
                 var json = JSON(response.result.value!)
                 let list: JSON = json["content"].arrayValue[0]
                 print(list)
-                LocalStudio.introduction = list["introduction"].string!
+                LocalStudio.introduction = list["introduction"].stringValue
+                LocalStudio.title = list["name"].stringValue
+                LocalStudio.thumbNum = list["studio_thumb"].intValue
+                LocalStudio.answerNUm = list["_question"].intValue
+                
                 let path:String = "studio/\(LocalStudio.id)"
                 
                 //请求客户端的文件路径下的文件
@@ -184,9 +187,11 @@ extension studioHomeViewController {
                                 
                                 if response.error == nil, let imagePath = response.destinationURL?.path {
                                     LocalStudio.avator = getPicture(pic_path)
+                                    self.initData()
                                 }
                             }
-    }}}}}}
+                        }}}}}
+        self.initData()}
 }
 
 // MARK: - pageViewController代理

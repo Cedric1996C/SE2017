@@ -63,11 +63,23 @@ class studioHomeTopicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collectQuestion", for: indexPath) as! collectQuestionTableViewCell
+        let result:Result = itemData[indexPath.row]
+        cell.title.text = result.title
+        cell.date.text = result.time
+        cell.name.text = result.name
+        cell.introduction.text = result.desc
+        cell.avator.image = (avators[result.id] != nil) ? avators[result.id]:UIImage(named: "no.1")
         return cell
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140.0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        TopicDetail.id = itemData[indexPath.row].id
+        let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+        self.present(topicDetailView!, animated: true, completion: nil)
     }
     
 }
@@ -78,7 +90,7 @@ extension studioHomeTopicTableViewController{
         let headers:HTTPHeaders = [
             "Authorization": userAuthorization
         ]
-        Alamofire.request("https://\(root):8443/topic-service/\(LocalStudio.id)/topic" ,method: .get,headers: headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/topic-service/topic/\(LocalStudio.id)" ,method: .get,headers: headers).responseJSON { response in
             
             // response serialization result
             if response.result.value != nil {

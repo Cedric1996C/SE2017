@@ -63,7 +63,7 @@ class UserHotViewController: UIViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/qa-service/questions", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
@@ -75,6 +75,7 @@ class UserHotViewController: UIViewController {
                         let title = item.1["question"].string
                         let description = item.1["describtion"].string
                         self.tableData.append(Abstract(id: id, count: viewCount, title: title, detail: description))
+                        self.tableView.reloadData()
                     }
                     let isLast = json["last"].boolValue
                     if !isLast {
@@ -87,6 +88,7 @@ class UserHotViewController: UIViewController {
                         self.tableView.reloadData()
                         self.indicator.stopAnimating()
                     }
+                    
                 }
             }
         }
@@ -122,7 +124,7 @@ class UserHotViewController: UIViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request(self.nextPageUrl, method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {

@@ -25,6 +25,12 @@ class collectTopicTableViewController: collectQuestionTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemData.count
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        TopicDetail.id = itemData[indexPath.row].id
+        let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+        self.present(topicDetailView!, animated: true, completion: nil)
+    }
 
 }
 

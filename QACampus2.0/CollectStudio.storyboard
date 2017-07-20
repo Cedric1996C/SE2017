@@ -104,10 +104,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="收藏工作室" id="pJU-ZM-r7O"/>
+                    <connections>
+                        <segue destination="KL1-Aj-aEH" kind="showDetail" identifier="showStudioInfo" id="Sm5-Vq-442"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sd-FG-eE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-139.13043478260872" y="75"/>
+        </scene>
+        <!--StudioInfo-->
+        <scene sceneID="r2X-VK-9eh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StudioInfo" id="KL1-Aj-aEH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fno-7y-cdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="392" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8LG-sU-XHg">

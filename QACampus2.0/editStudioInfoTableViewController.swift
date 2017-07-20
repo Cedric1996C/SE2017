@@ -140,10 +140,10 @@ class editStudioInfoTableViewController: UITableViewController,editTableViewCont
             cell.content.text = "未设置"
             cell.content.textColor = subTitleBorderColor
             if indexPath.row == 0{
-                cell.content.text = LocalStudio.title != "" ? "未设置":LocalStudio.title
+                cell.content.text = LocalStudio.title == "" ? "未设置":LocalStudio.title
                 cell.content.textColor =  LocalStudio.title != "" ? subTitleBorderColor:.darkText
             } else if indexPath.row == 3{
-                cell.content.text = LocalStudio.introduction != "" ? "未设置":LocalStudio.introduction
+                cell.content.text = LocalStudio.introduction == "" ? "未设置":LocalStudio.introduction
                 cell.content.textColor =  LocalStudio.introduction != "" ? subTitleBorderColor:.darkText
             }
             return cell

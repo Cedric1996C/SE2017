@@ -55,6 +55,7 @@ class pickStudioViewController: UIViewController, UITableViewDelegate,UITableVie
         let studioVc = UIStoryboard.init(name: "StudioTab", bundle: nil).instantiateInitialViewController()
         self.present(studioVc!, animated: true, completion: nil)
         LocalStudio.id = (User.studios[indexPath.row] != nil) ? User.studios[indexPath.row] : 1
+        print(  LocalStudio.id )
         self.slideMenuController()?.closeRight()
     }
     

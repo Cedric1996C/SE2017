@@ -52,7 +52,45 @@ class collectStudioViewController: collectQuestionTableViewController {
     override func cancel(sender:Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let studio:Studio = studios[indexPath.row]
+        StudioDetail.id = studio.id!
+        StudioDetail.title = studio.name!
+        StudioDetail.introduction = studio.introduction!
+        StudioDetail.isCollected = studio.isCollected
+        StudioDetail.background = backgrounds[studio.id!]!
+        
+        //头像下载
+        let path = "studio/\(StudioDetail.id)"
+        print(path)
+        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+            //            print(response.result.value)
+            
+            if let json = response.result.value {
+                let pictures:[String] = json as! [String]
+                let pic_path = path.appending("/" + pictures[0])
+                
+                //获取文件
+                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let fileURL = documentsURL.appendingPathComponent(pic_path)
+                    
+                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                }
+                
+                Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
+                    if response.error == nil {
+                        StudioDetail.avator = getPicture(pic_path)
+                        self.performSegue(withIdentifier: "showStudioInfo", sender: self)
+                    }
+                }
+            }
+        }
 
+    }
 }
 
 extension collectStudioViewController {
