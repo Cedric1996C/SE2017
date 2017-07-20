@@ -168,16 +168,45 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                         let name:String = r["asker"].stringValue
                         //加载头像
                         
-                        //
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let path:String = "user/\(id)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                           
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = self.date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                            self.infos.append(info)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            info.setIcon(icon:getPicture(pic_path))
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     self.tableView.reloadData()
                 }
@@ -249,18 +278,47 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
-                        //加载头像
                         
-                        //
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["question"].stringValue
-                        let desc:String = r["describtion"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let path:String = "user/\(id)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = self.date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                            self.infos.append(info)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            info.setIcon(icon:getPicture(pic_path))
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                     self.tableView.reloadData()
                 }
@@ -290,18 +348,46 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = "邮箱："+r["email"].stringValue
-                        //加载头像
-                        
-                        //
-                        //时间戳／ms转为/s
-                        //let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = ""//self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["display_name"].stringValue
-                        let desc:String = r["introduction"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let path:String = "user/\(id)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //加载数据
+                            //
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = self.date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["question"].stringValue
+                            let desc:String = r["describtion"].stringValue
+                            let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                            self.infos.append(info)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            info.setIcon(icon:getPicture(pic_path))
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                     self.tableView.reloadData()
                 }

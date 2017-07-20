@@ -23,7 +23,6 @@ func downloadQuestion(_ path:String){
         
         if response.error == nil {
             let data = getQuestion(path)
-            print(data)
         }        
     }
 }
