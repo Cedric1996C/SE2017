@@ -100,6 +100,8 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
+            // TODO
+            cell.topicDetailLabel
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell
