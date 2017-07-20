@@ -65,6 +65,7 @@ class UserTabViewController: UIViewController,tabDelegate {
             User.localUserId = localUser.userId!
             User.localEmail = localUser.email!
             userAuthorization = localUser.authorization!
+            print(userAuthorization)
             let path = "/user/\(localUser.userId!)"
             let headers:HTTPHeaders = [
                 "Authorization":userAuthorization

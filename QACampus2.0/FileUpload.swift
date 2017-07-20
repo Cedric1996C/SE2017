@@ -71,6 +71,7 @@ func prepareFile(_ path: String,destination:String) {
    
     let userDefault = UserDefaults.standard
     let data = userDefault.data(forKey: path)
+    print(data!)
     let hash = data?.md5()
     let md5:String = (hash?.toHexString())!
     print(md5)
@@ -107,7 +108,7 @@ func FileUpload(_ path: String,destination:String) {
     
     Alamofire.upload(
         multipartFormData: { multipartFormData in
-            multipartFormData.append(data!, withName: "file", fileName: dataName, mimeType: "string")
+            multipartFormData.append(data!, withName: "file", fileName: dataName, mimeType: "text/plain")
             
     },
         to: destination, headers:headers,

@@ -162,8 +162,8 @@ extension studioHomeViewController {
                 // response serialization result
                 var json = JSON(response.result.value!)
                 let list: JSON = json["content"].arrayValue[0]
-                
-                LocalStudio.introduction = json["introduction"].string!
+                print(list)
+                LocalStudio.introduction = list["introduction"].string!
                 let path:String = "studio/\(LocalStudio.id)"
                 
                 //请求客户端的文件路径下的文件
