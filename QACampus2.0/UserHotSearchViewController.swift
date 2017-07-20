@@ -172,7 +172,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 //工作室
                 let identify:String = "ResListCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-                cell.icon.image = icon
+                cell.icon.image = self.resultsSel[indexPath.row].icon
                 cell.name.text = self.resultsSel[indexPath.row].name
                 cell.time.text = self.resultsSel[indexPath.row].time
                 cell.title.text = self.resultsSel[indexPath.row].title
@@ -189,7 +189,7 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 //问题/话题
                 let identify:String = "ResListCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! UserHotResListCell
-                cell.icon.image = icon
+                cell.icon.image = self.resultsSel[indexPath.row].icon
                 cell.name.text = self.resultsSel[indexPath.row].name
                 cell.time.text = self.resultsSel[indexPath.row].time
                 cell.title.text = self.resultsSel[indexPath.row].title
@@ -247,6 +247,11 @@ class UserHotSearchViewController: UIViewController,UISearchBarDelegate,UITableV
                 TopicDetail.id = self.resultsSel[indexPath.row].id
                 let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
                 self.present(topicDetailView!, animated: true, completion: nil)
+            }else if(self.type==2){
+                //工作室详情
+                StudioDetail.id = self.resultsSel[indexPath.row].id
+                let studioDetailView = UIStoryboard(name: "StudioInfo", bundle: nil).instantiateInitialViewController()
+                self.present(studioDetailView!, animated: true, completion: nil)
             }
             
         }else if(indexPath.row==0){

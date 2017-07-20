@@ -10,6 +10,7 @@ import UIKit
 
 class Result {
     var id:Int=0
+    var icon:UIImage
     var name:String=""
     var time:String=""
     var title:String=""
@@ -17,9 +18,14 @@ class Result {
     
     init(id:Int, name:String, time:String, title:String, desc:String){
         self.id = id
+        self.icon = UIImage(named:"no.1")!
         self.name = name
         self.time = time
         self.title = title
         self.desc = desc
+    }
+    
+    public func setIcon(icon:UIImage){
+        self.icon=icon
     }
 }
