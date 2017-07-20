@@ -13,6 +13,10 @@ class Answer {
     let id: Int
     let str: String
     let date: Date
+    var answererId: Int = 0
+    var answererAlias: String = ""
+    
+    
     
     init(id: Int?, str: String?, date: Date) {
         self.id = id ?? -1

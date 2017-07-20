@@ -95,6 +95,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="askerButton" destination="dU9-Zz-3zC" id="D1V-Ck-saW"/>
                                     <outlet property="detailLabel" destination="WxR-5h-F9A" id="sIZ-04-qOS"/>
                                     <outlet property="likeCountLabel" destination="DBJ-6z-MU1" id="Lh5-Vs-AAB"/>
                                     <outlet property="timeLabel" destination="PCL-dV-8es" id="3yA-13-Qwn"/>
