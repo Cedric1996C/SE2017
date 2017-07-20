@@ -113,15 +113,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     }
     //创建各单元显示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if(3 == self.type){
-//            let identify:String = "StudioInfoList2Cell"
-//            let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoList2Cell
-//            cell.desc.text = infos2[indexPath.row]
-//            //cell.desc.text="xxx人"
-//            
-//            return cell
-//        }
-        //else{
+
             let identify:String = "StudioInfoListCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,for: indexPath as IndexPath) as! StudioInfoListCell
             cell.icon.image=infos[indexPath.row].icon
@@ -129,7 +121,6 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
             cell.time.text=infos[indexPath.row].time
             cell.title.text=infos[indexPath.row].title
             cell.desc.text=infos[indexPath.row].desc
-        
             
             //            cell.icon.image=self.icon
             //            cell.name.text="wef"

@@ -293,14 +293,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="agn-bK-ICL">
-                                <rect key="frame" x="0.0" y="64" width="414" height="619"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="agn-bK-ICL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="agn-bK-ICL" secondAttribute="height" multiplier="414:619" id="9iR-aH-Srt"/>
-                                    <constraint firstAttribute="height" constant="619" id="Gqg-mG-ipA"/>
-                                    <constraint firstAttribute="width" constant="414" id="La6-AF-Ibn"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="topicTitle" rowHeight="60" id="2Pf-lZ-MSu" customClass="topicTitleTableViewCell" customModule="QACampus2_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
@@ -578,12 +574,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="agn-bK-ICL" firstAttribute="leading" secondItem="WFU-lG-5Ev" secondAttribute="leading" id="JPw-gq-mD2"/>
-                            <constraint firstItem="q0x-oi-R0Y" firstAttribute="top" secondItem="agn-bK-ICL" secondAttribute="bottom" id="KRk-o4-2rS"/>
                             <constraint firstAttribute="trailing" secondItem="q0x-oi-R0Y" secondAttribute="trailing" id="PyA-8K-Oog"/>
                             <constraint firstItem="q0x-oi-R0Y" firstAttribute="leading" secondItem="WFU-lG-5Ev" secondAttribute="leading" id="Wni-bJ-fxD"/>
-                            <constraint firstItem="agn-bK-ICL" firstAttribute="top" secondItem="Ab6-dh-R4P" secondAttribute="bottom" id="YA7-nq-iRZ"/>
-                            <constraint firstAttribute="trailing" secondItem="agn-bK-ICL" secondAttribute="trailing" id="eZQ-rc-LHa"/>
                             <constraint firstItem="K24-Nu-pvR" firstAttribute="top" secondItem="q0x-oi-R0Y" secondAttribute="bottom" id="zIw-wo-bFW"/>
                         </constraints>
                     </view>

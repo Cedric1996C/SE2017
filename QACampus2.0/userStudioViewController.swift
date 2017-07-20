@@ -69,9 +69,13 @@ extension userStudioViewController: UITableViewDelegate {
         StudioDetail.introduction = studio.introduction!
         StudioDetail.isCollected = studio.isCollected
         StudioDetail.background = images[studio.id!]!
+        
         //头像下载
         let path = "studio/\(StudioDetail.id)"
+        print(path)
         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+//            print(response.result.value)
+            
             if let json = response.result.value {
                 let pictures:[String] = json as! [String]
                 let pic_path = path.appending("/" + pictures[0])

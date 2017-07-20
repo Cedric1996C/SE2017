@@ -47,6 +47,7 @@ class UserHotDetailViewController: UITableViewController {
                     Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
+                    Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue)
                     let answer = json["answer"].arrayValue
                     for ans in answer {
                         let ansId = ans["answerId"].intValue
@@ -88,9 +89,11 @@ class UserHotDetailViewController: UITableViewController {
             cell.titleLabel.text = Detail.questionTitle
             cell.detailLabel.text = Detail.questionDetail
             cell.likeCountLabel.text = String(Detail.likeCount)
+            cell.timeLabel.text = DateFormatter.localizedString(from: Detail.questionDate, dateStyle: .medium, timeStyle: .medium)
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
             cell.likeCountLabel.sizeToFit()
+            cell.timeLabel.sizeToFit()
             return cell
         }
         else {
