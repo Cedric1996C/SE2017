@@ -135,7 +135,23 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //释放选中效果
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        //界面跳转
+        if(self.type==0){
+            //问题详情
+            Detail.questionId = self.infos[indexPath.row].id
+            let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+            self.present(questionDetailView!, animated: true, completion: nil)
+        }else if(self.type==1){
+            //话题详情
+            TopicDetail.id = self.infos[indexPath.row].id
+            let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
+            self.present(topicDetailView!, animated: true, completion: nil)
+        }else if(self.type==2){
+            //问题详情
+            Detail.questionId = self.infos[indexPath.row].id
+            let questionDetailView = UIStoryboard(name: "UserHotDetail", bundle: nil).instantiateInitialViewController()
+            self.present(questionDetailView!, animated: true, completion: nil)
+        }
     }
     
     //通知请求
@@ -166,9 +182,10 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        let askerId:Int = r["asker"].intValue
 
                         
-                        let path:String = "user/\(id)"
+                        let path:String = "user/\(askerId)"
                         //请求客户端的文件路径下的文件
                         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                            
@@ -236,19 +253,46 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let studioId:Int = r["studio"].intValue
-                        //加载头像
                         
-                        //
-                        let name:String = r["title"].stringValue
-                        //时间戳／ms转为/s
-                        let dateStamp = r["date"].intValue/1000
-                        // 时间戳转字符串
-                        let time:String = self.date2String(dateStamp: dateStamp)
-                        
-                        let title:String = r["brief"].stringValue
-                        let desc:String = r["content"].stringValue
-                        let info = Info(id: id, name: name, time: time, title: title, desc: desc)
-                        self.infos.append(info)
+                        let path:String = "studio/\(studioId)"
+                        //请求客户端的文件路径下的文件
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                            
+                            //
+                            let name:String = r["title"].stringValue
+                            //时间戳／ms转为/s
+                            let dateStamp = r["date"].intValue/1000
+                            // 时间戳转字符串
+                            let time:String = self.date2String(dateStamp: dateStamp)
+                            
+                            let title:String = r["brief"].stringValue
+                            let desc:String = r["content"].stringValue
+                            let info = Info(id: id, name: name, time: time, title: title, desc: desc)
+                            self.infos.append(info)
+                            
+                            if let json = response.result.value {
+                                
+                                if response.response?.statusCode == 200 {
+                                    let pictures:[String] = json as! [String]
+                                    let pic_path = path.appending("/" + pictures[0])
+                                    
+                                    //获取文件
+                                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                        let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                        
+                                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                    }
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                        
+                                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                                            info.setIcon(icon:getPicture(pic_path))
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     self.tableView.reloadData()
                 }
@@ -278,8 +322,10 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
+                        let askerId:Int = r["asker"].intValue
                         
-                        let path:String = "user/\(id)"
+                        
+                        let path:String = "user/\(askerId)"
                         //请求客户端的文件路径下的文件
                         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                             
@@ -318,7 +364,6 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                                 }
                             }
                         }
-
                     }
                     self.tableView.reloadData()
                 }

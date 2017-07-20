@@ -55,8 +55,7 @@ class topicDetailTableViewController: UITableViewController {
 //                let studioId:Int = jsonObj["content"]["studio"].intValue
 //                //加载studioName
 //                //TopicDetail.studio =
-//                //加载头像
-//                    
+//               //                    
 //                //
 //                TopicDetail.title = jsonObj["content"]["title"].stringValue
 //                //时间戳／ms转为/s
@@ -102,6 +101,8 @@ class topicDetailTableViewController: UITableViewController {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
+            //TODO: cell.topicDetailLabel.text = ...
+            cell.topicDetailLabel.sizeToFit()
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell

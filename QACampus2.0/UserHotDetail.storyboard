@@ -60,6 +60,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-Zz-3zC">
                                                     <rect key="frame" x="60" y="0.0" width="237.5" height="30"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="toUserPage:" destination="vDq-dJ-B8i" eventType="touchUpInside" id="DAs-Hi-cbw"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCL-dV-8es" userLabel="timeLabel">
                                                     <rect key="frame" x="305.5" y="0.0" width="37.5" height="30"/>
@@ -87,10 +90,16 @@
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-Zk-XCq">
                                                     <rect key="frame" x="109.5" y="0.0" width="30" height="30"/>
                                                     <state key="normal" title="like"/>
+                                                    <connections>
+                                                        <action selector="likePressed:" destination="vDq-dJ-B8i" eventType="touchUpInside" id="sjy-CM-lto"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lK-Dt-w1j" userLabel="comment">
                                                     <rect key="frame" x="147.5" y="0.0" width="65" height="30"/>
                                                     <state key="normal" title="comment"/>
+                                                    <connections>
+                                                        <action selector="commentPressed:" destination="vDq-dJ-B8i" eventType="touchUpInside" id="lAd-ti-rOa"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -111,6 +120,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="askerButton" destination="dU9-Zz-3zC" id="D1V-Ck-saW"/>
                                     <outlet property="detailLabel" destination="WxR-5h-F9A" id="sIZ-04-qOS"/>
                                     <outlet property="likeCountLabel" destination="DBJ-6z-MU1" id="Lh5-Vs-AAB"/>
                                     <outlet property="timeLabel" destination="PCL-dV-8es" id="3yA-13-Qwn"/>
@@ -185,6 +195,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2P-hT-IN4">
                                                     <rect key="frame" x="60" y="0.0" width="237.5" height="69"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="toUserPage:" destination="dri-kF-UwK" eventType="touchUpInside" id="aFv-Kj-VQe"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ces-2Y-V24" userLabel="timelabel">
                                                     <rect key="frame" x="305.5" y="0.0" width="37.5" height="69"/>

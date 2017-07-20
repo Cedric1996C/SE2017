@@ -40,6 +40,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         let headers: HTTPHeaders = [
                     "Authorization": userAuthorization
                 ]
+        
         Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
             if let json = response.result.value {
                 print(json)
@@ -48,8 +49,35 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
                 let studioId:Int = jsonObj["content"]["studio"].intValue
                 //加载studioName
                 //TopicDetail.studio =
-                //加载头像
                 
+                let path:String = "studio/\(studioId)"
+                //请求客户端的文件路径下的文件
+                Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                    
+                    if let json = response.result.value {
+                        
+                        if response.response?.statusCode == 200 {
+                            let pictures:[String] = json as! [String]
+                            let pic_path = path.appending("/" + pictures[0])
+                            
+                            //获取文件
+                            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                
+                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
+                                
+                                if response.error == nil, let imagePath = response.destinationURL?.path {
+                                    TopicDetail.authorAvator = getPicture(pic_path)
+                                    self.topic.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
+
                 //
                 TopicDetail.title = jsonObj["content"]["title"].stringValue
                 //时间戳／ms转为/s
@@ -104,6 +132,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
+            // TODO: cell.topicDetailLabel.text = ...
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell
