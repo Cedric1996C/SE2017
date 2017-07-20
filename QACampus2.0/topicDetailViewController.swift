@@ -25,9 +25,8 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
         topic.estimatedRowHeight = 300
         topic.separatorStyle = .none
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -118,5 +117,4 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         }
     }
 
-    
 }

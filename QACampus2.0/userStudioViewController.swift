@@ -117,6 +117,11 @@ extension userStudioViewController {
         ]
         Alamofire.request("https://\(root):8443/studio-service/studios" ,method: .get,headers: headers).responseJSON { response in
             
+
+            if response.result.isFailure {
+                return
+            }
+
             if response.result.value != nil {
             // response serialization result
                 var json = JSON(response.result.value!)

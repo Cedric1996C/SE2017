@@ -10,7 +10,10 @@ import Foundation
 
 class Detail {
     
-    static var title: String = ""
-    static var detail: String = ""
+    static var questionId: Int = 0
+    static var isQuestion: Bool = true
+    static var questionTitle: String = ""
+    static var questionDetail: String = ""
+    static var voteCount: Int = 0
     
 }

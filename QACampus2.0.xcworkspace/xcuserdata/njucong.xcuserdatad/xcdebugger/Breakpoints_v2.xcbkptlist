@@ -911,20 +911,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/topicDetailViewController.swift"
-            timestampString = "521800703.457904"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "QACampus2.0/collectQuestionTableViewController.swift"
             timestampString = "521889901.447632"
             startingColumnNumber = "9223372036854775807"
@@ -1580,7 +1566,7 @@
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileUpload.swift"
-                  timestampString = "522206517.573133"
+                  timestampString = "522207213.565836"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -1595,7 +1581,7 @@
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileUpload.swift"
-                  timestampString = "522206517.576155"
+                  timestampString = "522207213.56918"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"

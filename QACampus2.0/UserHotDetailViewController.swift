@@ -8,72 +8,12 @@
 
 import UIKit
 import Foundation
-
-/* class DetailViewController: UIViewController {
-    
-    var titleStr: String = ""
-    var detailStr: String = ""
-    
-    let scrollView: UIScrollView = UIScrollView()
-    let contentView: UIView = UIView()
-    let titleView: UITextView = UITextView()
-    let detailView: UITextView = UITextView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        titleStr = Detail.title
-        detailStr = Detail.detail
-        
-        configTitleView()
-        configDetailView()
-        configContentView()
-        
-        scrollView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height - 49 - 64)
-        scrollView.backgroundColor = UIColor.white
-        scrollView.contentSize = contentView.frame.size
-        
-        contentView.addSubview(titleView)
-        contentView.addSubview(detailView)
-        scrollView.addSubview(contentView)
-        self.view.addSubview(scrollView)
-    }
-    
-    func configTitleView() {
-        titleView.isEditable = false
-        titleView.isScrollEnabled = false
-        titleView.font = UIFont.boldSystemFont(ofSize: 30)
-        titleView.text = titleStr
-        
-        let fixedWidth = self.view.frame.width - 40
-        titleView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = titleView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newFrame = CGRect(x: 20, y: 20, width: max(newSize.width, fixedWidth), height: newSize.height)
-        titleView.frame = newFrame
-    }
-    
-    func configDetailView() {
-        detailView.isEditable = false
-        detailView.isScrollEnabled = false
-        detailView.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightThin)
-        detailView.text = detailStr
-        
-        let fixedWidth = self.view.frame.width - 40
-        detailView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = detailView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newFrame = CGRect(x: 20, y: titleView.frame.maxY + 20, width: max(newSize.width, fixedWidth), height: newSize.height)
-        detailView.frame = newFrame
-    }
-    
-    func configContentView() {
-        let height = titleView.frame.height + detailView.frame.height + 60
-        let newFrame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: height)
-        contentView.frame = newFrame
-    }
-    
-} */
+import Alamofire
+import SwiftyJSON
 
 class UserHotDetailViewController: UITableViewController {
+    
+    var answerList: [Answer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +23,36 @@ class UserHotDetailViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        requestData()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "s"), style: .plain, target: self, action: nil)
+    }
+    
+    func requestData() {
+        DispatchQueue.global().async {
+            // TODO: load data
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+            ]
+            Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let json = JSON(jsonData)
+                    print(json)
+                    Detail.voteCount = json["vote"].intValue
+                    Detail.questionTitle = json["question"].stringValue
+                    Detail.questionDetail = json["describtion"].stringValue
+                    let answer = json["answer"].arrayValue
+                    for ans in answer {
+                        self.answerList.append(Answer(id: 0, str: ans["details"].string))
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -90,7 +60,15 @@ class UserHotDetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        }
+        else if section == 1 {
+            return answerList.count
+        }
+        else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,23 +77,29 @@ class UserHotDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "contentCell") as! UserHotDetailContentCell
-            cell.titleLabel.text = Detail.title
-            cell.detailLabel.text = Detail.detail
+            let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "TitleDetailCell") as! UserHotDetailContentCell
+            cell.titleLabel.text = Detail.questionTitle
+            cell.detailLabel.text = Detail.questionDetail
+            cell.likeCountLabel.text = String(Detail.voteCount)
             cell.titleLabel.sizeToFit()
-            cell.questionDetailLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
+            cell.likeCountLabel.sizeToFit()
             return cell
         }
         else {
-            let cell: UserHotDetailCommentCell = self.tableView.dequeueReusableCell(withIdentifier: "commentCell") as! UserHotDetailCommentCell
+            /*let cell: UserHotDetailCommentCell = self.tableView.dequeueReusableCell(withIdentifier: "commentCell") as! UserHotDetailCommentCell
             cell.commentLabel.text = String(repeating: "这是评论", count: 100)
             let formatter = DateFormatter()
             formatter.dateStyle = .full
-            cell.timeLabel.text = formatter.string(from: Date())
+            //cell.timeLabel.text = formatter.string(from: Date())
+            cell.timeLabel.text = ""
             cell.userIdButton.sizeToFit()
             cell.timeLabel.sizeToFit()
             cell.commentLabel.sizeToFit()
+            return cell*/
+            let cell: UserHotDetailAnswerCell = self.tableView.dequeueReusableCell(withIdentifier: "AnswerCell") as! UserHotDetailAnswerCell
+            cell.answerLabel.text = answerList[indexPath.row].str
+            cell.answerLabel.sizeToFit()
             return cell
         }
     }
