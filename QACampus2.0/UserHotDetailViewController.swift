@@ -91,7 +91,23 @@ class UserHotDetailViewController: UITableViewController {
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
                     Detail.questionDetailAttr = nil
+                    
                     // TODO: get data
+                    let path:String = "question/\(Detail.questionId)/\(Detail.askerId))/question"
+                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let fileURL = documentsURL.appendingPathComponent(path)
+                        
+                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                    }
+                    
+                    Alamofire.download(uploadRoot+path, to: destination).response { response in
+                        
+                        if response.error == nil {
+                            let data = getQuestion(path)
+                            //异步加载 使用data应在这个上下文里面
+                        }        
+                    }
                     // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
                     Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue / 1000)
                     self.getUserId(Detail.askerId) { str in

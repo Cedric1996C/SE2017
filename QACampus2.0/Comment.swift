@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class Comment {
     var id:Int?
-    var user:String? = ""
+    var name:String? = ""
     var content:String? = ""
+    var avator = UIImage(named:"no.1")
+    var date：String = "1970-1-1"
     
-    required init(id:Int, name: String?, introduction: String?){
+    required init(id:Int, introduction: String?){        
         self.id = id
-        self.user = name
         self.content = introduction
         
     }

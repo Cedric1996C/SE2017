@@ -33,11 +33,17 @@ class topicStudioTableViewCell: UITableViewCell {
     @IBOutlet weak var studioName: UILabel!
     
     @IBOutlet weak var date: UILabel!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         contentView.backgroundColor = sectionHeaderColor
 
+        authorAvator.contentMode = .scaleAspectFill
+        //设置遮罩
+        authorAvator.layer.masksToBounds = true
+        //设置圆角半径(宽度的一半)，显示成圆形。
+        authorAvator.layer.cornerRadius = authorAvator.frame.width/2
         // Initialization code
         
     }
@@ -80,7 +86,6 @@ class topicSeperateTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         contentView.backgroundColor = sectionHeaderColor
-
         // Initialization code
     }
     
@@ -103,6 +108,13 @@ class topicCommentTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        commentAvator.contentMode = .scaleAspectFill
+        //设置遮罩
+        commentAvator.layer.masksToBounds = true
+        //设置圆角半径(宽度的一半)，显示成圆形。
+        commentAvator.layer.cornerRadius = commentAvator.frame.width/2
+
+        
         selectionStyle = .none
         contentView.backgroundColor = sectionHeaderColor
         seperate.backgroundColor = sectionHeaderColor

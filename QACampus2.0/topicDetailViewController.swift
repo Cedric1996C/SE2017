@@ -29,67 +29,9 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         topic.separatorStyle = .none
         topic.dataSource = self
         topic.delegate = self
-        
+        loadData()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem?.tintColor = iconColor
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-        let headers: HTTPHeaders = [
-                    "Authorization": userAuthorization
-                ]
-        
-        Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
-            if let json = response.result.value {
-                print(json)
-                let jsonObj = JSON(data: response.data!)
-                
-                let studioId:Int = jsonObj["content"]["studio"].intValue
-                //加载studioName
-                //TopicDetail.studio =
-                
-                let path:String = "studio/\(studioId)"
-                //请求客户端的文件路径下的文件
-                Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
-                    
-                    if let json = response.result.value {
-                        
-                        if response.response?.statusCode == 200 {
-                            let pictures:[String] = json as! [String]
-                            let pic_path = path.appending("/" + pictures[0])
-                            
-                            //获取文件
-                            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                                let fileURL = documentsURL.appendingPathComponent(pic_path)
-                                
-                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                            }
-                            Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
-                                
-                                if response.error == nil, let imagePath = response.destinationURL?.path {
-                                    TopicDetail.authorAvator = getPicture(pic_path)
-                                    self.topic.reloadData()
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //
-                TopicDetail.title = jsonObj["content"]["title"].stringValue
-                //时间戳／ms转为/s
-                let dateStamp = jsonObj["content"]["date"].intValue/1000
-                // 时间戳转字符串
-                TopicDetail.date = date2String(dateStamp: dateStamp)
-                
-                
-                TopicDetail.thumbNum = jsonObj["content"]["thumb_num"].intValue
-                self.topic.reloadData()
-            }
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,8 +52,8 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         if section != 4 {
             return 1
         } else {
-            //            return comments.count
-            return 1
+            return comments.count
+//            return 1
         }
     }
     
@@ -127,7 +69,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicStudio", for: indexPath) as! topicStudioTableViewCell
             cell.authorAvator.image = TopicDetail.authorAvator
             cell.name.text = TopicDetail.authorName
-            cell.studioName.text = TopicDetail.studio
+            cell.studioName.text = ""
             cell.date.text = TopicDetail.date
             return cell
         case 2:
@@ -136,7 +78,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicSeperate", for: indexPath) as! topicSeperateTableViewCell
-            cell.commentNum.text = String(TopicDetail.thumbNum)
+            cell.commentNum.text = String(comments.count)
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
@@ -187,5 +129,142 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         self.dismiss(animated: true, completion: nil)
     }
     
+    func loadData(){
+        
+        let headers: HTTPHeaders = [
+            "Authorization": userAuthorization
+        ]
+        Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
+            if let jsonData = response.result.value {
+                let json = JSON(jsonData)["content"].arrayValue[0]
+//                print(json)
+                TopicDetail.id = json["id"].intValue
+                TopicDetail.title = json["title"].stringValue
+                TopicDetail.date = date2String(dateStamp:(json["date"].intValue/1000))
+                
+                let writer_id = json["writer"].intValue
+                
+                // TODO: get data
+                let path:String = "topic/\(TopicDetail.id)/\(writer_id)/topic"
+                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let fileURL = documentsURL.appendingPathComponent(path)
+                    
+                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                }
+                
+                
+                //请求用户的信息
+                Alamofire.request("https://\(root):8443/owner-service/owners/\(writer_id)", method: .get,headers: headers).responseJSON { response in
+                    
+                    if  response.result.value != nil {
+                        if (response.response?.statusCode)! == 200 {
+                            let userJSON = JSON(response.result.value!)
+                            TopicDetail.authorName = userJSON["display_name"].stringValue
+                        }
+                    }
+                    self.topic.reloadData()
+                }
+                
+                //请求用户的头像
+                Alamofire.request(storageRoot+"user/\(writer_id)", method: .get).responseJSON { response in
+                    
+                    if response.response?.statusCode == 200 {
+                        let json = response.result.value
+                        //                print(json)
+                        if let pictures:[String] = json as! [String] {
+                            let pic_path = "user/\(writer_id)".appending("/" + pictures[0])
+                            print(pic_path)
+                            //获取文件
+                            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                
+                                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            
+                            Alamofire.download(uploadRoot + pic_path, to: destination).response { response in
+                                if response.error == nil, let imagePath = response.destinationURL?.path {
+                                    TopicDetail.authorAvator = getPicture(pic_path)
+                                    self.topic.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
 
+                
+                Alamofire.download(uploadRoot+path, to: destination).response { response in
+                    
+                    if response.error == nil {
+                        let data = getQuestion(path)
+                        print(data)
+                        //异步加载 使用data应在这个上下文里面
+                        self.topic.reloadData()
+                    }
+                }
+                // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
+                
+                let comment = json["comment"].arrayValue
+                for com in comment {
+                    print(com)
+                    
+                    let id = com["writer"].intValue
+                    let detail = com["content"].stringValue
+                    let date = date2String(dateStamp:com["date"].intValue/1000)
+                    //                    let writer = com["writer"].intValue
+                    let result = Comment(id: id,introduction:detail)
+                    self.comments.append(result)
+                    
+                    let path = "user/\(id)"
+                    print(path)
+                    
+                    let headers:HTTPHeaders = [
+                        "Authorization":userAuthorization
+                    ]
+                    
+                    //请求用户的信息
+                    Alamofire.request("https://\(root):8443/owner-service/owners/\(id)", method: .get,headers: headers).responseJSON { response in
+                        
+                        if  response.result.value != nil {
+                            if (response.response?.statusCode)! == 200 {
+                                let userJSON = JSON(response.result.value!)
+                                result.name = userJSON["display_name"].string
+                            }
+                        }
+                        self.topic.reloadData()
+                    }
+                    
+                    //请求用户的头像
+                    Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+                        
+                        if response.response?.statusCode == 200 {
+                            let json = response.result.value
+                            //                print(json)
+                            if let pictures:[String] = json as! [String] {
+                                let pic_path = path.appending("/" + pictures[0])
+                                print(pic_path)
+                                //获取文件
+                                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                                    let fileURL = documentsURL.appendingPathComponent(pic_path)
+                                    
+                                    return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                                }
+                                
+                                Alamofire.download(uploadRoot + pic_path, to: destination).response { response in
+                                    if response.error == nil, let imagePath = response.destinationURL?.path {
+                                        result.avator = getPicture(pic_path)
+                                        self.topic.reloadData()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            self.topic.reloadData()
+        }
+    }
 }

@@ -47,7 +47,7 @@ class AnswerEditorController: DetailEditorController {
                 Question.ask_id = json.int!
             }
             
-            let path:String = "quesiotn/\(Question.ask_id)/\(User.localUserId!)"
+            let path:String = "quesiotn/\(Question.ask_id)/\(User.localUserId!)/answer"
             userDefault.set(detailData, forKey: path)
             prepareFile(path,destination: uploadRoot+path)
         }

@@ -1370,22 +1370,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QACampus2.0/TopicEditorController.swift"
-            timestampString = "522048135.238127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "doneClicked()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1502,7 +1486,7 @@
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileUpload.swift"
-                  timestampString = "522243773.047761"
+                  timestampString = "522249782.893563"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -1517,7 +1501,7 @@
                   moduleName = "QACampus2.0"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/njucong/SE2017/QACampus2.0/FileUpload.swift"
-                  timestampString = "522243773.050532"
+                  timestampString = "522249782.897256"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -1636,6 +1620,22 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QACampus2.0/collectTopicTableViewController.swift"
+            timestampString = "522247819.373804"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "initData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

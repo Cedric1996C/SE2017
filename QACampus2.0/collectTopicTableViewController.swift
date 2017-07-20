@@ -28,6 +28,7 @@ class collectTopicTableViewController: collectQuestionTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         TopicDetail.id = itemData[indexPath.row].id
+        print(TopicDetail.id)
         let topicDetailView = UIStoryboard(name: "TopicDetail", bundle: nil).instantiateInitialViewController()
         self.present(topicDetailView!, animated: true, completion: nil)
     }
@@ -50,7 +51,7 @@ extension collectTopicTableViewController {
                 
             
                 for json in list {
-                    let id:Int = json["id"].int!
+                    let topic_id:Int = json["id"].int!
                     let title = json["title"].string
                     let writer_id:Int = json["writer"].int!
                     let introduction = json["content"].string
@@ -80,7 +81,7 @@ extension collectTopicTableViewController {
                                 Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
                                     
                                     if response.error == nil, let imagePath = response.destinationURL?.path {
-                                        self.avators[id] = getPicture(pic_path)
+                                        self.avators[topic_id] = getPicture(pic_path)
                                         self.reload()
                                     }
                                 }
@@ -95,8 +96,8 @@ extension collectTopicTableViewController {
                             var json = JSON(response.result.value!)
                             let name:String = json["display_name"].string!
                             let id:Int = json["id"].int!
-                            
-                            let result = Result(id:id, name:name, time:date ,title: title!,desc:introduction! )
+//                            print(topic_id)
+                            let result = Result(id:topic_id, name:name, time:date ,title: title!,desc:introduction! )
                             self.itemData.append(result)
                             self.reload()
                         }
