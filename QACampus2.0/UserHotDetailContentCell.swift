@@ -1,7 +1,11 @@
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class UserHotDetailContentCell: UITableViewCell {
-
+    
+    var controller: UserHotDetailViewController? = nil
+    
     var userId: Int = 0
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,7 +20,7 @@ class UserHotDetailContentCell: UITableViewCell {
     }
     
     @IBAction func likePressed(_ sender: Any) {
-        // TODO: like
+        controller?.like(Detail.questionId)
     }
     
     @IBAction func commentPressed(_ sender: Any) {

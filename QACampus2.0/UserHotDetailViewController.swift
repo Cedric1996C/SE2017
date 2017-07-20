@@ -34,7 +34,22 @@ class UserHotDetailViewController: UITableViewController {
     }
     
     func addToFav() {
-        print("haha")
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization,
+                "question": String(Detail.questionId)
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/question/collect", method: .post, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let ac = UIAlertController(title: "收藏成功", message: nil, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: (UInt64)(2 * NSEC_PER_SEC))) {
+                        ac.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
     func cancel() {
@@ -45,7 +60,7 @@ class UserHotDetailViewController: UITableViewController {
         DispatchQueue.global().async {
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/owner-service/owners/\(askerId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
@@ -65,16 +80,20 @@ class UserHotDetailViewController: UITableViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
+                    Detail.questionId = json["id"].intValue
                     Detail.askerId = json["asker"].intValue
                     Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
-                    Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue)
+                    Detail.questionDetailAttr = nil
+                    // TODO: get data
+                    // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
+                    Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue / 1000)
                     self.getUserId(Detail.askerId) { str in
                         Detail.askerAlias = str
                     }
@@ -83,7 +102,7 @@ class UserHotDetailViewController: UITableViewController {
                         print(ans)
                         let ansId = ans["answerId"].intValue
                         let ansDetail = ans["details"].stringValue
-                        let ansDate = ans["date"].doubleValue
+                        let ansDate = ans["date"].doubleValue / 1000
                         var answer = Answer(id: ansId, str: ansDetail, date: Date(timeIntervalSince1970: ansDate))
                         answer.answererId = ans["answerer"].intValue
                         self.getUserId(answer.answererId) { str in
@@ -125,18 +144,18 @@ class UserHotDetailViewController: UITableViewController {
             cell.userId = Detail.askerId
             cell.titleLabel.text = Detail.questionTitle
             cell.detailLabel.text = Detail.questionDetail
+            if let attrText = Detail.questionDetailAttr {
+                cell.detailLabel.attributedText = attrText
+            }
             cell.likeCountLabel.text = String(Detail.likeCount)
             cell.timeLabel.text = DateFormatter.localizedString(from: Detail.questionDate, dateStyle: .short, timeStyle: .medium)
             cell.askerButton.setTitle(Detail.askerAlias, for: .normal)
-            if let data = sampleData {
-                let str = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSAttributedString
-                cell.detailLabel.attributedText = str
-            }
             cell.askerButton.sizeToFit()
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
             cell.likeCountLabel.sizeToFit()
             cell.timeLabel.sizeToFit()
+            cell.controller = self
             return cell
         }
         else {
@@ -164,6 +183,25 @@ class UserHotDetailViewController: UITableViewController {
     
     func configLabelSize(_ label: UILabel) -> CGSize {
         return CGSize()
+    }
+    
+    func like(_ questionId: Int) {
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization,
+                "question": String(Detail.questionId)
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/question/thumb", method: .post, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let ac = UIAlertController(title: "点赞成功", message: nil, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: (UInt64)(2 * NSEC_PER_SEC))) {
+                        ac.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
 }
