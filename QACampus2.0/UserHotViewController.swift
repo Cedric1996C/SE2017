@@ -129,6 +129,7 @@ class UserHotViewController: UIViewController {
             Alamofire.request(self.nextPageUrl, method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
+                    print(json)
                     let content = json["content"]
                     for item in content {
                         let viewCount = item.1["viewcount"].int
@@ -146,7 +147,6 @@ class UserHotViewController: UIViewController {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        self.indicator.stopAnimating()
                     }
                 }
             }

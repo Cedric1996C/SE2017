@@ -19,5 +19,6 @@ class Detail {
     static var askerId: Int = 0
     static var askerAlias: String = ""
     static var questionDate: Date = Date()
+    static var studioId: Int = 0
     
 }
