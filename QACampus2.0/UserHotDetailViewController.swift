@@ -90,6 +90,9 @@ class UserHotDetailViewController: UITableViewController {
                     Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
+                    Detail.questionDetailAttr = nil
+                    // TODO: get data
+                    // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
                     Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue / 1000)
                     self.getUserId(Detail.askerId) { str in
                         Detail.askerAlias = str
@@ -141,13 +144,12 @@ class UserHotDetailViewController: UITableViewController {
             cell.userId = Detail.askerId
             cell.titleLabel.text = Detail.questionTitle
             cell.detailLabel.text = Detail.questionDetail
+            if let attrText = Detail.questionDetailAttr {
+                cell.detailLabel.attributedText = attrText
+            }
             cell.likeCountLabel.text = String(Detail.likeCount)
             cell.timeLabel.text = DateFormatter.localizedString(from: Detail.questionDate, dateStyle: .short, timeStyle: .medium)
             cell.askerButton.setTitle(Detail.askerAlias, for: .normal)
-            if let data = sampleData {
-                let str = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSAttributedString
-                cell.detailLabel.attributedText = str
-            }
             cell.askerButton.sizeToFit()
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
