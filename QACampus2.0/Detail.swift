@@ -14,6 +14,9 @@ class Detail {
     static var isQuestion: Bool = true
     static var questionTitle: String = ""
     static var questionDetail: String = ""
-    static var voteCount: Int = 0
+    static var likeCount: Int = 0
+    static var askerId: Int = 0
+    static var askerAlias: String = ""
+    static var questionDate: Date = Date()
     
 }

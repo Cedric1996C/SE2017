@@ -4,6 +4,7 @@ class UserHotDetailAnswerCell: UITableViewCell {
     
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var answererButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
