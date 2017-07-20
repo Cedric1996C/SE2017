@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var bottomView: UIView!
@@ -25,6 +27,37 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
         topic.estimatedRowHeight = 300
         topic.separatorStyle = .none
+        topic.dataSource = self
+        topic.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        let headers: HTTPHeaders = [
+                    "Authorization": userAuthorization
+                ]
+        Alamofire.request("https://\(root):8443/topic-service/topic/\(TopicDetail.id)", method: .get, headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                print(json)
+                let jsonObj = JSON(data: response.data!)
+                
+                let studioId:Int = jsonObj["content"]["studio"].intValue
+                //加载studioName
+                //TopicDetail.studio =
+                //加载头像
+                
+                //
+                TopicDetail.title = jsonObj["content"]["title"].stringValue
+                //时间戳／ms转为/s
+                let dateStamp = jsonObj["content"]["date"].intValue/1000
+                // 时间戳转字符串
+                TopicDetail.date = date2String(dateStamp: dateStamp)
+                
+                
+                TopicDetail.thumbNum = jsonObj["content"]["thumb_num"].intValue
+                self.topic.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
