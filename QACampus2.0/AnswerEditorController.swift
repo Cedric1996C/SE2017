@@ -18,6 +18,10 @@ class AnswerEditorController: DetailEditorController {
         self.isAnswer = true
     }
     
+    override func supportRichText() -> Bool {
+        return true //支持富文本吗
+    }
+    
     override func doneClicked() {
         super.doneClicked()
         let detailText:String = (detailView?.text)!
@@ -33,6 +37,7 @@ class AnswerEditorController: DetailEditorController {
             "Authorization": userAuthorization,
             "uid": String(User.localUserId!)
         ]
+        
         let parameters:Parameters = [
             "details":describtion,
             "answer":describtion
