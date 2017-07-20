@@ -105,15 +105,27 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    func supportRichText() -> Bool {
+        return true
+    }
+    
     func configDetailViewKeyboard() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
         toolBar.barStyle = .default
-        toolBar.items = [
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(image: #imageLiteral(resourceName: "image"), style: .plain, target: self, action: #selector(addImage)),
-            UIBarButtonItem(image: #imageLiteral(resourceName: "camera"), style: .plain, target: self, action: #selector(addPhoto)),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissDetailViewKeyboard)),
-        ]
+        if supportRichText() {
+            toolBar.items = [
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+                UIBarButtonItem(image: #imageLiteral(resourceName: "image"), style: .plain, target: self, action: #selector(addImage)),
+                UIBarButtonItem(image: #imageLiteral(resourceName: "camera"), style: .plain, target: self, action: #selector(addPhoto)),
+                UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissDetailViewKeyboard)),
+            ]
+        }
+        else {
+            toolBar.items = [
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+                UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissDetailViewKeyboard)),
+            ]
+        }
         toolBar.sizeToFit()
         detailView!.inputAccessoryView = toolBar
     }

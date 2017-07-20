@@ -18,6 +18,10 @@ class AnswerEditorController: DetailEditorController {
         self.isAnswer = true
     }
     
+    override func supportRichText() -> Bool {
+        return true //支持富文本吗
+    }
+    
     override func doneClicked() {
         super.doneClicked()
         let detailText:String = (detailView?.text)!
@@ -30,12 +34,12 @@ class AnswerEditorController: DetailEditorController {
         let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
         
         let headers:HTTPHeaders = [
-            "Authorization": userAuthorization
+            "Authorization": userAuthorization,
+            "uid": String(User.localUserId!)
         ]
         let parameters:Parameters = [
-            "qid": detailText,
-            "detail":"",
-            "answer":""
+            "detail": detailText,
+            "answer": describtion // 不知道这两个参数的含义啊
         ]
         
         Alamofire.request("https://\(root):8443/qa-service/questions/\(Question.ask_id)/answers",method: .post, parameters:parameters,headers:headers).responseJSON { response in

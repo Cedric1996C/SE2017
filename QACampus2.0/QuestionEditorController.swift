@@ -17,6 +17,10 @@ class QuestionEditorController: TitleDetailEditorController {
         self.detailViewPlaceholder = "详细描述你的问题"
     }
     
+    override func supportRichText() -> Bool {
+        return true //支持富文本吗
+    }
+    
     override func setType() {
         self.isQuestion = true
     }
