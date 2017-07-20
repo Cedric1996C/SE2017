@@ -150,7 +150,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-9C-6v8">
-                                            <rect key="frame" x="16" y="16" width="106" height="69"/>
+                                            <rect key="frame" x="16" y="16" width="343" height="69"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回答者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6p-BI-h43">
                                                     <rect key="frame" x="0.0" y="0.0" width="52" height="69"/>
@@ -159,9 +159,15 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2P-hT-IN4">
-                                                    <rect key="frame" x="60" y="0.0" width="46" height="69"/>
+                                                    <rect key="frame" x="60" y="0.0" width="237.5" height="69"/>
                                                     <state key="normal" title="Button"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ces-2Y-V24" userLabel="timelabel">
+                                                    <rect key="frame" x="305.5" y="0.0" width="37.5" height="69"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-WQ-fmJ">
@@ -173,6 +179,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gxD-9C-6v8" firstAttribute="leading" secondItem="jIF-OV-QYX" secondAttribute="leadingMargin" constant="8" id="2fd-bY-Gzw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ces-2Y-V24" secondAttribute="trailing" constant="8" id="O5K-tw-lqb"/>
                                         <constraint firstItem="5A6-WQ-fmJ" firstAttribute="leading" secondItem="jIF-OV-QYX" secondAttribute="leadingMargin" constant="8" id="kTs-PU-bZN"/>
                                         <constraint firstItem="gxD-9C-6v8" firstAttribute="top" secondItem="jIF-OV-QYX" secondAttribute="topMargin" constant="8" id="r3q-fm-TKm"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="5A6-WQ-fmJ" secondAttribute="bottom" constant="16" id="r73-f7-GRE"/>
@@ -183,6 +190,7 @@
                                 <connections>
                                     <outlet property="answerLabel" destination="5A6-WQ-fmJ" id="PNl-oh-SP3"/>
                                     <outlet property="answererButton" destination="o2P-hT-IN4" id="SAa-xq-May"/>
+                                    <outlet property="timeLabel" destination="Ces-2Y-V24" id="XlR-KV-8uk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
