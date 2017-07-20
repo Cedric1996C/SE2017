@@ -10,6 +10,7 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
     var detailViewNotEdited: Bool = true
     
     var isAnswer: Bool = true
+    var detailDataEncoded: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,8 @@ class DetailEditorController: UIViewController, UITextViewDelegate, UINavigation
     }
     
     func doneClicked() {
-        
+        let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
+        detailDataEncoded = detailData.base64EncodedString()
     }
     
     func cancel () {

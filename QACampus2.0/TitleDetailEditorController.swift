@@ -12,6 +12,7 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
     var detailViewNotEdited: Bool = true
     
     var isQuestion: Bool = true
+    var detailDataEncoded: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,8 @@ class TitleDetailEditorController: UIViewController, UITextFieldDelegate, UIText
     
     func doneClicked() {
         
+        let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText as Any)
+        detailDataEncoded = detailData.base64EncodedString()
 //        let titleText:String = (titleView?.text)!
 //        let detailText:String = (detailView?.text)!
 //        

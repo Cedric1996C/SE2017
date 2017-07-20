@@ -19,7 +19,7 @@ class AnswerEditorController: DetailEditorController {
     }
     
     override func doneClicked() {
-       
+        super.doneClicked()
         let detailText:String = (detailView?.text)!
         let length:Int = detailText.length
         let index_length:Int = min(length,50)

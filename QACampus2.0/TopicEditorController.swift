@@ -21,7 +21,7 @@ class TopicEditorController: TitleDetailEditorController {
     }
     
     override func doneClicked() {
-        
+        super.doneClicked()
         let titleText:String = (titleView?.text)!
         let detailText:String = (detailView?.text)!
         
