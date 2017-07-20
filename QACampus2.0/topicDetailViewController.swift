@@ -10,12 +10,15 @@ import UIKit
 
 class topicDetailViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
+    //var studioId:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.studioId=LocalStudio.id
         let _width = self.view.frame.width
         let _height = self.view.frame.height - CGFloat(50.0)
         let detailVc =  UIStoryboard.init(name: "TopicDetail", bundle: nil).instantiateViewController(withIdentifier: "TopicDetail")
+        //let detailVc = UIStoryboard.init(name: "TopicDetail", bundle: nil)
         detailVc.view.frame = CGRect(x:0, y:0,width: _width, height:_height)
         self.view.addSubview(detailVc.view)
         self.view.backgroundColor  = .red
