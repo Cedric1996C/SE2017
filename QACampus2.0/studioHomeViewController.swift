@@ -167,7 +167,7 @@ extension studioHomeViewController {
                 let path:String = "studio/\(LocalStudio.id)"
                 
                 //请求客户端的文件路径下的文件
-                Alamofire.request("https://localhost:6666/files/\(path)", method: .get).responseJSON { response in
+                Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                     if response.response?.statusCode == 200 {
                         if let json = response.result.value {
                             let pictures:[String] = json as! [String]
@@ -180,7 +180,7 @@ extension studioHomeViewController {
                                 
                                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                             }
-                            Alamofire.download("https://localhost:6666/\(pic_path)", to: destination).response { response in
+                            Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
                                 
                                 if response.error == nil, let imagePath = response.destinationURL?.path {
                                     LocalStudio.avator = getPicture(pic_path)

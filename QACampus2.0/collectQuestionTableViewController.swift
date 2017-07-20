@@ -107,7 +107,7 @@ extension collectQuestionTableViewController {
                         let path:String = "user/\(name)"
                         print(name)
                         //请求客户端的文件路径下的文件
-                        Alamofire.request("https://192.168.1.108:6666/files/\(path)", method: .get).responseJSON { response in
+                        Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                             if let json = response.result.value {
                                 
                                 if response.response?.statusCode == 200 {
@@ -121,7 +121,7 @@ extension collectQuestionTableViewController {
                                         
                                         return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                                     }
-                                    Alamofire.download("https://192.168.1.108:6666/\(pic_path)", to: destination).response { response in
+                                    Alamofire.download( uploadRoot+pic_path, to: destination).response { response in
                                         
                                         if response.error == nil, let imagePath = response.destinationURL?.path {
                                             self.avators[id] = getPicture(pic_path)

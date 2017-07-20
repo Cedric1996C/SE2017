@@ -69,9 +69,13 @@ extension userStudioViewController: UITableViewDelegate {
         StudioDetail.introduction = studio.introduction!
         StudioDetail.isCollected = studio.isCollected
         StudioDetail.background = images[studio.id!]!
+        
         //头像下载
         let path = "studio/\(StudioDetail.id)"
+        print(path)
         Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
+//            print(response.result.value)
+            
             if let json = response.result.value {
                 let pictures:[String] = json as! [String]
                 let pic_path = path.appending("/" + pictures[0])
@@ -83,7 +87,11 @@ extension userStudioViewController: UITableViewDelegate {
                     
                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                 }
+<<<<<<< HEAD
                 Alamofire.download("https://127.0.0.1:6666/\(pic_path)", to: destination).response { response in
+=======
+                Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
+>>>>>>> b11a7f44c509545e705bacd53f3c0fded356bc74
                     
                     if response.error == nil {
                         StudioDetail.avator = getPicture(pic_path)
@@ -137,8 +145,7 @@ extension userStudioViewController {
                  
                     self.tableData.append(studio)
                     //请求客户端的文件路径下的文件
-                    Alamofire.request("https://127.0.0.1:6666/files/\(path)", method: .get).responseJSON { response in
-                        print(response)
+                    Alamofire.request(storageRoot+path, method: .get).responseJSON { response in
                         if response.response?.statusCode == 200 {
                             if let json = response.result.value {
                                 let pictures:[String] = json as! [String]
@@ -150,9 +157,8 @@ extension userStudioViewController {
                                     
                                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                                 }
-                                Alamofire.download("https://127.0.0.1:6666/\(pic_path)", to: destination).response { response in
-                                    
-                                    print(response)
+
+                                Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
                                     
                                     if response.error == nil, let imagePath = response.destinationURL?.path {
                                         print("get image!")
