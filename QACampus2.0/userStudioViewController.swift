@@ -88,7 +88,6 @@ extension userStudioViewController: UITableViewDelegate {
                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                 }
                 Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
-                    
                     if response.error == nil {
                         StudioDetail.avator = getPicture(pic_path)
                         self.performSegue(withIdentifier: "showStudioInfo", sender: self)

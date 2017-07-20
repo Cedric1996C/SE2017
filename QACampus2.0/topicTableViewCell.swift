@@ -52,6 +52,8 @@ class topicStudioTableViewCell: UITableViewCell {
 
 class topicContentTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var topicDetailLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
