@@ -14,8 +14,8 @@ import SwiftyJSON
 class UserHotDetailViewController: UITableViewController {
     
     var answerList: [Answer] = []
-    var favBtn = UIBarButtonItem(title: "收藏", style: .plain, target: self, action: #selector(addToFav))
-    var ansBtn = UIBarButtonItem(title: "回答", style: .plain, target: self, action: #selector(addAnswer))
+    var favBtn: UIBarButtonItem? = nil
+    var ansBtn: UIBarButtonItem? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +30,19 @@ class UserHotDetailViewController: UITableViewController {
         
         tellIfInStudio()
         
+        favBtn = UIBarButtonItem(title: "收藏", style: .plain, target: self, action: #selector(addToFav))
+        ansBtn = UIBarButtonItem(title: "回答", style: .plain, target: self, action: #selector(addAnswer))
+        
         self.navigationItem.rightBarButtonItems = [
-            favBtn,
-            ansBtn
+            favBtn!,
+            ansBtn!
         ]
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target: self, action: #selector(cancel))
     }
     
     func addAnswer() {
-        // TODO: add answer
+        print("fucking add it")
+        performSegue(withIdentifier: "ToAnswer", sender: nil)
     }
     
     func addToFav() {
@@ -86,15 +90,17 @@ class UserHotDetailViewController: UITableViewController {
             let headers: HTTPHeaders = [
                 "Authorization": userAuthorization
             ]
-            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId)", method: .get, headers: headers).responseJSON { response in
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
                     let studioList = json["studio"].arrayValue
-                    if studioList.contains(JSON(Detail.studioId)) {
-                        self.ansBtn.isEnabled = true
-                    }
-                    else {
-                        self.ansBtn.isEnabled = false
+                    self.ansBtn!.isEnabled = false
+                    for studio in studioList {
+                        let studioId = studio.intValue
+                        if studioId == Detail.studioId {
+                            self.ansBtn!.isEnabled = true
+                            break
+                        }
                     }
                 }
             }

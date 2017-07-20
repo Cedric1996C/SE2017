@@ -63,7 +63,7 @@ class UserHotViewController: UIViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request("https://\(root):8443/qa-service/questions", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
@@ -122,11 +122,12 @@ class UserHotViewController: UIViewController {
             // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTFAMTYzLmNvbSIsInJvbGVzIjoiW1VTRVJdIiwiaWQiOjIwLCJleHAiOjE1MDEyMzk2MjR9.Ysg43frxTUveFHq2G1mgrbTU1Sd3AJtbVij_RXEiLpoZ_wpe0M4C144FIMdLD-xv16_o347wcMB1w76dVLgbAw"
+                "Authorization": userAuthorization
             ]
             Alamofire.request(self.nextPageUrl, method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
+                    print(json)
                     let content = json["content"]
                     for item in content {
                         let viewCount = item.1["viewcount"].int
@@ -144,7 +145,6 @@ class UserHotViewController: UIViewController {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        self.indicator.stopAnimating()
                     }
                 }
             }

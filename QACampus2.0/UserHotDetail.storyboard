@@ -26,6 +26,14 @@
             </objects>
             <point key="canvasLocation" x="-487" y="202"/>
         </scene>
+        <!--AnswerEditor-->
+        <scene sceneID="ejj-KC-NVg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AnswerEditor" id="hmK-px-gsz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iu1-Qo-aNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="588"/>
+        </scene>
         <!--问题详情-->
         <scene sceneID="i8y-we-HcA">
             <objects>
@@ -181,6 +189,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="uT6-3B-LNK"/>
+                    <connections>
+                        <segue destination="hmK-px-gsz" kind="show" identifier="ToAnswer" id="iRn-Sk-6Rb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wV-WX-0VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
