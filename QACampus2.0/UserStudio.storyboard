@@ -105,9 +105,7 @@
                             <constraint firstItem="htp-4u-JRQ" firstAttribute="width" secondItem="CB7-KO-ieD" secondAttribute="width" id="wiw-Bt-lor"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="推荐" id="hP1-lj-AMY">
-                        <barButtonItem key="rightBarButtonItem" title="工作室" id="PXZ-3P-iFt"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="推荐" id="hP1-lj-AMY"/>
                     <connections>
                         <outlet property="indicator" destination="MXR-xQ-6Mm" id="kdY-sC-v0s"/>
                         <outlet property="tableView" destination="htp-4u-JRQ" id="QeM-VM-JZi"/>
