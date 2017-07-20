@@ -114,6 +114,7 @@ class UserHotDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "TitleDetailCell") as! UserHotDetailContentCell
+            cell.userId = Detail.askerId
             cell.titleLabel.text = Detail.questionTitle
             cell.detailLabel.text = Detail.questionDetail
             cell.likeCountLabel.text = String(Detail.likeCount)
@@ -142,6 +143,7 @@ class UserHotDetailViewController: UITableViewController {
             cell.commentLabel.sizeToFit()
             return cell*/
             let cell: UserHotDetailAnswerCell = self.tableView.dequeueReusableCell(withIdentifier: "AnswerCell") as! UserHotDetailAnswerCell
+            cell.userId = answerList[indexPath.row].answererId
             cell.answerLabel.text = answerList[indexPath.row].str
             cell.timeLabel.text = DateFormatter.localizedString(from: answerList[indexPath.row].date, dateStyle: .short, timeStyle: .medium)
             cell.answererButton.setTitle(answerList[indexPath.row].answererAlias, for: .normal)
