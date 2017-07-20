@@ -55,8 +55,7 @@ class topicDetailTableViewController: UITableViewController {
 //                let studioId:Int = jsonObj["content"]["studio"].intValue
 //                //加载studioName
 //                //TopicDetail.studio =
-//                //加载头像
-//                    
+//               //                    
 //                //
 //                TopicDetail.title = jsonObj["content"]["title"].stringValue
 //                //时间戳／ms转为/s
