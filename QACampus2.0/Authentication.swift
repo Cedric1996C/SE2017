@@ -11,9 +11,9 @@ import Alamofire
 
 // MARK: 使用https通信的ViewController，在ViewDidLoad方法中，调用该方法
 func authentication() {
+    
     //自签名网站地址
-
-    let selfSignedHosts = ["192.168.0.1", "118.89.166.180","192.168.1.108", "115.159.199.121","localhost"]
+    let selfSignedHosts = ["192.168.0.1", "118.89.166.180", "192.168.1.108", "115.159.199.121", "localhost"]
     
     let manager = SessionManager.default
     manager.delegate.sessionDidReceiveChallenge = { session, challenge in
