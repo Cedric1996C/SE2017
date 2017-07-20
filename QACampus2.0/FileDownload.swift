@@ -22,8 +22,7 @@ func downloadQuestion(_ path:String){
     Alamofire.download(uploadRoot+path, to: destination).response { response in
         
         if response.error == nil {
-            let data = getQuestion(path)
-            print(data)
+            let data = getQuestion(path) as! Data
         }
 //      debugPrint(response)
         

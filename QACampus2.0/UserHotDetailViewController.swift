@@ -90,6 +90,10 @@ class UserHotDetailViewController: UITableViewController {
             cell.detailLabel.text = Detail.questionDetail
             cell.likeCountLabel.text = String(Detail.likeCount)
             cell.timeLabel.text = DateFormatter.localizedString(from: Detail.questionDate, dateStyle: .medium, timeStyle: .medium)
+            if let data = sampleData {
+                let str = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSAttributedString
+                cell.detailLabel.attributedText = str
+            }
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
             cell.likeCountLabel.sizeToFit()
