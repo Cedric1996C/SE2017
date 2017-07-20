@@ -12,10 +12,12 @@ class Answer {
     
     let id: Int
     let str: String
+    let date: Date
     
-    init(id: Int?, str: String?) {
+    init(id: Int?, str: String?, date: Date) {
         self.id = id ?? -1
         self.str = str ?? ""
+        self.date = date
     }
     
 }

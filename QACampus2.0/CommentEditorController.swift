@@ -16,4 +16,7 @@ class CommentEditorController: DetailEditorController {
         self.isAnswer = true
     }
     
+    override func doneClicked() {
+        super.doneClicked()
+    }
 }

@@ -151,7 +151,7 @@ class topicDetailTableViewController: UITableViewController {
             return 0
         }
     }
-    
+
 //    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
 //        view.backgroundColor = sectionHeaderColor
 //    }

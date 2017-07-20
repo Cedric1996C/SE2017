@@ -11,7 +11,7 @@ import Alamofire
 
 //图片下载
 func downloadQuestion(_ path:String){
-   
+    
     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent(path)
@@ -21,16 +21,25 @@ func downloadQuestion(_ path:String){
     
     Alamofire.download(uploadRoot+path, to: destination).response { response in
         
-        if response.error == nil, let data = response.destinationURL?.path {
-//            print(data)
+        if response.error == nil {
+            let data = getQuestion(path)
+            print(data)
         }
-        
-        debugPrint(response)
+//      debugPrint(response)
         
     }
 }
 
-
+func getQuestion(_ path:String) -> Data {
+    
+    let fullPath = ((NSHomeDirectory() as NSString).appendingPathComponent("Documents") as NSString).appendingPathComponent(path)
+    if let content = NSData(contentsOfFile: fullPath) {
+        return content as Data
+    } else {
+        return Data()
+    }
+    
+}
 
 //MARK: - 保存图片至沙盒
 func saveImage(currentImage:UIImage,path:String){

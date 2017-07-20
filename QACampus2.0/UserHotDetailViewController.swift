@@ -26,7 +26,11 @@ class UserHotDetailViewController: UITableViewController {
         
         requestData()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "s"), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "s"), style: .plain, target: self, action: #selector(addToFav))
+    }
+    
+    func addToFav() {
+        print("haha")
     }
     
     func requestData() {
@@ -39,13 +43,16 @@ class UserHotDetailViewController: UITableViewController {
             Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
-                    print(json)
-                    Detail.voteCount = json["vote"].intValue
+                    Detail.askerId = json["asker"].intValue
+                    Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
                     let answer = json["answer"].arrayValue
                     for ans in answer {
-                        self.answerList.append(Answer(id: 0, str: ans["details"].string))
+                        let ansId = ans["answerId"].intValue
+                        let ansDetail = ans["details"].stringValue
+                        let ansDate = ans["date"].doubleValue
+                        self.answerList.append(Answer(id: ansId, str: ansDetail, date: Date(timeIntervalSince1970: ansDate)))
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -80,7 +87,7 @@ class UserHotDetailViewController: UITableViewController {
             let cell: UserHotDetailContentCell = self.tableView.dequeueReusableCell(withIdentifier: "TitleDetailCell") as! UserHotDetailContentCell
             cell.titleLabel.text = Detail.questionTitle
             cell.detailLabel.text = Detail.questionDetail
-            cell.likeCountLabel.text = String(Detail.voteCount)
+            cell.likeCountLabel.text = String(Detail.likeCount)
             cell.titleLabel.sizeToFit()
             cell.detailLabel.sizeToFit()
             cell.likeCountLabel.sizeToFit()
@@ -99,7 +106,9 @@ class UserHotDetailViewController: UITableViewController {
             return cell*/
             let cell: UserHotDetailAnswerCell = self.tableView.dequeueReusableCell(withIdentifier: "AnswerCell") as! UserHotDetailAnswerCell
             cell.answerLabel.text = answerList[indexPath.row].str
+            cell.timeLabel.text = DateFormatter.localizedString(from: answerList[indexPath.row].date, dateStyle: .medium, timeStyle: .medium)
             cell.answerLabel.sizeToFit()
+            cell.timeLabel.sizeToFit()
             return cell
         }
     }
