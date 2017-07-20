@@ -63,7 +63,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WKr-sz-FkC">
-                                            <rect key="frame" x="146.5" y="306.5" width="212.5" height="30"/>
+                                            <rect key="frame" x="219.5" y="306.5" width="139.5" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3247483648" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-6z-MU1" userLabel="likeCount">
                                                     <rect key="frame" x="0.0" y="0.0" width="101.5" height="30"/>
@@ -76,13 +76,6 @@
                                                     <state key="normal" title="like"/>
                                                     <connections>
                                                         <action selector="likePressed:" destination="vDq-dJ-B8i" eventType="touchUpInside" id="sjy-CM-lto"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lK-Dt-w1j" userLabel="comment">
-                                                    <rect key="frame" x="147.5" y="0.0" width="65" height="30"/>
-                                                    <state key="normal" title="comment"/>
-                                                    <connections>
-                                                        <action selector="commentPressed:" destination="vDq-dJ-B8i" eventType="touchUpInside" id="lAd-ti-rOa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -111,57 +104,8 @@
                                     <outlet property="titleLabel" destination="SmE-O0-kaY" id="XMr-Ge-Spz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="106" id="Udy-Wq-Cv1" customClass="UserHotDetailCommentCell" customModule="QACampus2_0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="389" width="375" height="106"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Udy-Wq-Cv1" id="k9w-yN-SfE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I70-zR-hHc">
-                                            <rect key="frame" x="16" y="16" width="343" height="45"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nx6-bL-a9Y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65.5" height="45"/>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uoh-Kx-d1q">
-                                                    <rect key="frame" x="65.5" y="0.0" width="240" height="45"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvi-eD-F9F">
-                                                    <rect key="frame" x="305.5" y="0.0" width="37.5" height="45"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8H-Vc-HBW">
-                                            <rect key="frame" x="16" y="69" width="343" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="O8H-Vc-HBW" firstAttribute="centerX" secondItem="I70-zR-hHc" secondAttribute="centerX" id="3Hd-pM-79m"/>
-                                        <constraint firstItem="I70-zR-hHc" firstAttribute="top" secondItem="k9w-yN-SfE" secondAttribute="topMargin" constant="8" id="T2W-mM-JBA"/>
-                                        <constraint firstItem="O8H-Vc-HBW" firstAttribute="top" secondItem="I70-zR-hHc" secondAttribute="bottom" constant="8" id="cFp-sV-jf5"/>
-                                        <constraint firstItem="I70-zR-hHc" firstAttribute="centerX" secondItem="k9w-yN-SfE" secondAttribute="centerX" id="hLD-M9-I9z"/>
-                                        <constraint firstItem="I70-zR-hHc" firstAttribute="leading" secondItem="k9w-yN-SfE" secondAttribute="leadingMargin" constant="8" id="jBn-p8-yo3"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="O8H-Vc-HBW" secondAttribute="bottom" constant="8" id="lfP-rL-gJp"/>
-                                        <constraint firstItem="O8H-Vc-HBW" firstAttribute="leading" secondItem="k9w-yN-SfE" secondAttribute="leadingMargin" constant="8" id="u2w-IY-0h4"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="commentLabel" destination="O8H-Vc-HBW" id="5GF-UW-sUz"/>
-                                    <outlet property="timeLabel" destination="Mvi-eD-F9F" id="4Hl-1m-GgR"/>
-                                    <outlet property="userIdButton" destination="nx6-bL-a9Y" id="iLO-Kk-WbO"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerCell" rowHeight="138" id="dri-kF-UwK" customClass="UserHotDetailAnswerCell" customModule="QACampus2_0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="495" width="375" height="138"/>
+                                <rect key="frame" x="0.0" y="389" width="375" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dri-kF-UwK" id="jIF-OV-QYX">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="137.5"/>
@@ -224,13 +168,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wV-WX-0VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="628" y="201.94902548725639"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="vFa-O4-yvb">
-            <objects>
-                <viewControllerPlaceholder id="xPb-ZL-DfP" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVu-fb-kt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
 </document>

@@ -62,11 +62,12 @@ class UserHotDetailViewController: UITableViewController {
             Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
+                    Detail.questionId = json["id"].intValue
                     Detail.askerId = json["asker"].intValue
                     Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
-                    Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue)
+                    Detail.questionDate = Date(timeIntervalSince1970: json["date"].doubleValue / 1000)
                     self.getUserId(Detail.askerId) { str in
                         Detail.askerAlias = str
                     }
@@ -75,7 +76,7 @@ class UserHotDetailViewController: UITableViewController {
                         print(ans)
                         let ansId = ans["answerId"].intValue
                         let ansDetail = ans["details"].stringValue
-                        let ansDate = ans["date"].doubleValue
+                        let ansDate = ans["date"].doubleValue / 1000
                         var answer = Answer(id: ansId, str: ansDetail, date: Date(timeIntervalSince1970: ansDate))
                         answer.answererId = ans["answerer"].intValue
                         self.getUserId(answer.answererId) { str in
@@ -129,6 +130,7 @@ class UserHotDetailViewController: UITableViewController {
             cell.detailLabel.sizeToFit()
             cell.likeCountLabel.sizeToFit()
             cell.timeLabel.sizeToFit()
+            cell.controller = self
             return cell
         }
         else {
@@ -156,6 +158,25 @@ class UserHotDetailViewController: UITableViewController {
     
     func configLabelSize(_ label: UILabel) -> CGSize {
         return CGSize()
+    }
+    
+    func like(_ questionId: Int) {
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization,
+                "question": String(Detail.questionId)
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/question/thumb", method: .post, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let ac = UIAlertController(title: "点赞成功", message: nil, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: (UInt64)(2 * NSEC_PER_SEC))) {
+                        ac.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
 }
