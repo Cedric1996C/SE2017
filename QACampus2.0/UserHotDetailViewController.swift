@@ -14,6 +14,8 @@ import SwiftyJSON
 class UserHotDetailViewController: UITableViewController {
     
     var answerList: [Answer] = []
+    var favBtn = UIBarButtonItem(title: "收藏", style: .plain, target: self, action: #selector(addToFav))
+    var ansBtn = UIBarButtonItem(title: "回答", style: .plain, target: self, action: #selector(addAnswer))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,17 @@ class UserHotDetailViewController: UITableViewController {
         
         requestData()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "收藏", style: .plain, target: self, action: #selector(addToFav))
+        tellIfInStudio()
+        
+        self.navigationItem.rightBarButtonItems = [
+            favBtn,
+            ansBtn
+        ]
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target: self, action: #selector(cancel))
-        self.navigationItem.rightBarButtonItem?.tintColor = iconColor
-        self.navigationItem.leftBarButtonItem?.tintColor = iconColor
-
+    }
+    
+    func addAnswer() {
+        // TODO: add answer
     }
     
     func addToFav() {
@@ -68,8 +76,26 @@ class UserHotDetailViewController: UITableViewController {
                     let name = json["display_name"].stringValue
                     action(name)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func tellIfInStudio() {
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId)", method: .get, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let json = JSON(jsonData)
+                    let studioList = json["studio"].arrayValue
+                    if studioList.contains(JSON(Detail.studioId)) {
+                        self.ansBtn.isEnabled = true
+                    }
+                    else {
+                        self.ansBtn.isEnabled = false
+                    }
                 }
             }
         }
@@ -77,7 +103,6 @@ class UserHotDetailViewController: UITableViewController {
     
     func requestData() {
         DispatchQueue.global().async {
-            // TODO: load data
             authentication()
             let headers: HTTPHeaders = [
                 "Authorization": userAuthorization
@@ -85,11 +110,14 @@ class UserHotDetailViewController: UITableViewController {
             Alamofire.request("https://\(root):8443/qa-service/questions/\(Detail.questionId)", method: .get, headers: headers).responseJSON { response in
                 if let jsonData = response.result.value {
                     let json = JSON(jsonData)
+                    print(json)
                     Detail.questionId = json["id"].intValue
                     Detail.askerId = json["asker"].intValue
                     Detail.likeCount = json["thumb"].intValue
                     Detail.questionTitle = json["question"].stringValue
                     Detail.questionDetail = json["describtion"].stringValue
+                    Detail.studioId = json["studio"].intValue
+                    self.tellIfInStudio()
                     Detail.questionDetailAttr = nil
                     // TODO: get data
                     // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
@@ -99,7 +127,6 @@ class UserHotDetailViewController: UITableViewController {
                     }
                     let answer = json["answer"].arrayValue
                     for ans in answer {
-                        print(ans)
                         let ansId = ans["answerId"].intValue
                         let ansDetail = ans["details"].stringValue
                         let ansDate = ans["date"].doubleValue / 1000
@@ -109,9 +136,9 @@ class UserHotDetailViewController: UITableViewController {
                             answer.answererAlias = str
                         }
                         self.answerList.append(answer)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
                     }
                 }
             }
