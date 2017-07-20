@@ -14,7 +14,7 @@ class Comment {
     var name:String? = ""
     var content:String? = ""
     var avator = UIImage(named:"no.1")
-    var date：String = "1970-1-1"
+    var date:String = "1970-1-1"
     
     required init(id:Int, introduction: String?){        
         self.id = id

@@ -486,9 +486,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEx-EO-Vs6">
-                                                    <rect key="frame" x="48" y="15" width="70" height="20"/>
+                                                    <rect key="frame" x="48" y="15" width="229" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="69.5" id="Jbd-aO-RWs"/>
+                                                        <constraint firstAttribute="width" constant="229" id="Jbd-aO-RWs"/>
                                                         <constraint firstAttribute="height" constant="20" id="qc3-DL-fSw"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -534,7 +534,7 @@
                                                 <constraint firstItem="hEx-EO-Vs6" firstAttribute="top" secondItem="7AD-wZ-oBz" secondAttribute="topMargin" constant="7" id="KVR-p5-XSC"/>
                                                 <constraint firstItem="hEx-EO-Vs6" firstAttribute="leading" secondItem="htu-tt-krT" secondAttribute="trailing" constant="8" id="NAx-zQ-dwJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="JuD-uo-8Ex" secondAttribute="trailing" constant="2" id="YYj-nE-MpO"/>
-                                                <constraint firstItem="JuD-uo-8Ex" firstAttribute="leading" secondItem="hEx-EO-Vs6" secondAttribute="trailing" constant="167.5" id="Yx2-JT-Mj1"/>
+                                                <constraint firstItem="JuD-uo-8Ex" firstAttribute="leading" secondItem="hEx-EO-Vs6" secondAttribute="trailing" constant="8" id="Yx2-JT-Mj1"/>
                                                 <constraint firstItem="PPd-Zr-Cfh" firstAttribute="top" secondItem="htu-tt-krT" secondAttribute="bottom" constant="8" id="i1t-0p-JVw"/>
                                                 <constraint firstItem="xPr-VD-xig" firstAttribute="leading" secondItem="7AD-wZ-oBz" secondAttribute="leading" id="mZd-sg-aix"/>
                                                 <constraint firstAttribute="trailing" secondItem="xPr-VD-xig" secondAttribute="trailing" id="oWo-Rd-J2D"/>
@@ -545,6 +545,7 @@
                                             <outlet property="commentAvator" destination="htu-tt-krT" id="H4j-jl-2Yg"/>
                                             <outlet property="commentor" destination="hEx-EO-Vs6" id="qoM-xx-9rj"/>
                                             <outlet property="content" destination="PPd-Zr-Cfh" id="Ay2-ho-iSj"/>
+                                            <outlet property="date" destination="JuD-uo-8Ex" id="8ai-SP-7eb"/>
                                             <outlet property="seperate" destination="xPr-VD-xig" id="YMa-Qz-epu"/>
                                         </connections>
                                     </tableViewCell>
@@ -611,7 +612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxb-Nk-KBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291.304347826087" y="538.85869565217399"/>
+            <point key="canvasLocation" x="-292" y="538.38080959520244"/>
         </scene>
         <!--CommentEditor-->
         <scene sceneID="ZzK-PU-AX6">

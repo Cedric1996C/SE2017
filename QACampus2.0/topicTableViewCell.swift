@@ -105,6 +105,7 @@ class topicCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var content: UILabel!
     
     @IBOutlet weak var seperate: UIView!
+    @IBOutlet weak var date: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

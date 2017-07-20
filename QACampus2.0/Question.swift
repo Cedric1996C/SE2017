@@ -18,6 +18,7 @@ class Question {
     var answer_num:Int?
     var thumb_num:Int?
     static var ask_id:Int = 1
+    static var question_id:Int = 1
     
     
     required init(id:Int, name: String?,date:String?,title:String?, introduction: String?,answer_num:Int){

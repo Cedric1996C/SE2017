@@ -48,20 +48,21 @@ class QuestionEditorController: TitleDetailEditorController {
             "studio": LocalStudio.id
         ]
         
-        /*Alamofire.request("https://\(root):8443/qa-service/questions",method: .post, parameters:parameters,headers:headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/qa-service/questions",method: .post, parameters:parameters,headers:headers).responseJSON { response in
            
             debugPrint(response)
             if response.result.value != nil {
                 // response serialization result
                 var json = JSON(response.result.value!)
-                Question.ask_id = json.int!
+                print(json)
+                Question.question_id = json.intValue
             }
         
-            let path:String = "question/\(Question.ask_id)/\(User.localUserId!)"
+            let path:String = "question/\(Question.question_id)/\(User.localUserId!)"
 //         let path:String = "question/150/\(User.localUserId!)"
             userDefault.set(detailData, forKey: path)
             prepareFile(path, destination: uploadRoot+path)
-        }*/
+        }
 
     }
     

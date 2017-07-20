@@ -44,13 +44,13 @@ class TopicEditorController: TitleDetailEditorController {
             "sid": LocalStudio.id
         ]
         
-        Alamofire.request("https://\(root):8443/topic-service/topic/5",method: .post, parameters:parameters,headers:headers).responseJSON { response in
+        Alamofire.request("https://\(root):8443/topic-service/topic",method: .post, parameters:parameters,headers:headers).responseJSON { response in
             debugPrint(response)
             if response.result.value != nil {
                 // response serialization result
                 var json = JSON(response.result.value!)
                 print(json)
-//                Question.ask_id = json.int!
+                Question.ask_id = json.intValue
             }
             
             let path:String = "topic/\(Question.ask_id)/\(User.localUserId!)"

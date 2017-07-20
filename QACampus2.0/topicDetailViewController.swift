@@ -19,6 +19,8 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         return []
     }()
     
+    var topicData:Data?
+    
     @IBAction func addComment(_ sender: Any) {
         performSegue(withIdentifier: "ToComment", sender: nil)
     }
@@ -104,7 +106,11 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
-            cell.content.text = "这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长这个话题很长很长"
+            let item = comments[indexPath.row]
+            cell.content.text = item.content
+            cell.commentAvator.image = item.avator == nil ? UIImage(named:"no.1"):item.avator
+            cell.commentor.text = item.name
+            cell.date.text = item.date
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicComment", for: indexPath) as! topicCommentTableViewCell
@@ -174,6 +180,15 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
                     
                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                 }
+                Alamofire.download(uploadRoot+path, to: destination).response { response in
+                    
+                    if response.error == nil {
+                        self.topicData = getQuestion(path)
+                        print(self.topicData)
+                        //异步加载 使用data应在这个上下文里面
+                        self.topic.reloadData()
+                    }
+                }
                 
                 
                 //请求用户的信息
@@ -215,16 +230,6 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
                     }
                 }
 
-                
-                Alamofire.download(uploadRoot+path, to: destination).response { response in
-                    
-                    if response.error == nil {
-                        let data = getQuestion(path)
-                        print(data)
-                        //异步加载 使用data应在这个上下文里面
-                        self.topic.reloadData()
-                    }
-                }
                 // Detail.questionDetailAttr = NSKeyedUnarchiver.unarchiveObject(with: data) as NSAttributedString
                 
                 let comment = json["comment"].arrayValue
@@ -236,6 +241,7 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
                     let date = date2String(dateStamp:com["date"].intValue/1000)
                     //                    let writer = com["writer"].intValue
                     let result = Comment(id: id,introduction:detail)
+                    result.date = date
                     self.comments.append(result)
                     
                     let path = "user/\(id)"
