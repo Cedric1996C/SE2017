@@ -26,11 +26,19 @@ class UserHotDetailViewController: UITableViewController {
         
         requestData()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "s"), style: .plain, target: self, action: #selector(addToFav))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "收藏", style: .plain, target: self, action: #selector(addToFav))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target: self, action: #selector(cancel))
+        self.navigationItem.rightBarButtonItem?.tintColor = iconColor
+        self.navigationItem.leftBarButtonItem?.tintColor = iconColor
+
     }
     
     func addToFav() {
         print("haha")
+    }
+    
+    func cancel() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func requestData() {

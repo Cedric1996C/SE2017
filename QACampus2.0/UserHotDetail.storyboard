@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G1d-A8-N5A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qaj-m0-RGd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="egI-Tc-eCK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GDk-mv-1eQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="qaj-m0-RGd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W8y-3U-u73">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G1d-A8-N5A" kind="relationship" relationship="rootViewController" id="vj1-Bm-XQE"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-487" y="202"/>
+        </scene>
         <!--问题详情-->
         <scene sceneID="i8y-we-HcA">
             <objects>
@@ -207,17 +223,11 @@
                             <outlet property="delegate" destination="G1d-A8-N5A" id="5Js-zY-eqs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="uT6-3B-LNK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wV-WX-0VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="628" y="201.94902548725639"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="vFa-O4-yvb">
-            <objects>
-                <viewControllerPlaceholder id="xPb-ZL-DfP" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVu-fb-kt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
 </document>

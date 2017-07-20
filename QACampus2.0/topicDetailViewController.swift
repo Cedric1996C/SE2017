@@ -29,7 +29,11 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         topic.separatorStyle = .none
         topic.dataSource = self
         topic.delegate = self
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"返回", style: .plain, target: self, action: #selector(cancel))
+        self.navigationItem.leftBarButtonItem?.tintColor = iconColor
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
@@ -149,5 +153,10 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
             return 0
         }
     }
+    
+    func cancel() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 }

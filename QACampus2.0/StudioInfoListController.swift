@@ -166,7 +166,7 @@ class  StudioInfoListController: UIViewController,UITableViewDelegate,UITableVie
                     for r in results{
                         let id:Int = r["id"].intValue
                         let name:String = r["asker"].stringValue
-                        //加载头像
+
                         
                         let path:String = "user/\(id)"
                         //请求客户端的文件路径下的文件
