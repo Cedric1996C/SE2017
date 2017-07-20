@@ -17,5 +17,6 @@ class Detail {
     static var likeCount: Int = 0
     static var askerId: Int = 0
     static var askerAlias: String = ""
+    static var questionDate: Date = Date()
     
 }
