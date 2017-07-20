@@ -19,6 +19,28 @@ class topicDetailViewController: UIViewController ,UITableViewDelegate,UITableVi
         return []
     }()
     
+    @IBAction func addComment(_ sender: Any) {
+        performSegue(withIdentifier: "ToComment", sender: nil)
+    }
+    
+    @IBAction func addFav(_ sender: Any) {
+        DispatchQueue.global().async {
+            authentication()
+            let headers: HTTPHeaders = [
+                "Authorization": userAuthorization,
+                "topic": String(TopicDetail.id)
+            ]
+            Alamofire.request("https://\(root):8443/owner-service/owners/\(User.localUserId!)/topic/collect", method: .post, headers: headers).responseJSON { response in
+                if let jsonData = response.result.value {
+                    let ac = UIAlertController(title: "收藏成功", message: nil, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: (UInt64)(2 * NSEC_PER_SEC))) {
+                        ac.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

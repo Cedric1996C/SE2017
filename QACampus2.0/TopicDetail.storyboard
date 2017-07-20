@@ -565,6 +565,9 @@
                                             <constraint firstAttribute="height" constant="30" id="yul-Tq-3cs"/>
                                         </constraints>
                                         <state key="normal" title="评论"/>
+                                        <connections>
+                                            <action selector="addComment:" destination="6P4-QF-2hy" eventType="touchUpInside" id="Fe3-px-54V"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXd-V5-YcK">
                                         <rect key="frame" x="274" y="12" width="60" height="30"/>
@@ -574,6 +577,9 @@
                                             <constraint firstAttribute="width" constant="60" id="wCu-IM-ihH"/>
                                         </constraints>
                                         <state key="normal" title="收藏"/>
+                                        <connections>
+                                            <action selector="addFav:" destination="6P4-QF-2hy" eventType="touchUpInside" id="zoL-wc-iaV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -600,11 +606,20 @@
                     <connections>
                         <outlet property="bottomView" destination="q0x-oi-R0Y" id="CCD-PP-noY"/>
                         <outlet property="topic" destination="agn-bK-ICL" id="tEL-hF-XtM"/>
+                        <segue destination="zCA-PQ-u9X" kind="show" identifier="ToComment" id="umG-2A-WBZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxb-Nk-KBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-291.304347826087" y="538.85869565217399"/>
+        </scene>
+        <!--CommentEditor-->
+        <scene sceneID="ZzK-PU-AX6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CommentEditor" id="zCA-PQ-u9X" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTp-3u-sYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-411" y="1131"/>
         </scene>
     </scenes>
     <resources>
