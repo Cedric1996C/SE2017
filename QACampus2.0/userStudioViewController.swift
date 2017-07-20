@@ -87,7 +87,11 @@ extension userStudioViewController: UITableViewDelegate {
                     
                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                 }
+<<<<<<< HEAD
+                Alamofire.download("https://127.0.0.1:6666/\(pic_path)", to: destination).response { response in
+=======
                 Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
+>>>>>>> b11a7f44c509545e705bacd53f3c0fded356bc74
                     
                     if response.error == nil {
                         StudioDetail.avator = getPicture(pic_path)
@@ -146,7 +150,6 @@ extension userStudioViewController {
                             if let json = response.result.value {
                                 let pictures:[String] = json as! [String]
                                 let pic_path = path.appending("/" + pictures[1])
-                                
                                 //获取文件
                                 let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                                     let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -154,9 +157,11 @@ extension userStudioViewController {
                                     
                                     return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
                                 }
+
                                 Alamofire.download(uploadRoot+pic_path, to: destination).response { response in
                                     
                                     if response.error == nil, let imagePath = response.destinationURL?.path {
+                                        print("get image!")
                                         self.images[id] = getPicture(pic_path)
                                         self.reload()
                                     }

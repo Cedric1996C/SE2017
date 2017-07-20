@@ -25,7 +25,7 @@ class QuestionEditorController: TitleDetailEditorController {
        
         super.doneClicked()
         let detailData = NSKeyedArchiver.archivedData(withRootObject: detailView?.attributedText!)
-        
+        sampleData = detailData
         let titleText:String = (titleView?.text)!
         let detailText:String = (detailView?.text)!
     
@@ -48,7 +48,7 @@ class QuestionEditorController: TitleDetailEditorController {
             "studio": LocalStudio.id
         ]
         
-        Alamofire.request("https://\(root):8443/qa-service/questions",method: .post, parameters:parameters,headers:headers).responseJSON { response in
+        /*Alamofire.request("https://\(root):8443/qa-service/questions",method: .post, parameters:parameters,headers:headers).responseJSON { response in
            
             debugPrint(response)
             if response.result.value != nil {
@@ -61,7 +61,7 @@ class QuestionEditorController: TitleDetailEditorController {
 //         let path:String = "question/150/\(User.localUserId!)"
             userDefault.set(detailData, forKey: path)
             prepareFile(path, destination: uploadRoot+path)
-        }
+        }*/
 
     }
     
