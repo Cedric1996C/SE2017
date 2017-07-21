@@ -101,7 +101,7 @@ class topicDetailTableViewController: UITableViewController {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "topicContent", for: indexPath) as! topicContentTableViewCell
-            //TODO: cell.topicDetailLabel.text = ...
+            cell.topicDetailLabel.text = "编程是一门艺术"
             cell.topicDetailLabel.sizeToFit()
             return cell
         case 3:
